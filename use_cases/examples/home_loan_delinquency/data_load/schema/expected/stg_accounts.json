@@ -1,0 +1,67 @@
+[
+      {
+        "description": "The type of exposure, for example Current Account or Loan",
+        "name": "exposure_type",
+        "type": "STRING"
+      },
+      {
+        "description": "The unique identification of the account",
+        "name": "account_number",
+        "type": "STRING"
+      },
+      {
+        "description": "The legal entity code which this account belongs to",
+        "name": "entity_code",
+        "type": "STRING"
+      },
+      {
+        "description": "The legal entity name which this account belongs to",
+        "name": "entity_name",
+        "type": "STRING"
+      },
+      {
+        "description": "The status of the account",
+        "name": "account_status",
+        "type": "STRING"
+      },
+      {
+        "description": "The balance of the account. Aggregate to obtain the funds under management.",
+        "name": "account_balance",
+        "type": "FLOAT"
+      },
+      {
+        "description": "The product type. Referential key to the product table.",
+        "name": "product_code",
+        "type": "STRING"
+      },
+      {
+        "description": "The product subtype. Referential key to the product table.",
+        "name": "product_subcode",
+        "type": "STRING"
+      },
+      {
+        "description": "The code where the cost is posted to in the GL",
+        "name": "cost_center",
+        "type": "STRING"
+      },
+      {
+        "description": "The number of days the account has been delinquent.",
+        "name": "days_delinquent",
+        "type": "INTEGER"
+      },
+      {
+        "description": "The banding for the days delinquency.",
+        "name": "days_delinquent_bucket",
+        "type": "STRING"
+      },
+      {
+        "description": "True or false, whether the loan is non-performing.",
+        "name": "npl_flag",
+        "type": "BOOLEAN"
+      },
+      {
+        "description": "When the account was opened",
+        "name": "date_opened",
+        "type": "DATE"
+      }
+    ]

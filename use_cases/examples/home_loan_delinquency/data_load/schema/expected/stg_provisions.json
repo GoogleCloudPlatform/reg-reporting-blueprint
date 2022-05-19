@@ -1,0 +1,27 @@
+[
+      {
+        "description": "The period when the provision is valid for (YYYYMM)",
+        "name": "period",
+        "type": "STRING"
+      },
+      {
+        "description": "The account ID this provision relates to",
+        "name": "account_number",
+        "type": "STRING"
+      },
+      {
+        "description": "A reference for the provision case",
+        "name": "case_reference",
+        "type": "STRING"
+      },
+      {
+        "description": "Reason for the provision",
+        "name": "reason",
+        "type": "STRING"
+      },
+      {
+        "description": "The total provision amount",
+        "name": "provision_amount",
+        "type": "FLOAT"
+      }
+    ]

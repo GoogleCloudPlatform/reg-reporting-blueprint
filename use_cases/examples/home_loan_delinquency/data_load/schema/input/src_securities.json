@@ -1,0 +1,47 @@
+[
+      {
+        "mode": "NULLABLE",
+        "name": "SEC_NUMBER",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "PROPERTY_STATE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "PROPERTY_TYPE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "VALUATION_DATE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "SECURITY_VALUE",
+        "type": "FLOAT"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "CONTRACT_OF_SALE_DATE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "SEC_TYPE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "STATUS",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "PROPERTY_POST_CODE",
+        "type": "STRING"
+      }
+    ]

@@ -1,0 +1,12 @@
+[
+      {
+        "mode": "NULLABLE",
+        "name": "ACCOUNT_KEY",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "CURRENT_BALANCE",
+        "type": "FLOAT"
+      }
+    ]

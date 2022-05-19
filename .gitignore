@@ -1,0 +1,9 @@
+.idea/
+.vscode
+.terraform
+
+# Local .terraform files
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.terraform.lock.*

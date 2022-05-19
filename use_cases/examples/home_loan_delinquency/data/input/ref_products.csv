@@ -1,0 +1,7 @@
+PRODUCT_ID,PRODUCT_CODE,PRODUCT_SUBCODE,DESCRIPTION,ACTIVE_FLAG
+1a3ce0d1fd55087cea0ea305458a4fa6,CA,03,Offset current account,true
+f679a8b71690d8bdb93aef316086e068,CA,02,Students current account,true
+70ae977c5c3235f3fa32cbacd883b984,CA,01,Flex current account,true
+10cec5a578df839224aabfee7ad07987,LOAN,02,Student loan,true
+5b67ba8dc3e77f7e7819a8b8fff5a646,LOAN,01,Mortgage loan,true
+4bf8c6fec8833115271f9cbf73dcb8bf,LOAN,03,Auto loan,true

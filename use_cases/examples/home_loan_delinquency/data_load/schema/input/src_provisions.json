@@ -1,0 +1,27 @@
+[
+      {
+        "mode": "NULLABLE",
+        "name": "PERIOD",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "ACCOUNT_KEY",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "CASE_REFERENCE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "REASON",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "PROVISION_AMOUNT",
+        "type": "FLOAT"
+      }
+    ]

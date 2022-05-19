@@ -1,0 +1,901 @@
+sec_number,property_state,property_type,valuation_date,security_value,contract_of_sale_date,security_type,security_status,account_number,security_rank,region,is_primary
+01dc1da6699ceb9631099d3b47c7cc02,Illinois,Flat,2015-01-04,227175,,Mortgage,Valid,e038f11ef0dae263edf3b487b0691959,5,Southern Texas,false
+30633674c641e773fedc4d4277dd051b,Texas,Flat,2006-04-11,127518,,Pledge,Valid,a69e3c02d529c14dd47cfeb9fa73efd8,5,Southern Texas,false
+111f57b1711a3d8ed7e8ef47272245a7,Illinois,Flat,2014-10-13,227128,,Mortgage,Valid,e038f11ef0dae263edf3b487b0691959,7,Southern Illinois,false
+572fbe7d662cd075e565d554df5eefff,Illinois,Flat,2014-10-25,563361,,Mortgage,Valid,e038f11ef0dae263edf3b487b0691959,6,Southern Illinois,false
+efa621636a81f20f2c7c3659d7702af2,Ohio,Flat,2016-03-24,223420,,Mortgage,Valid,2675fc0b1bcb6109f4ddb59e76f67e29,1,Central Ohio,true
+497dfd23c0bb2d4b778a543b1dbc8537,Texas,Flat,2019-03-01,123434,2016-08-10,Mortgage,Valid,a975558ead16e5c7f36e01d9997d1c1d,1,Central Texas,true
+bc01c23b40744fb229a332946658d4e3,Texas,Flat,2016-05-20,568722,,Mortgage,Valid,9c2891653dd16f9e48334b68f9959362,1,Central Texas,true
+d36a9685cae4c7a472581fd6d45b98c2,Texas,Coach House,2015-10-25,223028,,Mortgage,Valid,a9dc88def4dcf8fc0afcd117f51fb2fe,1,Central Texas,true
+d57d8d055715bc84cc0a3d4929f7b929,Ohio,Flat,,124409,,Mortgage,Valid,7265a9d6843bb7e437e20731955e6922,1,Southern Ohio,true
+d4c89795e9d550411c91daa06bcab061,Ohio,Flat,2010-12-22,563766,,Mortgage,Valid,bf6e4da33bacd52b4e43be4390c95cfe,1,Southern Ohio,true
+eb030cdca5917a32d805fdfe2faef0d9,Ohio,Flat,2018-04-02,124347,2017-09-13,Mortgage,Valid,ca0d4c29d5f85aa769044163c71a56f2,1,Southern Ohio,true
+90d7363040f4ddb646d3cf3ce0a8baa6,Ohio,Flat,2012-01-26,568601,,Mortgage,Valid,db5485b5d5fadc176ace4aee8f30a27c,1,Southern Ohio,true
+59685b7dc4d13e2a5e19af7bee606df3,Ohio,Flat,2007-07-14,560568,2007-09-10,Mortgage,Valid,7e54913dbf241e5a45500297a9c460c6,1,Southern Ohio,true
+037222ee7dd9e811fd1c8c7116ae8a33,Ohio,Coach House,2018-04-24,568509,,Mortgage,Valid,4a4c38f2d4aa99b672fb477378bddb25,1,Southern Ohio,true
+ef22900482ed00b999996db6cca11e65,Ohio,Flat,2018-07-01,125381,,Mortgage,Valid,6d26ab5447209ede01f02b02cd16fea3,1,Southern Ohio,true
+42390d0fa96f1a31039b2bd1101cb256,Ohio,Flat,2021-09-09,989005,,Mortgage,Valid,b231b0f96ccfc22a579da304e15c1cf3,1,Southern Ohio,true
+d6b85eca4659a17ce7f827994d6d662b,Ohio,Flat,,121731,2018-07-04,Mortgage,Valid,246ffb06669c7d2d5fc1d0ee91d2be70,1,Southern Ohio,true
+759ab15f7e014574a9810b10c9c8ce3d,Ohio,Flat,2013-06-27,561189,,Mortgage,Valid,9510db56b493a27040de50f61c1765dc,1,Southern Ohio,true
+92a193eaab80ba3d3f22699363188970,Ohio,Flat,2014-11-06,126974,,Mortgage,Valid,5e386aa3f79858e23b8aa59692276c9b,1,Southern Ohio,true
+66d3cde67d31b02e2c96d515fc1a1513,Ohio,Flat,2020-09-10,225698,2020-02-14,Mortgage,Valid,82127b45e00828401547d9810070fb6b,1,Southern Ohio,true
+41dd04d9ce886f107c41e6dd9776bdab,Ohio,Flat,2013-09-08,224680,2001-06-26,Mortgage,Valid,cbadfff45d63f3ca5c551da3d4dfb15b,1,Southern Ohio,true
+3459798b9630d4f37b4e4a4bbac96929,Ohio,Flat,2015-08-29,223903,2015-09-14,Mortgage,Valid,6254994052845bdb058f564612674155,1,Southern Ohio,true
+3ca0382e423ebc10e90dbe7090d2a306,Ohio,Flat,2012-09-02,563048,,Mortgage,Valid,a49c87dac78aa2637014c1cd5ecc1572,1,Southern Ohio,true
+b6683174fc5ed2382d6728ede105edf6,Ohio,Flat,2017-01-18,566656,,Mortgage,Valid,0265e01541b76a42a38204f2c4163a26,1,Southern Ohio,true
+5227b8006fdf7d953718adec5d4d6db2,Ohio,Flat,,120143,2015-04-26,Mortgage,Valid,8590d3f54e1f12f2b7145e921e5aab8d,1,Southern Ohio,true
+8440b46d9bd9f5bccb3971733ec28bea,Ohio,Flat,2015-12-11,228940,,Mortgage,Valid,7f227bc60e0abb021a2a127429149837,1,Southern Ohio,true
+51bce36b80abef0d4e5b1c41d2e257bf,Ohio,Flat,2016-03-21,125275,2016-02-24,Mortgage,Valid,fd3c9759b4ffd42fe88b1d191bae8866,1,Southern Ohio,true
+55c7d1467bd0b17b92b5c13b394dbeb2,Ohio,Flat,2014-11-08,227418,,Mortgage,Valid,c6bd9cf9cf06295f2b95a5de2d611460,1,Southern Ohio,true
+654f685bed3c0e8323a58835e96f46ce,Ohio,Flat,2019-11-24,221980,2020-07-05,Mortgage,Defaulted,1d808d1a9365864b6159e239da3e8b92,1,Southern Ohio,true
+71caf892af1e8c33bdccad4065b32171,Ohio,Flat,2012-07-06,129206,,Mortgage,Valid,ad29224cd1cda5440e991521a7d33c40,1,Southern Ohio,true
+fc66959bb0997161d892d70427c89e9c,Ohio,Flat,2011-11-10,568838,,Mortgage,Valid,7142d3f91baaaef998b583a4b1a0ef14,1,Southern Ohio,true
+4e3478dfd1dbd1543da4cd9764ff1aec,Ohio,Flat,2019-04-16,227410,,Mortgage,Valid,32774ddbf00336f87b4533b1434bd34f,1,Southern Ohio,true
+51e8c9a9f452b41a23eee7c384876585,Ohio,Flat,2015-06-11,221715,,Mortgage,Valid,4364d59ade7b9707cc631cf3bfb2b3f7,1,Southern Ohio,true
+c3e6dac929311097161a8921f0e245b7,Ohio,Flat,2016-08-22,122574,2016-10-12,Mortgage,Valid,6b2ce9b219b02fc41221cac39b840dcd,1,Southern Ohio,true
+bae2b8d26bbd2a7f459c29e7a9febb09,Ohio,Flat,,227580,2014-07-23,Mortgage,Valid,779e948c030a7c269a9f930e0bff7cff,1,Southern Ohio,true
+ed91a94bfb5bc6370b2c69aaa980dee9,Ohio,Flat,2014-05-23,126386,,Mortgage,Valid,dcb8c6cc6bf1abac1c7000c20ce56f03,1,Southern Ohio,true
+d149ca841cfcafaa3c78166a8a60b9de,Ohio,Detached,,220931,,Mortgage,Defaulted,5586b7198d1da0d780c3793e9785962e,1,Southern Ohio,true
+072f4c35b3934bb0e5a51ac42bd6a37f,Ohio,End terraced house,2019-03-05,227422,,Mortgage,Valid,23ed12e39d66568cbd685eadf1788e49,1,Southern Ohio,true
+9ce66365384170bcaf52951bfdaea34e,Ohio,Flat,2016-06-21,980672,2015-04-07,Mortgage,Valid,bf92696fd23fb09c6b285098904b9f91,1,Southern Ohio,true
+51fd430c239098df90277e558b60c5bc,Ohio,Flat,2013-09-02,126925,,Mortgage,Valid,c4347b976967ea9021dc2837a9f410b4,1,Southern Ohio,true
+1e216c2a201f05ff7362923bf3572248,Ohio,Flat,2011-01-19,561296,,Mortgage,Valid,126fbb18bbe56aa0e8317d4067dd196a,1,Southern Ohio,true
+9dbb5747a1d88a17d1e1b19f38a32002,Ohio,Flat,2009-05-26,121867,,Mortgage,Valid,3192eb362194dc70819d9cd157ac4806,1,Southern Ohio,true
+7d908a7f4cd29a4e3752a58e51ee2462,Ohio,Flat,2012-07-27,989325,,Mortgage,Valid,db0dd86ceab2a8dc628c19b559d979e0,1,Southern Ohio,true
+8c88ba3901c92c39fe90788dbcc7fb99,Ohio,Detached,,127997,,Mortgage,Valid,d59fc7990eea4914199f3e5b81367fb9,1,Southern Ohio,true
+0399f28a219c88fd9669786f651f9cac,Ohio,Flat,2011-01-30,126830,,Mortgage,Valid,484e1aa8c1f26e523a4bd4e0ff538f60,1,Southern Ohio,true
+0a309630502d33bb9c802fd7497ca0ac,Ohio,Flat,2011-12-08,227627,,Mortgage,Valid,c3aacc1a42e070ac5205236fe1266963,1,Southern Ohio,true
+e171a44335486bbe770b3438526b65be,Ohio,Flat,2008-12-03,989138,,Mortgage,Valid,84197d1a890214e7bf31d40d3361381d,1,Southern Ohio,true
+a784a554df0d15962c693b93e4bfcea2,Ohio,Flat,2012-08-23,224044,,Mortgage,Valid,ca67a295e5550ff4702003e566e8f210,1,Southern Ohio,true
+709dc5f3d08bd364fe0d6dfac125c489,Ohio,Detached,,982662,,Mortgage,Valid,b22ea91234988d5c1c495f49bb27aa5e,1,Southern Ohio,true
+457a55b595622daa070c57763ff7663f,Ohio,Flat,2017-08-07,224914,,Mortgage,Valid,269b501cc41558875378c311188abbec,1,Southern Ohio,true
+454de4dc95e585911b044537d029d45b,Ohio,Flat,2018-03-08,129141,,Mortgage,Valid,5d8e585450d81c3d8057a37e008749fd,1,Southern Ohio,true
+a076e9351e795e5024f2bcc5b302ba26,Ohio,Flat,2012-01-14,986226,,Mortgage,Valid,6ea3c6c7156fc9deea28d39302719d45,1,Southern Ohio,true
+01a22f5fce44b0bbe0799f90398ac340,Ohio,Flat,2005-04-18,221815,2005-05-04,Mortgage,Valid,6c0ddbecc4472c2c017e5c7b66968b95,1,Southern Ohio,true
+9e597f1bb4f2e0d62973793c4f53cf65,Ohio,Flat,2013-12-03,567380,,Mortgage,Valid,11680d46acab3981a1ca0e1160f64eb3,1,Southern Ohio,true
+c06ad46f21f98f7827735eecdd478ebe,Ohio,Flat,2017-06-02,561735,2017-01-04,Mortgage,Valid,c68f30310412dc057f082d8e72c23f5c,1,Southern Ohio,true
+a7bfed53cdf5aab438f53bc19c749a3c,Ohio,Flat,2017-01-25,124224,,Mortgage,Valid,0ec859da943d735e9249d9d0ed95bb57,1,Southern Ohio,true
+a198ec4de3fe2ed1489cfa6ba64d2530,Ohio,Flat,2013-05-16,987658,,Mortgage,Valid,60c571256806a385949ddd74a5eadd8b,1,Southern Ohio,true
+01592970387e4c966e03815c5cc6c707,Ohio,Flat,2001-08-05,563957,2001-12-03,Mortgage,Valid,9783d4e511761d945f90f290f90f0331,1,Southern Ohio,true
+eb2e842e1da0590c847d7478a8b1a6e6,Ohio,Flat,2011-11-01,563890,,Mortgage,Valid,b8bb21a354667733c9ec06c98ee6727b,1,Southern Ohio,true
+b183eca4968363be066041a6423b8a37,Ohio,Flat,2018-04-19,981131,,Mortgage,Valid,56f5a921516b8e9b2852ade2f1b3ae46,1,Southern Ohio,true
+83e915cd6f0266a356eff0da49874fa0,Ohio,Flat,2016-09-12,126724,,Mortgage,Valid,961757962f1d9042f754537a7a9f360a,1,Southern Ohio,true
+46d1830a2438731642f0137f7b414918,Ohio,Flat,2016-01-12,227492,,Mortgage,Valid,9cbbc38be172f4b46f559ef2ebc0a47d,1,Southern Ohio,true
+03030e011fecd9595f6387212ed9ed52,Ohio,Detached,1994-06-02,563589,,Mortgage,Valid,0294b5430da7f5b12b3bae0cd055acb7,1,Southern Ohio,true
+b35314879dc6a49d650ae73abfbb84de,Ohio,Flat,2020-09-20,128558,,Mortgage,Valid,8667fb82228efa84c9fcaaa75d0b717a,1,Southern Ohio,true
+df1a3784434e9c6119916b0f24d84ad0,Ohio,Flat,,988595,,Mortgage,Valid,5e0b033eab68c6cd1131f11b29055359,1,Southern Ohio,true
+9a505328006fb26242b0a9c0ea803157,Ohio,Flat,2010-07-25,227180,,Mortgage,Valid,d3304fb280fe59d903c042cc43b0bc49,1,Southern Ohio,true
+d48089c8b48979fa979475a6e41060d7,Ohio,Commercial property,2014-02-22,126212,,Mortgage,Valid,7ae57da0dc2fb370620d95bd1788ed21,1,Southern Ohio,true
+b9656b37cbd03b515073d51da1250ade,Ohio,Commercial property,2014-09-15,120418,2015-07-12,Mortgage,Valid,eb16a2e24df88461debc35934c8b3cd2,1,Southern Ohio,true
+2ee5ff993a8ddb2c000cd934220dab1d,Ohio,Flat,,980565,2017-01-30,Mortgage,Valid,b4f1091c34f295d2a3f26eb0251fa79b,1,Southern Ohio,true
+497f6e35fca31139180518f33ca875a9,Ohio,Flat,2015-06-06,129998,,Pledge,Valid,14f2e6cb7e7283d37bb5b302b09ba013,1,Southern Ohio,true
+06c22edcb055c4935345e5d208202afc,Texas,Flat,2020-04-14,560415,,Mortgage,Valid,9797a9138a021124dd579e705fee34f0,1,Northern Texas,true
+ed5b3fa4267d776e80de469cf1f69448,Texas,Flat,2017-04-16,227873,,Mortgage,Valid,9025db3412a8e4f75e93b3891dc8cc1c,1,Northern Texas,true
+4449cd3827e1588a188f41198b2dfcfa,Texas,Flat,2008-11-01,225741,2009-01-07,Mortgage,Valid,b0a24945b17406e031a21271142527b7,1,Northern Texas,true
+dd2cb358ecddf6597469e717d8dd8405,Texas,Flat,2018-09-06,227609,2017-12-30,Mortgage,Valid,6afce1834d8c7ec3e0032d74bb4edd45,1,Northern Texas,true
+37d3e37958db76e433ac935e2872b4b6,Texas,Flat,2017-07-28,983715,,Mortgage,Valid,d601c465116437bb31cfa606e303ce40,1,Northern Texas,true
+053c0513c6fc5b71f1e75d5ecc69ceef,Texas,Flat,,982051,,Mortgage,Valid,051707a91b305cb6534132b29778b3e4,1,Northern Texas,true
+a3b1cc21819448b20c5e842aee842fd8,Texas,Flat,2017-09-03,229814,,Mortgage,Valid,6d26a1143abd6130fb9f0039a9f0732d,1,Northern Texas,true
+ccc42d10726c4b9e118c453b4bd19bf7,Texas,Detached house,2011-11-24,560973,,Mortgage,Valid,2e289680de01164d48331851cff743a0,1,Southern Texas,true
+ac822988ec62b274ecba93ea22b82511,Texas,Flat,2020-03-24,124137,,Mortgage,Valid,6bfe68fe53bb680a8c1e19372087b78d,1,Southern Texas,true
+69842973093ba673322fecaba4f9c0ce,Texas,Detached,,986983,,Mortgage,Valid,839392850d6669fa66dd2c86e77dfc6c,1,Southern Texas,true
+32044a0bbb0f2b267beda47a9aee5782,Texas,Flat,,221686,2015-11-28,Mortgage,Valid,00511e384a36c88bbaa41a23aff7bea9,1,Southern Texas,true
+d0e722fa4b7bfb5854c242cd71a1df72,Texas,Flat,2020-10-02,126087,,Mortgage,Valid,798ee235c8aaa8c5a0c5d64f6e6b80a1,1,Southern Texas,true
+6bb2c2052a1d3d51c9f3abbd63548ab9,Texas,Detached house,2018-12-28,229668,,Mortgage,Valid,5e095729baecab62118c9bcd2a753f9e,1,Southern Texas,true
+ab157fd3610620cb344fe6b4e60f623a,Texas,Flat,2018-08-01,124434,2018-10-19,Mortgage,Valid,686579e1b9fbe0f7612627b246a6ea24,1,Southern Texas,true
+e285d0af1d28c172facb56c6623aa1af,Texas,Flat,2019-07-06,980101,,Mortgage,Valid,695cc41060e6116d7a733df6c9350525,1,Southern Texas,true
+2d48d6feeabd3f3a8c093589f008bbdf,Texas,Flat,2016-03-25,222629,2015-07-09,Mortgage,Valid,c79cb6f41f5aeab102be788752162cc2,1,Southern Texas,true
+f0953c0441466a9e37a13f350eaeceef,Texas,Detached,,121637,,Mortgage,Valid,c499fd07261469ef530ef92957cd8f5e,1,Southern Texas,true
+3b8399160b1f4fe57f039b14ea879291,Texas,Flat,,121774,2017-09-11,Mortgage,Valid,b3260278b680012a066dbaad70f163ce,1,Southern Texas,true
+1ec268e4db653cd9ee9ad9f25467fe53,Texas,Flat,2017-04-02,562783,,Mortgage,Valid,d5731dc6fa32ed1332ff11a85827da49,1,Southern Texas,true
+4dd8686b8521a0556b60b9f905f83b78,Texas,Flat,2021-09-04,226502,2022-05-06,Mortgage,Valid,ce31a8f10edf9c39d82e0e5b18d7c0b7,1,Southern Texas,true
+b4e03c5d83e52d935283531a39d55d51,Texas,Flat,2019-10-26,129239,2019-06-04,Mortgage,Valid,4f473beb3cb524cf8af2ec6ce65fb4c8,1,Southern Texas,true
+404cee6c21843e8d958e66edb84d647b,Texas,Flat,,563163,2015-11-25,Mortgage,Valid,6f576182eaeceb98dc83356e88a78399,1,Southern Texas,true
+4960615b4209a8b3100f5627715da1b0,Texas,Flat,2017-09-07,128950,,Mortgage,Valid,2e929bc60004858f47cd04ce0e642866,1,Southern Texas,true
+f09fac65a660078080270081c331321b,Texas,Flat,2016-03-28,981519,,Mortgage,Valid,728c5b2e6f2ef9291ad358ee9075821c,1,Southern Texas,true
+acd338e35fe651c1a11a400651399e25,Texas,Flat,,226216,,Mortgage,Valid,7c5b579e0b6055334760ab6943405384,1,Southern Texas,true
+bf7507ded7dd5817cc1ae97af5cdb058,Texas,Flat,2016-06-15,226376,2008-09-07,Mortgage,Valid,224407a40402e39a0cf3a223f5b9e04f,1,Southern Texas,true
+bada31020ac866d0f642ec1697d47ba9,Texas,Flat,2019-08-22,562299,,Mortgage,Valid,6e34ce9f17aafe19f342d24af9a67abf,1,Southern Texas,true
+d0ee7e22ab85fa377fd7f9e4b0676fd1,Texas,Flat,2018-08-09,569422,,Mortgage,Valid,8eec093a91e3877770fcb04f7a81a155,1,Southern Texas,true
+2daee6f019abd6447b07c2ede8ad4c08,Texas,Commercial property,2017-01-04,982343,,Mortgage,Valid,f8551859fe9a34bac790e0cb84e61462,1,Southern Texas,true
+97d77bb271b6faf404c08f2b31754bde,Texas,Flat,2017-02-26,228033,,Mortgage,Valid,ebb756a2bd823376f68030b16a1925e3,1,Southern Texas,true
+032e8524da909e46665c0ab7facea6a9,Texas,Flat,2014-12-19,981765,2015-10-02,Mortgage,Valid,728ae83d93fa21ff99e223bed65b560d,1,Southern Texas,true
+13cf875abad80d83143834aec79ce586,Texas,Flat,2015-11-27,987410,2015-05-18,Mortgage,Valid,ee1d46c40acd91190839ae8522bfb455,1,Southern Texas,true
+7da980327f8b123ae7170cee56283e05,Texas,Flat,2004-09-16,980511,,Mortgage,Valid,99047bac79de454693214ae9197e780f,1,Southern Texas,true
+518f563a0376a7815506570bc39d3833,Texas,Flat,2017-09-11,985167,2017-07-30,Mortgage,Valid,8c4ccd4ff09ac013769d880f3a45c375,1,Southern Texas,true
+0acbd237cdfdb54a2307a4b01a33c519,Texas,Flat,2016-05-13,980560,2016-05-10,Mortgage,Valid,5b99b15ad379d87361566662995f7077,1,Southern Texas,true
+db7c7aebc0b013a484eb972c138065f0,Texas,Flat,,567772,2017-01-13,Mortgage,Valid,6cd8f185228154cfeb5b619dbc9016ff,1,Southern Texas,true
+be55888aa92cfe08789c339652bc304f,Texas,Flat,2015-08-14,981036,2016-06-19,Mortgage,Valid,586c958a80e3c3b2af1ebfdd8978d233,1,Southern Texas,true
+c931f76ad8a5a8f38f8308dec00a95ef,Texas,Flat,2014-12-03,987347,2014-10-21,Mortgage,Valid,5b2282d93c1b768ba838cc60f359f451,1,Southern Texas,true
+82c0bad19b103c18a903d532057ca7c9,Texas,Flat,2004-11-20,227946,,Mortgage,Valid,591909b76e01120f588396a3da60b463,1,Southern Texas,true
+a930fe1be39024342cc4fdf6f8a32b69,Texas,Flat,2014-06-08,227141,,Mortgage,Valid,bca2f0dff85e53741c5a68a793ee05e5,1,Southern Texas,true
+11bbaab687fe192fbeee58303059ea47,Texas,Flat,2013-12-20,566047,,Mortgage,Valid,5f8a36e7cc250e372062e9a2a6cee352,1,Southern Texas,true
+3c0d037acb07b51a9e9033735c9ef54f,Texas,Link semi detached house,,563276,2021-10-13,Mortgage,Valid,8a5319c4f0199a117b08dda352d877d9,1,Southern Texas,true
+3fe6c006ed7fbaa47d787b6eb3d80e50,Texas,Flat,2011-02-01,569047,2008-07-10,Mortgage,Valid,7d0b93734aca8731bb75681252572eba,1,Southern Texas,true
+e310f77a10a112abbf3ad2dde53cb7f3,Texas,Commercial property,2021-11-09,224448,,Mortgage,Valid,1fe414468e6273717ed6601b38318723,1,Southern Texas,true
+cb27fdee349ed42b8afde8b92ff7c47e,Texas,Flat,2018-07-20,563680,,Mortgage,Valid,24e3026ce253576209ceeae3c7b79c2c,1,Southern Texas,true
+0dcb7cf90b14645c5d4717c198594c85,Texas,Flat,2018-10-05,984917,,Mortgage,Valid,b20b72111e3c76c7334a1908fbaa34a0,1,Southern Texas,true
+5b58f11f35175281bb761853d1e129a5,Texas,Flat,2017-08-25,982349,,Mortgage,Valid,59d86fe82d935f559ea3a88e2069659c,1,Southern Texas,true
+8cffe73a1d5a888e060621f746edbb21,Texas,Flat,2009-06-13,126201,2009-05-28,Mortgage,Valid,0a123914a60efe7ddbc1ef0e0197721e,1,Southern Texas,true
+5a2352a136f93a0b69b21c36f5233e1a,Texas,Flat,2018-07-06,121287,,Mortgage,Valid,4f03fd756a8e4955fc4d85903f65a31f,1,Southern Texas,true
+0e3ce87966f6b23766ea5aed25daf6d5,Texas,Flat,2014-06-30,562052,,Pledge,Valid,c3fc2fb27b51e7f3d94c380cde39416c,1,Southern Texas,true
+5470e30d1d3b7701b1551a0f0f5398f3,Texas,Flat,2017-07-19,120410,,Mortgage,Valid,075e16d5d871f47c529e09a5fcf27499,1,Southern Texas,true
+4eadb60c58c4a5e2bd113d8d65cf567a,Texas,Flat,,560699,2016-04-11,Mortgage,Valid,aff291de3bea58fc2d61eac7baffa336,1,Southern Texas,true
+105ff366955c0af2183077c32c879c07,Texas,Flat,2009-07-16,567109,,Pledge,Valid,fa26f0598008ad571f3976d6e144d60b,1,Southern Texas,true
+1cabb7a5027dbdf4b392bb96229bfce8,Texas,Flat,2016-01-09,129813,2015-05-14,Mortgage,Valid,6199c2b6d8cf3e2143fdb29c9d07232b,1,Southern Texas,true
+bd1f87e776b4642ea844845a30579b00,Texas,Flat,2015-12-29,228017,,Mortgage,Valid,14d161fdbe7cb995c7c8d4d394c1aaee,1,Southern Texas,true
+d4236ffe9570f59a92762528a1f7c6a0,Texas,Flat,2019-03-03,223798,2018-09-09,Mortgage,Valid,f476fad25a2865448afce6405da1f77b,1,Southern Texas,true
+25cd2067592d7a609edb14d127170257,Texas,Flat,2017-08-18,127724,,Mortgage,Valid,f11cb4bd7e51d1f438fd5f8ed4758f60,1,Southern Texas,true
+e76c1bec0e2b5608cc8004adb9a69203,Texas,Detached house,2017-03-29,225035,,Mortgage,Valid,4a8ddff62e918cb42e73694c9e07ec0b,1,Southern Texas,true
+8692bd1e076eb9b9b6560fff5b3585fa,Texas,Flat,2016-11-20,569166,,Mortgage,Valid,925eccf356776b1f65b4764a4074c616,1,Southern Texas,true
+60ac7c34ec1f6aa36000c1b295b45b7e,Texas,Flat,2006-01-24,988958,,Mortgage,Valid,435183ea1724a848ef57f2bdcf4a28c6,1,Southern Texas,true
+3e569e3bb69700315349f90d43db2883,Texas,Flat,2016-12-21,220273,,Mortgage,Valid,15374aace9e5b939147f5f9575f365b5,1,Southern Texas,true
+e6661d2a0b6004830184f82a9368ed8d,Texas,Flat,2015-12-03,988141,2015-08-02,Mortgage,Valid,80f958c5869420f72e2660ad2f93fe7d,1,Southern Texas,true
+45579c8d4589605a2f052d9ada2db14d,Texas,Flat,2008-11-21,983656,,Mortgage,Valid,2796bfa4a6614ff8fedd768ed0bc7118,1,Southern Texas,true
+26277fff69d88781c0def10f7cf77080,Texas,Flat,2016-04-18,225716,,Mortgage,Valid,0c06768094b72206be91ba48c3c40180,1,Southern Texas,true
+680b21cb950ad87ee33fdb5167de8b6d,Texas,Flat,2016-07-20,564085,,Mortgage,Valid,e05a2a5e47660389767ce3e7d2d42bdc,1,Southern Texas,true
+cb63d02b45cee0348de1b488b09c4eec,Texas,Flat,,989281,2013-05-04,Mortgage,Valid,e9c6f3ca4a71d11833d8232a6a3fc5f8,1,Southern Texas,true
+cc7cc50282a9596e899f12ba80e6bfbc,Texas,Flat,2017-02-20,989936,2015-07-14,Mortgage,Valid,1cedc96ade329a3cf607c9ccc4fedabc,1,Southern Texas,true
+782d20e256e70dd30a57e8e06d1e1db3,Texas,Flat,2013-12-10,568944,,Mortgage,Valid,40f69da0c98a30a8fe7b97739b49b08e,1,Southern Texas,true
+a62420769b5e3642fd80e70bae93439c,Texas,Flat,2018-03-24,565923,,Mortgage,Valid,06cd4f253948e97b59a0940453703190,1,Southern Texas,true
+1383a459744bcc0bfe161a7427cf1f7b,Texas,Flat,2016-07-11,986890,,Mortgage,Valid,5f52aec1364dc45d857c1f44606342dd,1,Southern Texas,true
+f199cec32389fb83436ac720e4211b2c,Texas,Flat,2019-01-20,128138,,Mortgage,Valid,de6cfb304a89c7fc3d7df10301ff549e,1,Southern Texas,true
+7d86ee0605aa714797dc18182b0a6fa5,Texas,Flat,2003-02-22,987746,,Mortgage,Valid,1142b86896ba32555f96b10a309e2dd7,1,Southern Texas,true
+457a53a99a147c8cc05d7525bd643001,Texas,Commercial property,2015-09-08,986994,,Mortgage,Valid,83f946482f6797fb640f4c5e94690def,1,Southern Texas,true
+924bf1540fbdbcbedcbe843e12b98fef,Texas,Coach House,2022-02-13,126735,,Mortgage,Valid,73b7819622da4e0db60a486909fbf8e0,1,Southern Texas,true
+ba9e6c04b074c75115bad439117357e3,Texas,Flat,2016-05-27,128385,,Mortgage,Valid,2ea09bbd110445269f88a79a79bbea15,1,Southern Texas,true
+09682505af6ec893da870c52d90cb33b,Texas,Flat,2019-03-30,568639,,Mortgage,Valid,c7873600b1049e1f3b4485f21c77540a,1,Southern Texas,true
+6be3c2d23e9566e5d1b2cf2443ed27cd,Texas,Flat,,129649,2020-04-16,Mortgage,Valid,0e7066e1ee512fae750cc3112b9bee34,1,Southern Texas,true
+7686d79bfdc012aa59ab1d2614272eb5,Texas,Flat,2015-09-02,569403,,Mortgage,Valid,5bd3cde8cde52142f93a2ff1f258561e,1,Southern Texas,true
+efcb966cb316d155dfe516a3a3d6a586,Texas,Flat,2016-06-07,120653,,Mortgage,Valid,e213f8d874e50c617d453de02d9e0be8,1,Southern Texas,true
+ec377c378c2663fb0a85951dc1ce4a5c,Texas,Flat,2018-10-19,120054,2016-08-03,Mortgage,Valid,b728cd0f66c51d37d758f902d972df11,1,Southern Texas,true
+ef5131090602788b761b99a54fc0a2ff,Texas,Flat,2016-09-01,228914,,Mortgage,Valid,81b942a2a3d9f13a431d271ee3075944,1,Southern Texas,true
+37a16f4b1b16cc9b64b7569249ad35d9,Texas,Flat,2011-12-01,983505,,Mortgage,Valid,0c4e713c7e61c2872d43ee924f1e7c10,1,Southern Texas,true
+115fd0a71c8fcf7a8d3d0a682e4f91f4,Texas,Flat,2014-07-03,228583,,Mortgage,Valid,d07068a8d534e9e4627837bd8dbff773,1,Southern Texas,true
+3a25b20d19657538f8ff8c02cb7ca59f,Texas,Flat,2020-11-18,228627,,Mortgage,Valid,3f8fe0782614abba1388ad9dfd75d731,1,Southern Texas,true
+37ab4f86148d2f9b61b3b8451cfeef71,Texas,Flat,2014-07-11,989106,,Mortgage,Valid,5ff9eee78f803f97b6faed95d994c2f9,1,Southern Texas,true
+67f560aff9e82c05208b5859ceed5bf4,Texas,Flat,2018-03-03,566360,2017-08-08,Mortgage,Valid,3c01e1e2aceacaf16b05c498319c37e3,1,Southern Texas,true
+59eb379b81c3a174fea85c0f05134dca,Texas,Flat,2017-04-11,221241,,Mortgage,Valid,1c93178775d6f0bdf11fd0830fcfc9ec,1,Southern Texas,true
+75ed2971e0917d9f6e88436c47f31382,Texas,Flat,2009-05-15,984901,,Mortgage,Valid,44a9a888ad24ad00b2b7c8e38285ffbd,1,Southern Texas,true
+b333240de44f7100710849bb8c0c71cb,Texas,Flat,2020-09-10,125113,,Mortgage,Valid,29a8eed6fdccf58a83a38995a53366a1,1,Southern Texas,true
+cd9f7a55d4459ac4509792e6700c9588,Texas,Flat,2017-06-03,569119,,Mortgage,Valid,c7ae4d600739277ce57293cfc8972a81,1,Southern Texas,true
+47bb97764a63e4d6b720e42145a86336,Texas,Flat,2018-05-04,989248,,Mortgage,Valid,c972d03440aff5b5e8d660e0f0cbff9a,1,Southern Texas,true
+cc3ad85cecf650d5a67f8324d6f4f881,Texas,Flat,2016-10-20,126196,,Mortgage,Valid,e295697b54c89ea646bb6640c2461400,1,Southern Texas,true
+df87a533042e55bc3a2091eab0ee1e8b,Texas,Flat,2011-04-21,129932,,Mortgage,Valid,e2ee88aa5a07f6b1418fa1b2d9d11b08,1,Southern Texas,true
+2fda991871b31659befb956cba19fd37,Texas,Flat,2015-10-12,989068,,Mortgage,Valid,90bcbb57bc53d3e854b497b3a117cb38,1,Southern Texas,true
+a5225adb9756035046a91f82b4d52890,Texas,Flat,2006-05-02,981243,,Mortgage,Valid,a3cb9f498567996690842d1782d10092,1,Southern Texas,true
+66bd82cdfc976c2888de0a387fb2570a,Texas,Flat,2016-11-29,982252,,Mortgage,Valid,945007344f48ab0175d6a02152acc28d,1,Southern Texas,true
+16e218d9eb6a6ad48f3597e6595ebfbc,Texas,Flat,2017-04-26,989542,2017-01-07,Mortgage,Valid,13950c273398e31f2b80ed15f243f871,1,Southern Texas,true
+522a265c9d880531a5647c2b8c3154f5,Texas,Flat,2018-11-13,567073,,Mortgage,Valid,0d4148936ad6748b038378de4b4a448b,1,Southern Texas,true
+aba04e296352ce809e69095a9317cee7,Texas,Flat,2018-08-03,985718,,Mortgage,Valid,081125bb16e68772a01c5bf50d059396,1,Southern Texas,true
+c32dd806e39c3edfecc9c5e7f904135f,Texas,Flat,2016-09-29,568471,,Mortgage,Valid,074a09deaf8b410c3ad1a35b77fb541b,1,Southern Texas,true
+481d61bc5f9be1f1edf497133e7be93f,Texas,Flat,,226121,2018-11-03,Mortgage,Valid,eac931e4000c5764fc125903999c6205,1,Southern Texas,true
+f3429244636d17a3b47da623b10edd42,Texas,Flat,2017-04-03,124157,,Mortgage,Valid,8b78e92c8843792bd0efd45cb538a935,1,Southern Texas,true
+de6f75ddbda54dcf05cb061b845e911f,Texas,Flat,,984927,,Mortgage,Valid,38ec6540c870f1f8c36e0cadaa4aed3b,1,Southern Texas,true
+60eb09bd1b949bfd9c94a40c30a12077,Texas,Flat,2019-01-01,229538,,Mortgage,Valid,5027d33e86ee5d6847c1ab51426d21b9,1,Southern Texas,true
+1ef2cc853abbb8a5425202dd464ead9d,Texas,Flat,2017-09-05,120642,,Mortgage,Valid,ddcd372b555933045ce23fc5ef3e7569,1,Southern Texas,true
+02cd978c2fedd0153f3ac631af2173de,Texas,Flat,2016-01-25,561989,2016-07-02,Mortgage,Valid,b7713cdcc82638fa2f9b338b4adaa501,1,Southern Texas,true
+867de5dd452677ac1ad381e20cf8c7af,Texas,Flat,2013-05-02,221564,,Mortgage,Valid,d9be2689855c4104e4267794d84179e1,1,Southern Texas,true
+23798b9cc02c6815249615f9b87247a0,Texas,Flat,2003-11-08,127048,,Mortgage,Valid,1f9ba1b34c62bba08b8fc282ace8c0ad,1,Southern Texas,true
+4b52252a301eee4debcfc2e5cb488f30,Texas,Flat,2006-03-04,560543,2006-03-11,Mortgage,Valid,54d98463ba8178149edb89e3fc0bb15e,1,Southern Texas,true
+5ab6b7afa21e40aac0c6a5c75b2cc964,Texas,Flat,2016-01-14,128432,2015-06-30,Mortgage,Valid,344e8ea306216e6994130d337797e7e7,1,Southern Texas,true
+73e5ee89269b7c28749cad3acf93cad4,Texas,Flat,2021-08-19,566748,,Mortgage,Valid,c161887ba3192a76eca37c29d1531d72,1,Southern Texas,true
+aa8a30694029403e7dd0750c673c582e,Texas,Flat,2016-06-18,227589,,Mortgage,Valid,d2d6ec2b2cc9300d685c3b932c46d845,1,Southern Texas,true
+556ecfbf8a643ec79dfc036a606b8df9,Texas,Flat,2016-11-06,229215,,Mortgage,Valid,069f988c12d0cafe966ffa5b60b4350a,1,Southern Texas,true
+0970ed41c0b41764f5e54f1820d0a692,Texas,Flat,,123157,2018-06-22,Mortgage,Valid,851438bce13c54ba276e826e008bcfaa,1,Southern Texas,true
+fb231545468fad27cd519ad13eeea91e,Texas,Flat,2018-10-24,563395,2018-08-25,Mortgage,Valid,4f520406f2e0eccd9ab87ca5ab18cc25,1,Southern Texas,true
+7898ca5742c30407c2cbc56f11ea9725,Texas,Flat,,229707,,Mortgage,Valid,d9a76182d3751ced22684a38abf9b245,1,Southern Texas,true
+3416dd5f096df83b62582f6f7f90f009,Texas,Commercial property,2016-04-02,220460,,Mortgage,Valid,e769a20ca04b8e9cd7e059df71cc3c2d,1,Southern Texas,true
+f4f269ec97e8286fa65ec9a4ff19185e,Texas,Commercial property,2006-12-13,128175,,Mortgage,Valid,4d613c0c71c4ebd4c3a0e67879219aef,1,Southern Texas,true
+32004a58881e930e6ecc13549a20350e,Texas,Flat,2019-12-01,984166,,Mortgage,Valid,5f81e2c8cb700f65f10dd1dde10bbd4a,1,Southern Texas,true
+b4925824f8ac25a70a6344fb7e5095b6,Texas,Flat,2016-06-08,568477,,Mortgage,Valid,621d6037ebb142359c4a36f1645f7941,1,Southern Texas,true
+ca99b343e612a0292fcf7cbbafcc416e,Texas,Detached house,,983612,,Mortgage,Valid,814b889d6aeb89ca5b55c0caef42fba3,1,Southern Texas,true
+b9fa64e76ce5d688039c7f729ad9c952,Pennsylvania,Flat,2013-01-14,124372,2013-02-25,Mortgage,Valid,b22ffe54f46679d6e97cdb94f374d015,1,Southern Texas,true
+7bba948aa22e49c39184fc4a9161d88c,Texas,Flat,,126677,2016-09-26,Mortgage,Defaulted,e69b1c07d2b9aa21dbd8f5afeeb2fe0f,1,Southern Texas,true
+c77e6520d96e0653ad387c0f7b5027dd,Texas,Flat,2015-11-30,125497,,Mortgage,Valid,e3fbcced63451f8127825ad11d2c73ce,1,Southern Texas,true
+575e82f8d9735ae096d36319ef4f9c08,Texas,Flat,2015-01-17,128520,2012-11-16,Mortgage,Valid,15ca01ab392b9440cd306ed285ebe96b,1,Southern Texas,true
+7c7923ec29d7dfccd0727679b72df6ae,Texas,Commercial property,2017-12-26,563370,,Mortgage,Valid,f0916d9523a50ccbc2e6c56dfe14f0ab,1,Southern Texas,true
+2c91dda29da00bd5e1c0ff8465abfe87,Texas,Link semi detached house,2015-03-01,127942,,Mortgage,Valid,bfc421beccd0b2e2bd6d66491b9c5fe0,1,Southern Texas,true
+fd69a94a953628c2e8c83029c4b8635c,Texas,Flat,,125154,2018-06-15,Mortgage,Valid,b8be06ab8454434393eaab4c857ae85d,1,Southern Texas,true
+f82bb5aa936410924de11b9ecb8c6c2a,Texas,Flat,,223612,2016-02-20,Mortgage,Valid,8e74def617f7d86d4d9e11f90aba0d49,1,Southern Texas,true
+9b252df287527885c3654c8a2b3c66a9,Texas,Flat,,220245,,Mortgage,Valid,58e8d62d9f83778cab42f8e8267b33ed,1,Southern Texas,true
+c4049b6a53af72d62c9bd58a441ca5f9,Texas,Flat,2016-11-14,985373,,Mortgage,Valid,cd3e7a29a062911ab31a74e85bffbcb9,1,Southern Texas,true
+ba9182ba3db4d7dcae2b7f010956c09b,Texas,Flat,2014-09-06,561967,2014-07-30,Mortgage,Valid,15d665ed9a1a1c202f986b7f2ad9280a,1,Southern Texas,true
+b37efc51cb5cf42c28b9fdb3bfad8455,Texas,Flat,2008-12-31,981243,,Mortgage,Valid,5cd8ffd4a18385fc5da320495ffa41c4,1,Southern Texas,true
+64b572e5dbeb0c0a03e886ae7e1c233d,Texas,Commercial property,2017-12-09,221588,2014-01-12,Mortgage,Valid,eb17dc4f9decb70e7a5959ad9ea4dc3e,1,Southern Texas,true
+69f689c9588ffdcbd1374b0581726e72,Texas,Flat,2018-01-22,569050,,Mortgage,Valid,1f3e887ddbd8d49068e7b2bf095a760e,1,Southern Texas,true
+0584629dcca0aa9fbc4250b83252d403,Texas,Flat,2007-01-30,560216,2005-12-06,Mortgage,Valid,f79e7fb87014b61ee74ae746fe1078d3,1,Southern Texas,true
+69aed7853b0709992284d85f990dbd80,Texas,Flat,2014-09-16,985530,,Mortgage,Valid,3d16ef94433304cf7626956a33d899bd,1,Southern Texas,true
+1134087df06906d3f2b646327d1a696e,Texas,Flat,,568677,,Mortgage,Valid,8232be10d1c5388f4089cc200c1be9ee,1,Southern Texas,true
+d715ee8701e234dd1aabc77cd9eb10e3,Texas,Flat,2017-04-02,221491,,Mortgage,Valid,dfa722392ed554493b0818664877460c,1,Southern Texas,true
+6f7bbb04285e02485d5de87debca11a0,Texas,Flat,,981753,2014-05-18,Mortgage,Valid,80b84bcf70a74bcbfbaf781e52ecdece,1,Southern Texas,true
+c278742ab2487eebcd0e2c21dcfacec2,Texas,Flat,2019-04-08,564135,,Mortgage,Valid,a6a235f0c751304f47ccb6a042196449,1,Southern Texas,true
+25caf8df71cde3025698dd2142ef9d82,Texas,Flat,2018-07-16,227966,2017-11-28,Mortgage,Valid,397be592cf9b50e4a0cf6c87d6f18089,1,Southern Texas,true
+f37b6785ea8177502ef10c184619a3f3,Texas,Detached,,222939,,Mortgage,Valid,1e1ad32e79b64f3ce50de200f07f2daf,1,Southern Texas,true
+75ed2971e0917d9f6e88436c47f31382,Texas,Flat,2009-05-15,984901,,Mortgage,Valid,f8fc7dea7b8c508be95004910f6ee59b,1,Southern Texas,true
+f6a610d2889fcfe87913babdd606d9ae,Texas,Flat,2017-03-27,983982,,Mortgage,Valid,f5f4dc92f28521101dc1326bfd11940b,1,Southern Texas,true
+dba160b3db352824e0ab1714c158ee5c,Texas,Flat,2019-03-19,228563,,Mortgage,Valid,3227eef8b0549ebaad9aff45095ff07e,1,Southern Texas,true
+78de16358a5ef332b956bff1927d4207,Texas,Commercial property,2007-03-04,122112,,Mortgage,Valid,6c0668fdc8115ec415ce85ee22ff0dcd,1,Southern Texas,true
+6b11d62f76e80b88d0c9cc4310e8afa9,Texas,Flat,2019-12-11,985973,,Pledge,Valid,be84a848627a3f7a41914ee70594a4a2,1,Southern Texas,true
+c7934bb3330c3c3002906620ff22abdb,Texas,Flat,2018-10-19,226873,2018-07-02,Mortgage,Valid,2be4696b6ae1ab7ff2b3490966c3b0a7,1,Southern Texas,true
+61f4fc11fa5465285419317079303da8,Texas,Flat,2015-09-01,120137,,Mortgage,Valid,130289193ec0d055c26b38bde1c221c4,1,Southern Texas,true
+c4607e8caa1ede23f1a174c2f0917b22,Texas,Flat,2014-02-17,122625,,Mortgage,Valid,016f64964d2fa4468f0c913c98d9d3c7,1,Southern Texas,true
+7fc80e279cf93fcb8eea724402f19fb1,Texas,Flat,2016-03-16,989213,,Mortgage,Valid,b0c53110635c5c0251151b5bc8dce746,1,Southern Texas,true
+ed8fc42adbb8cb47db440a51ebcacc7a,Texas,Flat,2017-01-14,226380,,Mortgage,Valid,2b2edc71fb9e6eb7fa5ce3a92cbed76f,1,Southern Texas,true
+c3c53766d07241e56b551c2b6e48e426,Texas,Flat,2010-11-04,220738,2010-06-16,Mortgage,Valid,88ce7168b75d440a9f4fa3f6bbd91cda,1,Southern Texas,true
+8cb3a611166fc704c67b9c7aac8aae0c,Texas,Commercial property,2014-02-09,981866,,Mortgage,Valid,4ad50c82cfc6783f433d7b52171cd32b,1,Southern Texas,true
+72ad8ecaa98e6bae7d4e625ccf644e52,Texas,Flat,2017-01-02,126606,,Mortgage,Valid,260926619037923c3a200e3a02be73a6,1,Southern Texas,true
+d21fbb86d16289da03b5ac0ca2ea5ee9,Texas,Flat,2015-01-21,569630,2015-07-03,Mortgage,Valid,900aff43b65d6197aaef7a1da014b4b4,1,Southern Texas,true
+4ab9f942fcf25502d1b1a75f31a7ce7f,Texas,Flat,,566186,,Mortgage,Valid,9e9d2500760211ca7bfc49835598da4f,1,Southern Texas,true
+0a3ad52b708b1d67782066e05ce2d261,Texas,Flat,2008-12-07,989446,,Mortgage,Valid,a69e3c02d529c14dd47cfeb9fa73efd8,1,Southern Texas,true
+18488b42bb26eb86bba2d162d8896211,Texas,Flat,2012-01-02,228251,,Mortgage,Valid,4e044af67612506e64da8b5f15781536,1,Southern Texas,true
+c0ec4bb07c0de2607199c45abd792969,Texas,Flat,2012-10-05,989377,,Mortgage,Valid,857fcf496ef26b1bc79b72c63726a0b5,1,Southern Texas,true
+b59bef8c8d191753ab9fdb763abfffcd,Texas,Flat,2017-10-04,988291,,Mortgage,Valid,fb595e52db8e0fa1fb97f7786fa155b5,1,Southern Texas,true
+013ce60f306a390682871a9c56cdb5c2,Texas,Flat,2012-11-29,122856,,Mortgage,Valid,840262e6f3c8f381d0d0d3d9e34faa5b,1,Southern Texas,true
+c3caaea15f37b0c628faf8d585ee1177,Texas,Flat,2018-09-05,562346,,Mortgage,Valid,0a5ff4429a660c6d1cc796bfc90bc43e,1,Southern Texas,true
+df21f7b28ea4a35a725c6bc5894ab4b3,Texas,Flat,2021-04-13,569380,,Mortgage,Valid,483c5a8a466a80f84f814096f6916abb,1,Southern Texas,true
+b133b7cf49c0d4880a0a786cb66ea365,Illinois,Flat,2015-08-11,123789,,Mortgage,Valid,4fd87c43197f9765a786b8157b4c53bc,1,Southern Texas,true
+990e7fb6cc4d11fd4d30145b7bc102ae,Texas,Flat,2017-05-10,986342,2016-09-24,Mortgage,Valid,d2f23ef8384804e7f5044edbd25536e0,1,Southern Texas,true
+daa802595c637e7275ff663864b49f10,Texas,Semi detached house,2018-05-30,121988,2012-09-17,Mortgage,Valid,a5d91a1a769833ffda5c1184f060f246,1,Southern Texas,true
+47790544f37590ff0aa3e0bf438e9368,Texas,Flat,2019-02-06,981316,,Mortgage,Valid,8d5950eeee5c841d194d26379db84d45,1,Southern Texas,true
+3d50104ac292404915bc80816059b167,Texas,Flat,2015-06-12,568693,,Mortgage,Valid,f285ffe3def3284eaedc5f44510e2f3d,1,Southern Texas,true
+39e4862019ebcae7324404a74760ab6e,Texas,Flat,2016-05-06,561779,,Mortgage,Valid,cdc0dab6fb259dc5189ce3410a55b40c,1,Southern Texas,true
+7919c33e9dc0b6b98535619579abd5f8,Texas,Flat,2018-08-21,223347,,Mortgage,Valid,48a5607230a21ea0bcfaa0ba7291ea26,1,Southern Texas,true
+3142b04e84cd9d256954fa1c565949de,Texas,Flat,2021-12-15,128793,2018-12-04,Mortgage,Valid,df2945d6761d475a748b80de36d7fcfc,1,Southern Texas,true
+ed6b59a9f9bb0cadf2a4427077957d16,Texas,Flat,2007-10-07,560481,,Mortgage,Valid,e9df5feb2c47645e552f6c20ec91689d,1,Southern Texas,true
+4bc04f42129a0b6e5b38c137c210cfd6,Florida,Flat,2021-10-17,221999,,Mortgage,Valid,e6c893a5d3173c826a28d3960e160713,1,Central Florida,true
+75a6dfe41630c43884254516aea0c295,Illinois,Flat,2014-10-17,220530,2013-05-05,Mortgage,Valid,818f7884f9940e057584289c722897e3,1,Central Illinois,true
+508ccf60b8de1c83a98f575a5ac0d3fc,New York,Detached house,2018-01-09,560977,,Mortgage,Valid,8a3a398f5dbc281f010447517ec571d4,1,Central New York,true
+d68c96fa2eb6dc6b6801cdbcf738cbd6,New York,Flat,,221212,2016-09-12,Mortgage,Valid,a75c64709a531e6da4043335b0a1a97d,1,Central New York,true
+8277073181fa08b60502fc8705762ee8,New York,Flat,2016-08-22,127726,2016-02-23,Mortgage,Valid,22e217ae203f13aa7158e58782f8e559,1,Central New York,true
+cd0582ff9e54cefa9c1f874c77747a26,New York,Flat,2020-12-26,225965,,Mortgage,Defaulted,fc89122ecc670aadc9b093b275ee235d,1,Central New York,true
+64294a4a1df5e626809976bcae75906b,New York,Detached house,2015-08-09,223266,,Pledge,Valid,a0579a4e08382a6659ee3204677a124d,1,Central New York,true
+27ecc431e4c4934972ec6b3eb9544b08,New York,Flat,2020-01-06,123450,,Mortgage,Valid,6b9b844cde683f2e8b5cbf6f4361c901,1,Central New York,true
+68585b7710500725bb0c40eeb4516c20,New York,Flat,2017-10-21,565622,,Mortgage,Valid,8c55f9a4459539e51ca019089787fb34,1,Central New York,true
+6077f6cc8d167b7f82d6351151409767,Florida,Flat,2017-06-04,561978,2002-09-06,Mortgage,Valid,c38d5bafc76c8826058c10b1d86d8ae8,1,Southern Florida,true
+32232f34c62a76088435f773dc7434e9,Florida,Flat,2016-10-01,224946,,Mortgage,Valid,f6fe9c1f15e1d69275f8ee0a73b50403,1,Southern Florida,true
+0cdec39b12c4103004a759ff2823a305,Florida,Flat,2018-08-28,562619,,Mortgage,Valid,954bf0ee86973c860bf4eb39c545df9f,1,Southern Florida,true
+9c41687694d09440614c299233a39718,Florida,Flat,2017-07-17,986743,2015-04-24,Mortgage,Valid,d61342e70d7d0b467fba422387acb565,1,Southern Florida,true
+af9307b2b428bfbf1cf0fdd794f270db,Florida,Flat,2006-02-27,982330,,Mortgage,Valid,0b1c2da0d3c19c28688dad247b169c92,1,Southern Florida,true
+694ff407f5469490e402efcac45510ed,Florida,Flat,2012-10-22,980684,2010-12-11,Mortgage,Valid,be49ecb15bdb9c6e263a5af7e010849a,1,Southern Florida,true
+7756383664e6a16e8744e6e0a135f2b3,Florida,Flat,2012-06-10,127076,,Mortgage,Valid,f18b7e4e3cec3cc6ffe2850551bd9e63,1,Southern Florida,true
+eabbf0bd97ce9606909dadbbd3930e3d,Florida,Flat,2017-09-23,567098,2015-12-12,Mortgage,Valid,748f9a71b90136fbf46e81c7ebf35dff,1,Southern Florida,true
+10f8d96ea677f1be95bdbc72c349b53d,Georgia,Flat,2011-09-26,983317,,Mortgage,Valid,860c91dfbae7da9706a1cc3d172e0b86,1,Southern Georgia,true
+f42794695f83b46bb09366fdde21dfc4,Georgia,Flat,,222934,,Mortgage,Valid,57d24c9ec9bb1cba7a580cfbcaf57a3e,1,Southern Georgia,true
+6b761f943055a5e43e841d9dc3df72b8,Georgia,Flat,2015-09-04,227327,,Mortgage,Valid,368bbc581a27968fed637cf82f8f9c49,1,Southern Georgia,true
+7b38dcdd20ede0b1284d08adda939170,Georgia,Flat,2009-09-01,227450,2002-11-27,Mortgage,Valid,f59aed7bb7170fa25804085033b8288c,1,Southern Georgia,true
+0172b25d4aee219aad77ac8e8859716f,Georgia,Detached,,561066,,Mortgage,Valid,06947464e0a9c5d091873463c853532f,1,Southern Georgia,true
+7a89c2a5a446cab355204d727a02ab33,Georgia,Flat,2018-06-04,988497,,Mortgage,Valid,ab31ab2660856ae051c9a5f8ae305279,1,Southern Georgia,true
+629fff84b076e6489cf88a44d14cf7d8,Georgia,Flat,2011-11-23,561924,,Mortgage,Valid,64646ac4b943da302c40ec3cad888294,1,Southern Georgia,true
+e4ba9ad192fcd382e41b3de513811d6f,Georgia,Detached,1997-06-02,984972,,Mortgage,Valid,9d8ae42bff9abd5474d57a450ad9f987,1,Southern Georgia,true
+a9b2fe814464bb5c6325b119b3189d21,Georgia,Detached,,566214,,Mortgage,Valid,e1d536b872a6228df5a3e7464f5b95fd,1,Southern Georgia,true
+cb12c8332cc13d55c36ea3699f984301,Georgia,Flat,2007-06-02,226189,2003-09-27,Mortgage,Valid,442a5435515bf71961bf43862d833730,1,Southern Georgia,true
+9ada1e20aaf877196658f9a6b050c46d,Georgia,Detached,1997-09-17,988734,,Mortgage,Valid,a3c282a4a1467403a2c02cc74a067416,1,Southern Georgia,true
+ebe36f86004db3d910f4b1560b0a2b32,Illinois,Flat,2006-10-18,227988,,Pledge,Valid,45f49c8c09e97d5dba7d24ebdf4027ac,1,Northern Illinois,true
+aff2e37eaca9addf05f2c34b780f3699,Illinois,Flat,2014-12-07,223076,2013-12-13,Mortgage,Valid,3823fd84d5225d889fd90ac3742a88f0,1,Northern Illinois,true
+78766948ccbcd1115b34b709bcd71144,Illinois,Flat,2016-02-08,228604,2015-06-21,Mortgage,Valid,7eaf69b9242c30304a3b411c1a417523,1,Northern Illinois,true
+d5a8f2c4ec8d41b636a9e7f57569a6e7,Illinois,Flat,2015-05-11,228374,,Mortgage,Valid,36d05ee224d455f7a3ba28db9bdf89e9,1,Northern Illinois,true
+1a61fc01ed4e4f229a37cca06e7855d2,Illinois,Flat,2017-07-26,122231,2007-07-30,Mortgage,Valid,e7abc774a3058e3ad55f8139e5d16045,1,Northern Illinois,true
+74e63b7ea889c61e53e86e35d15f20c2,New York,Flat,2017-02-22,561671,2017-11-13,Mortgage,Valid,da8c57d5330523d3afb969a076fb96f6,1,Northern New York,true
+e4f809891abc418ba5ca19a0125975ae,New York,Link semi detached house,2021-12-21,122502,,Mortgage,Valid,3a243e88fea279339465e9cb4465b4e6,1,Northern New York,true
+c87b13613340d816b16f55d7cbbcf8ca,New York,Flat,2014-08-18,987967,,Mortgage,Valid,3d8ffab97ba08fba5110d8ec0903b66e,1,Northern New York,true
+d6db5fa997aff0df0abcf601783421c9,New York,Flat,2013-10-26,986932,,Mortgage,Valid,d6301abed67e69967976c0e7ab42bf45,1,Northern New York,true
+30caca3347a05bddcf8855403295011a,New York,Flat,,562079,2020-09-22,Mortgage,Valid,66198512d0c10bdc3053d2674791a0c5,1,Northern New York,true
+b58001588cdf9fdef53490f26bfc0340,New York,Flat,2016-04-01,122740,2015-02-21,Mortgage,Valid,20c69eedcf6c1084ced275b9980a770f,1,Northern New York,true
+602518fa0f062df402050e5eacd66df9,New York,Flat,2018-09-08,227154,,Mortgage,Valid,7739b61fcbe866c0ab510500cc32b381,1,Northern New York,true
+f0000b54ce66824462c8832b4c5854db,New York,Flat,2011-10-29,220991,2007-07-26,Mortgage,Valid,e02ab174a29266ae7ff2b65c6d4b6250,1,Northern New York,true
+65c2878a8cbb4fbc24398bc1b9fdfb04,New York,Flat,2019-10-10,222030,,Mortgage,Valid,942356719d327c4ecef8f7bdb9c77b25,1,Northern New York,true
+3e4e5bfe99e4dc90b29b230687bca63a,Illinois,Flat,2010-01-01,125806,,Mortgage,Valid,79eea44a3042b95dd5decd667c144b6d,1,Southern Illinois,true
+b2a0e81bbb9bbfaf1750a41c90b49ef3,Illinois,Flat,2015-10-17,986726,,Mortgage,Valid,5580c73cdb054bd2ff967ff4b8593b22,1,Southern Illinois,true
+bb803315067552eaca230710da2bc059,Illinois,Flat,2020-08-07,981029,,Mortgage,Valid,23f1ab0bf896967aa2d7a1231581b7c6,1,Southern Illinois,true
+cfde5788e90e6fab43440eb0faca30f9,Illinois,Flat,2016-10-26,985977,2016-07-08,Mortgage,Valid,e65d301a9c3e97ecc9aa7a349f75fca1,1,Southern Illinois,true
+80446c774ef1c5df0e0c315c7d892f25,Illinois,Flat,2006-06-11,226000,,Mortgage,Valid,97e1de5d92dadaabf15402ffaf3a340b,1,Southern Illinois,true
+0871c4818194764bfa888d50eca5eedd,Illinois,Flat,2020-01-28,987376,,Mortgage,Valid,8d95b729cbf2446df3324db5c5cb0e4a,1,Southern Illinois,true
+21473b13b1ada8c572d4b139c865aa6e,Illinois,Flat,2013-12-03,563886,2013-08-01,Mortgage,Valid,b8a976c2dacf66a16ec52be2ad4ec6f3,1,Southern Illinois,true
+fad5476d055a26a0cdf02ab18a090fac,Illinois,Flat,2015-06-08,124398,,Mortgage,Valid,3ab7bf1fd5ad4c4f98b2037059ed620a,1,Southern Illinois,true
+aa7f9f2d01a9ba905891a1216ab52e7d,Illinois,Flat,2020-02-23,985336,,Mortgage,Valid,8be7be3a52538b1728397c5b0bd1ce23,1,Southern Illinois,true
+b940bef5c4bcd9573b7a1b1a4b5a938c,Illinois,Flat,2013-10-18,988825,2014-02-18,Mortgage,Valid,9867cb05a959979d17a6f69df6b1a490,1,Southern Illinois,true
+eeea37c34f78fb3ac62f1dec48d20bb8,Illinois,Flat,2013-10-22,560410,,Mortgage,Valid,66b55f082f72ee0cd916da98aadcad4e,1,Southern Illinois,true
+01c286a7a7bf636bd667141ef639ddfc,Illinois,Flat,2007-09-05,129861,,Mortgage,Defaulted,d4e49a6f9cef4dc66fb3d7a6179937d7,1,Southern Illinois,true
+f2b43f25134db2e0db28e390a56fd5b0,Illinois,Flat,2013-11-17,569561,,Mortgage,Valid,4f1071cb9569db0929b571e49c869e7e,1,Southern Illinois,true
+c2d9059b09d9fa56247444ae19de1e93,Illinois,Flat,2015-11-04,125133,,Pledge,Valid,e345502b5063b4cb9dd7100d635cf388,1,Southern Illinois,true
+d80bcd591f11b8f604b94b7c8b1808b3,Illinois,Flat,2006-02-12,565133,,Mortgage,Valid,02c45fa01bbbf4b7d3ed1af17bb1a1c3,1,Southern Illinois,true
+19e73c2774b251024cdb266a66b1ba40,Illinois,Flat,2017-09-01,222239,,Mortgage,Valid,a67697464cda725008475558371217a1,1,Southern Illinois,true
+4e4f679302770dcc39607e6701dfe07e,Illinois,Detached,2000-12-06,980364,,Mortgage,Valid,b090eb0cf8b122e0096827e05723df57,1,Southern Illinois,true
+c15f624730f5b1246e56e399ae27ee12,Illinois,Flat,2015-05-22,569354,,Mortgage,Valid,7a30194945b7cbdbdd50b4acb686f6eb,1,Southern Illinois,true
+146ec4c05381b361e407db6bd2895ebc,Illinois,Flat,,222174,2017-04-29,Mortgage,Valid,bd1265185948fa9994224e1a27d1007a,1,Southern Illinois,true
+484110b9e2e503a2a11f2ba23f607abf,Illinois,Flat,2013-08-21,124307,,Mortgage,Valid,56eccca9713b52db30641182d6098c4e,1,Southern Illinois,true
+43ca59cc2d03d3215015c293abc272cb,Illinois,Flat,2008-12-23,120395,,Mortgage,Valid,c5766f9015624ae3209e80da14bd7adb,1,Southern Illinois,true
+f1b514ebb7a02978392f6e949a057c1a,Illinois,Flat,2020-07-15,569245,,Mortgage,Valid,c9a357f8f975947b0595bc6fd5cb4f3c,1,Southern Illinois,true
+52641d05dd93e83529838f78055c24ef,Illinois,Flat,2009-01-03,228318,2008-04-09,Mortgage,Valid,1cf0860d784838eca5c432d149e98e45,1,Southern Illinois,true
+1a42c5f4f6077f956ad23dd83ce7a496,Illinois,Flat,2011-10-01,566027,,Mortgage,Valid,74afee5bb01b30043afba1ce1c305072,1,Southern Illinois,true
+92aa2454d4991ae86aa1f1793611219c,Illinois,Flat,2014-04-18,220178,,Mortgage,Valid,eb85ce1096209f28e6dcd9ca348c5720,1,Southern Illinois,true
+f7bf392fbcb994df29ccdb08e45f4bcb,Illinois,Flat,2015-10-14,567152,2009-02-16,Mortgage,Valid,34490ed24fae5b6de237c3b5b990e803,1,Southern Illinois,true
+579075abbebb7281fc7832fa08127860,Illinois,Flat,2014-06-18,129056,,Mortgage,Valid,13e743a0d8fbafd262eb88f2c557e9ea,1,Southern Illinois,true
+a16f22480e38149c5b5cf0f8c720df88,Illinois,Flat,2015-12-29,986407,2008-05-21,Mortgage,Valid,6541ef2876e4a08a404188c0e6e3d1b1,1,Southern Illinois,true
+046798d63db3b0f939759329d5ea8536,Illinois,Link semi detached house,2020-12-15,124038,,Mortgage,Valid,8035240e99a0d96519ef143742f77047,1,Southern Illinois,true
+98f5aba7ca3aae8eb3cc95c92cb9e6ef,Illinois,Flat,2015-01-21,123857,2014-11-21,Mortgage,Valid,47fbe275dfc9325128a5e08937c9787c,1,Southern Illinois,true
+3020eeb40643495cd7b98a854ffd4a14,Illinois,Flat,2015-12-08,989097,,Mortgage,Valid,0857d25070da6132434903d8f7e5d2dd,1,Southern Illinois,true
+91aa99289370ec322d2bcead17e27b4a,Illinois,Flat,2010-03-06,226680,2010-04-20,Mortgage,Valid,692b5bea33e060a7554537d05b77d2ea,1,Southern Illinois,true
+1b10d8622a5f9512f13b5d81b50f68bb,Illinois,Flat,2006-10-09,224098,,Mortgage,Valid,7b798f22ea261758363cf8326dbf6c89,1,Southern Illinois,true
+2669830d58b096330dc55ffaa684a697,Illinois,Commercial property,2015-02-14,986074,,Mortgage,Valid,c0539d74257ab452d829f14ad3211cb6,1,Southern Illinois,true
+4c76702f5df6db85ad3dcb59ca51cd3c,Illinois,Flat,2012-08-29,987298,,Mortgage,Valid,8bc7614d06ba116e37dec198b6da7f83,1,Southern Illinois,true
+a1c250dee4802af259d23742fdc5be5a,Illinois,Semi detached house,2014-02-06,228862,2013-10-03,Mortgage,Valid,879369b30edfa5b78b5cb29c4f0e69c9,1,Southern Illinois,true
+ea75f4bc1113124bbe67b7dc8f4d435c,Illinois,Flat,2011-01-28,988815,,Mortgage,Valid,4543eccf8c3ff1afb72739241c44b112,1,Southern Illinois,true
+fbf9b49a7fd59d1fc51bd7fb7327c98e,Illinois,Flat,2006-01-16,124082,,Mortgage,Valid,2e24edea4584f274f7856aa3f5435ca3,1,Southern Illinois,true
+2dbab5c34adc30ea426c7c874b13068b,Illinois,Flat,2015-05-15,122692,,Mortgage,Valid,eef6c445bb0f44ffb3f190b56e522f1b,1,Southern Illinois,true
+25348f3a6ed3f528d58e814e6996488a,Illinois,Flat,,565954,2016-11-03,Mortgage,Valid,6bd3fddafbcf056e8cdf883714296482,1,Southern Illinois,true
+0f8ab70ae99fcf7ba533059b7acd4311,Illinois,Flat,2014-07-04,126527,,Mortgage,Valid,28481cacb40c2ff236c1f67891ed3693,1,Southern Illinois,true
+00540e7e9caf2ce6a36a0b4c3610554d,Illinois,Flat,2013-10-07,982670,,Mortgage,Valid,720c6f136c5d8fd328b271968697d5b6,1,Southern Illinois,true
+820977089518580f1f8e244c4443ec3b,Illinois,Flat,2011-09-22,987962,,Mortgage,Valid,116ff1fa7db1928b7ef48c08c07f1873,1,Southern Illinois,true
+08e0db80630a4d0f231d6643b78edf70,Illinois,Flat,2017-02-07,989422,,Mortgage,Valid,ccc00e838ec2936be8b327526db5af28,1,Southern Illinois,true
+b61ec835b1301b5fdaa17fbd918a6ffc,Illinois,Flat,2021-04-29,129038,,Mortgage,Valid,946c1122af3f815d481fe594f2fbe8ac,1,Southern Illinois,true
+50db59dc332ba2328643e5bfdea18461,Illinois,Flat,2016-02-27,129290,2015-09-08,Mortgage,Valid,9f785af89786985c5c555a668bcfbb4f,1,Southern Illinois,true
+70b2ccc970b42856fae3e56249fd100a,Illinois,Flat,2009-07-03,982919,2009-08-08,Mortgage,Valid,49d004fe19dc623acf9e41a134151192,1,Southern Illinois,true
+f4703142ba7fd3d3f8d9034a54b1d8e6,Illinois,Flat,,129548,2018-01-21,Mortgage,Valid,60a335ed5695c609a13925be7540b19e,1,Southern Illinois,true
+0aa9ae59099d90ee5e8501c235f2a600,Illinois,Flat,2018-04-08,564457,,Mortgage,Valid,47970421b4272484743be2ba0e9a5ec5,1,Southern Illinois,true
+137925d1a651f019d7b7ce4104c2f347,Illinois,Detached house,,121752,,Mortgage,Valid,a7c21bcc8dfac37ba01de191df400ecd,1,Southern Illinois,true
+56c713572d3468f3c727b170a54a0d0c,Illinois,Flat,2020-09-08,989878,2017-02-04,Mortgage,Valid,dcba0cf0d3122d8bd9f8808064217f90,1,Southern Illinois,true
+b3e4d9247532f51eca5f95d5777a4c8a,Illinois,Flat,2008-08-18,564026,,Mortgage,Valid,1feea37a5673a69996ed8318a95156f8,1,Southern Illinois,true
+c6dc2ec4e149adba6e986ae195757383,Illinois,Flat,2012-09-26,987801,,Pledge,Valid,6caaf4ba57ca67635fef9d215db2a4a4,1,Southern Illinois,true
+aa9d4a04cf40a2f203ee4ec538264083,Illinois,Flat,,568188,2015-04-30,Mortgage,Valid,b0181ed342c3e5d542f6fb5229d52166,1,Southern Illinois,true
+03a6fd1efacdb1a2f1eb42dca75e7597,Illinois,Flat,2014-03-25,560063,2013-09-13,Mortgage,Valid,d1129d0a9ee15bf39d37495ac9bc489f,1,Southern Illinois,true
+2bb088b8ec247576ef82f5a850c8b529,Illinois,Flat,2016-03-26,224882,2016-05-27,Mortgage,Valid,62697d908a709d85dcfe1bea598c7059,1,Southern Illinois,true
+2e2f6535c0979b9f3f09b2f549637857,Illinois,Flat,2014-07-02,981296,2014-12-06,Mortgage,Valid,a533208445f422014317e4e6ed2078fb,1,Southern Illinois,true
+72cb0b56ce4e708eb1cff490d813e199,Illinois,Flat,2015-07-30,984885,,Mortgage,Valid,92ebbb0b6b6c6e27776f4f2032438958,1,Southern Illinois,true
+a0dcdccf4ce5fb57333f25e369b26cf3,Illinois,Flat,2018-06-08,568746,,Mortgage,Valid,ed47395c704f9d18e9bb2beac7cb12c2,1,Southern Illinois,true
+5eae864b45c7d59cc8a67be0566e7454,Illinois,Flat,2016-10-23,122730,,Mortgage,Valid,1dcdeff22ecd2a0b59bb5becb7fc02d8,1,Southern Illinois,true
+d6fe6e12906f664619acdf8d59678585,Illinois,Flat,,982025,2012-09-25,Mortgage,Valid,3c9424ff520ed1993407077ddeb3628d,1,Southern Illinois,true
+f3eaa6adfb97bbbb133759e446b32920,Illinois,Flat,2018-08-01,568827,,Mortgage,Valid,8513091fce5c772e3947a333b1a33dd5,1,Southern Illinois,true
+63e70fb2ea19741fe699a0f1deb023d8,Illinois,Flat,2015-12-25,567205,,Mortgage,Valid,f13e49802f855f9e8566be4d8949daac,1,Southern Illinois,true
+7681146885c0b06ab14f244aa18b8ea4,Illinois,Flat,2012-02-05,565284,,Mortgage,Valid,bacc2211805d4c7effc7b00df9cc5b26,1,Southern Illinois,true
+cc7371c3216b7bd4086ed6d097a7f835,Illinois,Flat,2014-06-30,561515,,Mortgage,Valid,f6c6f57bb125c02e9c362d54255fedc2,1,Southern Illinois,true
+91fe0a9c2cc23fc534002e5f8c1439c1,Illinois,Flat,2016-06-22,988574,,Mortgage,Valid,5dad92cea38f5783b7ae5ad12e8dffe2,1,Southern Illinois,true
+cef6464d031a1825893bc1cebda62dd9,Illinois,Flat,2017-06-09,227027,,Mortgage,Valid,e5340f7c8e3723bd57b684aebbc782a0,1,Southern Illinois,true
+912eef9133725fa2bef628adaa00ad9a,Illinois,Flat,2015-04-23,983811,,Mortgage,Valid,ea1c5688a9936a5cae6bbcf9381e5222,1,Southern Illinois,true
+dd2cac06ff3dd325085e4f5066c820d4,Illinois,Flat,2012-06-04,986515,2012-11-23,Mortgage,Valid,ef3c614c4cb3f0919f8d0fd90d4e0f2a,1,Southern Illinois,true
+5b3305b0ef23aef85fd26fbada0f4ef4,Illinois,Flat,2014-01-31,220647,,Mortgage,Valid,a10671e2aae566a6d6b87e3866d27650,1,Southern Illinois,true
+9600247982264cfac3e141bdee1647d4,Illinois,Flat,2009-07-18,989286,,Mortgage,Valid,b655823f79f3873059673147f751f5d2,1,Southern Illinois,true
+2eea969fd277177e2af8c71b7cd1a13b,Illinois,Flat,2021-01-06,128265,,Mortgage,Valid,b5170ecd1632ea3cd65acf922df38be6,1,Southern Illinois,true
+6ac0ebf128ec9359ea36b32887aa4bdc,Illinois,Flat,2016-01-18,127214,2015-11-11,Mortgage,Valid,f495d36f871a997d91dd3e5c72ac6ead,1,Southern Illinois,true
+0f329f91abe15e9433a63d46ddebb21f,Illinois,Flat,,569063,2020-12-16,Mortgage,Valid,8b068ab8742a050525aa404c0d9e97cd,1,Southern Illinois,true
+e28ece9fac0028b6bf24f26ff5f94df2,Illinois,Detached,,564740,2002-06-14,Mortgage,Valid,9fd9f4d9542fc22de279bde3a2e04b2c,1,Southern Illinois,true
+dafbec859056d23bed272f8e52b83c2f,Illinois,Flat,2015-05-24,222504,2015-02-21,Mortgage,Valid,6b181cd3d3ed203e53e4effcb0a117c2,1,Southern Illinois,true
+05c009a24be2c8dca988c3935a97701f,Illinois,Flat,2011-10-22,565865,,Mortgage,Valid,6e5be038ddd84d4f07e67fca02c44fb5,1,Southern Illinois,true
+0f5b4bf3053901d83062352ef135a563,Illinois,Commercial property,2011-03-10,562592,,Mortgage,Valid,4c9fd849f778f911124917eeb9e665ce,1,Southern Illinois,true
+de696588889cc29b8835349c36fc2a4a,Illinois,Flat,2014-07-21,985574,2014-05-16,Mortgage,Valid,efa7d6cc636623398ca101c7c797f720,1,Southern Illinois,true
+e52e112b90ccd6dec3ce43ca3e1cb58d,Illinois,Flat,,124804,,Mortgage,Valid,9f49bdf59430ad7387d3eff3566f4844,1,Southern Illinois,true
+2cfb461d859aa16c9f3a3bd3c35b93e5,Illinois,Terraced house,2017-06-03,127952,,Mortgage,Valid,62fc71a6fa533864c388a38f664861f7,1,Southern Illinois,true
+940ed16f5f0b935030e88b3b472a5228,Illinois,Flat,2019-09-23,228783,,Mortgage,Valid,1949682efc1878de227a7397a33b397d,1,Southern Illinois,true
+2b3772932d821429f4cc25ecd079a841,Illinois,Flat,2015-10-07,981572,,Mortgage,Valid,e038f11ef0dae263edf3b487b0691959,1,Southern Illinois,true
+9f397da7112c878fc09ff5db7c251481,Illinois,Flat,2015-06-29,983606,,Mortgage,Valid,b33c1e4e8c6285ced6523280b38e07d9,1,Southern Illinois,true
+073ee0c5fe0d17c926998618b3cea501,Illinois,Flat,2013-07-04,120759,2009-11-22,Mortgage,Valid,56dc045a1dac7ecdc41788b52fdaa574,1,Southern Illinois,true
+ad5cf6e76aa4e5281aea88391d095888,Illinois,Flat,2015-08-20,563788,2016-07-04,Mortgage,Valid,181020e4745301fb6e7ac91409e110d7,1,Southern Illinois,true
+928ae540fc7c005ff5ba46738351b752,Illinois,Semi detached house,2014-02-27,127852,2014-01-10,Mortgage,Valid,54785ab74fdafaafd85d5db8fc1bc228,1,Southern Illinois,true
+e43010ab582c853ad73fdeb405e165c6,Illinois,Detached,1999-02-14,562005,,Pledge,Valid,76f3bd7fd750eb27b8ffa62ea7da0ace,1,Southern Illinois,true
+f331ea8f1fe2ca32cb1fded408522157,Illinois,Flat,2014-11-29,561770,,Mortgage,Valid,6a33ca84cd546b050b58c3e95549b6d2,1,Southern Illinois,true
+4fd5d99cd81ca53ca259648d6d64ec5f,Illinois,Flat,2016-04-30,227938,2014-10-07,Mortgage,Valid,ffaee69cf29b2103d890a2fb45858491,1,Southern Illinois,true
+d28c54c3ee3adde3cd75d57edd0d8a62,Illinois,Flat,2013-05-29,225115,,Mortgage,Valid,10aea1a1d367921873b5c51c367037ec,1,Southern Illinois,true
+42e877141addd24768151f772287ba2e,Illinois,Flat,2015-03-26,221228,,Mortgage,Valid,3059bb06f70804b7d126053782931d01,1,Southern Illinois,true
+f8be7b0a9db2f93323e2c27a5c57416a,Illinois,Terraced house,2017-01-26,989815,2009-10-30,Mortgage,Valid,1601f4bac5ff1b3fed6e6e6432429feb,1,Southern Illinois,true
+4ffa149a5adc3639b91d30b4367df43b,Illinois,Flat,2014-05-12,562070,2014-06-14,Mortgage,Valid,6a1e66ad99573fc7963a6ee379517332,1,Southern Illinois,true
+7bad9706bf29f1a541acce335cca2e95,Illinois,Flat,,122328,2015-10-23,Mortgage,Valid,074636c1953e0309f128d57dcc8e253e,1,Southern Illinois,true
+f6b7e71373c7d6a5bbc525073fda420b,Illinois,Flat,2015-08-01,981243,,Mortgage,Valid,0e43d5eb1f2a6c7a505718310e3a119b,1,Southern Illinois,true
+4c8e6c3401b674f664274765e0484e0b,Illinois,Flat,,563928,,Mortgage,Valid,a5128df143de447318a38ea33939c29e,1,Southern Illinois,true
+211f351a72ffc13177c025bb60287a1e,Illinois,Flat,,121534,2015-02-06,Mortgage,Valid,3aff50d9fabd3648c3036b729486a3dd,1,Southern Illinois,true
+56d45fc0a750a9fbdfdcad9c51bbdfd9,Illinois,Flat,2014-08-17,127664,2014-02-25,Mortgage,Defaulted,c44111b405d885669dd20edcfb409eeb,1,Southern Illinois,true
+692c57ecdfdcdac655ceb6712d0eb8d8,Illinois,Flat,2011-11-29,128344,2008-11-11,Mortgage,Valid,8881c889147b5a593fc670ea23f3ee73,1,Southern Illinois,true
+2b06019583b5f94160b9a0d90e32a123,Illinois,Flat,2014-09-27,228726,,Mortgage,Valid,77f8086c6e3403e680aff573b0ec2078,1,Southern Illinois,true
+958411c119be612d47473ca70b7b727d,Illinois,Flat,2015-10-21,122049,,Mortgage,Valid,7f9d8de0a95c7c44797f31ea8f6f804f,1,Southern Illinois,true
+010ece732778d5dea5076bda6939a89b,Illinois,Flat,2015-11-19,981052,,Mortgage,Valid,63f0d30c0609e7470f7f453e487377c0,1,Southern Illinois,true
+858de4a0e133544b6b9e8bf87a193a75,Illinois,Flat,2015-02-25,129525,,Mortgage,Valid,6eb8941e176626aeec7c7606091d3e4f,1,Southern Illinois,true
+c8ab04140ff85188a681a97a06f85966,Illinois,Flat,2017-04-04,120849,,Mortgage,Valid,ae793df451e579ed97b0fcba86250dec,1,Southern Illinois,true
+e58af4cc1072cefc2a2bc5ad48c6bfa7,Illinois,Link semi detached house,2016-11-21,987461,,Mortgage,Valid,4d0c20ef1796c47bb9fccd3354f0dbb9,1,Southern Illinois,true
+45d5fb7a09a2193bbc3b5e26fb6b9708,Illinois,Flat,,983477,2011-01-12,Mortgage,Valid,4b139ada81c77f4bdbf4eaf0cef4b90b,1,Southern Illinois,true
+14cf251f5ca6d6729a899e578371c068,Illinois,Flat,2021-05-11,562774,,Mortgage,Valid,3a2f5436d6999ad738c62e011adfc05b,1,Southern Illinois,true
+1e6da9f3425ed6c59f52e0b68d9e99fa,Illinois,Flat,2015-10-06,567697,,Mortgage,Valid,21f44e8f595a00dd974ba2699d189309,1,Southern Illinois,true
+2352ec5f733cff32ec9e8a5ea9dbe501,Illinois,Flat,,120650,,Mortgage,Valid,5abcebf38b2cefded2680bf32ac68448,1,Southern Illinois,true
+f6b2b95985ee43c11d71218acfea02be,Illinois,Flat,2016-12-11,228244,,Mortgage,Valid,3290c97ed8f2bf6a65a854d2ad98f01e,1,Southern Illinois,true
+764859799fd4b6c67778da2770e2f3f9,Illinois,Flat,2008-03-03,127118,,Mortgage,Valid,d2ef798ff7931846c4f0bdc91d9a6845,1,Southern Illinois,true
+bb372eee663fb9b72f0aa86bb8189f3f,Illinois,Flat,2016-07-22,564398,2015-09-30,Mortgage,Valid,4618117a2455c83a94cffb5f688707bf,1,Southern Illinois,true
+17aa570a7bc5bb2a8a3128f859a24b7d,Illinois,Flat,2014-04-12,125166,,Pledge,Valid,3b6fc2218749a4995af1938e45b21176,1,Southern Illinois,true
+17c327b90521a2eff714cd1ecc642369,Illinois,Flat,2016-09-15,228474,2016-04-11,Mortgage,Valid,312c189ff7abb7a9d0d340e01edd3032,1,Southern Illinois,true
+0811fda32e0f42a6f24f198115f1cfc7,Illinois,Flat,,227954,,Mortgage,Valid,eafed96d4517e17d366d774f930c0119,1,Southern Illinois,true
+95d0f4824306a132137f430da5c858f4,Illinois,Flat,2013-04-19,569431,2012-06-10,Mortgage,Valid,17e88e80a4a89bacd444af28a66c4be6,1,Southern Illinois,true
+3dc41558331a542316277a915d6e910f,New York,Flat,2016-10-11,569024,2016-12-17,Mortgage,Valid,d773943232035d24700d1a4208e80b26,1,Southern New York,true
+c888b34766c33082362e32e69a4f3200,New York,Flat,2015-06-14,225480,2014-10-22,Mortgage,Valid,02558e9535d0cdeae461f11fac395bf5,1,Southern New York,true
+8a690d50507eae3285e9cfcb5db5a51a,New York,Flat,2020-02-08,221306,,Mortgage,Valid,30a1570b3721880b07b1f438365ed84b,1,Southern New York,true
+677b3b27340ec4a31e5f6ca8f21b9c77,New York,Flat,2009-10-26,221060,,Mortgage,Valid,e38df6c024f4f5c3b51fd1eb6fe169f7,1,Southern New York,true
+ec0dd655afdc105f83e880010ada1b78,New York,Flat,2018-02-23,222920,,Mortgage,Valid,289bdffcf4268c91cad62032fdc15491,1,Southern New York,true
+6c6af2f7faa51a52c5e8e2a48b50598e,New York,Flat,2014-04-02,568943,,Mortgage,Valid,3df6d72711fac5a500f87229a7a61ceb,1,Southern New York,true
+a813684ff85d8b1832559d78b47f84dd,New York,Flat,2019-10-28,128323,,Mortgage,Valid,e3a1e52de435f58d6e795f66f4b9a424,1,Southern New York,true
+9a44a78c59bb548fce68b71442dddc57,New York,Flat,2003-09-24,124421,,Pledge,Valid,3380f9a3042f10753b8da005ae5a1cbe,1,Southern New York,true
+0e1195125972425ba3c53a4583e3bdab,New York,Flat,,986125,,Mortgage,Valid,76e403764270d2884bce15aaea02531a,1,Southern New York,true
+f959e269b23bd963627bb2d4a0f5a15b,New York,Flat,2014-11-05,560723,,Mortgage,Valid,34af9e743d205f77dbc4c8ce9333f06b,1,Southern New York,true
+9620a1996b5901dbe06684d995c689b2,New York,Flat,2015-01-11,128547,,Mortgage,Valid,f14b96d0c4fe480c993945a6e4460f55,1,Southern New York,true
+446470ee1247bd3443aed4f11d3f7bd4,New York,Flat,2019-10-31,226251,,Mortgage,Valid,621eaa7e6cc6748de73ff3a1998852cc,1,Southern New York,true
+de17b8142ada4e2601f8ce24750b613e,New York,Flat,2018-04-24,985529,,Mortgage,Valid,1778207cf98bded2ab6b535e5bd9e17a,1,Southern New York,true
+d5dfac53eb01fa20615cc6cf1301e9da,New York,Detached,,982371,2000-11-29,Mortgage,Valid,052e26fa9242af8432a2b8cc4124bc99,1,Southern New York,true
+5f9914ea1aeb768180f601288294c6a1,New York,Commercial property,2017-12-01,561238,,Mortgage,Valid,60a39c617e08d8db33599bc3a29d8572,1,Southern New York,true
+6cc0f1d77eb8aa56898513f0043b5cf9,New York,Flat,2016-10-14,224089,,Mortgage,Valid,f162b868db462cfd8ca893b49ad4d0de,1,Southern New York,true
+45758370ea633d44d8e01ed71a8e6b35,New York,Flat,2017-07-04,224078,2016-10-06,Mortgage,Valid,7cca3dfa52a5affb33e9d6c212160d1e,1,Southern New York,true
+55949a81d99d7aece5b419a1ebd86c8d,New York,Commercial property,2008-02-01,129032,2004-04-15,Mortgage,Valid,8fbd12c0599b9e38909797b728763d90,1,Southern New York,true
+a7014ad546878c0dc6212dba0d0c34d4,New York,Flat,2017-09-29,982013,2018-05-09,Mortgage,Valid,85643d161a73f37b84c34b3087024b28,1,Southern New York,true
+8f705ec5c6d5c78c64667c7f9c2f2303,New York,Flat,2018-02-16,121205,2018-04-13,Mortgage,Valid,fa4ea5751dddc58f8c3f8e04a77a702c,1,Southern New York,true
+4ec9766c330586a34200bdd7e8317c06,New York,Flat,2014-11-15,124572,,Mortgage,Valid,54f009f2fa6858913a893f65024d1d86,1,Southern New York,true
+27ed629009729744c734b42663b7c18d,New York,Flat,2018-04-30,569964,,Mortgage,Valid,92172433395181678a14d3bbbebf644d,1,Southern New York,true
+05eff80ffb099775bd42aa775526f7e7,New York,Flat,2005-08-25,562925,,Mortgage,Valid,ce949ef378045ded8d8ba786696b80c8,1,Southern New York,true
+1fb7d1943d9005bb8601fd0de1920da3,New York,Flat,2004-06-25,562865,2004-08-27,Mortgage,Valid,780be53fb6a32cefc4dd8c353a3587ce,1,Southern New York,true
+2386088d1d2fdd9236b59554f04c23de,New York,Flat,2012-11-13,127499,,Mortgage,Valid,d17253de1bec907430e8dbe62d3d70d2,1,Southern New York,true
+1fecfc2d81cb3bb7018a4be9a6559a81,New York,Flat,2017-04-29,220786,2005-06-08,Mortgage,Valid,860ed58ca297a535df64cbc3f3677531,1,Southern New York,true
+cd63d9d932ab73c74653966aa0416aaf,New York,Flat,,562703,,Mortgage,Valid,205ef6865177cc6552c3987f678132e1,1,Southern New York,true
+a02258539bd7cb740188bd6b15cc4fe6,New York,Flat,,982891,,Mortgage,Valid,c521ca50796f08e993079fb14a73239d,1,Southern New York,true
+1f8de1233cfee7cff5f1f105c44ec810,New York,Flat,2019-06-24,225982,,Mortgage,Valid,8a8f34f76692b6cc688839afeec56fed,1,Southern New York,true
+8b7991e9670278e2ee98b730524d5440,New York,Flat,2018-07-05,989304,2017-10-24,Mortgage,Valid,3878057361020ccfc89a5f9efea5587c,1,Southern New York,true
+576dd6861a7c14c26d3d1a2c3eb849a6,New York,Flat,2017-10-16,228609,,Mortgage,Valid,cdad9304b0d59f2e15d73f2d15417936,1,Southern New York,true
+f4a044b090eaf45ae2f47722398a7760,New York,Flat,2013-12-06,125096,,Mortgage,Valid,e79f521af55e5b5c815479bda93c5070,1,Southern New York,true
+e5728523471a1772ef536d72950e2027,New York,Flat,,123256,2012-01-09,Mortgage,Valid,7a9899b2e6a6a9818084c935f7b0e52e,1,Southern New York,true
+ecc77af427427bb30c12a9a9954a1351,New York,Detached,1995-01-27,984697,,Mortgage,Defaulted,dfe3ed2d9155d303b218819597f5a0e4,1,Southern New York,true
+92c11d4a072744c1ab6c59f1d3a19eb6,New York,Commercial property,2021-10-08,569968,,Mortgage,Valid,98dec181e3816aae8ea5505855229ca9,1,Southern New York,true
+ed2082631ec16e65ead40908fbcfb686,New York,Commercial property,2015-07-17,565628,,Mortgage,Valid,114f510e3c5f759789394a4d615dac41,1,Southern New York,true
+77902ebcd63584efb0ea818642fb0b8e,New York,Flat,,561052,2008-12-19,Mortgage,Defaulted,774f4d1a01e0f8843bc29e030821a0bb,1,Southern New York,true
+f889e033c7a2bd24611aa71b571293b2,New York,Flat,2015-12-26,988215,,Pledge,Valid,7ee14c1f91b1a28c751e3a51419d585f,1,Southern New York,true
+b0693d139857659b50236c9fc6b7e64d,New York,Flat,2015-03-31,986407,2014-12-06,Mortgage,Valid,0636b8336b6ba39fc0925bd57662c097,1,Southern New York,true
+e80612d0e36baeea83778648ace7814e,New York,Commercial property,2018-04-22,561442,,Mortgage,Valid,5610393f7e2ae6f5124e9fd312ffcd99,1,Southern New York,true
+c7776a0b15da09dd83d9f60ab87b6043,New York,Semi detached house,2016-10-05,220055,2015-05-12,Mortgage,Valid,2e2df8681fd8397acc475f99d0091f37,1,Southern New York,true
+7182418785b21bc56926972511f8ef79,New York,Flat,,988343,2017-02-22,Mortgage,Valid,e8b4357986256b5f2bcfaf65a6ede597,1,Southern New York,true
+71abb2a0186660ccbad40e77f860dc92,New York,Flat,2017-04-01,561173,,Mortgage,Valid,fbc8a19b73abae322fc3fbcb82ba789c,1,Southern New York,true
+2c061d651d6d7c8408a84715105c03b4,New York,Flat,2018-02-23,980380,2018-04-15,Mortgage,Valid,29671104270445390c50c484bf8ef96b,1,Southern New York,true
+aa1f86873622ecffbf48eae3c0743ef1,New York,Flat,2007-10-13,223199,,Mortgage,Valid,7e3df80c7c2df4566b6c55d9fbcbc61c,1,Southern New York,true
+18e1ab480ddbdae93811de4e96a43d3b,New York,Flat,2017-12-17,983772,,Mortgage,Valid,d21c1bf3924b2f12ff929b1423e04aa9,1,Southern New York,true
+c3d8618e761f8c81136df058510a34d3,New York,Flat,2019-07-07,981324,,Mortgage,Valid,05d5e58fe09111439171fc61ad644a7c,1,Southern New York,true
+a1e8476ee76d071bad599798b18d7e7e,New York,Flat,2011-08-08,121415,,Mortgage,Valid,5db48a1eff2fff1fe6e5ada479b0f3d7,1,Southern New York,true
+cd6a9e5b215bff3b3dbac83e316998ad,New York,Flat,2018-05-30,123521,,Mortgage,Valid,6c366b0f6581b6e10737e4deac99200e,1,Southern New York,true
+6465e80f5638bb4eefdd1a48038999c1,New York,Flat,,126501,,Mortgage,Valid,cbafca5a1a1ce33d7b132c4e7970b110,1,Southern New York,true
+4c23f0c66df09dce1732e9e89907f654,New York,Flat,2013-02-02,121808,2012-09-27,Mortgage,Valid,c5d48ec4f1ce8887bccaa3eeeb9f1d1e,1,Southern New York,true
+710a1261814b7c322f5bd9896ec3629d,New York,Flat,2019-05-23,127359,2018-07-01,Mortgage,Valid,9df467b5a4dcd70b9314762523e78888,1,Southern New York,true
+d2182d43c186064296d82653b22f2a72,New York,Flat,,982707,,Mortgage,Valid,9dee6cfad7b2e9c2c8a09aac549a58f7,1,Southern New York,true
+3af1b25b40ecd9068aa375e58e60ac38,New York,Flat,2017-05-06,220199,,Mortgage,Valid,3d2712566f9f6417d8491ac6fb035881,1,Southern New York,true
+be0d8e82a66a9eacd62ffe5843fad975,New York,Flat,,224743,2014-07-31,Mortgage,Valid,374a52eada9423e8c14b1cc473b1553d,1,Southern New York,true
+dd20d3b9a2faa94090fbe1d058d8574d,New York,Flat,2005-07-27,568253,,Mortgage,Valid,e7fb147df051430d9d2c1904df440928,1,Southern New York,true
+23ed1493af5379d1ce9638bf7b2511c9,New York,Flat,,229773,,Mortgage,Valid,f4169c213d90290d4a92678fa0a243e5,1,Southern New York,true
+819723101ec2c103ee3f35dbbd63f0e1,New York,Flat,2016-02-02,987849,,Mortgage,Valid,3180a09a72265bbdce6ea57408edf33f,1,Southern New York,true
+1e7e0b2e031b6f40ec85edf337b54811,New York,Flat,2015-09-28,125292,,Mortgage,Valid,516265f75e58e766d74cd3710fdef6c4,1,Southern New York,true
+65f58eb550adf33579caffedbfd5e635,New York,Flat,,220774,2017-05-17,Mortgage,Valid,7cdca558f19fedfac98e7282302e52c0,1,Southern New York,true
+87e6fe3299401c1a463d469f4f27b150,New York,Flat,2012-06-18,566788,,Mortgage,Valid,9d8954834c47512a3bffe6d238eb900c,1,Southern New York,true
+4c1184b45fecf51931e2a23b17918b4f,New York,Flat,2017-12-15,566044,,Mortgage,Valid,ca243ff6acbf68ce43541cc9dafc816c,1,Southern New York,true
+74cd04e3f92997a610348d76c9676398,New York,Flat,2001-06-01,224202,,Mortgage,Valid,679c9e40c407f8856d9456fed6118573,1,Southern New York,true
+91bf58a0924f607a81ca38b31ae1a6e5,New York,Flat,2021-01-26,226279,,Mortgage,Valid,869f1528d2d374dce80603edfde413c0,1,Southern New York,true
+5c9e964755623389c4fa268fd54597c3,New York,Flat,2016-01-16,221621,2016-06-01,Mortgage,Valid,ab129476f5a6a4b4aa873f6b0232d13b,1,Southern New York,true
+eee69dac4443d9bf8a31112cae1995d0,New York,Flat,,126362,2015-12-25,Mortgage,Valid,8cd1e441a8cc16f228947d93635cc439,1,Southern New York,true
+99148208ebffefca6fb2f718af559a56,New York,Flat,,564455,2017-11-29,Mortgage,Valid,547f3e756084c02989f812e28effef9e,1,Southern New York,true
+3611d51488ed50122f10faf8e8891abc,New York,Flat,2016-09-20,120499,,Mortgage,Valid,2619c19c4bdf14a0964c6470e7ea6f84,1,Southern New York,true
+c3d45288e09bcde03308a1860122b78d,New York,Flat,2016-07-26,565860,,Mortgage,Valid,f59764f4c01741b934ade4e3c8c9962d,1,Southern New York,true
+3514d7c8df9d2fe72ab2d613072985e6,New York,Semi detached house,2015-01-11,126188,,Mortgage,Valid,bdb4fa5d43e7973ef2aa9a71c4e25bd2,1,Southern New York,true
+9649cdf1f5fc12886de0bc80a98b0262,New York,Flat,2013-10-26,986493,,Mortgage,Valid,c60ebd95d0501f4d3ea442d46741fb01,1,Southern New York,true
+3bdf3bac5e11e4c31daad9644fb03bd3,New York,Flat,2016-03-24,225106,,Mortgage,Valid,669560ecccbd99debff21ef36c8a8493,1,Southern New York,true
+21d3dcdd0c145d646c26020ff0b94e2f,New York,Flat,2022-04-07,223898,,Mortgage,Valid,68163ba500e00692d86784f90619e6ea,1,Southern New York,true
+ef10ce2636c4761795883c47836e1495,New York,Flat,2014-08-21,126835,2013-12-31,Mortgage,Valid,5b67cde960a2ebd239ef5bb56a67ce2e,1,Southern New York,true
+95a06b502a846e56c89d0ca4954aeafe,New York,Flat,2018-02-04,560532,,Mortgage,Valid,cea196d4deaf52631234b87e8e555e90,1,Southern New York,true
+0b93dc37627faed02ca837e422f29517,New York,Flat,2016-03-21,989188,,Mortgage,Valid,05b4429bee91c29bc77ddad7cabb04fb,1,Southern New York,true
+0f5b2665012ae2931164a99c75ec61bd,New York,Flat,2017-06-02,125795,,Mortgage,Valid,1fcc16511f980ad911642a5866f4cfaa,1,Southern New York,true
+736ed1d27b4370c904ff53d64121374f,New York,Detached,2001-09-11,983268,,Mortgage,Valid,46389289a90fbd1810a690c825a7c5b5,1,Southern New York,true
+cef3ab1a4791820b2a73b552b1ef226e,New York,Flat,2018-09-01,121748,2016-12-06,Mortgage,Valid,18e394209b7f4e2f224fe9b21f934538,1,Southern New York,true
+790983b6ad42371e61af50a247eb7d92,New York,Flat,2018-02-18,980779,,Mortgage,Valid,42e31fe2eaf7a9ddbe8eac1719016c25,1,Southern New York,true
+75540297c246b401f95b33015aedaba6,New York,Flat,2016-11-07,981180,,Mortgage,Valid,e02d1782a5cf6b5463870a4440666c14,1,Southern New York,true
+c9f3da90af4d9681110b672eecbb565f,New York,Detached house,2016-10-29,127976,,Mortgage,Valid,1df08857c8eac1ffd0fef367d4b96995,1,Southern New York,true
+d227125e7649cdbb95a6fcb1e86575e1,New York,Flat,2015-09-05,566111,2012-07-11,Mortgage,Valid,92559d717742c8033659dca354763f21,1,Southern New York,true
+9935927ab58f11e3625488b8eb570dc9,New York,Commercial property,2009-04-10,566450,,Mortgage,Valid,ab29f87af4859e838f23b70243b71c6a,1,Southern New York,true
+06cfb97086be6dbb86b3b8f3e1154393,New York,Flat,2019-03-15,127231,,Mortgage,Valid,97bfa8ed9531bde342b2efc8e90bdbca,1,Southern New York,true
+2dfb4c9af7a90fba4a2ad35cf3eaf89e,New York,Flat,2016-03-14,120606,,Mortgage,Valid,eedfb77b0159fe6e08f06f42bbb19eb4,1,Southern New York,true
+2fb7b65926caf4f15ea051a37314785b,New York,Flat,2018-02-07,127361,,Mortgage,Valid,131bca9cb7e6596d49f6b3af81005649,1,Southern New York,true
+667ba9461f998b3088b427ffe2a0e960,New York,Flat,2015-10-21,981597,2015-11-14,Mortgage,Valid,cfbe6832452ec2b2a641d019f5d89ad6,1,Southern New York,true
+25f9af6d544f169cc3e0eabbe354e229,New York,Flat,2015-06-27,983931,2015-05-07,Mortgage,Valid,1640ca131ec34a8c126a0d56a27c1bd4,1,Southern New York,true
+a5ae6458911eb24ebd4a2262692e5c0c,New York,Commercial property,2015-07-01,228781,,Mortgage,Valid,3fff29366666f4bba69f0440beed448a,1,Southern New York,true
+dcc7c51b4b47e3db8d293d8ff1c2c710,New York,Flat,2016-07-01,981519,2014-01-13,Mortgage,Valid,b138ca38abdec2b58411448f25cac057,1,Southern New York,true
+6a091e6f89ecd91f8e62781747c84095,New York,Flat,2015-05-06,224890,2014-05-16,Mortgage,Valid,d02b399f833d0b859b44d2b52a3f3422,1,Southern New York,true
+facaab296260a4e25a1c9d6bdf82289d,New York,Flat,,123698,,Mortgage,Valid,c6bc175a7c5f0df17d7465bb203f0ef2,1,Southern New York,true
+1a05baf627e0afc562eb18381aa01a06,New York,Flat,,228556,2000-05-31,Mortgage,Valid,3c28a0bb6f529d21ab7784a8cab8961f,1,Southern New York,true
+933abd13ba6da8f6a8fad256bd16b489,New York,Flat,,126522,2017-12-19,Mortgage,Valid,36cb35e655c9e9daaa710fd3f0c197d1,1,Southern New York,true
+4ea378fb4ce00828799d988b8992aaee,New York,Flat,2018-12-21,125063,,Mortgage,Valid,7024c94b37a1a3ac4b642e2440b849c7,1,Southern New York,true
+ce922a0f523d2bf3d618948c001bca6f,New York,Flat,2019-07-12,564816,,Mortgage,Valid,3cefc449e21f01f5186c9192bca73458,1,Southern New York,true
+3a713a608d91179e6be6211a843f9ab8,New York,Flat,2016-06-09,989558,,Mortgage,Valid,285def31f13fa5e258e145915647e047,1,Southern New York,true
+32307d490af9dbc41c8b6083130891f4,New York,Flat,2012-10-06,986802,,Mortgage,Valid,17ea513ce0d47a312fd46d4a6e7e35c0,1,Southern New York,true
+493ac261b395c41da4fe2d4809be85e2,New York,Flat,2013-02-03,560114,2013-02-18,Mortgage,Valid,c54035d6feb4bcb680661ea18f5c657b,1,Southern New York,true
+9337bcd7b88cad63575c3a6a3d02505f,New York,Flat,2012-12-13,227994,,Mortgage,Valid,ac1c5d78da01441e889ddf0dcb42c231,1,Southern New York,true
+3e6959a4db14aaf11d8c5ad526572b1a,New York,Flat,2018-05-19,982280,2014-08-10,Mortgage,Valid,d83db88aef521a84068402b6552d6c8f,1,Southern New York,true
+12f3486d8de8a7a40be8063cade9e52c,New York,Flat,2013-10-21,569512,,Mortgage,Valid,96918025b4e6d804dd9cc49ec6db9643,1,Southern New York,true
+fe3730d16d1ef628369e87f851b9f379,New York,Flat,2016-05-15,981212,,Mortgage,Valid,168ece8c23343565b4eb82ff3a0bfb3d,1,Southern New York,true
+74870d30432bb2c353e8fc87c2e07435,New York,Flat,2015-12-30,987378,2014-09-28,Mortgage,Valid,33bf8844a711832f33aeb23721ebde59,1,Southern New York,true
+29158766e887e781647803c0ef1ab0cd,New York,Flat,2017-07-16,562176,,Mortgage,Valid,e686eecd3dbc0824dd8823f0b3228115,1,Southern New York,true
+ea62cc9f5d64c126ece23ff46a20c85a,New York,Flat,2014-03-08,565680,,Mortgage,Valid,ef135fb0c21586e4b652fb7abf52daab,1,Southern New York,true
+c7f89feddcb4acd91def967afc7c7605,New York,Flat,2018-09-10,123948,,Mortgage,Valid,5decd93f5489bbce489eb6e7f8f4bad1,1,Southern New York,true
+746cb76f33bce77ccb7c3fead9530c95,New York,Flat,2018-06-27,220703,,Mortgage,Valid,09572f3d3a62aebfd23989a688ce5df4,1,Southern New York,true
+4b074824a18de62c02d487a8775f4bed,New York,Flat,2007-04-12,982409,,Mortgage,Valid,3e2419e5b5379d4641faf5d4e0d72e8a,1,Southern New York,true
+b554cb075605ab1c478014bde4de692e,New York,Flat,2016-12-09,982404,,Mortgage,Valid,d11efcd220a9fb8ce6383b9c9d36860a,1,Southern New York,true
+89f0191f7894441e5869b7db0aba5047,New York,Flat,2021-03-02,565352,,Mortgage,Valid,02cf51af4b94297db930914def10ffbf,1,Southern New York,true
+a9937a2f7abe138dd03fb12df09ef2fe,New York,Flat,,225328,2016-02-17,Mortgage,Valid,4f76f688d76acce170a8a231432fc352,1,Southern New York,true
+c1aabbf618c7b7d5f615b95b80fdaf7b,New York,Flat,,989247,2018-04-22,Mortgage,Valid,31aee80fa8a9dc49c37a9044170005fe,1,Southern New York,true
+427ef859d110ad3e2bb9989b24ba4cf8,New York,Flat,2016-06-28,566050,,Mortgage,Valid,283a3dc3046a81ed274b2d2567ed5ecb,1,Southern New York,true
+d61eeb3cca488431678d61cdd34988fa,New York,Flat,2016-04-19,124566,,Mortgage,Valid,4b5c4ef031f6902feef33cba4bee50ba,1,Southern New York,true
+1c4bd8e7f02d035ffbc2c6fc7fad58f2,New York,Flat,2012-06-17,564180,2012-07-03,Mortgage,Valid,f97343906f47dc7698c104acc9b4f7dc,1,Southern New York,true
+1c446b03412ff07d036facf3f132770a,New York,Flat,2013-07-03,228524,2012-07-05,Mortgage,Valid,c9628449bdceb538d1de21d3b26d40c4,1,Southern New York,true
+b58ab5655df5a46e279469d9c0163e13,New York,Flat,,224978,2016-12-29,Mortgage,Valid,bdd9a6a7b33b1e1c0870ad6515e5a773,1,Southern New York,true
+6609bedc5b522d37bbdb543141f20408,New York,Flat,2016-10-17,565474,2016-11-24,Mortgage,Valid,dcf6dc2755472e45f692d1ee13b0f883,1,Southern New York,true
+b0e115adf057d214127b719230eaf06e,New York,Flat,2020-05-13,124035,,Mortgage,Valid,3d922d9a80eb1add58b2ac4e473baf74,1,Southern New York,true
+0b0c0691805655778ce8ed424c7ede77,New York,Flat,,988033,2016-08-31,Mortgage,Valid,982b75ee67bc6f70300b9c4e3dc28eb3,1,Southern New York,true
+2e8c78eaae6af7d7bbc47eb2e6e5207e,New York,Coach House,2013-08-17,569497,,Mortgage,Valid,3278a8aca6a622f0108c4fa9dce79d09,1,Southern New York,true
+78e988e4a74fa42fcd5c85228a9bdc75,New York,Flat,2013-06-04,983344,,Mortgage,Valid,5288c4ea9046d1c8255c2d3368e57d56,1,Southern New York,true
+2b485e60e6e53652212830af620eb4d1,New York,Flat,,122685,2015-04-01,Mortgage,Valid,95ac1397df1be4fa12279d6b26d76008,1,Southern New York,true
+c6c5cc5f9d921fd0908ad591f6208ca4,New York,Flat,2019-05-10,568196,,Mortgage,Valid,312b336bed48e39e113703db9380a169,1,Southern New York,true
+393b85bc691b8459894c93cb003e6668,New York,Flat,2020-05-07,125290,,Mortgage,Valid,84f36a7850e3e826987ae58fe8538dcc,1,Southern New York,true
+4579639b0972166ae40d2067782855c6,New York,Flat,2016-05-24,123915,2014-04-22,Mortgage,Valid,4cbedbbc91f6d3840a93c06f6ebeefdd,1,Southern New York,true
+1c7dbfb3c9d016a81efe3157ad29386f,New York,Flat,2018-08-12,228097,,Mortgage,Valid,ae1cbc1370b48a4b85c132893094e054,1,Southern New York,true
+c33cab462ebd6812b6641addb63a3a9f,New York,Flat,2018-03-29,228229,2016-01-01,Mortgage,Valid,c0f4f03d91332aab3e86eb59449e73a3,1,Southern New York,true
+fbe1ccc8ae5033a52d9532a382833256,New York,Flat,2011-08-22,562922,,Mortgage,Valid,bc76a08e3b2ea17490bd042edd99b339,1,Southern New York,true
+7d3d3a53dc01400f13f8e1a0f18b042a,New York,Link semi detached house,2019-01-15,567568,,Mortgage,Valid,f304ae19b8aa3b47c1694b689986c056,1,Southern New York,true
+4a3ed7f6048c8e7c5f72f80c8c905fac,New York,Flat,2016-07-01,222384,,Mortgage,Valid,e98a24e0463c55f0b16be04ef9ed7503,1,Southern New York,true
+35115d8dbf26b5af8ac4f9a994c47cbb,New York,Flat,2008-07-01,121805,,Mortgage,Valid,f73177730bc57d6fb260ada941fd4ae3,1,Southern New York,true
+2dd543c03d2299a7226de58e131e50fb,New York,Flat,2020-05-01,986768,2019-12-23,Mortgage,Valid,37dbca90b20234e04490b1589614d86e,1,Southern New York,true
+ebec03eee32d33067e2bb411ae463b1f,New York,Flat,,987422,,Mortgage,Valid,b77c3be231b4c80cd82cdbc942dff6b7,1,Southern New York,true
+60cca011ee5110ac55837cefc9ac4f40,New York,Flat,2015-10-18,126183,,Pledge,Valid,5145ba479c78375bd5b23b119f547e9c,1,Southern New York,true
+3e42714c9c57dd8872bdd040498a13f2,New York,Flat,2009-07-13,984601,,Mortgage,Valid,284e91c76cee7b1e61be7626c5bfa705,1,Southern New York,true
+52070a8d719353349a121cece5da545a,New York,Flat,2014-10-16,565863,,Mortgage,Valid,2e7a39d63b2830e351bd0549303a5b75,1,Southern New York,true
+5358a79d4e649047a390fe075557a681,New York,Flat,,126870,,Mortgage,Valid,bd15062e8c3792b110eb01e6ca0191bd,1,Southern New York,true
+debb29405914329ff36f963d2f1b8b6a,New York,Flat,2018-06-02,124971,,Mortgage,Valid,34723fd2221ef71614b21c7c3a44e090,1,Southern New York,true
+4874f2f25eb30803ebad6fc2797c84dc,New York,Flat,2020-01-29,568547,,Mortgage,Valid,375366beccb71bf4de0778d2e3e78de7,1,Southern New York,true
+cd0d4a6163d9cf7afc511ee6954a2c71,New York,Flat,2016-11-29,224761,,Mortgage,Valid,00dc562784141cb0e4caedb104837023,1,Southern New York,true
+b93a095f9fb77cf88401e70c3af4cf9b,New York,Flat,2020-01-06,568171,,Mortgage,Valid,9d9054e704ab5766f7c529bb4380554b,1,Southern New York,true
+774fa8d3d95e3f6eac00c796199dc355,New York,Flat,,981766,2020-01-09,Mortgage,Valid,3c584245707566f87e87a75fae49d0f7,1,Southern New York,true
+debb29405914329ff36f963d2f1b8b6a,New York,Flat,2018-06-02,124971,,Mortgage,Valid,f39cc2478229e81f829a77942ec40a04,1,Southern New York,true
+a5d93c4980a71970378d5ec854e8ea46,New York,Flat,2017-11-20,127120,2018-05-24,Mortgage,Valid,1434b6b17147f3e275308a4c981a6e06,1,Southern New York,true
+2363e7105877492cc0b1d134e339da35,New York,Flat,2020-09-24,124816,,Mortgage,Valid,0731e8d7d7362e41a475784e210e3bf2,1,Southern New York,true
+b188a353da42af13c1bfa5d7f15af165,New York,Flat,,565916,2016-01-12,Mortgage,Valid,55a947b1b7c251255ad4c609dc2201e6,1,Southern New York,true
+390a1468679a334aa128c1f647e8f9f1,New York,Flat,,227314,2018-04-23,Mortgage,Valid,ea62aabb509e18ea11a2f13b6a36aa08,1,Southern New York,true
+9276d24e1977cc2c4eb9f04c5d5594ee,New York,Flat,2018-12-08,561460,2019-07-01,Mortgage,Valid,91264e9dd2a465c383c5b506a8226b45,1,Southern New York,true
+efb34cd30c91b436ecda474c89f5073f,New York,Flat,,229661,2015-04-17,Mortgage,Valid,291270972176b944b8892b38ca82bec8,1,Southern New York,true
+47948ee294bea9c66156f96b48ded04b,New York,Flat,2018-02-02,564955,,Mortgage,Valid,5031cb7bca037a07dfd093726871121a,1,Southern New York,true
+3c95401cb86a87b80687f159990c185b,New York,Flat,2018-04-13,987403,2017-03-24,Mortgage,Valid,78e0b95d26082c4d8dca1fce142cc758,1,Southern New York,true
+7ca5869b69bd4fd68b2c7fd7d77b6475,New York,Flat,2020-02-17,989115,,Mortgage,Valid,041f9cb4f7316c337a3fe9747568bcee,1,Southern New York,true
+c73ffa9b076b07628e026517912f68cb,New York,Flat,,986567,,Mortgage,Valid,1d1351c3d5e77c86c9afa5d4db5711f5,1,Southern New York,true
+02e9fc490faf52eb7948b5b07d9369f8,New York,Flat,2017-04-01,985185,2017-02-18,Mortgage,Valid,d42ab5308865f9c482f77c5f5fd6d660,1,Southern New York,true
+1adda1fa3236fae9e683b872a8fce27c,New York,Flat,2015-04-12,227408,,Mortgage,Valid,f0b5cc58d858b0e7a253294d8f97e09e,1,Southern New York,true
+e206e248dba8680cd7820496403c65f4,New York,Flat,2016-05-12,122346,2016-06-14,Mortgage,Valid,73e95cf1c9d376449644800924721bd0,1,Southern New York,true
+190d028e7c362a895fe3c41672979dfb,New York,Flat,2007-12-26,567069,,Mortgage,Valid,3dec125b424185ef64519a29f85c1375,1,Southern New York,true
+b1a2f25fe0a064b8bd53a0fd2d34c3dd,New York,Detached house,2014-05-26,989627,,Mortgage,Valid,95dfc9ee5b28c0de2fe8ebc66d22eaed,1,Southern New York,true
+43092a27409b2d5d73b781690ad621d5,New York,Flat,,221052,2017-10-05,Mortgage,Valid,8cb36041e8e763329c10b9f596f45b18,1,Southern New York,true
+66f9727da3c33dc4ab0b746cd084bbec,New York,Flat,2016-05-21,129300,,Mortgage,Valid,9e8ff08769ebc1ab8edafaf99530714a,1,Southern New York,true
+09a7d5b485e31592cd7f18aa80e542d7,New York,Flat,2011-01-04,980174,,Mortgage,Valid,4a20048160961b35f25120e87c49f3c9,1,Southern New York,true
+d7036125ee0ef100baf2b3dd9ad679f6,New York,Flat,2002-11-11,221954,,Mortgage,Valid,3ef9ecb8473aadf8c86a72a9fd8a58bb,1,Southern New York,true
+accd2e807e2a775d26245bd2d75da744,New York,Flat,2021-06-20,121329,2019-08-31,Mortgage,Valid,51af30650cdd37c3db710566c75c158a,1,Southern New York,true
+a5ad5d7ad41d80a480fe5ba783284dc0,New York,Flat,2014-07-12,221118,,Mortgage,Valid,da88349e7232f8c22b9e6aeac36ed6b2,1,Southern New York,true
+37f326ceb7072e07b28cca1ea29d3105,New York,Flat,2015-12-24,561988,2015-04-22,Mortgage,Valid,b4bfc800dc8eaee9c82245bd4e78512c,1,Southern New York,true
+632ed46299b53b039f3a7ea0e48327fe,New York,Flat,2017-04-18,563164,2017-01-05,Mortgage,Valid,f491c4ca35fbb27fb4e9825db516bda5,1,Southern New York,true
+d797b439054d077665ded3c1ca1eff2b,New York,Flat,2017-06-07,120801,,Mortgage,Valid,d676adb03b8a4899213b918619651d08,1,Southern New York,true
+f53f7fdd1dc6dd63efbe63e04f294d4b,New York,Commercial property,2016-07-22,225548,,Mortgage,Valid,ebf639f2680d395a520994e08c2ab57c,1,Southern New York,true
+0ea611a2760039d6c05e19431185ec79,New York,Flat,2014-06-03,223447,,Mortgage,Valid,6727aa5a824dbe976b128f94304b44fa,1,Southern New York,true
+24c3f0a850001569ddaccb1482a56c2e,New York,Flat,2016-06-08,569628,2015-08-14,Mortgage,Valid,d95061aec55ba603a58f5ada748a51d2,1,Southern New York,true
+184d865db12222bc67e657ea19e12bef,New York,Flat,,122560,2017-09-11,Mortgage,Valid,115be19cd7369a60e1eeddbd94cd9b1c,1,Southern New York,true
+c0b429d81419089d8bad97118525628c,California,Flat,2015-06-17,122875,,Mortgage,Valid,6cf7451a2b0aa5ff8ae5d7e852112c26,1,Southern California,true
+d0e4c3d24a7dc0df317adf41bc4d428e,California,Flat,2015-10-11,120441,,Mortgage,Valid,2f4663dc9fc3ebd7b710f338bd55fa06,1,Southern California,true
+f5a3aaeebe7b7f134fa25005528b1647,California,Flat,2020-06-20,123048,,Mortgage,Valid,9300e744c9240499e3590a18b214bb82,1,Southern California,true
+89d383e47f01c4d5dad3f045f0c57e6f,California,Flat,2016-05-01,569153,2016-06-11,Mortgage,Valid,00c28ac3f58f7dfd75198ae0f08fddf0,1,Southern California,true
+bc9e7d928b0a0cbe187690b96b4307ae,California,Flat,2011-09-26,986076,,Mortgage,Valid,2dba67adb2aae58bb5220944e9a8c556,1,Southern California,true
+d5414e1318500c446d2b97c33c8e5626,California,Flat,2014-07-30,129661,2010-04-07,Mortgage,Valid,1d318ef7abf54ae674bd7efa2b1ffba2,1,Southern California,true
+89fe33bc5799c1079a46c6d0aa5de3bc,California,Commercial property,2019-02-17,222834,,Mortgage,Valid,65b37685e95b3df280d36b4b239c0b82,1,Southern California,true
+b723469f7faae0e88407b3eab9465d59,California,Flat,2015-08-27,127884,2015-05-21,Mortgage,Valid,7d224d17ab42d52cd19adfe7c9142df4,1,Southern California,true
+37214f8c984b88a66d4bf60fb8e0051e,Pennsylvania,Flat,2015-06-27,982969,2015-06-15,Mortgage,Valid,2ca647753ffe8d54bf77c19c90d8aa43,1,Central Pennsylvania,true
+d525cf46c5d067a1bf10ba2261f3a173,Pennsylvania,Flat,2013-08-18,120596,,Mortgage,Valid,3623ec2715bd0a47c84cfffd567e1916,1,Central Pennsylvania,true
+21407afdb6b91be681648f4b5ba57c00,Pennsylvania,Flat,2013-11-04,983951,,Mortgage,Valid,0b7de07dbfcc234c421ce345be192389,1,Central Pennsylvania,true
+93b03b49e68424865b979795505dfd5c,Pennsylvania,Flat,2013-08-01,127319,,Mortgage,Valid,080044d418a2da35e4354679ab6a1daa,1,Central Pennsylvania,true
+122ef8c02bd8bbfe6525e463bc31f103,Pennsylvania,Flat,2018-04-24,568732,2018-01-05,Mortgage,Valid,360f9cb84a3e2c7b0f7a1c24ad8dbc49,1,Central Pennsylvania,true
+a5850eb6bae36ad03a80d34f5b420a22,Pennsylvania,Flat,2004-01-21,562878,2003-07-01,Mortgage,Valid,3143488242a499e999d2a0ce6c986b31,1,Central Pennsylvania,true
+5461abb606e8685382be4c9f65d86578,Pennsylvania,Flat,2018-04-01,224114,2017-09-30,Mortgage,Valid,dbd3d01f6baf9294da98b1b8a2cc2a06,1,Central Pennsylvania,true
+991f66091219f5bf557d891d44ab8b35,Pennsylvania,Flat,2017-10-24,980931,,Mortgage,Valid,3892b0f573f22660e9564d7952c8a12c,1,Central Pennsylvania,true
+84e7e29ca390d387d30d8a61fc91e411,Pennsylvania,Flat,2019-03-18,127913,,Mortgage,Valid,2a4c176cc9fdae0f6c9dbccd06eca5d5,1,Northern Pennsylvania,true
+9459a1b83a4729a6b541dbfdb59f4d59,Pennsylvania,Flat,2021-07-20,128496,,Mortgage,Valid,1ff75bcfa0cae20b2d5bab9740bbc4e2,1,Northern Pennsylvania,true
+6959b74fc2489438c469acea51cb2da7,Pennsylvania,Commercial property,2010-05-23,222877,,Mortgage,Valid,8793343d55cda45bf598b5ea10c0926e,1,Northern Pennsylvania,true
+caee90eee15fdd1c92f8b1d608da8c3b,Pennsylvania,Flat,2010-02-05,126772,2009-08-02,Mortgage,Valid,ee8ef0e2d13b0222d69a955510b030f9,1,Northern Pennsylvania,true
+0b144d9d351982d465719abe392815d2,Pennsylvania,Flat,,225952,2015-12-23,Mortgage,Valid,e899c355ddfbc1f4abd444514dfe64ad,1,Northern Pennsylvania,true
+7aaeea2857f6a23f97b6b09db1488c39,Pennsylvania,Flat,,989201,,Mortgage,Valid,f1e42495bf4f802b3f4fb4dde558f738,1,Northern Pennsylvania,true
+68ab729dcf1d5ab7de80bbe02926cb44,Pennsylvania,Flat,2016-04-21,562150,,Mortgage,Valid,7baa0473b818a307ff22ab4605d86e97,1,Southern Pennsylvania,true
+a0812463cd9a95a662d501f03c0bba75,Pennsylvania,Flat,2016-11-15,124250,,Mortgage,Valid,7340b75465432ae353330bd6ab6f4cc9,1,Southern Pennsylvania,true
+a7095c6149d63557f72f23e28177d4dd,Pennsylvania,Detached,1999-06-09,567460,,Mortgage,Valid,35b164f6fd954ed160eb8f1dbdf9945b,1,Southern Pennsylvania,true
+4eb48d0393b1fe57df8aa72af15696f5,Pennsylvania,Coach House,2016-07-12,562597,,Mortgage,Valid,605db1ca5e95af171c0674d3b3af9955,1,Southern Pennsylvania,true
+f5c7c0ec43b8e19bd313135212952f78,Pennsylvania,Flat,2011-04-16,223042,,Mortgage,Valid,2a421397c375d32a1703e05fa6c795ef,1,Southern Pennsylvania,true
+01576ae226b8f69a4054af64cea8571e,Pennsylvania,Flat,2016-12-14,127907,,Mortgage,Valid,08aeb20842b4aa5b9354472dc44387f2,1,Southern Pennsylvania,true
+d37a98eb7aedbee329d65f1a45e78310,Pennsylvania,Flat,2013-09-12,569027,2012-10-05,Mortgage,Valid,efdaeb238d3f9b7b4f7d50e0f5808888,1,Southern Pennsylvania,true
+8602ce268cbf451abede837696d078da,Pennsylvania,Commercial property,2020-03-14,566193,,Mortgage,Valid,b31e3c005f97d0b375e83931849b34d7,1,Southern Pennsylvania,true
+68f2939f9515fc2517193f91da234c3c,Pennsylvania,Coach House,,224165,,Mortgage,Valid,aa95d33200c82dffa0a0ca1263dd8a02,1,Southern Pennsylvania,true
+16498707c75f7bf496ef75ec42c1b25b,Pennsylvania,Detached,1996-02-16,220714,,Mortgage,Valid,e926609a83ca0deccd5df8a2d9b578dc,1,Southern Pennsylvania,true
+44eeb2b476bda0cf7546becfda5fea84,Pennsylvania,Flat,2006-11-11,985095,2006-07-28,Mortgage,Defaulted,a75811d58b09c3762f7b3b2100cc0d37,1,Southern Pennsylvania,true
+353e9371de07108d25ac270b715d73c4,Pennsylvania,Flat,2013-08-30,223166,,Mortgage,Valid,b444e1c0a9f15d87c14f1b9eb1efa35d,1,Southern Pennsylvania,true
+7b7d4654ac37ae59dedba9f9d88b8bc8,Pennsylvania,Flat,2018-04-19,564933,2018-03-12,Mortgage,Valid,6cedb3ce0650afb499cb07404dd5063c,1,Southern Pennsylvania,true
+ac0109ae552c00e2ff96b299a905da11,Pennsylvania,Flat,2017-08-29,987397,2016-08-05,Mortgage,Valid,08fe8e8803840c424fa0a2e8b3b17870,1,Southern Pennsylvania,true
+33107179ad6f119f9010212163f9fb6e,Pennsylvania,Flat,2013-05-27,120610,2013-10-03,Mortgage,Valid,beec26f4b9cb72bd2feb7a7223a504dc,1,Southern Pennsylvania,true
+a6efd5574b8cd4564b03040a305a8407,Pennsylvania,Flat,2017-07-20,569296,,Mortgage,Valid,acbf26f1dc59ec6c7db7202656d20ef5,1,Southern Pennsylvania,true
+4a6d23857f6a01ca0d3ed58540872027,Pennsylvania,Flat,2016-06-18,124662,,Mortgage,Valid,356bdc831ba74252cbf5514a32eadaf9,1,Southern Pennsylvania,true
+7b8e9d9fd20df31aad485a76589e3b8a,Pennsylvania,Flat,,561572,2013-01-12,Mortgage,Valid,1ace7ee4e095aac7b7e734f48407a3f9,1,Southern Pennsylvania,true
+c07b7c9d6f0f5563dd11a10c67b2959c,Pennsylvania,Flat,2015-09-05,984468,2015-10-25,Mortgage,Valid,4d12cc2a6b16ec57977fdb50be2b0258,1,Southern Pennsylvania,true
+4e584435a284cf492b712ef1516ebd4c,Pennsylvania,Commercial property,2015-03-05,564637,2015-05-05,Mortgage,Valid,15d77470139cdc44475ff267331c8347,1,Southern Pennsylvania,true
+316f37d8d453f69efba04336e4284044,Pennsylvania,Flat,2012-10-11,565044,2012-01-13,Mortgage,Valid,06f03da33fdbc39cb7c62f80726fc088,1,Southern Pennsylvania,true
+276e6b1c6e0c7882a8e925b45bdb862d,Pennsylvania,Flat,2016-04-18,227018,2015-09-08,Mortgage,Valid,c43aa93f96af83c16d3a78a5fc27add8,1,Southern Pennsylvania,true
+4e807d74402f9826d5510119e2f39b64,Pennsylvania,Flat,2018-08-21,988862,,Mortgage,Valid,0cf630514f6d784630bb3b0676d63ba3,1,Southern Pennsylvania,true
+6adea757b175007bdf32078223bdc805,Pennsylvania,Flat,2009-01-20,229023,,Mortgage,Valid,fe8f0a4a10145359b3ebcaff5b4ebe37,1,Southern Pennsylvania,true
+2864d68e1b6bb500f7662ab7eaf18b03,Pennsylvania,Flat,2016-12-11,987959,2011-10-23,Mortgage,Valid,59fbdb63c920f8cbbd4f05846b3f8f74,1,Southern Pennsylvania,true
+7442508742ff43c4eb1eecd135c4ab67,Pennsylvania,Flat,2017-05-11,986255,,Mortgage,Valid,8b3adad4c1cad14b627d6f910d50dd0b,1,Southern Pennsylvania,true
+66c9dfd8cceb857e37a006a05dc449e2,Pennsylvania,Flat,2016-09-26,223692,2016-11-14,Mortgage,Valid,6806c2b8ca5a20cb6240f9b43e0aa9da,1,Southern Pennsylvania,true
+11ff080f2cbf2907b2ac5dafbd501fff,Pennsylvania,Flat,2016-03-31,220473,2015-11-26,Mortgage,Valid,614f6832802b335e6c0658016ae4e70e,1,Southern Pennsylvania,true
+a466e00eb3711d7029f931aa3ae765ea,Pennsylvania,Flat,2016-01-25,222550,2014-07-13,Mortgage,Valid,2c5dc3f54814fdd031b5aa531ee1744c,1,Southern Pennsylvania,true
+af4c7ae15b4ddb82bdaa41add82dde2b,Pennsylvania,Flat,2018-09-23,564327,2017-10-12,Mortgage,Valid,31d7057d7374fe49345a9e666e67fbd1,1,Southern Pennsylvania,true
+86289ca4d35dd8f573fe8c7b201f4983,Pennsylvania,Flat,,563115,2015-03-26,Mortgage,Valid,159afe7d7020b217ee3f0c78f9571ad9,1,Southern Pennsylvania,true
+50cd93bb9c57eea83d90216987620ed4,Pennsylvania,Flat,2012-08-03,221367,,Mortgage,Valid,f00ca2c5795d2b84d045edfef4d89fb5,1,Southern Pennsylvania,true
+04a48b9e3a5a7df5d59a5aba1196edfd,Pennsylvania,Flat,2018-03-17,220604,,Mortgage,Valid,64cc9ef45226b5eee28fdec744458012,1,Southern Pennsylvania,true
+3dc6312e30553a9b3ee26b5034ea19d2,Pennsylvania,Flat,2017-09-13,125835,,Mortgage,Valid,a041801e3f915c6fd487da7bda2f6d59,1,Southern Pennsylvania,true
+14490ad39a6c889a5d0310b84014c195,Pennsylvania,Flat,2012-11-29,981770,,Mortgage,Valid,3ae5046375991084dc259417c4d97220,1,Southern Pennsylvania,true
+bf7a089130fe97a5397e53b31958fea1,Pennsylvania,Flat,2011-09-22,120998,2012-07-27,Mortgage,Valid,a592497431598ba992982385b0fe635d,1,Southern Pennsylvania,true
+710d83c49f47d0367911d6c726424b5d,Pennsylvania,Flat,2010-04-09,124245,,Mortgage,Valid,50523bf563665b9d5b656f2e81b876e8,1,Southern Pennsylvania,true
+368b089377bd9975d78ee0bb9120e171,Pennsylvania,Flat,2009-04-14,124181,,Mortgage,Valid,5b1a865339e534e2c8184bfbbe109cae,1,Southern Pennsylvania,true
+e3ca8ced615502a2bf7001b71eeea0ba,Pennsylvania,Flat,2015-02-23,981718,,Mortgage,Valid,ec56591919409daf7c7fa960e80e51e6,1,Southern Pennsylvania,true
+d0fa97b1000779913018dc53abee7869,Pennsylvania,Flat,2018-03-06,981983,,Mortgage,Valid,6eb669388117c5f4277634b53f508be1,1,Southern Pennsylvania,true
+e527c9ef8e310dab09cd1097a28d8ead,Pennsylvania,Flat,2006-03-11,980521,,Mortgage,Valid,a2514c3b1b40aaaa3213618cb47e3cc1,1,Southern Pennsylvania,true
+7264e5f774071575e0c0c1e46aef5f8c,Pennsylvania,Flat,2011-03-23,126435,,Pledge,Valid,c22f264ec07f212f893bd635e21593bb,1,Southern Pennsylvania,true
+d57331bf48700cf21fb5b79d86c5f4c3,Pennsylvania,Flat,2019-09-17,986564,,Mortgage,Valid,e05d9e0c2bbf3f702a28b14a3f998e3a,1,Southern Pennsylvania,true
+2e46c7e3652ddb6c0ff8cab12aa3245c,Pennsylvania,Flat,2013-06-18,565234,,Mortgage,Valid,712c770f9159fc74c211d0ed8ac9f91f,1,Southern Pennsylvania,true
+a08a192467b171d883e1c6ff1cc736e6,Pennsylvania,Flat,2013-02-15,569131,2013-07-08,Mortgage,Valid,e1a6684e1cd49b6db32ccd6f9e657ae7,1,Southern Pennsylvania,true
+8259e03fee3e3478a58c8de1673601d2,Pennsylvania,Flat,2018-11-27,121783,,Mortgage,Valid,e8780cbe83109305dcf8ba4218c0ef6f,1,Southern Pennsylvania,true
+98fb7f7793f0eb18fce8ecc7b0d8dd12,Pennsylvania,Flat,2016-10-01,129804,,Mortgage,Valid,1b5e27ce75610bc0e6be51987c61e051,1,Southern Pennsylvania,true
+a46bf91e24e727eb8238ccec88b82354,Pennsylvania,Flat,2014-07-20,560345,,Mortgage,Valid,19dfc8e12067dd890d54e6cbdb55e3b7,1,Southern Pennsylvania,true
+1786162f9ef58155bdb4f4efa1e6a431,Pennsylvania,Flat,,225175,2009-06-01,Mortgage,Valid,9f7a530f80c0ad2e8c853ee7d5c94164,1,Southern Pennsylvania,true
+3d23d15e2e861d31a4f265dc815a6047,Pennsylvania,Detached,,984988,,Mortgage,Valid,05d894cee720af75916295be7a422c5b,1,Southern Pennsylvania,true
+ae1bc8f17ba76e1c5773e3cc5737e587,Pennsylvania,Flat,2017-09-15,985767,,Mortgage,Valid,36edf854fee7bbb867dc957fe7d36b8b,1,Southern Pennsylvania,true
+bf0c63e9732ab828f1448bb45d2caccb,Pennsylvania,Flat,2012-12-16,568192,2011-11-16,Mortgage,Valid,659cac0d3bf71c700e2d57352f42c5fb,1,Southern Pennsylvania,true
+a79552b6564c6a6dfd3b7ec7ab38f81c,Pennsylvania,Flat,2018-06-27,122496,2018-06-23,Mortgage,Valid,41ce714d0d6725f566150f1ac05c8788,1,Southern Pennsylvania,true
+d897af0acbc652d8fcc54e52a2298f64,Pennsylvania,Flat,2008-11-17,564902,2009-03-09,Mortgage,Valid,f3b31ecbaecb58a1c0585339ff4d557e,1,Southern Pennsylvania,true
+96172017b3e63dc730a6dadabb8bcd0a,Pennsylvania,Flat,2016-10-04,129731,,Mortgage,Valid,707464766226cd6390106248eb59ed89,1,Southern Pennsylvania,true
+2f2c38366a2dbb138f25e55f6f0e61a9,Pennsylvania,Flat,,986308,,Mortgage,Valid,e4cb40e585307c580c55fce26aae4779,1,Southern Pennsylvania,true
+f7f3c54edacda47d7d6c2cbf5b431d40,Pennsylvania,Flat,2010-06-08,989682,,Mortgage,Valid,f339d1994a4f8cb4c57ced3020290555,1,Southern Pennsylvania,true
+ebe7cdb3ae47c3a9fa9d55a51cbcf40a,Pennsylvania,Flat,2015-12-10,221443,2015-09-16,Mortgage,Valid,8c7fc5255c0c1d4232ddf46db3028a96,1,Southern Pennsylvania,true
+fa278d4fc891ebc6b65d320b54d1e590,Pennsylvania,Flat,2015-01-23,566394,2015-03-14,Mortgage,Valid,e53b8bc69ddef97429309be54de79466,1,Southern Pennsylvania,true
+97734059f6592a3ba80cb9a30880039f,Pennsylvania,Detached house,2008-01-29,122140,2007-11-02,Mortgage,Valid,ba1d24a33ef89e389a649058598c476f,1,Southern Pennsylvania,true
+a54ce673682068bf3351a22cd6777697,Pennsylvania,Flat,2008-02-07,226614,2008-05-16,Mortgage,Valid,9714b4060b95622e2ddbd7b11b2aeb2e,1,Southern Pennsylvania,true
+2b7a3803a04a305bc751fef7976eb59d,Pennsylvania,Flat,2021-06-18,120899,,Mortgage,Valid,0b2cc08fe123ab5fa49bc1fb3ecc2900,1,Southern Pennsylvania,true
+699fd61137f8fdb3be7199daa00b7bf2,Pennsylvania,Flat,2009-03-16,560891,2008-07-29,Mortgage,Valid,94129203114ffe26220106566140a2db,1,Southern Pennsylvania,true
+cb7c8b4872d0a9bd30a62496429eb5cd,Pennsylvania,Flat,2017-02-14,125990,,Mortgage,Valid,ba252993c6572d6a8462c9c293d5de40,1,Southern Pennsylvania,true
+a44a80438d1fe335a3cd9e179ff8e119,Pennsylvania,Flat,2011-08-04,568890,,Mortgage,Valid,45c87c239773768631e4a15bfd678dd3,1,Southern Pennsylvania,true
+9837f2f6afca623461851e053aac472e,Pennsylvania,Flat,2014-12-03,228941,2014-03-23,Mortgage,Valid,91227581d09c031e05e54335e0a33edf,1,Southern Pennsylvania,true
+8d190ba16b45f09a083dc51cf9f047c8,Pennsylvania,Flat,2020-01-08,221131,2016-07-19,Mortgage,Valid,0cf40db68d5536683e84d433c6539f37,1,Southern Pennsylvania,true
+fe47ae92dad9679bfc5dae325839e13e,Pennsylvania,Flat,2010-09-28,224826,,Mortgage,Valid,3ce223cb401190b2726a8bf24ad83deb,1,Southern Pennsylvania,true
+9cd0cb6c30f4dd681c9a4ab5dace15f5,Pennsylvania,Detached,1999-12-10,981083,,Mortgage,Valid,6fe6c3cbacebca8627333f5718b70900,1,Southern Pennsylvania,true
+9e2079e05839e7fb07aa779a92580292,Pennsylvania,Flat,2012-01-18,227348,,Mortgage,Valid,fdb8df024d22d7f3c7151ab46934adb8,1,Southern Pennsylvania,true
+a29b7725a392bee449da44d7ce09498b,Pennsylvania,Commercial property,2009-02-13,222082,,Mortgage,Valid,7e69ad8c1b9fa3b81ee223015865762f,1,Southern Pennsylvania,true
+dff1a751e816295c8ecee14b5dfb6231,Pennsylvania,Flat,2005-06-25,220982,2005-06-13,Mortgage,Valid,82e5fd732da4e84cc616317bca934245,1,Southern Pennsylvania,true
+5e817411440a8939ddef0ac550d70a63,Pennsylvania,Flat,2016-08-18,569394,,Mortgage,Valid,e7275821c4c31cf40d03907e5ff24ef5,1,Southern Pennsylvania,true
+d82ed6cace84897fc9a210c95c60c8d4,Pennsylvania,Flat,2009-12-15,563217,,Mortgage,Valid,d9a6e7af836e67d39ca8140a8f689a4b,1,Southern Pennsylvania,true
+61f6f17b7b8444ef7aa5fbdda01d84a8,Pennsylvania,Flat,2016-01-17,224978,2016-05-18,Mortgage,Valid,9db9d41241a86ee4cb10e8f6420c8c90,1,Southern Pennsylvania,true
+173a95fbd7d363d251bb8b2b6d5cfacd,Pennsylvania,Flat,2012-08-09,988084,2011-08-29,Mortgage,Valid,c2519a1a1121f0e9a7f14402ae18e6ef,1,Southern Pennsylvania,true
+9e0cbea7d3319c6c94c71dfb93c151b8,Pennsylvania,Flat,2018-10-15,224666,2019-01-23,Mortgage,Defaulted,2c7461b45139c0bedf0273437f53501b,1,Southern Pennsylvania,true
+d1be6c5b6c17364c1a43df2055121d23,Pennsylvania,Flat,2011-01-20,564381,,Mortgage,Valid,088f34435e6549a864512732b64dcd37,1,Southern Pennsylvania,true
+e1aa3104ea7878f17e762c1060836d87,Pennsylvania,Flat,,982135,,Mortgage,Valid,ebfede3995d319105cc91f7964c4b4c5,1,Southern Pennsylvania,true
+5e7890f776fb85bca942af27b0efe81f,Pennsylvania,Flat,,560774,2009-09-23,Mortgage,Valid,03f8e1939a6186e3b5270352c7733eca,1,Southern Pennsylvania,true
+d39c4f2953315f04e0fe061494bfca3c,Pennsylvania,Flat,2013-11-02,227727,,Mortgage,Valid,c78101811f4c4c0f55cb19d131ca4922,1,Southern Pennsylvania,true
+23613f987066ea4f456b35c4089fb4e2,Pennsylvania,Flat,2015-05-21,569978,,Mortgage,Valid,de4fcb5ee9872bc3f7e483fac202d451,1,Southern Pennsylvania,true
+49781b90b09db1c685719a3e01ae7f88,Pennsylvania,Flat,2015-05-31,565994,,Mortgage,Valid,3f0a36bc931a9f998d397336dd9024d4,1,Southern Pennsylvania,true
+f0f6d0df26446824caaede711cac8b08,Pennsylvania,Flat,2008-09-12,120096,,Mortgage,Valid,e5d7ab8b85ddc7510e2bc0fd15391c7b,1,Southern Pennsylvania,true
+818205328cf4ddaae109da27113d22b0,Pennsylvania,Flat,2016-03-17,982970,,Mortgage,Valid,a9d15ee67be2df0a7f2521803ba32cbd,1,Southern Pennsylvania,true
+5146defa33cf12a250c9211026c7e38e,Pennsylvania,Flat,2018-02-21,220439,2017-05-03,Mortgage,Valid,6c6a07dc34af869e35446d213ebaf5b7,1,Southern Pennsylvania,true
+be0719d180ccc17cc61fe13ab534bc40,Pennsylvania,Flat,,986901,,Mortgage,Valid,8fdfa80e31b06668c5348f9a8b9432f3,1,Southern Pennsylvania,true
+b06c216a3d55f2e98de6258ab3cf7e31,Pennsylvania,Coach House,2009-01-03,569317,,Mortgage,Valid,9ad81344580fb8c758d9416a90898bac,1,Southern Pennsylvania,true
+f664847146868a3f4398e35e0e5c69e7,Pennsylvania,Flat,2004-06-30,122999,1998-06-23,Mortgage,Valid,b30c210d382673605f578bde5616530d,1,Southern Pennsylvania,true
+276375feba9334b6e80b87de2196e415,Pennsylvania,Flat,2014-10-25,566978,2014-04-10,Mortgage,Valid,e7303475ba1c37f575a11893de71ee7e,1,Southern Pennsylvania,true
+a5117691251193300f53868b543cd5e6,Pennsylvania,Coach House,2017-03-29,129177,,Mortgage,Valid,6dc6d857c7a812c837e14baf44274077,1,Southern Pennsylvania,true
+3a53541594c1ba0af317d72b65180686,Pennsylvania,Flat,2018-11-01,226810,,Mortgage,Valid,a27f89abff2379f74739a6aa5b06baf8,1,Southern Pennsylvania,true
+891b9a6a7404b54365a5987e0cf8d710,Pennsylvania,Flat,,124342,2013-10-20,Mortgage,Valid,0ddcb053d427208cc490a5bb48d8c815,1,Southern Pennsylvania,true
+d92226e4e7db12ebbcf1f4026340cef2,Pennsylvania,Detached,2000-08-04,984881,,Mortgage,Valid,3bff37cbc465c64b7efe87d131ed9954,1,Southern Pennsylvania,true
+7068160f584dc30925365b3a73ef6923,Pennsylvania,Flat,,569321,,Mortgage,Valid,60f1ee228963e8aac28104cb2cbc6fcc,1,Southern Pennsylvania,true
+3c9247d37e86fcbaea39bdc397bc1a43,Pennsylvania,Commercial property,2016-12-22,127296,,Mortgage,Valid,8a62670a07af2840f2602ea2f1ecccab,1,Southern Pennsylvania,true
+2896ac3a55b725efa68ed2e3d48bca96,Pennsylvania,Flat,2008-08-07,123578,2000-06-26,Mortgage,Valid,321f16698e6dc0abb745f8b4e65018e0,1,Southern Pennsylvania,true
+129643d2151e16b4d8ce51a5bb975912,Pennsylvania,Flat,2019-04-13,981729,,Mortgage,Valid,15757342b5a9c13f008842d8559e9ce8,1,Southern Pennsylvania,true
+568207bf79e92eabe7c5cc5284c14921,Pennsylvania,Flat,2014-05-25,986615,2001-09-12,Mortgage,Valid,fd8213bf26e778e8ee5d13dbbe6ce609,1,Southern Pennsylvania,true
+936a4db637310d198b1c1cb72feb4919,Pennsylvania,Flat,2020-11-04,128066,2020-04-16,Mortgage,Valid,48bb7f8239cb9bbbf6728fab7b48fb1c,1,Southern Pennsylvania,true
+c3d3cdd40aa470374fe521f2968843d5,Pennsylvania,Flat,2008-06-05,221106,2008-01-25,Mortgage,Valid,cf69855dfa0a84cb31f0b93378917b93,1,Southern Pennsylvania,true
+8e73f1cff7f0a91aefd24a0e81ee9e81,Pennsylvania,Flat,2017-11-06,982242,,Mortgage,Valid,864f7ff0c25cbb70fc31ef5a282c784c,1,Southern Pennsylvania,true
+7345cb37ba8ed9e5d6f6a2f66c746b33,Pennsylvania,Coach House,2009-04-13,982843,,Mortgage,Valid,e0393ed4dc15e0aa6e4b3066a4297716,1,Southern Pennsylvania,true
+9847159a237a70f3acb720bd2566c949,Pennsylvania,Flat,,229617,2021-01-02,Mortgage,Valid,af20485fa80e803fb6ae6d78126ad5df,1,Southern Pennsylvania,true
+0e39c38761a2979c16432914fd9f19f7,Pennsylvania,Flat,,569949,,Mortgage,Valid,79b49252989fb208ba92879e37245c2b,1,Southern Pennsylvania,true
+53313928aadb49960e99cbfc4c4d0e01,Pennsylvania,Flat,2007-11-10,228504,,Mortgage,Valid,f2cd2938be33b6f1f5b9b94226e4a6a0,1,Southern Pennsylvania,true
+6001ef5c3face0f2ddb3f4d324c33243,Pennsylvania,Flat,2016-04-07,124264,,Mortgage,Valid,198a3de9271656e0f8ca32290619c093,1,Southern Pennsylvania,true
+977d839a17b96b39fa912caea7355939,Pennsylvania,Flat,2019-03-14,566628,,Mortgage,Valid,0651d6bcee73a083792baeb2afe798d8,1,Southern Pennsylvania,true
+7ae0c325ae020a70f6c08085e4807757,Pennsylvania,Flat,2002-05-12,981616,2002-06-05,Mortgage,Valid,cce38755bd1e3e0b389193ad037720b4,1,Southern Pennsylvania,true
+535515197576574a1273e0953f8f4b89,Pennsylvania,Flat,2017-07-11,220620,2011-12-27,Mortgage,Valid,647148784b586e4c7af71622c4ea463e,1,Southern Pennsylvania,true
+b4ad45ae8b76d435e8a774153fc3512b,Pennsylvania,Flat,,567947,2019-01-04,Mortgage,Valid,8c57ca71439d823a33fba88cdd71f67b,1,Southern Pennsylvania,true
+5b8ca937b1146e2daef7d69989b2ff2a,Pennsylvania,Flat,2016-08-15,560997,2016-01-10,Mortgage,Valid,7665c354f0928e10cc69fe7d710619a0,1,Southern Pennsylvania,true
+75c211d010a23eb1f80633cf8377e9b4,Pennsylvania,Flat,2014-09-29,124071,2013-12-12,Mortgage,Valid,6c551c66ceb9078ad1e1358fb59253bb,1,Southern Pennsylvania,true
+5042023a027566d9f03a36f880898c63,Pennsylvania,Flat,2018-05-27,982419,,Mortgage,Valid,d320f131f5ee45b17cdec8f9b8ae7c29,1,Southern Pennsylvania,true
+7d2c48c106a7f88fed8af06ae931c34c,Pennsylvania,Flat,2015-05-12,225844,,Mortgage,Valid,98bac5a1a263881882ea2bee0edf7c52,1,Southern Pennsylvania,true
+844049f2c4cd594b0cc96e9d97e4e63f,Pennsylvania,Flat,2014-04-18,983333,,Mortgage,Valid,e93bfe5a7411320c5c4995dff2c2db34,1,Southern Pennsylvania,true
+5a0d52dae27baff81cb32b93a906c93a,Pennsylvania,Flat,2017-06-06,987838,2015-06-20,Mortgage,Valid,e8b268352f62663cfb71154934bb8426,1,Southern Pennsylvania,true
+fa930de8fb2beb90c42bda10439d542f,Pennsylvania,Flat,2014-07-07,123865,2014-07-19,Mortgage,Valid,385af095d3276bbe740e040ddfb3ebb1,1,Southern Pennsylvania,true
+d6f887f8fdf1acb6c621364885ec34c1,Pennsylvania,Flat,,564880,2017-11-29,Mortgage,Valid,c7b437cd5152d143f389fa2937dc6c0a,1,Southern Pennsylvania,true
+75e142e2cde7778ccad9b53f4b866454,Pennsylvania,Flat,2008-04-25,989751,,Mortgage,Valid,7d82759127c5113707898c4900827857,1,Southern Pennsylvania,true
+a057aba1d674502d58ea3eaaa102e2f5,Pennsylvania,Flat,2013-09-23,229366,2013-10-30,Mortgage,Valid,adbd56d47dcca1163a1e9da1aeab96c8,1,Southern Pennsylvania,true
+693723941e2776dd81b7a4bb323c85ae,Pennsylvania,Flat,2013-09-12,227297,2012-09-12,Mortgage,Valid,e22ee7bea27c1033696370686f71eb94,1,Southern Pennsylvania,true
+26380533abf71809d72c8e1681b41195,Pennsylvania,Flat,2011-12-16,986141,,Mortgage,Valid,d4560acd06ce0aa60ee0782422e7df28,1,Southern Pennsylvania,true
+51723be1932226f83751bd9a733d2d75,Pennsylvania,Commercial property,2019-01-23,566813,,Mortgage,Valid,a2ab2e1049506ef8394ffb694b4d4bef,1,Southern Pennsylvania,true
+79a657c98b5fe2931890780076c3bc98,Pennsylvania,Flat,,221244,2019-05-06,Mortgage,Valid,7a363eff51d415dfdcf5955ab41cceb4,1,Southern Pennsylvania,true
+a0aa53bb9135441f43bec8151d01e3b9,Pennsylvania,Flat,2017-02-17,564050,,Mortgage,Valid,d0b78ffc0e66df4c7a34db8c88488f81,1,Southern Pennsylvania,true
+daf5c2b5f2de0ca1617912fda93ca437,Pennsylvania,Flat,2016-10-22,225854,2016-08-23,Mortgage,Valid,2760eda0c598c3999eba1d545d24ff63,1,Southern Pennsylvania,true
+648c72e69fae7a1c8bc46d1caa0ffac7,Pennsylvania,Flat,2013-01-17,126706,2013-03-03,Mortgage,Valid,4ebb22ac334d7bc4af5fff81a0d0b632,1,Southern Pennsylvania,true
+100733e7e328d700e518086e2c490c8b,Pennsylvania,Flat,2008-10-20,122445,2008-04-20,Mortgage,Valid,d11abd33edd81cf436181d02f4715b54,1,Southern Pennsylvania,true
+60fdfef8f08ff6fd581d581b128b87d2,Pennsylvania,Flat,2014-04-30,980322,,Mortgage,Valid,7773f08a92d3851c42660985884fcd68,1,Southern Pennsylvania,true
+7341d2f51b332b9629a78691f5d7569b,Pennsylvania,Commercial property,2011-01-14,980642,,Mortgage,Valid,fab0c2a6db66c122653165b93ae159bc,1,Southern Pennsylvania,true
+65f8ba50b7935cef9bf9f8a3480609e4,Pennsylvania,Flat,2016-11-22,986093,2017-09-20,Mortgage,Valid,63494b303c4c1191529c4e4c30dff8a0,1,Southern Pennsylvania,true
+9c2ec9515c31bafb5e774791178e469c,Pennsylvania,Link semi detached house,2014-03-12,983413,,Mortgage,Valid,4998e263bce4dc8a089bf91825eb9301,1,Southern Pennsylvania,true
+e51d7a5dbdd3c332004eebd29633686f,Pennsylvania,Flat,2013-01-07,980428,2010-02-03,Mortgage,Valid,d1e55c064499749c76271eeeda76b80b,1,Southern Pennsylvania,true
+ce615bdf0bf37b04c7fa3acc3b5b78a8,Pennsylvania,Flat,2017-03-13,126657,2014-05-17,Mortgage,Valid,cb4ca8b0b0a45aacb5a84057423c3086,1,Southern Pennsylvania,true
+49c8796813d6a5f9bdb56e2a512eadfc,Pennsylvania,Flat,2015-01-09,221127,,Mortgage,Valid,ccffcfe24cbc3b9c933c113591ac79af,1,Southern Pennsylvania,true
+39b555ba9cfcbc637d8b84da125b8979,Pennsylvania,Flat,2017-07-07,227408,2018-01-06,Mortgage,Valid,9114a6a286a7548a1b5260e78e4d0ac8,1,Southern Pennsylvania,true
+fc1bccbb90b721032fbe055529072ce7,Pennsylvania,Flat,2018-04-16,562377,,Mortgage,Valid,fd0561f851a22b437a9a376846fbfed0,1,Southern Pennsylvania,true
+938df4ec7362c38a44e36cdef2c2face,Pennsylvania,Flat,2016-08-12,220841,,Mortgage,Valid,f14241f90cbaecdab5b044f5ae84f4aa,1,Southern Pennsylvania,true
+d89bee98a333ab7c6d4d3fd64fe3cd1d,Pennsylvania,Detached,,989211,,Mortgage,Defaulted,2bb2d48ebcf95f4ef5890071dfcc3076,1,Southern Pennsylvania,true
+0611dfa29e9ed9253fb69ccede58e879,Pennsylvania,Flat,,222624,2014-10-22,Mortgage,Defaulted,4632bcf8817b06a716c25d0f756c44a2,1,Southern Pennsylvania,true
+2275f3f277c1094c5257216064e3ed11,Pennsylvania,Flat,2014-02-17,227986,,Mortgage,Valid,ce7b17f6af9510a9fba15d3731cd9b89,1,Southern Pennsylvania,true
+aac3b152e50a8597ec6fe57cacb5b1b4,Pennsylvania,Commercial property,2017-09-12,129926,2003-07-31,Mortgage,Valid,e24cc10ce97102d3ab21b029be37ce04,1,Southern Pennsylvania,true
+ff4b660d4bfac3403818ace10036c402,Pennsylvania,Flat,2016-09-27,562762,2015-05-09,Mortgage,Valid,3170c2246d220004a3f3ac5dbb6f1aca,1,Southern Pennsylvania,true
+ba23b5851ab72f9ce7c3ecafe8bade33,Ohio,Flat,2015-12-26,228778,,Mortgage,Valid,fd3c9759b4ffd42fe88b1d191bae8866,2,Central Ohio,false
+ddd9d583a4d51bd367556c6096db6db9,Texas,Flat,2006-05-20,229473,,Mortgage,Valid,4d613c0c71c4ebd4c3a0e67879219aef,2,Central Texas,false
+6a6921f259f4c92459bef7a9d2ec9713,Texas,Detached,,126493,,Mortgage,Valid,1e1ad32e79b64f3ce50de200f07f2daf,2,Central Texas,false
+c3fb1e40911c1389563133ac336633d4,Texas,Flat,2013-02-21,124261,,Mortgage,Valid,eb17dc4f9decb70e7a5959ad9ea4dc3e,2,Central Texas,false
+4098a1ff842411c593274e2dd25df980,Ohio,Flat,2013-05-30,120746,,Mortgage,Valid,11680d46acab3981a1ca0e1160f64eb3,2,Northern Ohio,false
+4592852f616e40b226c351cf02fb2d4c,Ohio,Flat,,122857,,Mortgage,Valid,82127b45e00828401547d9810070fb6b,2,Southern Ohio,false
+0a25df213954324320ff484ca5b37f81,Ohio,Flat,,226694,2016-05-04,Mortgage,Valid,0265e01541b76a42a38204f2c4163a26,2,Southern Ohio,false
+e566e32db827ec435f63a423e2dd4b39,Ohio,Flat,2016-06-25,560497,,Mortgage,Valid,6b2ce9b219b02fc41221cac39b840dcd,2,Southern Ohio,false
+4d8b4360e95b7b79891f3347359434fc,Ohio,Flat,2019-10-03,980691,2015-04-11,Mortgage,Valid,1d808d1a9365864b6159e239da3e8b92,2,Southern Ohio,false
+26410a3c41e40195436bc913a6fe0275,Ohio,Flat,2011-11-16,222909,2011-10-23,Mortgage,Valid,6ea3c6c7156fc9deea28d39302719d45,2,Southern Ohio,false
+dd9f58ceb3a2be0f5b5b17afca563944,Ohio,Flat,2020-01-19,986460,,Mortgage,Valid,8667fb82228efa84c9fcaaa75d0b717a,2,Southern Ohio,false
+c06e8fae867c0dcc029903296ecc039c,Ohio,Flat,,569044,2009-05-19,Mortgage,Valid,3192eb362194dc70819d9cd157ac4806,2,Southern Ohio,false
+84dc3813d20ac76dc6ea52fa41e25677,Ohio,Flat,2016-08-30,129445,,Mortgage,Valid,b4f1091c34f295d2a3f26eb0251fa79b,2,Southern Ohio,false
+40340a4ee9506ecce33c80dac4e03f63,Ohio,Coach House,2018-03-17,989428,,Mortgage,Valid,4a4c38f2d4aa99b672fb477378bddb25,2,Southern Ohio,false
+4735124c07e4b81683c5917e970c10f3,Texas,Flat,,221150,2014-02-08,Mortgage,Valid,3d16ef94433304cf7626956a33d899bd,2,Northern Texas,false
+47325dac67ea8c075048ddbfe75f5da8,Texas,Flat,2007-09-22,988901,2007-05-16,Mortgage,Valid,b0a24945b17406e031a21271142527b7,2,Southern Texas,false
+6ed114c4ef1f13c1597cb2b11475cd3f,Texas,Flat,,981781,,Mortgage,Valid,8a5319c4f0199a117b08dda352d877d9,2,Southern Texas,false
+c5c281bb36454f5dcdc993ce3194a06c,Texas,Flat,2015-09-11,982333,,Mortgage,Valid,80f958c5869420f72e2660ad2f93fe7d,2,Southern Texas,false
+1afc33dea0c94bc0de3f2cc2960bf4f7,Texas,Coach House,2016-12-03,561751,,Mortgage,Valid,4a8ddff62e918cb42e73694c9e07ec0b,2,Southern Texas,false
+45965b527cd6bc10bc070855e82ff4b5,Texas,Flat,2019-09-25,129101,,Pledge,Valid,df2945d6761d475a748b80de36d7fcfc,2,Southern Texas,false
+8c5b54faf7f21604b244eed20876a367,Texas,Flat,2014-07-23,567613,,Mortgage,Valid,f6fe9c1f15e1d69275f8ee0a73b50403,2,Southern Texas,false
+038a890961047da9765bd3580d0a7438,Texas,Flat,2018-03-08,226996,,Mortgage,Valid,b3260278b680012a066dbaad70f163ce,2,Southern Texas,false
+ade785cc26a8143aad8ef7922e5bc76b,Texas,Flat,,561445,2016-04-08,Mortgage,Valid,cd3e7a29a062911ab31a74e85bffbcb9,2,Southern Texas,false
+4f9f191c8205a59a5c78d5c3ad353d54,Texas,Flat,,123356,2018-12-19,Mortgage,Valid,8d5950eeee5c841d194d26379db84d45,2,Southern Texas,false
+639d717099ca14c9688b6933507ee83c,Texas,Flat,,122621,2019-03-17,Mortgage,Valid,b20b72111e3c76c7334a1908fbaa34a0,2,Southern Texas,false
+2714dbd863282b1674df520c0861e186,Texas,Flat,2016-10-14,983701,,Mortgage,Valid,d2f23ef8384804e7f5044edbd25536e0,2,Southern Texas,false
+152ef1262eba561cfbcdc0b6f35ea373,Texas,Flat,2020-09-08,986493,,Mortgage,Valid,c161887ba3192a76eca37c29d1531d72,2,Southern Texas,false
+fab9e9e428ac7689649d6efb55e0e8ac,Texas,Commercial property,2015-03-14,223711,2014-02-14,Mortgage,Valid,83f946482f6797fb640f4c5e94690def,2,Southern Texas,false
+573ff81785c6981468d4157cd19d8852,Texas,Commercial property,2016-10-05,982434,,Mortgage,Valid,f8551859fe9a34bac790e0cb84e61462,2,Southern Texas,false
+bec63eb3ebeb414bee92addb1ec2e812,Texas,Commercial property,2022-01-20,121755,,Mortgage,Valid,73b7819622da4e0db60a486909fbf8e0,2,Southern Texas,false
+0adeaa827c88b4a9de57bbe7ddc756d9,Texas,Commercial property,2017-12-13,562634,,Mortgage,Valid,6bfe68fe53bb680a8c1e19372087b78d,2,Southern Texas,false
+68ee73df57458157dd6e81ed55ba8902,Texas,Flat,2016-01-07,988701,,Mortgage,Valid,8e74def617f7d86d4d9e11f90aba0d49,2,Southern Texas,false
+028f0261bca4cf7bd634ee7f708fea10,Texas,Flat,,563328,,Pledge,Valid,c3fc2fb27b51e7f3d94c380cde39416c,2,Southern Texas,false
+065dd844087d2f3d9c7412ed71f534b6,Texas,Commercial property,2015-12-23,564058,,Mortgage,Valid,e05a2a5e47660389767ce3e7d2d42bdc,2,Southern Texas,false
+3d91854e3e0a5726dfba379b93d5bd3b,Texas,Flat,2016-01-02,563777,,Mortgage,Valid,586c958a80e3c3b2af1ebfdd8978d233,2,Southern Texas,false
+8cd6c886fa13851d614cd7a1ae3fff9a,Texas,Flat,2017-07-08,982690,,Mortgage,Valid,f11cb4bd7e51d1f438fd5f8ed4758f60,2,Southern Texas,false
+011efb60cab6406e8980e18a3f2f760c,Texas,Detached house,2006-01-08,228513,2005-12-31,Mortgage,Valid,435183ea1724a848ef57f2bdcf4a28c6,2,Southern Texas,false
+96768ea97e2199c73dcfda56ea9f1e25,Texas,Flat,2018-08-04,561073,,Mortgage,Valid,c7873600b1049e1f3b4485f21c77540a,2,Southern Texas,false
+7d455ba8c808efab99a5578164e55a86,Texas,Flat,2015-11-18,982108,,Mortgage,Valid,0c06768094b72206be91ba48c3c40180,2,Southern Texas,false
+0f87ac3d4740aa2153e89674283df065,Texas,Flat,,565541,2011-01-15,Mortgage,Valid,2e289680de01164d48331851cff743a0,2,Southern Texas,false
+ff71909e8620de346a47f4ede09cc91e,Texas,Flat,,984343,2019-03-25,Mortgage,Valid,3227eef8b0549ebaad9aff45095ff07e,2,Southern Texas,false
+02eb271674cd79b782f95b8f2f932478,Texas,Flat,2016-03-14,128361,,Pledge,Valid,a975558ead16e5c7f36e01d9997d1c1d,2,Southern Texas,false
+548b6df3af277b64cf0cb6ee4b81c5b6,Texas,Flat,,220355,2019-10-29,Mortgage,Valid,38ec6540c870f1f8c36e0cadaa4aed3b,2,Southern Texas,false
+206bfdfd477866e3a5f509165f303375,Texas,Flat,2018-05-25,123213,,Mortgage,Valid,686579e1b9fbe0f7612627b246a6ea24,2,Southern Texas,false
+992f97708518d1c742e7778f00feda7a,Texas,Flat,2008-08-27,989452,,Mortgage,Valid,a69e3c02d529c14dd47cfeb9fa73efd8,2,Southern Texas,false
+66674d6425f75f454a1e69a4416fec62,Texas,Flat,2016-03-31,121877,2002-10-20,Mortgage,Valid,2ea09bbd110445269f88a79a79bbea15,2,Southern Texas,false
+7756cfdb521480405770161ea1decefd,Texas,Flat,2017-10-16,129236,,Mortgage,Valid,24e3026ce253576209ceeae3c7b79c2c,2,Southern Texas,false
+250a961e4ea89d847789b2d613e3e08a,Florida,Flat,2021-07-14,560277,,Mortgage,Valid,e6c893a5d3173c826a28d3960e160713,2,Southern Florida,false
+f5e66c268b06e88ad516e5532a91aa47,Florida,Flat,,563392,2015-06-13,Mortgage,Valid,c38d5bafc76c8826058c10b1d86d8ae8,2,Southern Florida,false
+9da61d6c8cdd9faa829208d8895c0f20,Georgia,Flat,2018-05-29,124712,,Mortgage,Valid,ab31ab2660856ae051c9a5f8ae305279,2,Southern Georgia,false
+e874f7c297769ca6a81fdd3c5bd89d1c,Georgia,Coach house,2014-05-19,981562,,Mortgage,Valid,95dfc9ee5b28c0de2fe8ebc66d22eaed,2,Southern Georgia,false
+72745ba3161813937a2506582f5a0311,Georgia,Detached,,126616,,Mortgage,Valid,e1d536b872a6228df5a3e7464f5b95fd,2,Southern Georgia,false
+8246674e7049f9b875bdc38a95267b16,New York,Flat,,563580,2021-03-24,Mortgage,Valid,3f8fe0782614abba1388ad9dfd75d731,2,Northern New York,false
+8a581525a1744b906daa03c50a71dbd2,New York,Flat,2017-04-29,569946,,Pledge,Valid,d773943232035d24700d1a4208e80b26,2,Northern New York,false
+6ed274c6a3007ab80788aa00c1016cf6,Illinois,Detached,2002-04-30,569381,,Mortgage,Valid,9fd9f4d9542fc22de279bde3a2e04b2c,2,Southern Illinois,false
+d102734846c233f067d29bb495b5a1d6,Illinois,Flat,,221947,2014-01-28,Mortgage,Valid,c44111b405d885669dd20edcfb409eeb,2,Southern Illinois,false
+ae10386836a9f3e32477135ce39769bc,Illinois,Commercial property,2006-07-19,223495,2006-09-14,Mortgage,Valid,7b798f22ea261758363cf8326dbf6c89,2,Southern Illinois,false
+e94ca8286eb8d44a82c41a89b33764c1,Illinois,Flat,2012-06-05,227656,,Mortgage,Valid,17e88e80a4a89bacd444af28a66c4be6,2,Southern Illinois,false
+4b8232879904e2b4d993c9471e6a1b65,Illinois,Flat,2015-08-12,128984,,Mortgage,Valid,34490ed24fae5b6de237c3b5b990e803,2,Southern Illinois,false
+74e234cf47ce589b33477168e335bd75,Illinois,Flat,2013-09-18,120374,2013-07-28,Mortgage,Valid,3b6fc2218749a4995af1938e45b21176,2,Southern Illinois,false
+2e41a54f0c42ea7dc7757d83c6401bd1,Illinois,Flat,2020-02-07,565489,,Mortgage,Valid,b5170ecd1632ea3cd65acf922df38be6,2,Southern Illinois,false
+0153da4a412cc5ea6072d64422edf235,Illinois,Flat,2014-05-31,561613,,Mortgage,Valid,a533208445f422014317e4e6ed2078fb,2,Southern Illinois,false
+b8a7cfc438677d5a2daf4008291e1f04,Illinois,Flat,2015-05-01,569179,,Mortgage,Valid,9f785af89786985c5c555a668bcfbb4f,2,Southern Illinois,false
+988b69907f809e8a5de2603611f7a476,Illinois,Flat,,983125,2020-12-14,Mortgage,Valid,8035240e99a0d96519ef143742f77047,2,Southern Illinois,false
+b12a9294c4a8be04a34380cb6ec16d19,Illinois,Flat,2014-06-15,568797,,Pledge,Valid,3823fd84d5225d889fd90ac3742a88f0,2,Southern Illinois,false
+9b749dae1ff1351e0bb9a73efde06c82,Illinois,Flat,,562226,,Mortgage,Valid,a5128df143de447318a38ea33939c29e,2,Southern Illinois,false
+d0a33f2cbd08cc29aa298933908a3bba,Illinois,Flat,2013-08-05,222793,,Mortgage,Valid,d1129d0a9ee15bf39d37495ac9bc489f,2,Southern Illinois,false
+3266efff02fdf108794d15d849b6f78a,Illinois,Flat,,224368,2015-06-09,Mortgage,Valid,e345502b5063b4cb9dd7100d635cf388,2,Southern Illinois,false
+81833facaa0e9b9cdc998aa69d1f378c,Illinois,Flat,2019-04-10,561060,2014-02-14,Mortgage,Valid,8be7be3a52538b1728397c5b0bd1ce23,2,Southern Illinois,false
+c2ba0f7f4b711fb1ae320e8dcf95ca4d,Illinois,Flat,2011-07-19,985013,,Mortgage,Valid,74afee5bb01b30043afba1ce1c305072,2,Southern Illinois,false
+f9cdd51064c5d7ac6de524d2742e6028,Illinois,Flat,2015-04-28,981197,,Mortgage,Valid,f13e49802f855f9e8566be4d8949daac,2,Southern Illinois,false
+87d47a40b2e242dd7f9ecc03d3cd4949,Illinois,Flat,2015-12-10,228182,,Pledge,Valid,6541ef2876e4a08a404188c0e6e3d1b1,2,Southern Illinois,false
+e09cbae8d322b5c21d7e8e841b0f91c4,Illinois,Flat,2014-12-08,223394,,Mortgage,Valid,c0539d74257ab452d829f14ad3211cb6,2,Southern Illinois,false
+8e998871e01a324c1d18040dda85e88e,Illinois,Flat,2011-12-07,228356,,Mortgage,Valid,8881c889147b5a593fc670ea23f3ee73,2,Southern Illinois,false
+4315c097b145bf98d75a4ef5c6f99da2,Illinois,Flat,2017-03-09,129816,,Mortgage,Valid,62fc71a6fa533864c388a38f664861f7,2,Southern Illinois,false
+06cbbae29934d4c4634ce0506aa830a9,Illinois,Flat,2013-11-30,123692,,Mortgage,Valid,a10671e2aae566a6d6b87e3866d27650,2,Southern Illinois,false
+3e1b3cc49631b94c7008762009aa0664,Illinois,Flat,2006-09-08,981556,,Mortgage,Valid,45f49c8c09e97d5dba7d24ebdf4027ac,2,Southern Illinois,false
+61dcc7a859c4a5c3034bf3c94467152e,Illinois,Flat,2016-06-07,565043,,Mortgage,Valid,3290c97ed8f2bf6a65a854d2ad98f01e,2,Southern Illinois,false
+efcab5f15de8870015016373189cccd4,Illinois,Flat,2015-05-28,223549,,Mortgage,Valid,074636c1953e0309f128d57dcc8e253e,2,Southern Illinois,false
+1f7066efc9bfc0460081823289a6537d,Illinois,Flat,2010-06-26,983410,2010-06-21,Mortgage,Valid,4c9fd849f778f911124917eeb9e665ce,2,Southern Illinois,false
+0c278595351b2efe304e84bf80a7ba31,Illinois,Flat,2019-05-03,121601,,Mortgage,Valid,6bd3fddafbcf056e8cdf883714296482,2,Southern Illinois,false
+57e519a42e463fdb5cf52d64a9b4b3ec,Illinois,Flat,2007-12-13,228347,2007-08-05,Mortgage,Valid,e7abc774a3058e3ad55f8139e5d16045,2,Southern Illinois,false
+13a6b8108c0f79180b277d1de81447f2,Illinois,Flat,2014-05-31,561328,2013-05-06,Mortgage,Valid,3aff50d9fabd3648c3036b729486a3dd,2,Southern Illinois,false
+93fc0ed638868eab47e411375c724264,Illinois,Flat,2015-08-10,565091,,Mortgage,Valid,e038f11ef0dae263edf3b487b0691959,2,Southern Illinois,false
+6632bf5f525dfdd4260df7ed69adf09b,New York,Flat,2019-12-14,223458,,Mortgage,Valid,37dbca90b20234e04490b1589614d86e,2,Southern New York,false
+d94de71f0cdc4a9ea3076f6a24dc782a,New York,Flat,2017-08-22,981571,,Mortgage,Valid,78e0b95d26082c4d8dca1fce142cc758,2,Southern New York,false
+2e866470b4a43600f7858e46544f7e60,New York,Flat,,229759,2019-09-13,Mortgage,Valid,e3a1e52de435f58d6e795f66f4b9a424,2,Southern New York,false
+6c951f958db89f8bd205932e2270dd6a,New York,Flat,,989698,2017-07-02,Mortgage,Valid,547f3e756084c02989f812e28effef9e,2,Southern New York,false
+0932c4dc72724d3739c6cd90484226f9,New York,Flat,2014-12-21,223415,,Mortgage,Valid,68163ba500e00692d86784f90619e6ea,2,Southern New York,false
+ae1cf3c7f5ef1b53ad4dadbdd94784fb,New York,Flat,2016-12-29,980498,,Mortgage,Valid,fbc8a19b73abae322fc3fbcb82ba789c,2,Southern New York,false
+2897656ea377e58fb1af08554ed019b4,New York,Flat,2018-11-08,566278,,Mortgage,Valid,23ed12e39d66568cbd685eadf1788e49,2,Southern New York,false
+38d21583dd4e6369993c449a01e46e0c,New York,Flat,2021-10-25,223812,,Mortgage,Valid,3a243e88fea279339465e9cb4465b4e6,2,Southern New York,false
+479f4282c91587850e0208c4081de60b,New York,Flat,2019-04-26,127538,,Mortgage,Valid,91264e9dd2a465c383c5b506a8226b45,2,Southern New York,false
+eb1ad4f793ff9158869d849201defade,New York,Flat,,222618,2020-01-28,Mortgage,Valid,3d922d9a80eb1add58b2ac4e473baf74,2,Southern New York,false
+d5429c1bff5d6027d53d866c3a93abab,New York,Flat,2015-12-19,222935,2015-09-05,Mortgage,Valid,3180a09a72265bbdce6ea57408edf33f,2,Southern New York,false
+151f1d6d3bf7aa4c0e3c65f2ca8d7d5c,New York,Flat,,565316,,Mortgage,Valid,3c584245707566f87e87a75fae49d0f7,2,Southern New York,false
+229eea2e42330dff6054fbcb790d4fdd,New York,Flat,2019-02-16,223262,,Mortgage,Valid,8a8f34f76692b6cc688839afeec56fed,2,Southern New York,false
+37f206fc7d7c9b4d438832d89cfe25c0,New York,Flat,2012-07-03,987395,,Mortgage,Valid,d17253de1bec907430e8dbe62d3d70d2,2,Southern New York,false
+c59f357db1778905fb94910295effc2c,New York,Flat,2016-01-17,227316,,Mortgage,Valid,05b4429bee91c29bc77ddad7cabb04fb,2,Southern New York,false
+bc1b0d26991ab2ad4b118b6b2be046f0,New York,Flat,,987023,,Mortgage,Valid,8cd1e441a8cc16f228947d93635cc439,2,Southern New York,false
+335d17d470d57db38e98161f63922fa7,New York,Flat,2021-05-16,221182,,Mortgage,Valid,51af30650cdd37c3db710566c75c158a,2,Southern New York,false
+c8263e118bdd771c01842f53dc81ca7c,New York,Detached house,2020-09-29,563678,,Pledge,Valid,af20485fa80e803fb6ae6d78126ad5df,2,Southern New York,false
+0298b42d7e7ddc036903fa422df4f35d,New York,Commercial property,2021-02-02,222845,,Mortgage,Valid,98dec181e3816aae8ea5505855229ca9,2,Southern New York,false
+9f0f34b86c920534be61262b348d21d3,New York,Flat,,986422,,Mortgage,Valid,18e394209b7f4e2f224fe9b21f934538,2,Southern New York,false
+bd3047c90f47474248b535eed6707d3e,New York,Flat,2014-10-13,227538,2015-01-26,Mortgage,Valid,f14b96d0c4fe480c993945a6e4460f55,2,Southern New York,false
+93eecc722a78d9587a7342d7de27a058,New York,Flat,,223787,2013-12-16,Mortgage,Valid,6727aa5a824dbe976b128f94304b44fa,2,Southern New York,false
+b61c917e828b9ec65573a8c03a5a5669,California,Flat,2014-08-06,569407,,Mortgage,Valid,1d318ef7abf54ae674bd7efa2b1ffba2,2,Southern California,false
+87c1cc39ee4bf340f6df68e731bc0717,Pennsylvania,Coach House,2012-03-30,561999,2013-03-05,Mortgage,Valid,9cbbc38be172f4b46f559ef2ebc0a47d,2,Southern Pennsylvania,false
+66eaef390417c801b7a194a824a0e317,Pennsylvania,Flat,2016-07-30,984917,,Mortgage,Valid,ae793df451e579ed97b0fcba86250dec,2,Southern Pennsylvania,false
+5e297d05afeb585bd54435373d992a8c,Pennsylvania,Flat,2002-01-23,227657,2002-06-16,Mortgage,Valid,cce38755bd1e3e0b389193ad037720b4,2,Southern Pennsylvania,false
+36b842915a4af9d93f25342f34eeca91,Pennsylvania,Flat,,985486,2009-11-29,Mortgage,Valid,f339d1994a4f8cb4c57ced3020290555,2,Southern Pennsylvania,false
+ee9a684cff69bfef2132faefda2685ed,Pennsylvania,Flat,2013-12-30,220221,,Pledge,Valid,385af095d3276bbe740e040ddfb3ebb1,2,Southern Pennsylvania,false
+9c3f729799226841efc98b409850a0c1,Pennsylvania,Flat,2008-08-19,229580,,Mortgage,Valid,15d77470139cdc44475ff267331c8347,2,Southern Pennsylvania,false
+9957ed6b37be85ed3a925c7ac88d70c5,Pennsylvania,Flat,2010-05-20,981866,,Mortgage,Valid,088f34435e6549a864512732b64dcd37,2,Southern Pennsylvania,false
+963fe2c53856b8653c853b85f76f20f4,Pennsylvania,Mid terrached house,2017-08-04,981215,,Mortgage,Valid,e24cc10ce97102d3ab21b029be37ce04,2,Southern Pennsylvania,false
+040976671f36ad59c11cbd008f775f7e,Pennsylvania,Flat,,129931,,Pledge,Valid,fe8f0a4a10145359b3ebcaff5b4ebe37,2,Southern Pennsylvania,false
+f5ed7f1056390108128ba6981048518b,Pennsylvania,Flat,,129981,2012-07-18,Mortgage,Valid,1ace7ee4e095aac7b7e734f48407a3f9,2,Southern Pennsylvania,false
+4f6b5df5c1894db4392bd27af4135c55,Pennsylvania,Flat,2008-11-08,129914,,Mortgage,Valid,857fcf496ef26b1bc79b72c63726a0b5,2,Southern Pennsylvania,false
+b1312c24fbc41cf823e82790d064b886,Pennsylvania,Flat,2006-06-05,128227,,Mortgage,Valid,f8fc7dea7b8c508be95004910f6ee59b,2,Southern Pennsylvania,false
+83fd4d43b25de4ec394e3c481570f7b2,Pennsylvania,Flat,,128921,2013-02-13,Mortgage,Valid,080044d418a2da35e4354679ab6a1daa,2,Southern Pennsylvania,false
+47aa7ff51bbf6d1ca2a747249048aae3,Pennsylvania,Flat,2017-05-22,561394,2017-04-04,Mortgage,Valid,36edf854fee7bbb867dc957fe7d36b8b,2,Southern Pennsylvania,false
+ef393b77aba64b0f5ab3fbd415a47871,Pennsylvania,Flat,2021-02-08,981803,,Pledge,Valid,8c57ca71439d823a33fba88cdd71f67b,2,Southern Pennsylvania,false
+7cc38c7841a8b5748c1ec3974a9d1e22,Pennsylvania,Flat,,565732,,Mortgage,Valid,ebfede3995d319105cc91f7964c4b4c5,2,Southern Pennsylvania,false
+b1312c24fbc41cf823e82790d064b886,Pennsylvania,Flat,2006-06-05,128227,,Mortgage,Valid,44a9a888ad24ad00b2b7c8e38285ffbd,2,Southern Pennsylvania,false
+d117f65e16a1d72001fad6f9aec6f217,Pennsylvania,Flat,2018-03-06,128751,,Mortgage,Valid,dbd3d01f6baf9294da98b1b8a2cc2a06,2,Southern Pennsylvania,false
+92e20eab54bd82827ce734642848b05e,Pennsylvania,Flat,,980351,2016-05-06,Mortgage,Valid,f14241f90cbaecdab5b044f5ae84f4aa,2,Southern Pennsylvania,false
+b3824e3e5cdb8d29b0376824c9fb385c,Pennsylvania,Flat,2018-01-03,128804,,Mortgage,Valid,a27f89abff2379f74739a6aa5b06baf8,2,Southern Pennsylvania,false
+e32efc8023b97e0ebb6a97891b8ef96f,Pennsylvania,Flat,,563604,2012-10-07,Mortgage,Valid,712c770f9159fc74c211d0ed8ac9f91f,2,Southern Pennsylvania,false
+6c39ee29451860a3ed51af06edb08b45,Pennsylvania,Coach House,2008-07-04,220477,,Mortgage,Valid,e0393ed4dc15e0aa6e4b3066a4297716,2,Southern Pennsylvania,false
+3f8a8cfe74f2c6e9e2afc7a7a2f8ca56,Pennsylvania,Flat,2007-07-31,565962,2007-09-20,Mortgage,Valid,94129203114ffe26220106566140a2db,2,Southern Pennsylvania,false
+e73adb507a21f27b84c7349bb9110427,Pennsylvania,Flat,2019-10-18,121799,,Pledge,Valid,b31e3c005f97d0b375e83931849b34d7,2,Southern Pennsylvania,false
+9116fabaf65f03e9ea9a10077dc4bed4,Pennsylvania,Flat,2017-10-28,228350,2017-05-23,Mortgage,Valid,64cc9ef45226b5eee28fdec744458012,2,Southern Pennsylvania,false
+d48d969481a71b0be39f34b2c6f03ad7,Pennsylvania,Flat,2008-04-02,564377,,Mortgage,Valid,7e69ad8c1b9fa3b81ee223015865762f,2,Southern Pennsylvania,false
+971326bdd1bcc02c2ecf93de248306f7,Pennsylvania,Flat,,122693,,Mortgage,Valid,e8780cbe83109305dcf8ba4218c0ef6f,2,Southern Pennsylvania,false
+609c89c8f5f046b3a994103900e3ee75,Ohio,Flat,2013-05-12,980205,,Mortgage,Valid,11680d46acab3981a1ca0e1160f64eb3,3,Southern Ohio,false
+cbb33a99079e988e8fc2457833cef4e0,Ohio,Flat,2009-09-21,980355,,Mortgage,Valid,6b2ce9b219b02fc41221cac39b840dcd,3,Southern Ohio,false
+6fbae15a23982d8c24b78aa4776e2861,Texas,Flat,2006-11-01,224997,,Mortgage,Valid,b0a24945b17406e031a21271142527b7,3,Northern Texas,false
+c5f6ab5aacf1798bff16f1626a3155ce,Texas,Flat,2017-10-13,569123,,Mortgage,Valid,6bfe68fe53bb680a8c1e19372087b78d,3,Southern Texas,false
+fa809d7be26529bdab30bd2090784ff7,Texas,Flat,2017-05-28,568923,,Mortgage,Valid,f11cb4bd7e51d1f438fd5f8ed4758f60,3,Southern Texas,false
+31d762a0f16545a604c96fe327d3b963,Texas,Commercial property,2015-12-08,126812,,Mortgage,Valid,e05a2a5e47660389767ce3e7d2d42bdc,3,Southern Texas,false
+d6be13f87bb0bd98055bbf687c554cb8,New York,Flat,2014-10-14,121960,,Mortgage,Valid,23ed12e39d66568cbd685eadf1788e49,3,Southern Texas,false
+400268277527af51b1d82c5400b88a77,Texas,Flat,2007-02-24,982618,,Mortgage,Valid,a69e3c02d529c14dd47cfeb9fa73efd8,3,Southern Texas,false
+8e678984d33d333d8530f4536d08537c,Georgia,Flat,2018-03-10,984271,,Pledge,Valid,ab31ab2660856ae051c9a5f8ae305279,3,Southern Georgia,false
+1dace945031591fd6c805463a73743cb,Illinois,Flat,2018-11-05,987808,,Mortgage,Valid,8be7be3a52538b1728397c5b0bd1ce23,3,Northern Illinois,false
+77c9cb0899592d391da7e5b97cd3af79,Illinois,Flat,2020-01-30,569837,2010-05-18,Mortgage,Valid,b5170ecd1632ea3cd65acf922df38be6,3,Southern Illinois,false
+c3e19c99529cc796f2d07bc182e42109,Illinois,Flat,,122069,2007-09-18,Mortgage,Valid,e7abc774a3058e3ad55f8139e5d16045,3,Southern Illinois,false
+bee199b2f29e57c0f9d05f20a3868f93,Illinois,Flat,,981130,,Mortgage,Valid,7b798f22ea261758363cf8326dbf6c89,3,Southern Illinois,false
+2804d87e67017fc4e40c18d9d493d2d8,Illinois,Flat,2013-05-29,129123,,Mortgage,Valid,a10671e2aae566a6d6b87e3866d27650,3,Southern Illinois,false
+04e83986e3614756d5a89c9f438c85e4,Illinois,Flat,2015-03-19,569662,,Mortgage,Valid,e038f11ef0dae263edf3b487b0691959,3,Southern Illinois,false
+b44d43623d7221ac8ef882798e3216bc,New York,Link semi detached house,2017-11-22,222204,,Mortgage,Valid,3a243e88fea279339465e9cb4465b4e6,3,Southern New York,false
+cc03cb05f7470f4abf4127542a1f21a5,New York,Flat,2021-03-14,220334,2018-08-14,Mortgage,Valid,51af30650cdd37c3db710566c75c158a,3,Southern New York,false
+83093a23747e6a36888c642df731977a,Pennsylvania,Flat,,561929,2012-10-04,Mortgage,Valid,712c770f9159fc74c211d0ed8ac9f91f,3,Southern Pennsylvania,false
+0394564937bc75a13a15d99c5d1bed86,Pennsylvania,Coach House,2008-06-10,981342,,Mortgage,Valid,e0393ed4dc15e0aa6e4b3066a4297716,3,Southern Pennsylvania,false
+2db2a23cabeb230b86d4144443051f04,Texas,Flat,2007-02-07,121251,,Mortgage,Valid,a69e3c02d529c14dd47cfeb9fa73efd8,4,Southern Texas,false
+a8502835afe908b0478bcc2bfb63762e,Illinois,Commercial property,,564922,,Mortgage,Valid,7b798f22ea261758363cf8326dbf6c89,4,Northern Illinois,false
+21b522915e5f65e0fca785b59b19f74f,Illinois,Flat,2015-03-03,124833,,Mortgage,Valid,e038f11ef0dae263edf3b487b0691959,4,Southern Illinois,false
+2b064d0d1bb1113ff38046e960de0daf,New York,Garage,2017-05-05,222349,2017-10-30,Mortgage,Valid,f11cb4bd7e51d1f438fd5f8ed4758f60,4,Southern New York,false

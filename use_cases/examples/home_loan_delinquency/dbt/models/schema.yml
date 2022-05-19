@@ -1,0 +1,564 @@
+version: 2
+sources:
+  - name: sample_data
+    database: "{{ env_var('PROJECT_ID') }}"
+    schema: "{{ env_var('HOMELOAN_BQ_DATA') }}"
+    tables:
+      - &ref_legal_entity_mapping
+        name: ref_legal_entity_mapping
+        description: A mapping between cost centre codes and legal entities
+        columns:
+          - name: COST_CENTRE_CODE
+            description: The code of the cost centre
+          - name: LEGAL_ENTITY_CODE
+            description: The code of the legal entity
+          - name: LEGAL_ENTITY_NAME
+            description: The name of the legal entity
+
+      - &ref_products
+        name: ref_products
+        description: Reference data containing banking products information
+        columns:
+          - name: PRODUCT_ID
+            description: The unique product ID
+          - name: PRODUCT_CODE
+            description: The code of the product, e.g. CA for Current Accounts
+          - name: PRODUCT_SUBCODE
+            description: A subcode of the product
+          - name: DESCRIPTION
+            description: A human readable description of the product
+          - name: ACTIVE_FLAG
+            description: A boolean flag indicating whether the product is active
+
+      - &ref_region_codes
+        name: ref_region_codes
+        description: Reference data containing a list of property post codes, mapped to a region
+        columns:
+          - name: PROPERTY_POST_CODE
+            description: The post code of the property
+          - name: REGION
+            description: The region of the property
+
+      - &src_current_accounts_attributes
+        name: src_current_accounts_attributes
+        description: Source data containing current accounts information
+        columns:
+        - name: ACCOUNT_KEY
+          description: The unique key of the account
+          tests:
+            - unique
+            - not_null
+            - relationships:
+                to: ref('src_current_accounts_balances')
+                field: ACCOUNT_KEY
+        - name: ACT_STATUS
+          description: The status of the account, either Open or Closed
+        - name: PRODUCT_CODE
+          description: The product code, external reference to the products reference data
+          tests:
+            - not_null
+            - relationships:
+                to: ref('ref_products')
+                field: PRODUCT_CODE
+        - name: PRODUCT_SUBCODE
+          description: The product sub-code, external reference to the products reference data
+          tests:
+            - not_null
+            - relationships:
+                to: ref('ref_products')
+                field: PRODUCT_SUBCODE
+        - name: COST_CENTER
+          description: The cost centre, external reference to the legal entities reference data
+        - name: DATE_EXCESS_BEGAN
+          description: The date when the excess began
+        - name: CURRENT_OD_LIMIT
+          description: The current overdraft limit
+        - name: DATE_OPENED
+          description: The date when the account was opened
+
+      - &src_current_accounts_balances
+        name: src_current_accounts_balances
+        description: Source data containing current accounts balances
+        columns:
+        - name: ACCOUNT_KEY
+          description: The key of the account
+        - name: CURRENT_BALANCE
+          description: The balance of the account
+
+      - &src_link_securities_accounts
+        name: src_link_securities_accounts
+        description: Source data containing the linkages between securities and accounts
+        columns:
+          - name: SEC_NUMBER
+            description: The key of the security
+          - name: ACCOUNT_NUMBER
+            description: The key of the account
+
+      - &src_loans
+        name: src_loans
+        description: Source data containing the loans information
+        columns:
+        - name: LOAN_NUMBER
+          description: The identification of the loan
+        - name: LOAN_STATUS
+          description: The status of the loan - e.g. Open
+        - name: AMT_CURR_LOAN_BAL
+          description: The current Balance Amount
+        - name: PRODUCT_CODE
+          description: The product code, external reference to the products reference data
+        - name: PRODUCT_SUBCODE
+          description: The product sub-code, external reference to the products reference data
+        - name: NUMBER_DAYS_PAST_DUE
+          description: The number of days the loan has been past due
+        - name: COST_CENTER
+          description: The cost centre, external reference to the legal entities reference data
+        - name: NON_ACCRUAL_STATUS
+          description: A boolean flag indicating the accrual status
+        - name: DATE_LOAN_ADDED
+          description: The date when the loand was added
+
+      - &src_provisions
+        name: src_provisions
+        description: Source data containing the provisions information
+        columns:
+        - name: PERIOD
+          description: The period which the provision date relates to, in a YYYYMM format
+        - name: ACCOUNT_KEY
+          description: The key to the account record
+        - name: CASE_REFERENCE
+          description: A human readable reference of why the provision
+        - name: REASON
+          description: The reason why the provision was created
+        - name: PROVISION_AMOUNT
+          description: The provision amount
+
+      - &src_securities
+        name: src_securities
+        description: Source data containing the securities information
+        columns:
+        - name: SEC_NUMBER
+          description: The number of the security (property)
+        - name: PROPERTY_STATE
+          description: The state where the property is located
+        - name: PROPERTY_TYPE
+          description: The type of property, for example a flat or a detached house
+        - name: VALUATION_DATE
+          description: The date the property was valued
+        - name: SECURITY_VALUE
+          description: The value of the property
+        - name: CONTRACT_OF_SALE_DATE
+          description: The date when the sale contract was executed
+        - name: SEC_TYPE
+          description: The type of securitiesed product
+        - name: STATUS
+          description: The status of the security
+        - name: PROPERTY_POST_CODE
+          description: The post code where the security is located
+
+  - name: expected_results
+    database: "{{ env_var('PROJECT_ID') }}"
+    schema: "{{ env_var('HOMELOAN_BQ_EXPECTEDRESULTS') }}"
+    tables:
+      - name: stg_accounts
+      - name: stg_products
+      - name: stg_provisions
+      - name: stg_securities
+
+
+
+models:
+  - <<: *src_current_accounts_attributes
+    name: src_current_accounts_attributes
+    columns:
+      - name: ACCOUNT_KEY
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('src_current_accounts_balances')
+              field: ACCOUNT_KEY
+      - name: PRODUCT_CODE
+        tests:
+          - not_null
+          - relationships:
+              to: ref('ref_products')
+              field: PRODUCT_CODE
+      - name: PRODUCT_SUBCODE
+        tests:
+          - not_null
+          - relationships:
+              to: ref('ref_products')
+              field: PRODUCT_SUBCODE
+
+  - name: src_current_accounts_balances
+    columns:
+      - name: ACCOUNT_KEY
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('src_current_accounts_attributes')
+              field: ACCOUNT_KEY
+
+  - name: src_loans
+    columns:
+      - name: COST_CENTER
+        tests:
+          - not_null
+          - relationships:
+              to: ref('ref_legal_entity_mapping')
+              field: COST_CENTRE_CODE
+      - name: PRODUCT_CODE
+        tests:
+          - not_null
+          - relationships:
+              to: ref('ref_products')
+              field: PRODUCT_CODE
+      - name: PRODUCT_SUBCODE
+        tests:
+          - not_null
+          - relationships:
+              to: ref('ref_products')
+              field: PRODUCT_SUBCODE
+
+  - name: src_link_securities_accounts
+    description: Links accounts to the security for the loan
+    tests:
+      - unique:
+          column_name: "(account_number) || '-' || (sec_number)"
+    columns:
+      - name: account_number
+        description: The key of the account
+        tests:
+          - not_null
+          - relationships:
+              to: ref('src_loans')
+              field: LOAN_NUMBER
+      - name: sec_number
+        description: The key of the security
+        tests:
+          - not_null
+          - relationships:
+              to: ref('src_securities')
+              field: SEC_NUMBER
+
+  - name: src_provisions
+    description: Source data containing the provisions information
+    columns:
+      - name: ACCOUNT_KEY
+        tests:
+          - not_null
+          - relationships:
+              to: ref('src_loans')
+              field: LOAN_NUMBER
+
+  - name: src_securities
+    columns:
+    - name: SEC_NUMBER
+      tests:
+        - not_null
+        - relationships:
+            to: ref('src_link_securities_accounts')
+            field: SEC_NUMBER
+    - name: PROPERTY_POST_CODE
+      description: The post code where the security is located
+      tests:
+        - not_null
+        - relationships:
+            to: ref('ref_region_codes')
+            field: PROPERTY_POST_CODE
+
+  - name: eph_current_accounts_preprocessing
+    description: Current account pre-processing
+
+  - name: eph_latest_run_on_reporting_day
+    description: Latest run on reporting day
+
+  - name: eph_loans_preprocessing
+    description: Loans pre-processing
+
+  - name: eph_provisions_at_reporting_month
+    description: Provisions at reporting month
+
+  - name: eph_securities_preprocessing
+    description: Securities pre-processing
+
+  - name: stg_accounts
+    description: A table containing all the accounts across the portfolio. Includes Current Accounts and Loans
+    tests:
+      - unique:
+          column_name: "account_number"
+      - not_null:
+          column_name: "account_number"
+      - relationships:
+          column_name: "product_code"
+          to: ref('stg_products')
+          field: product_code
+      - relationships:
+          column_name: "product_subcode"
+          to: ref('stg_products')
+          field: product_subcode
+    columns:
+      - &exposure_type
+        name: exposure_type
+        description: The type of exposure, for example Current Account or Loan
+      - &account_number
+        name: account_number
+        description: The unique identification of the account
+      - &entity_code
+        name: entity_code
+        description: The legal entity code which this account belongs to
+      - &entity_name
+        name: entity_name
+        description: The legal entity name which this account belongs to
+      - &account_status
+        name: account_status
+        description: The status of the account
+      - &account_balance
+        name: account_balance
+        description: The balance of the account. Aggregate to obtain the funds under management.
+      - name: product_code
+        description: The product type. Referential key to the product table.
+      - name: product_subcode
+        description: The product subtype. Referential key to the product table.
+      - &cost_center
+        name: cost_center
+        description: The code where the cost is posted to in the GL
+      - &days_delinquent
+        name: days_delinquent
+        description: The number of days the account has been delinquent.
+      - &days_delinquent_bucket
+        name: days_delinquent_bucket
+        description: The banding for the days delinquency.
+      - &npl_flag
+        name: npl_flag
+        description: True or false, whether the loan is non-performing.
+      - &date_opened
+        name: date_opened
+        description: When the account was opened
+
+  - name: stg_products
+    description: Product reference data
+    tests:
+      - unique:
+          column_name: "product_id"
+      - not_null:
+          column_name: "product_id"
+    columns:
+      - &product_id
+        name: product_id
+        description: The unique identification of the product
+      - &product_code
+        name: product_code
+        description: The code of the product
+      - &product_subcode
+        name: product_subcode
+        description: The subcode of the product
+      - &description
+        name: description
+        description: Human readable decription of the product
+      - &active_flag
+        name: active_flag
+        description: Whether the prduct is active or not
+
+  - name: stg_provisions
+    description: Provisions against accounts
+    tests:
+      - unique:
+          column_name: "(account_number || '-' || period)"
+      - relationships:
+          column_name: "account_number"
+          to: ref('stg_accounts')
+          field: account_number
+    columns:
+      - &period
+        name: period
+        description: The period when the provision is valid for (YYYYMM)
+      - <<: *account_number
+      - &case_reference
+        name: case_reference
+        description: A reference for the provision case
+      - &reason
+        name: reason
+        description: Reason for the provision
+      - &provision_amount
+        name: provision_amount
+        description: The total provision amount
+
+  - name: stg_securities
+    description: Security (collateral) details (broadly split between property security and other)
+    tests:
+      - unique:
+          column_name: "(sec_number || '-' || account_number || '-' || security_rank)"
+      - not_null:
+          column_name: "sec_number"
+      - relationships:
+          column_name: "account_number"
+          to: ref('stg_accounts')
+          field: account_number
+      - relationships:
+          column_name: "sec_number"
+          to: ref('src_link_securities_accounts')
+          field: sec_number
+    columns:
+      - <<: *account_number
+      - &sec_number
+        name: sec_number
+        description: The key of the security
+      - &property_state
+        name: property_state
+        description: The state where the security is located
+      - &property_type
+        name: property_type
+        description: The type of property (e.g. flat)
+      - &valuation_date
+        name: valuation_date
+        description: When the security was last valued
+      - &security_value
+        name: security_value
+        description: The value of the security
+      - &contract_of_sale_date
+        name: contract_of_sale_date
+        description: The date when the security was sold
+      - &security_type
+        name: security_type
+        description: The type of the security
+      - &security_status
+        name: security_status
+        description: The status of the security
+      - &security_rank
+        name: security_rank
+        description: An integer number representing the rank. Primary security has rank of 1
+      - &region
+        name: region
+        description: The region where the security is located. Derived from postcode.
+      - &is_primary
+        name: is_primary
+        description: A true false flag indicating whether this is the primary security.
+
+  - &wh_denormalised
+    name: wh_denormalised
+    description: Denormalised table with all accounts data (latest view only)
+    columns:
+      - name: control
+        description: The control data, in a structured format. Contains the reporting_day and the execution time
+      - name: control.reporting_day
+        description: The date the portfolio is value at
+      - name: control.run_started_at
+        description: When the data was refreshed
+      - name: account
+        description: The account data, in a structured format with sub-fields
+      - <<: *exposure_type
+        name: account.exposure_type
+      - <<: *entity_code
+        name: account.entity_code
+      - <<: *entity_name
+        name: account.entity_name
+      - <<: *account_number
+        name: account.account_number
+      - <<: *account_status
+        name: account.account_status
+      - <<: *account_balance
+        name: account.account_balance
+      - <<: *product_code
+        name: account.product_code
+      - <<: *product_subcode
+        name: account.product_subcode
+      - <<: *cost_center
+        name: account.cost_center
+      - <<: *days_delinquent
+        name: account.days_delinquent
+      - <<: *days_delinquent_bucket
+        name: account.days_delinquent_bucket
+      - <<: *npl_flag
+        name: account.npl_flag
+      - <<: *date_opened
+        name: account.date_opened
+
+      - name: product
+        description: The product data, in a structured format with sub-fields
+      - <<: *product_id
+        name: product.product_id
+      - <<: *product_code
+        name: product.product_code
+      - <<: *product_subcode
+        name: product.product_subcode
+      - <<: *description
+        name: product.description
+      - <<: *active_flag
+        name: product.active_flag
+
+      - name: securities
+        description: The securities data, in a structured and repeated format. Contains all the securities associated to an account
+      - <<: *sec_number
+        name: securities.sec_number
+      - <<: *property_state
+        name: securities.property_state
+      - <<: *property_type
+        name: securities.property_type
+      - <<: *valuation_date
+        name: securities.valuation_date
+      - <<: *security_value
+        name: securities.security_value
+      - <<: *contract_of_sale_date
+        name: securities.contract_of_sale_date
+      - <<: *security_type
+        name: securities.security_type
+      - <<: *security_status
+        name: securities.security_status
+      - <<: *account_number
+        name: securities.account_number
+      - <<: *security_rank
+        name: securities.security_rank
+      - <<: *region
+        name: securities.region
+      - <<: *is_primary
+        name: securities.is_primary
+
+      - name: primary_security
+        description: The primary security, in a structured format. Contains the data for the primary security (rank 1) associated to an account
+      - <<: *sec_number
+        name: primary_security.sec_number
+      - <<: *property_state
+        name: primary_security.property_state
+      - <<: *property_type
+        name: primary_security.property_type
+      - <<: *valuation_date
+        name: primary_security.valuation_date
+      - <<: *security_value
+        name: primary_security.security_value
+      - <<: *contract_of_sale_date
+        name: primary_security.contract_of_sale_date
+      - <<: *security_type
+        name: primary_security.security_type
+      - <<: *security_status
+        name: primary_security.security_status
+      - <<: *account_number
+        name: primary_security.account_number
+      - <<: *security_rank
+        name: primary_security.security_rank
+      - <<: *region
+        name: primary_security.region
+      - <<: *is_primary
+        name: primary_security.is_primary
+
+      - name: provisions
+        description: The provisions, in a structured format. Contains data about the provisions for an account.
+      - <<: *period
+        name: provisions.period
+      - <<: *account_number
+        name: provisions.account_number
+      - <<: *case_reference
+        name: provisions.case_reference
+      - <<: *reason
+        name: provisions.reason
+      - <<: *provision_amount
+        name: provisions.provision_amount
+
+      - name: regulatory_calcs
+        description: The regulatory calculations, in a structured format. Contains reg metrics (e.g. RWA), calculated at an account granularity
+
+  - <<: *wh_denormalised
+    name: wh_denormalised_history
+    description: Denormalised table with all accounts data (historic data)
+

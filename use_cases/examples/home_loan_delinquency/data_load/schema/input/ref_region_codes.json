@@ -1,0 +1,12 @@
+[
+      {
+        "mode": "NULLABLE",
+        "name": "PROPERTY_POST_CODE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "REGION",
+        "type": "STRING"
+      }
+    ]

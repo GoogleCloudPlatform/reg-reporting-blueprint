@@ -1,0 +1,17 @@
+[
+      {
+        "mode": "NULLABLE",
+        "name": "COST_CENTRE_CODE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "LEGAL_ENTITY_CODE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "LEGAL_ENTITY_NAME",
+        "type": "STRING"
+      }
+    ]

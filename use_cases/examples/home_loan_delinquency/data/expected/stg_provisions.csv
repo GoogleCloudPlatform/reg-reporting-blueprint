@@ -1,0 +1,23 @@
+period,account_number,case_reference,reason,provision_amount
+202101,8be7be3a52538b1728397c5b0bd1ce23,Bob - case 456,Bad customer rating,3838.76
+202102,8be7be3a52538b1728397c5b0bd1ce23,Bob - case 456,Bad customer rating,3812.85
+202104,8be7be3a52538b1728397c5b0bd1ce23,Bob - case 456,Bad customer rating,3838.09
+202108,8be7be3a52538b1728397c5b0bd1ce23,Bob - case 456,Bad customer rating,3883.5
+202010,8be7be3a52538b1728397c5b0bd1ce23,Bob - case 456,Bad customer rating,3863.24
+202105,8be7be3a52538b1728397c5b0bd1ce23,Bob - case 456,Bad customer rating,3817.53
+202012,8be7be3a52538b1728397c5b0bd1ce23,Bob - case 456,Bad customer rating,3860.9
+202103,8be7be3a52538b1728397c5b0bd1ce23,Bob - case 456,Bad customer rating,3856.12
+202106,8be7be3a52538b1728397c5b0bd1ce23,Bob - case 456,Bad customer rating,3816.71
+202011,8be7be3a52538b1728397c5b0bd1ce23,Bob - case 456,Bad customer rating,3850.51
+202109,8be7be3a52538b1728397c5b0bd1ce23,Bob - case 456,Bad customer rating,3855.16
+202002,b5170ecd1632ea3cd65acf922df38be6,Alice - case 123,Bad customer rating,21689.7
+201911,b5170ecd1632ea3cd65acf922df38be6,Alice - case 123,Bad customer rating,21655.51
+202005,b5170ecd1632ea3cd65acf922df38be6,Alice - case 123,Bad customer rating,21611.23
+202007,b5170ecd1632ea3cd65acf922df38be6,Alice - case 123,Bad customer rating,21708.29
+201912,b5170ecd1632ea3cd65acf922df38be6,Alice - case 123,Bad customer rating,21662.27
+202108,b5170ecd1632ea3cd65acf922df38be6,Alice - case 123,Bad customer rating,21611.87
+202001,b5170ecd1632ea3cd65acf922df38be6,Alice - case 123,Bad customer rating,21640.66
+202109,b5170ecd1632ea3cd65acf922df38be6,Alice - case 123,Bad customer rating,21660.78
+202006,b5170ecd1632ea3cd65acf922df38be6,Alice - case 123,Bad customer rating,21643.86
+202004,b5170ecd1632ea3cd65acf922df38be6,Alice - case 123,Bad customer rating,21696.13
+202003,b5170ecd1632ea3cd65acf922df38be6,Alice - case 123,Bad customer rating,21706.94

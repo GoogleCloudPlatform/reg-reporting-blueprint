@@ -1,0 +1,27 @@
+[
+      {
+        "mode": "NULLABLE",
+        "name": "PRODUCT_ID",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "PRODUCT_CODE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "PRODUCT_SUBCODE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "DESCRIPTION",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "ACTIVE_FLAG",
+        "type": "BOOLEAN"
+      }
+    ]

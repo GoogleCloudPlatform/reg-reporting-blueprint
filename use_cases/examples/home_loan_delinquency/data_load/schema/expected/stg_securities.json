@@ -1,0 +1,62 @@
+[
+      {
+        "description": "The key of the security",
+        "name": "sec_number",
+        "type": "STRING"
+      },
+      {
+        "description": "The state where the security is located",
+        "name": "property_state",
+        "type": "STRING"
+      },
+      {
+        "description": "The type of property (e.g. flat)",
+        "name": "property_type",
+        "type": "STRING"
+      },
+      {
+        "description": "When the security was last valued",
+        "name": "valuation_date",
+        "type": "DATE"
+      },
+      {
+        "description": "The value of the security",
+        "name": "security_value",
+        "type": "FLOAT"
+      },
+      {
+        "description": "The date when the security was sold",
+        "name": "contract_of_sale_date",
+        "type": "DATE"
+      },
+      {
+        "description": "The type of the security",
+        "name": "security_type",
+        "type": "STRING"
+      },
+      {
+        "description": "The status of the security",
+        "name": "security_status",
+        "type": "STRING"
+      },
+      {
+        "description": "the account number this security relates to",
+        "name": "account_number",
+        "type": "STRING"
+      },
+      {
+        "description": "An integer number representing the rank. Primary security has rank of 1",
+        "name": "security_rank",
+        "type": "INTEGER"
+      },
+      {
+        "description": "The region where the security is located. Derived from postcode.",
+        "name": "region",
+        "type": "STRING"
+      },
+      {
+        "description": "A true false flag indicating whether this is the primary security.",
+        "name": "is_primary",
+        "type": "BOOLEAN"
+      }
+    ]

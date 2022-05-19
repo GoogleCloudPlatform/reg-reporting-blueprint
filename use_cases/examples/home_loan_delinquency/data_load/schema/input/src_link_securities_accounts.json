@@ -1,0 +1,12 @@
+[
+      {
+        "mode": "NULLABLE",
+        "name": "SEC_NUMBER",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "ACCOUNT_NUMBER",
+        "type": "STRING"
+      }
+    ]

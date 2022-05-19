@@ -1,0 +1,27 @@
+[
+      {
+        "description": "The unique identification of the product",
+        "name": "product_id",
+        "type": "STRING"
+      },
+      {
+        "description": "The code of the product",
+        "name": "product_code",
+        "type": "STRING"
+      },
+      {
+        "description": "The subcode of the product",
+        "name": "product_subcode",
+        "type": "STRING"
+      },
+      {
+        "description": "Human readable decription of the product",
+        "name": "description",
+        "type": "STRING"
+      },
+      {
+        "description": "Whether the prduct is active or not",
+        "name": "active_flag",
+        "type": "BOOLEAN"
+      }
+    ]

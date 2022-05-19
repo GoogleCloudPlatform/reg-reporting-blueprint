@@ -1,0 +1,47 @@
+[
+      {
+        "mode": "NULLABLE",
+        "name": "LOAN_NUMBER",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "LOAN_STATUS",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "AMT_CURR_LOAN_BAL",
+        "type": "INTEGER"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "PRODUCT_CODE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "PRODUCT_SUBCODE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "NUMBER_DAYS_PAST_DUE",
+        "type": "INTEGER"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "COST_CENTER",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "NON_ACCRUAL_STATUS",
+        "type": "BOOLEAN"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "DATE_LOAN_ADDED",
+        "type": "STRING"
+      }
+    ]

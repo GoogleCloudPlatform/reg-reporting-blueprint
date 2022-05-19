@@ -1,0 +1,42 @@
+[
+      {
+        "mode": "NULLABLE",
+        "name": "ACCOUNT_KEY",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "ACT_STATUS",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "PRODUCT_CODE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "PRODUCT_SUBCODE",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "COST_CENTER",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "DATE_EXCESS_BEGAN",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "CURRENT_OD_LIMIT",
+        "type": "FLOAT"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "DATE_OPENED",
+        "type": "STRING"
+      }
+    ]
