@@ -103,6 +103,14 @@ resource "google_composer_environment" "composer_env" {
   config {
     software_config {
       image_version = "composer-2.0.7-airflow-2.2.3"
+      env_variables = {
+        REGION            = var.region
+        ENV_NAME          = var.env_name
+        BQ_LOCATION       = var.bq_location
+        PROJECT_ID        = var.project
+	GCS_INGEST_BUCKET = var.gcs_ingest_bucket
+	TEST = "yes"
+      }
     }
     environment_size = "ENVIRONMENT_SIZE_SMALL"
     node_config {
@@ -152,6 +160,8 @@ module "gke_auth" {
 
 # Configure provider
 provider "kubernetes" {
+  alias = "composer_kubernetes"
+
   cluster_ca_certificate = (length(module.gke_auth)==1) ? module.gke_auth[0].cluster_ca_certificate : ""
   host                   = (length(module.gke_auth)==1) ? module.gke_auth[0].host : ""
   token                  = (length(module.gke_auth)==1) ? module.gke_auth[0].token : ""
@@ -164,6 +174,8 @@ module "config_k8s" {
   enabled    = var.enabled
   env_name   = var.env_name
   project_id = local.project_id
+
+  providers = {
+    kubernetes = kubernetes.composer_kubernetes
+  }
 }
-
-

@@ -14,7 +14,7 @@
 
 
 resource "google_storage_bucket" "ingest-bucket" {
-  name          = "${var.gcs_ingest_bucket}"
+  name          = "${var.project}-ingest-bucket"
   location      = "US"
   uniform_bucket_level_access = true
 }

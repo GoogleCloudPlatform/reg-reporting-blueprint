@@ -12,6 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+terraform {
+  required_providers {
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = ">= 2.11.0"
+    }
+  }
+}
 
 # Create namespace for running
 resource "kubernetes_namespace" "runner" {

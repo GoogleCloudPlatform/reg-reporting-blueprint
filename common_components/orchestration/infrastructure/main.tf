@@ -25,9 +25,19 @@ module "project_services" {
   activate_apis               = [
     "cloudbuild.googleapis.com",
     "compute.googleapis.com",
-    "container.googleapis.com",
-    "composer.googleapis.com"
+    "artifactregistry.googleapis.com",
   ]
+}
+
+# Create Artifactory Repository
+resource "google_artifact_registry_repository" "reg-repo" {
+  provider = google-beta
+
+  project       = var.project
+  location      = var.region
+  repository_id = "reg-repo"
+  description   = "Docker repository for regulatory reporting solution"
+  format        = "DOCKER"
 }
 
 # Create GCS Buckets
@@ -66,7 +76,9 @@ module "composer_reg_reporting" {
 
   enabled = var.enable_composer
 
-  project  = module.project_services.project_id
-  region   = var.region
-  env_name = "reg-runner"
+  project           = module.project_services.project_id
+  bq_location       = var.bq_location
+  region            = var.region
+  env_name          = "reg-runner"
+  gcs_ingest_bucket = module.gcs_buckets.bucket.name
 }
