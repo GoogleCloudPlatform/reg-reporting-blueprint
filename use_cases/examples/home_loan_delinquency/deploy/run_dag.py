@@ -8,7 +8,7 @@ from airflow.models import Variable
 from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 
 # Project and region for the repository
-PROJECT_ID = Variable.get("PROJECT_ID")
+PROJECT_ID = Variable.get("PROJECT_ID")  # set as env variable in TF as per b/235298528
 REGION = Variable.get("REGION")
 
 # GCS Ingest Bucket
@@ -21,7 +21,8 @@ ENV_NAME = Variable.get("ENV_NAME")
 BQ_LOCATION = Variable.get("BQ_LOCATION")
 
 # Inferred repository
-REPO = f'{REGION}-docker.pkg.dev/{PROJECT_ID}/reg-repo'
+# REPO = f'{REGION}-docker.pkg.dev/{PROJECT_ID}/reg-repo' # if using artefacts registry
+REPO = f'gcr.io/{PROJECT_ID}'  # if using container registry
 
 
 #
@@ -72,16 +73,30 @@ with models.DAG(
     }
 ) as dag:
 
-    reporting_job = dbt_job(
-        name='home-loan-delinquency',
+    load_job = dbt_job(
+        name='bq-data-load',
+        image_name='bq-data-load',
+        env_vars={
+            'HOMELOAN_BQ_DATA': 'homeloan_data',
+            'HOMELOAN_BQ_EXPECTEDRESULTS': 'homeloan_expectedreresults',
+            'PROJECT_ID': PROJECT_ID,
+            'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
+        }
+    )
+
+    run_hld_report = dbt_job(
+        name='hld-run',
         image_name='home-loan-delinquency',
         arguments=[
+            "run",
+            "--profiles-dir",
+            "profiles",
             "--vars",
             json.dumps({
                 # { ds } is a template that it interpolated in the
                 # KubernetesPodOperator from Airflow as the execution
                 # date
-                "reporting_day":"{{ ds }}",
+                "reporting_day": "{{ ds }}",
             })
         ],
         env_vars={
@@ -94,16 +109,61 @@ with models.DAG(
         }
     )
 
-    load_job = dbt_job(
-        name='bq-data-load',
-        image_name='bq-data-load',
+    test_hld_dq = dbt_job(
+        name='hld-dq-test',
+        image_name='home-loan-delinquency',
+        arguments=[
+            "test",
+            "--profiles-dir",
+            "profiles",
+            "-s",
+            "test_type:singular",
+            "--vars",
+            json.dumps({
+                # { ds } is a template that it interpolated in the
+                # KubernetesPodOperator from Airflow as the execution
+                # date
+                "reporting_day": "{{ ds }}",
+            })
+        ],
         env_vars={
+            'PROJECT_ID': PROJECT_ID,
+            'PROJECT_ID_PRD': PROJECT_ID,
+            'HOMELOAN_BQ_DEV': 'homeloan_dev',
             'HOMELOAN_BQ_DATA': 'homeloan_data',
             'HOMELOAN_BQ_EXPECTEDRESULTS': 'homeloan_expectedreresults',
-            'PROJECT_ID': PROJECT_ID,
-            'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
+            'BQ_LOCATION': BQ_LOCATION,
         }
     )
 
-    load_job >> reporting_job
+    test_hld_regression = dbt_job(
+        name='hld-regression-test',
+        image_name='home-loan-delinquency',
+        arguments=[
+            "test",
+            "--profiles-dir",
+            "profiles",
+            "-s",
+            "test_type:generic",
+            "--vars",
+            json.dumps({
+                # { ds } is a template that it interpolated in the
+                # KubernetesPodOperator from Airflow as the execution
+                # date
+                "reporting_day": "{{ ds }}",
+            })
+        ],
+        env_vars={
+            'PROJECT_ID': PROJECT_ID,
+            'PROJECT_ID_PRD': PROJECT_ID,
+            'HOMELOAN_BQ_DEV': 'homeloan_dev',
+            'HOMELOAN_BQ_DATA': 'homeloan_data',
+            'HOMELOAN_BQ_EXPECTEDRESULTS': 'homeloan_expectedreresults',
+            'BQ_LOCATION': BQ_LOCATION,
+        }
+    )
+
+    load_job >> run_hld_report
+    run_hld_report >> test_hld_regression
+    run_hld_report >> test_hld_dq
 

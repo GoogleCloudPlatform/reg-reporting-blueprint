@@ -13,16 +13,7 @@
 # limitations under the License.
 
 
-resource "google_storage_bucket" "ingest-bucket" {
-  name          = "${var.project}-ingest-bucket"
-  location      = "US"
-  uniform_bucket_level_access = true
-}
-
-resource "google_storage_bucket_acl" "image-store-acl" {
-  bucket = "${var.project}-ingest-bucket"
-
-  role_entity = [
-    "READER:${var.project}",
-  ]
+output "gcp_service_account_email" {
+  description = "Email address of GCP service account."
+  value       = one(module.my-app-workload-identity[*].gcp_service_account_email)
 }

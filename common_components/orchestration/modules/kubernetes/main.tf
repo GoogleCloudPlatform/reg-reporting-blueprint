@@ -35,12 +35,12 @@ resource "kubernetes_namespace" "runner" {
 module "my-app-workload-identity" {
   count = var.enabled ? 1 : 0
 
-  source = "github.com/terraform-google-modules/terraform-google-kubernetes-engine//modules/workload-identity?ref=v20.0.0"
+  source = "github.com/terraform-google-modules/terraform-google-kubernetes-engine//modules/workload-identity?ref=v22.0.0"
 
   name       = var.env_name
   namespace  = var.env_name
   project_id = var.project_id
-  roles      = ["roles/bigquery.dataEditor"]
+  roles      = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/storage.objectViewer"]
   depends_on = [
     kubernetes_namespace.runner
   ]

@@ -30,15 +30,15 @@ module "project_services" {
 }
 
 # Create Artifactory Repository
-resource "google_artifact_registry_repository" "reg-repo" {
-  provider = google-beta
-
-  project       = var.project
-  location      = var.region
-  repository_id = "reg-repo"
-  description   = "Docker repository for regulatory reporting solution"
-  format        = "DOCKER"
-}
+#resource "google_artifact_registry_repository" "reg-repo" {
+#  provider = google-beta
+#
+#  project       = var.project
+#  location      = var.region
+#  repository_id = "reg-repo"
+#  description   = "Docker repository for regulatory reporting solution"
+#  format        = "DOCKER"
+#}
 
 # Create GCS Buckets
 # See https://github.com/terraform-google-modules/terraform-google-cloud-storage

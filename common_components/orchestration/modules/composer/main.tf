@@ -104,12 +104,11 @@ resource "google_composer_environment" "composer_env" {
     software_config {
       image_version = "composer-2.0.7-airflow-2.2.3"
       env_variables = {
-        REGION            = var.region
-        ENV_NAME          = var.env_name
-        BQ_LOCATION       = var.bq_location
-        PROJECT_ID        = var.project
-	GCS_INGEST_BUCKET = var.gcs_ingest_bucket
-	TEST = "yes"
+        AIRFLOW_VAR_PROJECT_ID        = var.project
+        AIRFLOW_VAR_REGION            = var.region
+        AIRFLOW_VAR_ENV_NAME          = var.env_name
+        AIRFLOW_VAR_BQ_LOCATION       = var.bq_location
+        AIRFLOW_VAR_GCS_INGEST_BUCKET = var.gcs_ingest_bucket
       }
     }
     environment_size = "ENVIRONMENT_SIZE_SMALL"
