@@ -30,7 +30,7 @@ export EMAIL=$(gcloud config get-value account)
 export ENV_ID=${EMAIL%@*}-dev
 export PROJECT_ID=$(gcloud config get-value project)
 export PROJECT_NUMBER=$(gcloud projects list --filter="project_id=$PROJECT_ID" --format="value(PROJECT_NUMBER)")
-export GCR_DBT_SAMPLE_REPORTING_IMAGE=gcr.io/${PROJECT_ID}/dbt-sample_reporting
+export GCR_DBT_SAMPLE_REPORTING_IMAGE=gcr.io/${PROJECT_ID}/home-loan-delinquency
 export GCR_DATALOAD_IMAGE=gcr.io/${PROJECT_ID}/bq-data-load
 export GCS_TF_STATE=${PROJECT_ID}-tfstate
 export GCS_INGEST_BUCKET=$PROJECT_ID-$GCS_LOCATION-ingest-bucket

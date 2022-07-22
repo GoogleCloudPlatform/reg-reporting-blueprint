@@ -29,6 +29,7 @@ declare -a arr=( \
 for table in "${arr[@]}"
 do
   bq load \
+  --replace=true \
   --source_format=CSV \
   --skip_leading_rows=1 \
   $PROJECT_ID:$HOMELOAN_BQ_DATA.$table \
@@ -47,6 +48,7 @@ declare -a arr=( \
 for table in "${arr[@]}"
 do
   bq load \
+  --replace=true \
   --source_format=CSV \
   --skip_leading_rows=1 \
   $PROJECT_ID:$HOMELOAN_BQ_EXPECTEDRESULTS.$table \

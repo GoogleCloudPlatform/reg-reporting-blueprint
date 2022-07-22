@@ -13,16 +13,12 @@
 -- limitations under the License.
 
 
--- Provisions at reporting month
+-- Macro for getting the reporting month
 --
--- This model selects the provisions for a given reporting month.
--- Note that the reporting month is selected using a parameterised variables, which is defaulted in the
--- project file, and can be overidden when executing the dbt run command.
+-- This macro gets the reporting month in the format YYYYMM from a reporting day in the format YYYY-MM-DD
 
-SELECT
-    *
-FROM
-    {{ref('stg_provisions')}} p
-WHERE
-    CAST(p.period AS STRING) = '{{ get_reporting_month(var('reporting_day') ) }}'
 
+{% macro get_reporting_month(reporting_day) %}
+    {% set reporting_month = reporting_day | replace("-", "") %}
+    {{ return (reporting_month[:6]) }}
+{% endmacro %}

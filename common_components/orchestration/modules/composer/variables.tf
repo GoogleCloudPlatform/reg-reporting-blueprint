@@ -32,3 +32,10 @@ variable "region" {
   description = "The region to host composer"
 }
 
+variable "bq_location" {
+  description = "The location of BigQuery datasets"
+}
+
+variable "gcs_ingest_bucket" {
+  description = "GCS ingest bucket for loading data"
+}
