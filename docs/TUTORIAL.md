@@ -152,7 +152,7 @@ has `enable_composer=true`
 
 
 13. In the Google Cloud Console, go to the **Cloud Storage** page and check for a bucket with a name like 
-\${project}-\${region}-ingest-bucket to verify that an ingest bucket has been created.
+`${project}-${region}-ingest-bucket` to verify that an ingest bucket has been created.
 
 
 14. Go to the **BigQuery** page and verify that the following datasets have been created:
