@@ -18,11 +18,3 @@ resource "google_storage_bucket" "ingest-bucket" {
   location      = "US"
   uniform_bucket_level_access = true
 }
-
-resource "google_storage_bucket_acl" "image-store-acl" {
-  bucket = "${var.project}-ingest-bucket"
-
-  role_entity = [
-    "READER:${var.project}",
-  ]
-}

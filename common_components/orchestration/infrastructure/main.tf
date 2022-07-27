@@ -25,7 +25,7 @@ module "project_services" {
   activate_apis               = [
     "cloudbuild.googleapis.com",
     "compute.googleapis.com",
-    "artifactregistry.googleapis.com",
+    "containerregistry.googleapis.com",
   ]
 }
 

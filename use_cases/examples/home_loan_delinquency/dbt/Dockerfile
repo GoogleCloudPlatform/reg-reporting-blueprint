@@ -26,4 +26,5 @@ COPY --chown=dbt . $DBT_DIR
 RUN dbt deps
 
 # Run dbt. Must specify whether test or run as a parameter (not baked in the entrypoint)
+ENV DBT_PROFILES_DIR /dbt/profiles
 ENTRYPOINT [ "dbt" ]

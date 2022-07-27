@@ -89,8 +89,6 @@ with models.DAG(
         image_name='home-loan-delinquency',
         arguments=[
             "run",
-            "--profiles-dir",
-            "profiles",
             "--vars",
             json.dumps({
                 # { ds } is a template that it interpolated in the
@@ -114,8 +112,6 @@ with models.DAG(
         image_name='home-loan-delinquency',
         arguments=[
             "test",
-            "--profiles-dir",
-            "profiles",
             "-s",
             "test_type:singular",
             "--vars",
@@ -141,8 +137,6 @@ with models.DAG(
         image_name='home-loan-delinquency',
         arguments=[
             "test",
-            "--profiles-dir",
-            "profiles",
             "-s",
             "test_type:generic",
             "--vars",
