@@ -25,6 +25,6 @@ COPY --chown=dbt . $DBT_DIR
 # Run DBT debs to install dependencies
 RUN dbt deps
 
-# Run dbt. Must specify whether test or run as a parameter (not baked in the entrypoint)
+# Run dbt. Profiles defaults locally through DBT_PROFILES_DIR.
 ENV DBT_PROFILES_DIR /dbt/profiles
 ENTRYPOINT [ "dbt" ]

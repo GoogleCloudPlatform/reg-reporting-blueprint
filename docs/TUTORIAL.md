@@ -152,7 +152,7 @@ has `enable_composer=true`
 
 
 13. In the Google Cloud Console, go to the **Cloud Storage** page and check for a bucket with a name like 
-${project}-${region}-ingest-bucket to verify that an ingest bucket has been created.
+\${project}-\${region}-ingest-bucket to verify that an ingest bucket has been created.
 
 
 14. Go to the **BigQuery** page and verify that the following datasets have been created:
@@ -340,7 +340,8 @@ the models’ documentation as specified in the  models/schema.yml files, and al
    ```
     
    
-8. In the UI, you should see a diagram like the one below.
+8. In the UI, after a few minutes you should see the home-loan-delinquency DAG.
+   Click on the Last Run and you should see a diagram like the one below.
     ![image](images/airflow-ui.png)
 
     Note how the DAG consists of the following steps:

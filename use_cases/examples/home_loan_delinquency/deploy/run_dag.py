@@ -8,7 +8,7 @@ from airflow.models import Variable
 from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 
 # Project and region for the repository
-PROJECT_ID = Variable.get("PROJECT_ID")  # set as env variable in TF as per b/235298528
+PROJECT_ID = Variable.get("PROJECT_ID")
 REGION = Variable.get("REGION")
 
 # GCS Ingest Bucket
