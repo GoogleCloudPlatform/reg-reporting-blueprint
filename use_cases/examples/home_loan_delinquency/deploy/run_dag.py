@@ -113,7 +113,7 @@ with models.DAG(
         arguments=[
             "test",
             "-s",
-            "test_type:singular",
+            "test_type:generic",
             "--vars",
             json.dumps({
                 # { ds } is a template that it interpolated in the
@@ -138,7 +138,7 @@ with models.DAG(
         arguments=[
             "test",
             "-s",
-            "test_type:generic",
+            "test_type:singular",
             "--vars",
             json.dumps({
                 # { ds } is a template that it interpolated in the
