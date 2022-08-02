@@ -18,6 +18,8 @@
 #### variables entered by the user, and initialises the environment variables
 #### used by Argo and DBT
 
+## TODO: ask user input for Composer creation
+
 __text_welcome="
 This script performs the setup required to stand up the
 Google Regulatory Reporting solution.

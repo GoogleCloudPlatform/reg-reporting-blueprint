@@ -12,21 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-output "airflow_uri" {
-  description = "Airflow URI"
-  value       = module.composer_reg_reporting.airflow_uri
-}
 
-output "airflow_dag_gcs_prefix" {
-  description = "Airflow GCS DAG prefix"
-  value       = module.composer_reg_reporting.airflow_dag_gcs_prefix
-}
-
-output "airflow_gke_cluster" {
-  description = "Airflow GKE Cluster"
-  value       = module.composer_reg_reporting.airflow_gke_cluster
-}
-
-output "ingest_gcs_bucket" {
-  value = module.gcs_buckets.bucket.name
+output "gcp_service_account_email" {
+  description = "Email address of GCP service account."
+  value       = one(module.my-app-workload-identity[*].gcp_service_account_email)
 }

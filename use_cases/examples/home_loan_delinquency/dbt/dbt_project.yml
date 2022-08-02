@@ -26,7 +26,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 # Variables used in the SQL models
 vars:
-    reporting_month: '202109'        # The reporting month in the format YYYYMM
     reporting_day: '2021-09-01'      # The date when the report is valued at. Typically this would be today's date, and
                                      # should always be provided when the run command is issued, using the var flag - e.g.
                                      # dbt run --profiles-dir profiles --vars '{"reporting_day": "2021-09-03"}'
