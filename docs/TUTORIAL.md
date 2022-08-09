@@ -213,10 +213,18 @@ both the `homeloan_data` and `homeloan_expectedresults` datasets.
 
 ----
 ## Run the regulatory reporting pipeline
-1. In your development environment test the connection between your local dbt installation and your BigQuery datasets 
-by running the following command: 
+1. In your development environment, initialize the dependencies of dbt:
     ```
     cd ../dbt/
+    dbt deps
+    ```
+
+    This will install any needed dbt dependencies in your dbt project.
+
+
+2. Test the connection between your local dbt installation and
+   your BigQuery datasets by running the following command:
+    ```
     dbt debug --profiles-dir profiles/
     ```
     At the end of the connectivity, configuration and dependency info returned by the command, you should see the 
@@ -226,13 +234,13 @@ following message: `All checks passed!`
 in DBT. 
 
 
-2. Run the reporting transformations to create the regulatory reporting metrics:
+3. Run the reporting transformations to create the regulatory reporting metrics:
     ```
     dbt run --profiles-dir profiles/ 
     ```
 
 
-3. Run the transformations for a date of your choice:
+4. Run the transformations for a date of your choice:
 
     ```
     dbt run --profiles-dir profiles/ --vars '{"reporting_day": "2021-09-03"}'
@@ -243,12 +251,12 @@ date value that the portfolio should have. When you run the `dbt run` command, i
 value.
 
 
-4. In the console, go to the BigQuery page and inspect the `homeloan_dev` dataset. Notice how the data has been populated, 
+5. In the console, go to the BigQuery page and inspect the `homeloan_dev` dataset. Notice how the data has been populated,
 and how the `reporting_day` variable that you passed is used in the `control.reporting_day` field of the 
 `wh_denormalised` view.
 
 
-5. Inspect the models/schema.yml file:
+6. Inspect the models/schema.yml file:
 
     ```
     models:
@@ -264,34 +272,34 @@ and how the `reporting_day` variable that you passed is used in the `control.rep
 For example, the `ACCOUNT_KEY` field in the src_current_accounts_attributes table must be unique and not null.
 
 
-6. Run the data quality tests that are specified in the config files:
+7. Run the data quality tests that are specified in the config files:
     ```
     dbt test --profiles-dir profiles/ -s test_type:generic 
     ```
    
-7. Inspect the code in the ` use_cases/examples/home_loan_delinquency/dbt/tests `folder, which contains `singular` 
+8. Inspect the code in the ` use_cases/examples/home_loan_delinquency/dbt/tests `folder, which contains `singular`
 tests.  Notice how the tests in this folder implement a table comparison between actual results as outputted by 
 the `dbt run` command, and expected results as saved in the `homeloan_expectedresults` dataset.
 
 
-8. Run the singular tests:
+9. Run the singular tests:
     ```
     dbt test --profiles-dir profiles/ -s test_type:singular
     ```
 
 
-9. Generate the documentation for the project:
+10. Generate the documentation for the project:
     ```
     dbt docs generate --profiles-dir profiles && dbt docs serve --profiles-dir profiles 
     ```
 
 
-10. In the output that you see, search for, and then click, the following URL text: http://127.0.0.1:8080
+11. In the output that you see, search for, and then click, the following URL text: http://127.0.0.1:8080
     
     Your browser opens a new tab that shows the dbt documentation web interface.
 
 
-11. Explore the lineage of the models, and their detailed documentation. You see that  the documentation includes all 
+12. Explore the lineage of the models, and their detailed documentation. You see that  the documentation includes all
 the models’ documentation as specified in the  models/schema.yml files, and all the code of the models.
 
 ----

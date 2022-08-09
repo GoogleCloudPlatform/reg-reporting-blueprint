@@ -254,6 +254,9 @@ def main():
     parser.add_argument('--lr',
                         help='Left to right graph instead of top to bottom',
                         action='store_true')
+    parser.add_argument('--seconds_per_block',
+                        type=int, default=1,
+                        help='Seconds per incremental in graph output')
     parser.add_argument('--debug',
                         help='Enable debug style DOT graph',
                         action='store_true')
@@ -272,7 +275,10 @@ def main():
     find_critical_path(nodes)
 
     # Reader as a DOT graph
-    render_dot(nodes, left_right=args.lr)
+    render_dot(nodes,
+               left_right=args.lr,
+               seconds_per_block=args.seconds_per_block,
+               debug=args.debug)
 
 
 if __name__ == "__main__":
