@@ -56,8 +56,8 @@ models:
 
 # Tracking DBT Performance
 on-run-start:
-  - "{{ dbt_perf.create_dbt_log(target) }}"
-  - "{{ dbt_perf.insert_dbt_log(target, 'START', dbt_perf.graph_to_json(target, graph)) }}"
+  - "{{ dbt_log.create_dbt_log(target) }}"
+  - "{{ dbt_log.insert_dbt_log(target, 'START', dbt_log.graph_to_json(target, graph)) }}"
 
 on-run-end:
-  - "{{ dbt_perf.insert_dbt_log(target, 'END', dbt_perf.results_to_json(results)) }}"
+  - "{{ dbt_log.insert_dbt_log(target, 'END', dbt_log.results_to_json(results)) }}"

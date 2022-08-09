@@ -13,30 +13,41 @@
 {# limitations under the License. #}
 
 
+
+{# get_dbt_log -- get the dbt log table name #}
+{% macro get_dbt_log(target) %}
+`{{ var("dbt_log_project", target.project) }}`.
+`{{ var("dbt_log_dataset", target.dataset) }}`.
+`{{ var("dbt_log_table",   "dbt_log") }}`
+{% endmacro %}
+
+
 {# create_dbt_log -- create a dbt_log table in the target dataset if not #}
 {#                   already there #}
 {% macro create_dbt_log(target) %}
 
-CREATE TABLE IF NOT EXISTS `{{ target.project }}.{{ target.dataset }}.dbt_log` (
+CREATE TABLE IF NOT EXISTS {{ dbt_log.get_dbt_log(target) }} (
   update_time TIMESTAMP,
   dbt_invocation_id STRING,
   stage STRING,
   info JSON
-)
+);
 
 {% endmacro %}
+
 
 {# insert_dbt_log -- insert a log message in the dbt_log #}
-{% macro insert_dbt_log(target, state, json) %}
+{% macro insert_dbt_log(target, stage, json) %}
 
-INSERT INTO `{{ target.project }}.{{ target.dataset }}.dbt_log` VALUES (
+INSERT INTO {{ dbt_log.get_dbt_log(target) }} VALUES (
   CURRENT_TIMESTAMP(),
   '{{ invocation_id }}',
-  '{{ state }}',
+  '{{ stage }}',
   SAFE.PARSE_JSON(R"""{{ json }}""")
-)
+);
 
 {% endmacro %}
+
 
 {# results_to_json -- convert results into a JSON message for logging #}
 {% macro results_to_json(results) %}
