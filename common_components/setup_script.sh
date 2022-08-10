@@ -74,6 +74,8 @@ cat terraform.tfvars.template | sed \
   -e s/HOMELOAN_BQ_DEV/$HOMELOAN_BQ_DEV/g \
   -e s/HOMELOAN_BQ_DATA/$HOMELOAN_BQ_DATA/g \
   -e s/HOMELOAN_BQ_EXPECTEDRESULTS/$HOMELOAN_BQ_EXPECTEDRESULTS/g \
+  -e s/CRE_BQ_DEV/$CRE_BQ_DEV/g \
+  -e s/CRE_BQ_DATA/$CRE_BQ_DATA/g \
   > terraform.tfvars
 
 echo -e "Creating the backend.tf file..."

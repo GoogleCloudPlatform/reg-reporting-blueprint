@@ -33,7 +33,7 @@ do
   --source_format=CSV \
   --skip_leading_rows=1 \
   $PROJECT_ID:$HOMELOAN_BQ_DATA.$table \
-  gs://$GCS_INGEST_BUCKET/$table.csv \
+  gs://$GCS_INGEST_BUCKET/homeloan/input/$table.csv \
   schema/input/$table.json
 done
 
@@ -52,7 +52,7 @@ do
   --source_format=CSV \
   --skip_leading_rows=1 \
   $PROJECT_ID:$HOMELOAN_BQ_EXPECTEDRESULTS.$table \
-  gs://$GCS_INGEST_BUCKET/$table.csv \
+  gs://$GCS_INGEST_BUCKET/homeloan/expected/$table.csv \
   schema/expected/$table.json
 done
 

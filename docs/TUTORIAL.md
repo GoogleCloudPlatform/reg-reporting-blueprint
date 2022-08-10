@@ -299,7 +299,7 @@ the models’ documentation as specified in the  models/schema.yml files, and al
 1. Create a container for the BigQuery data load step, and push the container to Google Container Repository:
     ```
     cd ../data_load/     # Note the Dockerfile in this folder
-    gcloud builds submit --tag $GCR_DATALOAD_IMAGE  # Pushes the image to GCR     
+    gcloud builds submit --tag $HOMELOAN_GCR_DATALOAD  # Pushes the image to GCR     
     ```
     The Dockerfile in this directory enables this containerization, which simplifies orchestration of the workflow.
 
@@ -307,7 +307,7 @@ the models’ documentation as specified in the  models/schema.yml files, and al
 2. Containerize the DBT code for the data transformation step, and push the container to Google Container Repository. 
     ```
     cd ../dbt
-    gcloud builds submit --tag $GCR_DBT_SAMPLE_REPORTING_IMAGE
+    gcloud builds submit --tag $HOMELOAN_GCR_DBT
     ```
     Containerization helps you to create a package that can be easily versioned and deployed. 
 
