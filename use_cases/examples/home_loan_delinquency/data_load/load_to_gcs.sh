@@ -26,9 +26,9 @@ then
   exit 1
 fi
 
+subdir=${path_to_data##*/}
+
 echo -e "Copying the files from $path_to_data"
-gsutil cp -r $path_to_data/* gs://$GCS_INGEST_BUCKET
-gsutil rm gs://$GCS_INGEST_BUCKET.*
-gsutil rm gs://$GCS_INGEST_BUCKET/.*
-gsutil rm gs://$GCS_INGEST_BUCKET/load_to_gcs.sh
+gsutil cp -r $path_to_data/* gs://$GCS_INGEST_BUCKET/homeloan/$subdir/
+
 
