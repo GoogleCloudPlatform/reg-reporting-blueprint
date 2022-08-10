@@ -1,4 +1,4 @@
-# Orchestrate the CRE 
+# Orchestrate the CRE report production
 This DAG executes the end to end CRE pipeline.
 The key steps are:
 * Generate Data: runs a containerised python app that generates data

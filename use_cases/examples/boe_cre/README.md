@@ -8,8 +8,9 @@ The Commercial Real Estate report (CRE) helps the regulator understand the marke
 more informed decisions around their lending. 
 
 This example contains the following folders: 
-* `data_load`: contains a simple containerised application that generates sample data
+* `data_generator`: contains a simple containerised application that generates sample data
 * `dbt`: contains a DBT project which specifies the source to report transformation
+* `deploy`: an Airflow DAG that uploads the sample data and transforms it using DBT
 
 # Pre-requisites
 Make sure that you have followed the instructions in the [tutorial](../../../docs/TUTORIAL.md) to create the 

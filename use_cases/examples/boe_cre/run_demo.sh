@@ -27,13 +27,13 @@ echo -e "\tAIRFLOW_DAG_GCS: "${AIRFLOW_DAG_GCS}
 echo -e "\tAIRFLOW_UI:      "${AIRFLOW_UI}
 cd ../../../use_cases/examples/boe_cre/
 
-# Create containereised app
+# Create containerised app
 echo -e "\n\nCreate a containerised data generator application"
 cd data_generator
 gcloud builds submit --tag $CRE_GCR_DATALOAD
 cd ..
 
-# Create containereised app
+# Create containerised app
 echo -e "\n\nCreate a containerised data transformation application"
 cd dbt
 gcloud builds submit --tag $CRE_GCR_DBT
