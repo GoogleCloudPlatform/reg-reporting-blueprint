@@ -93,6 +93,7 @@ INSERT INTO {{ dbt_log.get_dbt_log(target) }} VALUES (
         ) -%}
         {%- do nodes_list.append(result_dict) -%}
       {% endfor %}
+      {# NOTE: Add your own custom var and env_var here #}
       {%- do results_list.update(
         dbt_version=dbt_version,
         target=target | as_text,

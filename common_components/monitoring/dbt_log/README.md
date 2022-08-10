@@ -33,9 +33,11 @@ on-run-end:
 As the macros record to a BigQuery log table, the name of this table can be configured.
 
 The following variables are supported for configuring the log table:
- * `dbt_log_project`. The project for the dbt_log. Default is the default project.
- * `dbt_log_dataset`. The project for the dbt_log. Default is the default dataset.
- * `dbt_log_table`. The table for the dbt_log. Default is dbt_log.
+| Variable        | Description                                                  |
+|-----------------|--------------------------------------------------------------|
+| dbt_log_project | The project for the dbt_log. Default is the default project. |
+| dbt_log_dataset | The dataset for the dbt_log. Default is the default dataset. |
+| dbt_log_table   | The table name of dbt_log. Default is dbt_log.               |
 
 ## Using the dbt_log
 
