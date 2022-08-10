@@ -4,7 +4,7 @@
 
 ### DBT Logging
 
-DBT [Logging Macros](dbt_log/README.md) enable logging on DBT start and DBT end
+DBT Logging Macros [dbt_log](dbt_log) enable logging on DBT start and DBT end
 run hooks. These logs contain metadata from the graph (run start) and results
 from the runtime (run end), enabling debugging, analysis, and much more.
 
@@ -12,14 +12,14 @@ The provided macros are used for performance graphs.
 
 ### DBT Performance Extraction
 
-The dbt_perf.py script is used for extracting a JSON document containing the
+The [dbt_perf.py](dbt_perf.py) script is used for extracting a JSON document containing the
 performance of individual DBT stages and their runtime. This can be from either
 the BigQuery DBT logs or from the live BigQuery jobs (for in-progress
 executios).
 
 ### Graphviz DOT graph generation
 
-The json_to_dot.py script is used for converting the JSON document of DBT stages
+The [json_to_dot.py](json_to_dot.py) script is used for converting the JSON document of DBT stages
 into a DOT graph. This dot graph.
 
 ## Running
