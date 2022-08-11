@@ -45,7 +45,7 @@ def trim_names(nodes):
     prefix = os.path.commonprefix(names)
     if prefix:
         for node in nodes.values():
-            node['name'] = node['name'].removeprefix(prefix)
+            node['name'] = node['name'][len(prefix):]
 
 
 def find_critical_path(nodes):

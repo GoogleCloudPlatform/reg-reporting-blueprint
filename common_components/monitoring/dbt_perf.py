@@ -26,7 +26,12 @@ import json
 import argparse
 import os
 
-from google.cloud import bigquery
+try:
+  from google.cloud import bigquery
+except ModuleNotFoundError:
+  print('Please install google-cloud-bigquery by pip3')
+  print('For example, running "pip3 install google-cloud-bigquery"')
+  raise SystemExit
 
 
 def dbt_recent_invocations_query(full_table_id, num):

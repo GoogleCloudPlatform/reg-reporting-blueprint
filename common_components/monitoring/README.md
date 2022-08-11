@@ -17,6 +17,10 @@ performance of individual DBT stages and their runtime. This can be from either
 the BigQuery DBT logs or from the live BigQuery jobs (for in-progress
 executios).
 
+Note that dbt_perf.py requires
+[google-cloud-bigquery](https://pypi.org/project/google-cloud-bigquery/)
+installed.
+
 ### Graphviz DOT graph generation
 
 The [json_to_dot.py](json_to_dot.py) script is used for converting the JSON document of DBT stages
