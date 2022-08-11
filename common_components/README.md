@@ -1,11 +1,14 @@
 # Common Components
-This folder contains GCP project setup scripts using Terraform, and a generic container orchestration capability leveraging Cloud Composer.
-This folder may be enhanced in the future with additional common components that can provide core functionalities. 
-required by any regulatory report. 
+This folder contains GCP project setup scripts using Terraform, a generic container orchestration capability leveraging Cloud Composer,
+and performance monitoring tools.
 
-To initialise the common components, do the following.
+This folder may be enhanced in the future with additional common components that can provide core functionalities
+required by any regulatory report.
 
-## Setup
+To initialise the common components do the following:
+
+## Common Setup
+
 * Run the gcloud init command, and ensure that a default project and default compute zone is defined.
     ```
     gcloud init
@@ -21,6 +24,7 @@ To initialise the common components, do the following.
 
 
 ## Infrastructure creation
+
 Once the `backend.tf` and `terraform.tfvars` are updated, create the infrastructure by executing:
 ```
 terraform init

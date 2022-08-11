@@ -53,3 +53,11 @@ models:
       calc:
           +tags: calculations
           materialized: ephemeral
+
+# Tracking DBT Performance
+on-run-start:
+  - "{{ dbt_log.create_dbt_log(target) }}"
+  - "{{ dbt_log.insert_dbt_log(target, 'START', dbt_log.graph_to_json(target, graph)) }}"
+
+on-run-end:
+  - "{{ dbt_log.insert_dbt_log(target, 'END', dbt_log.results_to_json(results)) }}"
