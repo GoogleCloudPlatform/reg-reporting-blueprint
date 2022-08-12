@@ -14,35 +14,39 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Root directory of the project
+BOE_CRE_DIR=$(dirname $0)
+ROOT_DIR=${BOE_CRE_DIR}/../../..
+
 # Environment variables
 echo -e "\n\nInitialise environment variables"
-source ../../../environment-variables.sh
+source ${ROOT_DIR}/environment-variables.sh
 
 # Retrieve terraform config
 echo -e "\n\nGet the terraform configuration"
-cd ../../../common_components/orchestration/infrastructure/
+pushd ${ROOT_DIR}/common_components/orchestration/infrastructure/
 AIRFLOW_DAG_GCS=$(terraform output --raw airflow_dag_gcs_prefix)
 AIRFLOW_UI=$(terraform output --raw airflow_uri)
 echo -e "\tAIRFLOW_DAG_GCS: "${AIRFLOW_DAG_GCS}
 echo -e "\tAIRFLOW_UI:      "${AIRFLOW_UI}
-cd ../../../use_cases/examples/boe_cre/
+popd
 
 # Create containerised app
 echo -e "\n\nCreate a containerised data generator application"
-cd data_generator
-gcloud builds submit --tag $CRE_GCR_DATALOAD
-cd ..
+pushd ${ROOT_DIR}
+gcloud builds submit --config use_cases/examples/boe_cre/data_generator/cloudbuild.yaml
+popd
 
 # Create containerised app
 echo -e "\n\nCreate a containerised data transformation application"
-cd dbt
-gcloud builds submit --tag $CRE_GCR_DBT
-cd ..
+pushd ${ROOT_DIR}
+gcloud builds submit --config use_cases/examples/boe_cre/dbt/cloudbuild.yaml
+popd
 
 # Submit ther DAG to Composer
 echo -e "\n\nSubmit the DAG to Composer"
-cd deploy
+pushd ${BOE_CRE_DIR}/deploy
 gsutil cp run_cre_dag.py $AIRFLOW_DAG_GCS
 
 echo -e "\tClick on the link to see progress: "${AIRFLOW_UI}
-cd ..
+popd

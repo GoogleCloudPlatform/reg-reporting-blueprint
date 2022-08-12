@@ -1,4 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', '${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/cre-dbt', '.' ]
-images: [ '${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/cre-dbt' ]
+  args: [ 'build', '-f', 'use_cases/examples/boe_cre/dbt/Dockerfile',
+                   '-t', 'gcr.io/$PROJECT_ID/cre-dbt',
+                   '.' ]
+images: [ 'gcr.io/$PROJECT_ID/cre-dbt' ]

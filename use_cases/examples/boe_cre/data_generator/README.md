@@ -13,7 +13,7 @@ docker build . -t cre_data:latest
 
 # Execute container locally
 ```
-docker run -v /Users/mtronci/.config/gcloud/:/user/.config/gcloud cre_data --project_id=$PROJECT_ID --bq_dataset=$CRE_BQ_DATA
+docker run --user 0 -v $HOME/.config/gcloud/:/user/.config/gcloud cre_data --project_id=$PROJECT_ID --bq_dataset=$CRE_BQ_DATA
 ```
 
 # Create containerised data load app

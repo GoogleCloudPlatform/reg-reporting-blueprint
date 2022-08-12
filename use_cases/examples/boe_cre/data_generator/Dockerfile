@@ -8,13 +8,13 @@ RUN apt-get update -y && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Create users
-ENV USER_DIR /user/
-RUN useradd -rm -d $USER_DIR -s /bin/bash -u 1000 user
-WORKDIR $USER_DIR
+ENV HOME /user/
+RUN useradd -rm -d $HOME -s /bin/bash -u 1000 user
+WORKDIR $HOME
 USER user
 
 # Copy files to the image
-COPY --chown=user . $USER_DIR
+COPY --chown=user use_cases/examples/boe_cre/data_generator $HOME
 
 # Install dependencies
 RUN pip install -U pip

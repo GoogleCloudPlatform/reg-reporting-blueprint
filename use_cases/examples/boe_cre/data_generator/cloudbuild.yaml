@@ -1,4 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', '${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/cre-data_generator', '.' ]
-images: [ '${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/cre-data_generator' ]
+  args: [ 'build', '-f', 'use_cases/examples/boe_cre/data_generator/Dockerfile',
+                   '-t', 'gcr.io/$PROJECT_ID/cre-data_generator',
+                   '.' ]
+images: [ 'gcr.io/$PROJECT_ID/cre-data_generator' ]

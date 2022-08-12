@@ -17,111 +17,60 @@
 ##
 ## This script generates sample data in the format required by the CRE reports
 
-import random
 from datetime import date
-import names
+from io import StringIO
+import random
 import csv
-from tqdm import tqdm
 import argparse
+
+import names
+from tqdm import tqdm
 from google.cloud import bigquery
 
+
 STR_PCT_FORMAT = "{:.2}"
-STR_FLOAT_FORMAT = "{:.3f}"
-STR_DATE_FORMAT = "%Y-%m-%d"
-
-# Arguments
-parser = argparse.ArgumentParser(description='Create random records')
-parser.add_argument('--project_id',
-                    help='The GCP project ID where the data should be loaded')
-parser.add_argument('--bq_dataset',
-                    help='The BigQuery dataset where the data should be loaded')
-parser.add_argument('--num_records_stock', default=10, type=int, nargs='?',
-                    help='Number of records to generate for the stock data')
-parser.add_argument('--num_records_flow', default=11, type=int, nargs='?',
-                    help='Number of records to generate for the flow data')
-parser.add_argument('--filename_stock', default='data/loan_level_stock_granular.csv', nargs='?',
-                    help='The filename where to save the stock data')
-parser.add_argument('--filename_flow', default='data/loan_level_flow_granular.csv', nargs='?',
-                    help='The filename where to save the flow data')
-
-args = parser.parse_args()
-
-
 def _format_pct(pct: float):
     """
     Auxiliary method to format a float into a percentage
     """
     if pct:
         return STR_PCT_FORMAT.format(pct)
-    else:
-        return ''
+
+    return ''
 
 
+STR_FLOAT_FORMAT = "{:.3f}"
 def _format_float(number: float):
     """
     Auxiliary method to format a float into a format suitable for output
     """
     if number:
         return STR_FLOAT_FORMAT.format(number)
-    else:
-        return ''
+
+    return ''
 
 
+STR_DATE_FORMAT = "%Y-%m-%d"
 def _format_date(input_date: date):
     """
     Auxiliary method to format a date into a format suitable for output
     """
     if input_date:
         return input_date.strftime(STR_DATE_FORMAT)
-    else:
-        return ''
+
+    return ''
 
 
-class random_data_generator:
+class RandomDataGenerator:
     """
     This class generates sample data in the format required by the CRE reports
     """
 
-    def __init__(self,
-                 num_records_stock,
-                 num_records_flow,
-                 filename_stock,
-                 filename_flow,
-                 project_id,
-                 bq_dataset,
-                 ):
+    def __init__(self):
         """
         Constructor
-        :param num_records_stock: number of records to generate for the stock data
-        :param num_records_flow: number of records to generate for the flow data
-        :param filename_stock: filename where to save the stock data
-        :param filename_flow: filename where to save the flow data
-        :param project_id: the GCP project where the data can be loaded
-        :param bq_dataset: the BQ dataset where the data can be loaded
+        This initializes internal configuration for the data generator.
         """
-        # Initalise the internal structures for the data
-        self.loan_stock = []    # stores the generated stock loans data
-        self.loan_flow = []     # stores the generated flow loans data
-
-        # Initialise the GCP config
-        self.project_id = project_id
-        self.bq_dataset = bq_dataset
-        self.load_config = {
-            "flow": {
-                "filename": filename_flow,
-                "table_id": "{}.{}.loan_level_flow_granular".format(self.project_id, self.bq_dataset),
-                "data_structure": self.loan_flow,
-            },
-            "stock": {
-                "filename": filename_stock,
-                "table_id": "{}.{}.loan_level_stock_granular".format(self.project_id, self.bq_dataset),
-                "data_structure": self.loan_stock,
-            },
-        }
-
-        # Initialise the number of records attributes
-        self.num_records_stock = num_records_stock
-        self.num_records_flow = num_records_flow
 
         # Configuration of the file generator
         self.config = {
@@ -232,7 +181,8 @@ class random_data_generator:
                 'No running covenants',
                 'Other (please state in "any other brief comments" variable)'],
             'lst_dropdown_sponsor_quality': [
-                'Strong. Project is highly strategic for the sponsor (core business - long-term strategy)',
+                ('Strong. Project is highly strategic for the sponsor ' +
+                 '(core business - long-term strategy)'),
                 'Good. Project is strategic for the sponsor (core business - long-term strategy)',
                 'Acceptable. Project is considered important for the sponsor (core business)',
                 'Limited. Project is not key to sponsors long-term strategy or core business'],
@@ -271,362 +221,292 @@ class random_data_generator:
                 'Strong',
                 'Unrated',
                 'Weak'],
-            'frequency_of_change': 0.1,  # how many times the credit rating at origination is the same
+            # how many times the credit rating at origination is the same
+            'frequency_of_change': 0.1,
         }
 
-    def generate_sample_data(self):
+    def generate_stock_record(self) -> dict:
         """
-        Method to generate sample records. Fills the internal structures as per the num_stock_loans and num_flow_loans
-        passed to the constructor.
-        :return: None
+        Generate a random stock record
         """
-        for _ in tqdm(range(self.num_records_stock), "Generating {} stock loans records...".format(self.num_records_stock)):
-            self.loan_stock.append(self.generate_record(type='stock'))
+        return self.generate_record(rec_type='stock')
 
-        for _ in tqdm(range(self.num_records_flow), "Generating {} flow loans records...".format(self.num_records_flow)):
-            self.loan_flow.append(self.generate_record(type='flow'))
+    def generate_flow_record(self) -> dict:
+        """
+        Generate a random flow record
+        """
+        return self.generate_record(rec_type='flow')
 
-    def save_sample_data(self):
+    def generate_record(self, rec_type: str = 'stock') -> dict:
         """
-        Saves the random data into a file in the filenames specified in the constructor
-        :return: None
-        """
-        for entity in self.load_config.keys():
-            filename = self.load_config[entity]['filename']
-            data_structure = self.load_config[entity]['data_structure']
-            print("Saving the {} loans data in {}".format(entity, filename))
-            keys = data_structure[0].keys()
-            output_file = open(filename, 'w')
-            dict_writer = csv.DictWriter(output_file, keys)
-            dict_writer.writeheader()
-            dict_writer.writerows(data_structure)
-            output_file.close()
-
-    def generate_record(self, type: str = 'stock') -> dict:
-        """
-        Static method to generate a random record in the CRE structure
-        :param type: whether this is a 'stock' or a flow 'record'
+        Generate a random record in the CRE structure
+        :param rec_type: whether this is a 'stock' or a flow 'record'
         :return: a dictionary of a random record as per the CRE structure
         """
 
-        if type not in ['stock', 'flow']:
+        if rec_type not in ['stock', 'flow']:
             raise ValueError('Only stock or flow are allowed values for type')
 
-        # Create a variable for each field, drawing randomly from a list
-        # The lists have multiple copies of the same element to make it more probable
-        "booking_entity"
-        booking_entity = random.choice(self.config['lst_booking_entity'])
-
-        "legal_entity"
-        legal_entity = random.choice(self.config['lst_legal_entity'])
-
-        "division_of_bank"
-        division_of_bank = random.choice(self.config['lst_division_of_bank'])
-
-        "within_policy_or_exception"
-        within_policy_or_exception = random.choice(self.config['lst_dropdown_within_policy_or_exception'])
-
-        "transaction_type"
-        transaction_type = random.choice(self.config['lst_dropdown_transaction_type_table_1'])
-
-        "if_cre_development_type_of_development"
-        if_cre_development_type_of_development = ""
-        if transaction_type == 'CRE Development':
-            if_cre_development_type_of_development = random.choice(self.config['lst_dropdown_type_of_development'])
-
-        "deal_type"
-        deal_type = random.choice(self.config['lst_dropdown_deal_type'])
-
-        "limit(£m)"
+        # Initialize common random variables for the record
         limit = random.random() * self.config['max_limit']
 
-        "amount_kept_on_balance_sheet(ie_not_distributed)(£m)"
-        amount_kept_on_balance_sheet = random.random() * self.config['max_amount_kept_on_balance_sheet']
+        amount_kept_on_balance_sheet = (
+            random.random() * self.config['max_amount_kept_on_balance_sheet'])
 
-        "main_receiver_of_distributed_loan"
-        main_receiver_of_distributed_loan = random.choice(self.config['lst_dropdown_main_receiver_of_distributed_loan'])
+        transaction_type = random.choice(
+            self.config['lst_dropdown_transaction_type_table_1'])
 
-        "drawdown_date"
-        drawdown_date = (self.config['min_drawdown_date'] +
-                         (self.config['max_drawdown_date'] - self.config['min_drawdown_date']) *
-                         random.random())
+        within_policy_or_exception = random.choice(
+            self.config['lst_dropdown_within_policy_or_exception'])
 
-        "maturity_date"
-        maturity_date = (self.config['min_maturity_date'] +
-                         (self.config['max_maturity_date'] - self.config['min_maturity_date']) *
-                         random.random())
-
-        "sub-property_sector"
-        sub_property_sector = random.choice(self.config['lst_dropdown_sub_property_sector'])
-
-        "region"
-        region = random.choice(self.config['lst_dropdown_region'])
-
-        "property_quality"
-        property_quality = random.choice(self.config['lst_dropdown_property_quality'])
-
-        "ltv_at_origination(%)"
         ltv_at_origination = None
         if transaction_type == 'CRE Investment':
             ltv_at_origination = random.random()
 
-        "indexed_ltv(%)"
-        indexed_ltv = None
-        if transaction_type == 'CRE Investment':
-            indexed_ltv = random.random()
+        # Initialize random fields common across both records
+        rec = dict(
+            booking_entity =   random.choice(self.config['lst_booking_entity']),
 
-        "ltev(%)"
-        ltev = None
-        if transaction_type == 'CRE Development':
-            ltev = random.random()
+            legal_entity =     random.choice(self.config['lst_legal_entity']),
 
-        "ltc(%)"
-        ltc = None
-        if transaction_type == 'CRE Development':
-            ltc = random.random()
+            division_of_bank = random.choice(self.config['lst_division_of_bank']),
 
-        "icr(x)"
-        icr = None
-        # if transaction_type == 'CRE Investment': ## looks like the ICR is always required? Unclear from the spec
-        icr = random.random() * self.config['max_icr']
+            within_policy_or_exception = within_policy_or_exception,
 
-        "net_rental_income(£m)"
-        net_rental_income = None
-        if transaction_type == 'CRE Investment':
-            net_rental_income = random.random() * amount_kept_on_balance_sheet * \
-                                self.config['max_net_rental_income_ratio']
+            transaction_type = transaction_type,
 
-        "margin(%)"
-        margin = random.random() * self.config['max_margin']
+            deal_type = random.choice(self.config['lst_dropdown_deal_type']),
 
-        "fees(%)"
-        fees = random.random() * self.config['max_fees']
+            main_receiver_of_distributed_loan = random.choice(
+                self.config['lst_dropdown_main_receiver_of_distributed_loan']),
 
-        "interest_basis"
-        interest_basis = random.choice(self.config['lst_dropdown_interest_basis'])
+            drawdown_date = _format_date(
+                self.config['min_drawdown_date'] +
+                (self.config['max_drawdown_date'] - self.config['min_drawdown_date']) *
+                random.random()),
 
-        "pct_of_limit_hedge"
-        pct_of_limit_hedge = random.random()
+            maturity_date = _format_date(
+                self.config['min_maturity_date'] +
+                (self.config['max_maturity_date'] - self.config['min_maturity_date']) *
+                random.random()),
 
-        "maturity_date_of_hedge"
-        maturity_date_of_hedge = (self.config['min_maturity_date_of_hedge'] +
-                                  (self.config['max_maturity_date_of_hedge'] - self.config['min_maturity_date_of_hedge']) *
-                                  random.random())
+            sub_property_sector = random.choice(
+                self.config['lst_dropdown_sub_property_sector']),
 
-        "security"
-        security = random.choice(self.config['lst_dropdown_security'])
+            region = random.choice(self.config['lst_dropdown_region']),
 
-        "total_limit_on_transaction_including_other_lenders_debt_if_known(£m)"
-        total_limit_on_transaction_including_other_lenders_debt_if_known = random.random() * limit
+            property_quality = random.choice(
+                self.config['lst_dropdown_property_quality']),
 
-        "weighted_average_remaining_lease_length(months)"
-        weighted_average_remaining_lease_length = int(random.random() * self.config['max_lease_length_months'])
+            limit_value = _format_float(limit),
 
-        "average_tenant_credit_quality"
-        average_tenant_credit_quality = random.choice(self.config['lst_dropdown_average_tenant_credit_quality'])
+            amount_kept_on_balance_sheet = _format_float(amount_kept_on_balance_sheet),
 
-        "projected_value_of_loan_at_maturity(£m)"
-        projected_value_of_loan_at_maturity = limit * self.config['max_projected_value_of_loan_at_maturity_pct']
+            if_cre_Development_type_of_development = (
+                random.choice(self.config['lst_dropdown_type_of_development'])
+                if transaction_type == 'CRE Development'
+                else ""),
 
-        "identity_of_lead_lender(for_club_deals_and_syndications)"
-        identity_of_lead_lender = "Lender " + str(int(random.random() * self.config['num_lenders']))
+            ltev = (
+                _format_pct(random.random())
+                if transaction_type == 'CRE Development'
+                else ""),
 
-        "participating_lenders(for_club_deals_and_syndications)"
-        participating_lenders = "Lender " + str(int(random.random() * self.config['num_lenders']))
+            ltc = (
+                _format_pct(random.random())
+                if transaction_type == 'CRE Development'
+                else ""),
 
-        "ongoing_covenants"
-        ongoing_covenants = random.choice(self.config['lst_dropdown_ongoing_covenants'])
+            # It looks like the ICR is always required. Unclear from the spec.
+            icr = (
+                _format_pct(random.random() * self.config['max_icr'])),
 
-        "name_of_borrower"
-        name_of_borrower = names.get_full_name()
+            net_rental_income = (
+                _format_float(
+                    random.random() * amount_kept_on_balance_sheet *
+                    self.config['max_net_rental_income_ratio'])
+                if transaction_type == 'CRE Investment'
+                else ""),
 
-        "name_of_sponsor(based_on_slotting_assessment)"
-        name_of_sponsor = names.get_full_name()
+            margin =_format_pct(
+                random.random() * self.config['max_margin']),
 
-        "sponsor_quality"
-        sponsor_quality = random.choice(self.config['lst_dropdown_sponsor_quality'])
+            fees = _format_pct(
+                random.random() * self.config['max_fees']),
 
-        "policy_exceptions"
-        policy_exceptions = ""
-        if within_policy_or_exception == 'Exception':
-            policy_exceptions = random.choice(self.config['lst_dropdown_policy_exception'])
+            interest_basis = random.choice(
+                self.config['lst_dropdown_interest_basis']),
 
-        "brief_reason_for_policy_exception(s)"
-        brief_reason_for_policy_exception = ""
-        if within_policy_or_exception == 'Exception':
-            brief_reason_for_policy_exception = "A description of the policy exception"
+            pct_of_limit_hedge = _format_pct(random.random()),
 
-        "basel_approach"
-        basel_approach = random.choice(self.config['lst_dropdown_basel_approach'])
+            maturity_date_of_hedge = _format_date(
+                self.config['min_maturity_date_of_hedge'] +
+                ((self.config['max_maturity_date_of_hedge'] -
+                  self.config['min_maturity_date_of_hedge']) *
+                  random.random())
+            ),
 
-        "credit_rating_scale_name"
-        credit_rating_scale_name = random.choice(self.config['lst_dropdown_credit_rating_scale_name'])
+            security = random.choice(self.config['lst_dropdown_security']),
 
-        "internal_credit_rating"
-        internal_credit_rating = random.choice(self.config['lst_dropdown_internal_credit_rating'])
+            total_limit_on_transaction_including_other_lenders_debt_if_known = (
+                _format_float(random.random() * limit)),
 
-        "internal_credit_rating_at_origination"
-        internal_credit_rating_at_origination = internal_credit_rating
-        if random.random() < self.config['frequency_of_change']:
-            internal_credit_rating_at_origination = random.choice(self.config['lst_dropdown_internal_credit_rating'])
+            weighted_average_remaining_lease_length = int(
+                random.random() * self.config['max_lease_length_months']),
 
-        "rwa(£m)"
-        rwa = random.random() * amount_kept_on_balance_sheet
+            average_tenant_credit_quality = random.choice(
+                self.config['lst_dropdown_average_tenant_credit_quality']),
 
-        "pd_regulatory(%)"
-        pd_regulatory = random.random()
+            projected_value_of_loan_at_maturity = _format_float(
+                limit * self.config['max_projected_value_of_loan_at_maturity_pct']),
 
-        "lgd_regulatory(%)"
-        lgd_regulatory = random.random()
+            identity_of_lead_lender = "Lender " + str(
+                int(random.random() * self.config['num_lenders'])),
 
-        "expected_loss_regulatory(£m)"
-        expected_loss_regulatory = random.random() * amount_kept_on_balance_sheet
+            participating_lenders = "Lender " + str(
+                int(random.random() * self.config['num_lenders'])),
 
-        "provisions(£m)"
-        provisions = random.random() * amount_kept_on_balance_sheet
+            ongoing_covenants = random.choice(
+                self.config['lst_dropdown_ongoing_covenants']),
 
-        "any_other_brief_comments"
-        any_other_brief_comments = ""
+            name_of_borrower = names.get_full_name(),
+            name_of_sponsor = names.get_full_name(),
 
-        # Populate a dictionary
-        record = {
-            "booking_entity":
-                booking_entity,
-            "legal_entity":
-                legal_entity,
-            "division_of_bank":
-                division_of_bank,
-            "within_policy_or_exception":
-                within_policy_or_exception,
-            "transaction_type":
-                transaction_type,
-            "if_cre_development_type_of_development":
-                if_cre_development_type_of_development,
-            "deal_type":
-                deal_type,
-            "limit_value":  # have to append value as limit is a reserved word in BQ
-                _format_float(limit),
-            "amount_kept_on_balance_sheet":
-                _format_float(amount_kept_on_balance_sheet),
-            "main_receiver_of_distributed_loan":
-                main_receiver_of_distributed_loan,
-            "drawdown_date":
-                _format_date(drawdown_date),
-            "maturity_date":
-                _format_date(maturity_date),
-            "sub_property_sector":
-                sub_property_sector,
-            "region":
-                region,
-            "property_quality":
-                property_quality,
-            "ltev":
-                _format_pct(ltev),
-            "ltc":
-                _format_pct(ltc),
-            "icr":
-                _format_pct(icr),
-            "net_rental_income":
-                _format_float(net_rental_income),
-            "margin":
-                _format_pct(margin),
-            "fees":
-                _format_pct(fees),
-            "interest_basis":
-                interest_basis,
-            "pct_of_limit_hedge":
-                _format_pct(pct_of_limit_hedge),
-            "maturity_date_of_hedge":
-                _format_date(maturity_date_of_hedge),
-            "security":
-                security,
-            "total_limit_on_transaction_including_other_lenders_debt_if_known":
-                _format_float(total_limit_on_transaction_including_other_lenders_debt_if_known),
-            "weighted_average_remaining_lease_length":
-                weighted_average_remaining_lease_length,
-            "average_tenant_credit_quality":
-                average_tenant_credit_quality,
-            "projected_value_of_loan_at_maturity":
-                _format_float(projected_value_of_loan_at_maturity),
-            "identity_of_lead_lender":
-                identity_of_lead_lender,
-            "participating_lenders":
-                participating_lenders,
-            "ongoing_covenants":
-                ongoing_covenants,
-            "name_of_borrower":
-                name_of_borrower,
-            "name_of_sponsor":
-                name_of_sponsor,
-            "sponsor_quality":
-                sponsor_quality,
-            "policy_exceptions":
-                policy_exceptions,
-            "brief_reason_for_policy_exception":
-                brief_reason_for_policy_exception,
-            "any_other_brief_comments":
-                any_other_brief_comments
-        }
-        if type == 'stock': # Stock has a few additional attributes
-            record["ltv_at_origination"] = _format_pct(ltv_at_origination)
-            record["indexed_ltv"] = _format_pct(indexed_ltv)
-            record["basel_approach"] = basel_approach
-            record["credit_rating_scale_name"] = credit_rating_scale_name
-            record["internal_credit_rating"] = internal_credit_rating
-            record["internal_credit_rating_at_origination"] = internal_credit_rating_at_origination
-            record["rwa"] = _format_float( rwa)
-            record["pd_regulatory"] = _format_pct( pd_regulatory)
-            record["lgd_regulatory"] = _format_pct( lgd_regulatory)
-            record["expected_loss_regulatory"] = _format_pct( expected_loss_regulatory)
-            record["provisions"] = _format_float( provisions)
+            sponsor_quality = random.choice(
+                self.config['lst_dropdown_sponsor_quality']),
 
-        if type == 'flow':
-            record["ltv_pct"] = _format_pct(ltv_at_origination)
+            policy_exceptions = (
+                random.choice(self.config['lst_dropdown_policy_exception'])
+                if within_policy_or_exception == 'Exception'
+                else ""),
 
-        # Return
-        return record
+            brief_reason_for_policy_exception = (
+                "A description of the policy exception"
+                if within_policy_or_exception == 'Exception'
+                else ""),
 
-
-    def load_data_to_bq(self):
-        """
-        Loads the generated data into BigQuery.
-        :param project_id:
-        :param bq_dataset:
-        """
-        # Construct a BigQuery client object.
-        client = bigquery.Client(project=self.project_id)
-        job_config = bigquery.LoadJobConfig(
-            source_format=bigquery.SourceFormat.CSV, skip_leading_rows=1, autodetect=True,
+            any_other_brief_comments = "",
         )
 
+        # Initialize stock-specific fields
+        if rec_type == 'stock':
+            internal_credit_rating = random.choice(
+                self.config['lst_dropdown_internal_credit_rating'])
 
-        for table in self.load_config.keys():
-            filename = self.load_config[table]["filename"]
-            table_id = self.load_config[table]["table_id"]
-            "Loading data in table {}".format(table_id)
-            with open(filename, "rb") as source_file:
-                job = client.load_table_from_file(source_file, table_id, job_config=job_config)
+            rec.update(
+                ltv_at_origination = _format_pct(ltv_at_origination),
 
-            job.result()  # Waits for the job to complete.
+                indexed_ltv = (
+                    _format_pct(random.random())
+                    if transaction_type == 'CRE Investment'
+                    else None),
 
-            table = client.get_table(table_id)  # Make an API request.
-            print(
-                "\tThere are {} rows and {} columns in {}".format(
-                    table.num_rows, len(table.schema), table_id
-                )
+                basel_approach = random.choice(
+                    self.config['lst_dropdown_basel_approach']),
+
+                credit_rating_scale_name = random.choice(
+                    self.config['lst_dropdown_credit_rating_scale_name']),
+
+                internal_credit_rating = internal_credit_rating,
+
+                internal_credit_rating_at_origination = (
+                    random.choice(self.config['lst_dropdown_internal_credit_rating'])
+                    if random.random() < self.config['frequency_of_change']
+                    else internal_credit_rating),
+
+                rwa = (_format_float(random.random() * amount_kept_on_balance_sheet)),
+
+                pd_regulatory = _format_pct(random.random()),
+
+                lgd_regulatory = _format_pct(random.random()),
+
+                expected_loss_regulatory = _format_pct(
+                    random.random() * amount_kept_on_balance_sheet),
+
+                provisions = _format_float(random.random() * amount_kept_on_balance_sheet),
             )
+
+        # Initialize flow-specific fields
+        if rec_type == 'flow':
+            rec.update(
+                ltv_pct = _format_pct(ltv_at_origination)
+            )
+
+        return rec
+
+
+def upload_rows_to_bigquery(client, table_id, num_rows, row_generator):
+    """
+    Load data into BigQuery
+    :param client:         BigQuery Client
+    :param table_id:       Full table_id target for BigQuery
+    :param num_rows:       Number of rows to generate
+    :param row_generator:  Function to generate rows
+    """
+
+    # Construct a load job
+    job_config = bigquery.LoadJobConfig(
+        source_format=bigquery.SourceFormat.CSV,
+        skip_leading_rows=1,
+        autodetect=True,
+    )
+
+    # In-memory buffer for data to be uploaded
+    memory_buffer = StringIO()
+
+    # Initialize CSV writer
+    keys = row_generator().keys()
+    dict_writer = csv.DictWriter(memory_buffer, keys)
+    dict_writer.writeheader()
+
+    # Generate all of the rows
+    for _ in tqdm(range(num_rows), f"{table_id}: Generating {num_rows} rows"):
+        dict_writer.writerow(row_generator())
+
+    # Load into BigQuery
+    print(f"{table_id}: Loading data into BigQuery")
+    job = client.load_table_from_file(memory_buffer, table_id,
+                                      job_config=job_config, rewind=True)
+
+    job.result()  # Waits for the job to complete.
+
+    # Gather statistics of target table
+    table = client.get_table(table_id)
+    print(f"{table_id}: There are {table.num_rows} rows and " +
+          f"{len(table.schema)} columns")
 
 
 if __name__ == "__main__":
-    generator = random_data_generator(
-        project_id=args.project_id,
-        bq_dataset=args.bq_dataset,
-        num_records_stock=args.num_records_stock,
-        num_records_flow=args.num_records_flow,
-        filename_stock=args.filename_stock,
-        filename_flow=args.filename_flow,
-    )
-    generator.generate_sample_data()
-    generator.save_sample_data()
-    generator.load_data_to_bq()
-    exit()
+
+    # Arguments
+    parser = argparse.ArgumentParser(description='Create random CRE records')
+    parser.add_argument('--project_id',
+                        required=True,
+                        help='The GCP project ID where the data should be loaded')
+    parser.add_argument('--bq_dataset',
+                        required=True,
+                        help='The BigQuery dataset where the data should be loaded')
+    parser.add_argument('--num_records_stock',
+                        default=10, type=int, nargs='?',
+                        help='Number of records to generate for the stock data')
+    parser.add_argument('--num_records_flow',
+                        default=11, type=int, nargs='?',
+                        help='Number of records to generate for the flow data')
+
+    args = parser.parse_args()
+
+    bigquery_client = bigquery.Client(project=args.project_id)
+
+    generator = RandomDataGenerator()
+
+    upload_rows_to_bigquery(
+        bigquery_client,
+        f"{args.project_id}.{args.bq_dataset}.loan_level_stock_granular",
+        args.num_records_stock,
+        generator.generate_stock_record)
+
+    upload_rows_to_bigquery(
+        bigquery_client,
+        f"{args.project_id}.{args.bq_dataset}.loan_level_flow_granular",
+        args.num_records_flow,
+        generator.generate_flow_record)
