@@ -1,0 +1,2 @@
+packages:
+  - local: ../../../../common_components/monitoring/dbt_log
