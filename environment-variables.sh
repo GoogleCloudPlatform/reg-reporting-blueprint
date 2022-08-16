@@ -29,6 +29,7 @@ fi
 export EMAIL=$(gcloud config get-value account)
 export ENV_ID=${EMAIL%@*}-dev
 export PROJECT_ID=$(gcloud config get-value project)
+export TF_VAR_PROJECT_ID=$PROJECT_ID
 export PROJECT_NUMBER=$(gcloud projects list --filter="project_id=$PROJECT_ID" --format="value(PROJECT_NUMBER)")
 export GCR_DBT_SAMPLE_REPORTING_IMAGE=gcr.io/${PROJECT_ID}/dbt-sample_reporting
 export GCR_DATALOAD_IMAGE=gcr.io/${PROJECT_ID}/bq-data-load
@@ -45,6 +46,8 @@ export GCS_INGEST_BUCKET=$PROJECT_ID-$GCS_LOCATION-ingest-bucket
 export HOMELOAN_BQ_DEV=homeloan_dev
 export HOMELOAN_BQ_DATA=homeloan_data
 export HOMELOAN_BQ_EXPECTEDRESULTS=homeloan_expectedreresults
+export TF_VAR_FLASHING_BQ_MARKET_DATA=market_data
+export TF_VAR_FLASHING_BQ_ORDER_DATA=order_data
 
 echo -e "\nYour environment variables have been initialised as follows:"
 echo -e "\tENV_ID                           :" $ENV_ID
@@ -61,3 +64,5 @@ echo -e "\tBQ_LOCATION                      :" $BQ_LOCATION
 echo -e "\tHOMELOAN_BQ_DEV                  :" $HOMELOAN_BQ_DEV 
 echo -e "\tHOMELOAN_BQ_DATA                 :" $HOMELOAN_BQ_DATA
 echo -e "\tHOMELOAN_BQ_EXPECTEDRESULTS      :" $HOMELOAN_BQ_EXPECTEDRESULTS 
+echo -e "\tTF_VAR_FLASHING_BQ_MARKET_DATA   :" $TF_VAR_FLASHING_BQ_MARKET_DATA
+echo -e "\tTF_VAR_FLASHING_BQ_ORDER_DATA    :" $TF_VAR_FLASHING_BQ_ORDER_DATA 
