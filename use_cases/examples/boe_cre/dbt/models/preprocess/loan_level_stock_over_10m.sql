@@ -17,6 +17,9 @@
 --
 -- This model selects only the loans above 10m
 
-SELECT *
-FROM {{ ref('loan_level_stock') }}
-WHERE amount_kept_on_balance_sheet >= 10
+SELECT
+    *
+FROM
+    {{ ref('loan_level_stock') }}
+WHERE
+    amount_kept_on_balance_sheet >= 10

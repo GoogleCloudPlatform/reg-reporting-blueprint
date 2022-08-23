@@ -2,5 +2,5 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-f', 'use_cases/examples/boe_cre/data_generator/Dockerfile',
                    '-t', 'gcr.io/$PROJECT_ID/cre-data_generator',
-                   '.' ]
+                   'use_cases/examples/boe_cre/data_generator' ]
 images: [ 'gcr.io/$PROJECT_ID/cre-data_generator' ]

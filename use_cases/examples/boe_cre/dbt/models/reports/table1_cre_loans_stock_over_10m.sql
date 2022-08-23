@@ -17,5 +17,7 @@
 --
 -- This model selects stock of loans over 10m, for Table 1 of the report
 
-SELECT *
-FROM {{ ref('loan_level_stock_over_10m') }}
+SELECT
+    *
+FROM
+    {{ ref('loan_level_stock_over_10m') }}

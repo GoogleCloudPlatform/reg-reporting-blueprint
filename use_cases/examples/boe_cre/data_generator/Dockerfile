@@ -14,7 +14,7 @@ WORKDIR $HOME
 USER user
 
 # Copy files to the image
-COPY --chown=user use_cases/examples/boe_cre/data_generator $HOME
+COPY --chown=user . $HOME
 
 # Install dependencies
 RUN pip install -U pip
