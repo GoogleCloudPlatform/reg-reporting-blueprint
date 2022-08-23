@@ -17,11 +17,11 @@
 --
 -- This model aggregates the data as per Table A CRE Loans Stock Total Limits
 
-with data as (
+WITH data AS (
     SELECT
-         'CRE Investment, within policy' as class,
+         'CRE Investment, within policy' AS class,
          table_A_category,
-         sum(limit_value) as limit_value
+         SUM(limit_value) AS limit_value
     FROM
         {{ ref('loan_level_stock') }}
     WHERE
@@ -33,9 +33,9 @@ with data as (
     UNION ALL
 
     SELECT
-         'CRE Investment, exception to policy' as class,
+         'CRE Investment, exception to policy' AS class,
          table_A_category,
-         sum(limit_value) as limit_value
+         SUM(limit_value) AS limit_value
     FROM
         {{ ref('loan_level_stock') }}
     WHERE
@@ -47,9 +47,9 @@ with data as (
     UNION ALL
 
     SELECT
-         'CRE Development, within policy' as class,
+         'CRE Development, within policy' AS class,
          table_A_category,
-         sum(limit_value) as limit_value
+         SUM(limit_value) AS limit_value
     FROM
         {{ ref('loan_level_stock') }}
     WHERE
@@ -61,9 +61,9 @@ with data as (
     UNION ALL
 
     SELECT
-         'CRE Development, exception to policy' as class,
+         'CRE Development, exception to policy' AS class,
          table_A_category,
-         sum(limit_value) as limit_value
+         SUM(limit_value) AS limit_value
     FROM
         {{ ref('loan_level_stock') }}
     WHERE
@@ -79,6 +79,6 @@ SELECT
 FROM
     data
 WHERE
-    table_A_category is not null
+    table_A_category IS NOT null
 ORDER BY
     1, 2

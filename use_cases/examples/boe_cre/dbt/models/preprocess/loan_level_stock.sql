@@ -22,7 +22,7 @@ SELECT
     CASE
         WHEN deal_type IN ('New client', 'Existing client, new transaction')  THEN 'New_client_or_transaction'
         WHEN deal_type = 'Existing client, refinance of existing transaction' THEN 'Refinance_of_existing_transaction'
-    END as table_A_category,
+    END AS table_A_category,
     CASE
         WHEN transaction_type = 'CRE Investment'   THEN
             CASE
@@ -44,7 +44,7 @@ SELECT
                 WHEN ltev >= 0.75 AND ltev < 0.80 THEN 'F. 75.00 – 79.99%'
                 WHEN ltev >= 0.80                 THEN 'G. >79.99%'
             END
-        END as ltv_band,
+    END AS ltv_band,
     CASE
         WHEN                icr <= 1.25 THEN 'A. <= 1.25'
         WHEN icr > 1.25 AND icr <= 1.50 THEN 'B. <= 1.50'
@@ -52,6 +52,6 @@ SELECT
         WHEN icr > 2.00 AND icr <= 3.00 THEN 'D. <= 3.00'
         WHEN icr > 3.00 AND icr <= 4.00 THEN 'E. <= 4.00'
         WHEN icr > 4.00                 THEN 'F. > 4.00'
-        END as icr_band
+    END AS icr_band
 FROM
     {{ source('input_data', 'loan_level_stock_granular') }}

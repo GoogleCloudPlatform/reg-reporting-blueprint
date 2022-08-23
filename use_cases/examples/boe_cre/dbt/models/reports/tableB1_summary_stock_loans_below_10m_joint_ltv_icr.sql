@@ -20,9 +20,9 @@
 SELECT
     ltv_band,
     icr_band,
-    sum(limit_value) as limit_value
+    SUM(limit_value) AS limit_value
 FROM
-    {{ref('loan_level_stock_below_10m')}}
+    {{ ref('loan_level_stock_below_10m') }}
 GROUP BY
     1, 2
 ORDER BY

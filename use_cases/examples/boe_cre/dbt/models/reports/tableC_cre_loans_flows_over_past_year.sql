@@ -19,8 +19,8 @@
 
 SELECT
     main_receiver_of_distributed_loan,
-    sum(limit_value) as limit_value,
-    sum(amount_kept_on_balance_sheet) as amount_kept_on_balance_sheet
+    SUM(limit_value) AS limit_value,
+    SUM(amount_kept_on_balance_sheet) AS amount_kept_on_balance_sheet
 FROM
     {{ ref('loan_level_flow') }}
 WHERE
