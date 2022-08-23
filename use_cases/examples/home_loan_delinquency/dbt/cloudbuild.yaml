@@ -1,4 +1,4 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', '${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/home-loan-delinquency', '.' ]
-images: [ '${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/home-loan-delinquency' ]
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/home-loan-delinquency', '.' ]
+images: [ 'gcr.io/$PROJECT_ID/home-loan-delinquency' ]

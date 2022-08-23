@@ -1,2 +1,4 @@
 packages:
-  - local: ../../../../common_components/monitoring/dbt_log
+  - git: "https://github.com/GoogleCloudPlatform/reg-reporting-blueprint.git"
+    subdirectory: "common_components/monitoring/dbt_log"
+    revision: 7bc331e6a37a846b9e5836589f3564c3138a50a1   

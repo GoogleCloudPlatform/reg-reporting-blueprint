@@ -1,4 +1,4 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', '${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/bq-data-load', '.' ]
-images: [ '${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/bq-data-load' ]
+  args: [ 'build', '-t', 'gcr.io/$PROJECT_ID/bq-data-load', '.' ]
+images: [ 'gcr.io/$PROJECT_ID/bq-data-load' ]
