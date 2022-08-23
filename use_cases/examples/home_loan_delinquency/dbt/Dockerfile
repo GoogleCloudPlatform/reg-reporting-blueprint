@@ -1,4 +1,4 @@
-FROM python:3.8.5
+FROM python:3.9
 
 # Install required system packages and cleanup to reduce image size
 RUN apt-get update -y && \
@@ -10,8 +10,8 @@ RUN apt-get update -y && \
 # Install data build tool
 RUN pip install -U pip
 RUN pip install \
-        dbt-core~=1.1.0 \
-        dbt-bigquery==1.1.0
+        dbt-core~=1.2.0 \
+        dbt-bigquery==1.2.0
 
 # Create users
 ENV DBT_DIR /dbt/
