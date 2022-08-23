@@ -1,6 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-f', 'use_cases/examples/boe_cre/dbt/Dockerfile',
-                   '-t', 'gcr.io/$PROJECT_ID/cre-dbt',
+  args: [ 'build', '-f', 'use_cases/examples/home_loan_delinquency/dbt/Dockerfile',
+                   '-t', 'gcr.io/$PROJECT_ID/homeloan-dbt',
                    '.' ]
-images: [ 'gcr.io/$PROJECT_ID/cre-dbt' ]
+images: [ 'gcr.io/$PROJECT_ID/homeloan-dbt' ]
+

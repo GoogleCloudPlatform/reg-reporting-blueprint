@@ -1,4 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', '${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/homeloan-bq-data-load', '.' ]
-images: [ '${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/homeloan-bq-data-load' ]
+  args: [ 'build', '-f', 'use_cases/examples/home_loan_delinquency/data_load/Dockerfile',
+                   '-t', 'gcr.io/$PROJECT_ID/homeloan-bq-data-load',
+                   '.' ]
+images: [ 'gcr.io/$PROJECT_ID/homeloan-bq-data-load' ]

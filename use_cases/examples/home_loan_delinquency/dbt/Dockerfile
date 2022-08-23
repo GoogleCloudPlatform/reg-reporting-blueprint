@@ -14,17 +14,20 @@ RUN pip install \
         dbt-bigquery==1.1.0
 
 # Create users
-ENV DBT_DIR /dbt/
-RUN useradd -rm -d $DBT_DIR -s /bin/bash -u 1000 dbt
-WORKDIR $DBT_DIR
+ENV HOME /dbt/
+RUN useradd -rm -d $HOME -s /bin/bash -u 1000 dbt
 USER dbt
 
 # Copy files to the image
-COPY --chown=dbt . $DBT_DIR
+COPY --chown=dbt use_cases/examples/home_loan_delinquency/dbt $HOME/use_cases/examples/home_loan_delinquency/dbt/
+COPY --chown=dbt common_components/monitoring/dbt_log $HOME/common_components/monitoring/dbt_log/
+
+# Start DBT dir
+WORKDIR $HOME/use_cases/examples/home_loan_delinquency/dbt
 
 # Run DBT debs to install dependencies
 RUN dbt deps
 
 # Run dbt. Profiles defaults locally through DBT_PROFILES_DIR.
-ENV DBT_PROFILES_DIR /dbt/profiles
+ENV DBT_PROFILES_DIR /dbt/use_cases/examples/home_loan_delinquency/dbt/profiles
 ENTRYPOINT [ "dbt" ]
