@@ -18,7 +18,12 @@
 -- This model selects only the latest run for each reporting day, as queried from the history table.
 -- To inspect the definition of the fields, generate the DBT documentation
 
-{{ config(materialized='view') }}
+{#    post_hook="CREATE TABLE IF NOT EXISTS `scannell-fsi-dev.temp_eu.{{ this.table }}` AS SELECT '' AS uuid, * FROM {{ this }} LIMIT 0; INSERT INTO `scannell-fsi-dev.temp_eu.{{ this.table }}` SELECT GENERATE_UUID() AS uuid, * FROM {{ this }};" #}
+{{
+  config(
+    materialized='view',
+  )
+}}
 
 SELECT
     wh.*
