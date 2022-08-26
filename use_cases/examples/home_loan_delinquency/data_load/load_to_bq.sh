@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Load the input data
+echo -e "\nLoad the input data"
 declare -a arr=( \
 "ref_legal_entity_mapping"
 "ref_products" \
@@ -38,7 +38,8 @@ do
 done
 
 
-# Load the expected results data
+echo -e "\nLoad the expected results data"
+echo $HOMELOAN_BQ_DATA
 declare -a arr=( \
 "stg_accounts" \
 "stg_products" \

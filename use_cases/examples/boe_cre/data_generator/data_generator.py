@@ -1,21 +1,21 @@
-## Copyright 2022 Google LLC
+# Copyright 2022 Google LLC
 
-## Licensed under the Apache License, Version 2.0 (the "License");
-## you may not use this file except in compliance with the License.
-## You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 
-##     https://www.apache.org/licenses/LICENSE-2.0
+#     https://www.apache.org/licenses/LICENSE-2.0
 
-## Unless required by applicable law or agreed to in writing, software
-## distributed under the License is distributed on an "AS IS" BASIS,
-## WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-## See the License for the specific language governing permissions and
-## limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 
-## Data Generator
-##
-## This script generates sample data in the format required by the CRE reports
+# Data Generator
+#
+# This script generates sample data in the format required by the CRE reports
 
 from datetime import date
 from io import StringIO
@@ -27,8 +27,9 @@ import names
 from tqdm import tqdm
 from google.cloud import bigquery
 
-
 STR_PCT_FORMAT = "{:.2}"
+
+
 def _format_pct(pct: float):
     """
     Auxiliary method to format a float into a percentage
@@ -40,6 +41,8 @@ def _format_pct(pct: float):
 
 
 STR_FLOAT_FORMAT = "{:.3f}"
+
+
 def _format_float(number: float):
     """
     Auxiliary method to format a float into a format suitable for output
@@ -51,6 +54,8 @@ def _format_float(number: float):
 
 
 STR_DATE_FORMAT = "%Y-%m-%d"
+
+
 def _format_date(input_date: date):
     """
     Auxiliary method to format a date into a format suitable for output
@@ -251,7 +256,7 @@ class RandomDataGenerator:
         limit = random.random() * self.config['max_limit']
 
         amount_kept_on_balance_sheet = (
-            random.random() * self.config['max_amount_kept_on_balance_sheet'])
+                random.random() * self.config['max_amount_kept_on_balance_sheet'])
 
         transaction_type = random.choice(
             self.config['lst_dropdown_transaction_type_table_1'])
@@ -265,127 +270,127 @@ class RandomDataGenerator:
 
         # Initialize random fields common across both records
         rec = dict(
-            booking_entity =   random.choice(self.config['lst_booking_entity']),
+            booking_entity=random.choice(self.config['lst_booking_entity']),
 
-            legal_entity =     random.choice(self.config['lst_legal_entity']),
+            legal_entity=random.choice(self.config['lst_legal_entity']),
 
-            division_of_bank = random.choice(self.config['lst_division_of_bank']),
+            division_of_bank=random.choice(self.config['lst_division_of_bank']),
 
-            within_policy_or_exception = within_policy_or_exception,
+            within_policy_or_exception=within_policy_or_exception,
 
-            transaction_type = transaction_type,
+            transaction_type=transaction_type,
 
-            deal_type = random.choice(self.config['lst_dropdown_deal_type']),
+            deal_type=random.choice(self.config['lst_dropdown_deal_type']),
 
-            main_receiver_of_distributed_loan = random.choice(
+            main_receiver_of_distributed_loan=random.choice(
                 self.config['lst_dropdown_main_receiver_of_distributed_loan']),
 
-            drawdown_date = _format_date(
+            drawdown_date=_format_date(
                 self.config['min_drawdown_date'] +
                 (self.config['max_drawdown_date'] - self.config['min_drawdown_date']) *
                 random.random()),
 
-            maturity_date = _format_date(
+            maturity_date=_format_date(
                 self.config['min_maturity_date'] +
                 (self.config['max_maturity_date'] - self.config['min_maturity_date']) *
                 random.random()),
 
-            sub_property_sector = random.choice(
+            sub_property_sector=random.choice(
                 self.config['lst_dropdown_sub_property_sector']),
 
-            region = random.choice(self.config['lst_dropdown_region']),
+            region=random.choice(self.config['lst_dropdown_region']),
 
-            property_quality = random.choice(
+            property_quality=random.choice(
                 self.config['lst_dropdown_property_quality']),
 
-            limit_value = _format_float(limit),
+            limit_value=_format_float(limit),
 
-            amount_kept_on_balance_sheet = _format_float(amount_kept_on_balance_sheet),
+            amount_kept_on_balance_sheet=_format_float(amount_kept_on_balance_sheet),
 
-            if_cre_Development_type_of_development = (
+            if_cre_Development_type_of_development=(
                 random.choice(self.config['lst_dropdown_type_of_development'])
                 if transaction_type == 'CRE Development'
                 else ""),
 
-            ltev = (
+            ltev=(
                 _format_pct(random.random())
                 if transaction_type == 'CRE Development'
                 else ""),
 
-            ltc = (
+            ltc=(
                 _format_pct(random.random())
                 if transaction_type == 'CRE Development'
                 else ""),
 
             # It looks like the ICR is always required. Unclear from the spec.
-            icr = (
+            icr=(
                 _format_pct(random.random() * self.config['max_icr'])),
 
-            net_rental_income = (
+            net_rental_income=(
                 _format_float(
                     random.random() * amount_kept_on_balance_sheet *
                     self.config['max_net_rental_income_ratio'])
                 if transaction_type == 'CRE Investment'
                 else ""),
 
-            margin =_format_pct(
+            margin=_format_pct(
                 random.random() * self.config['max_margin']),
 
-            fees = _format_pct(
+            fees=_format_pct(
                 random.random() * self.config['max_fees']),
 
-            interest_basis = random.choice(
+            interest_basis=random.choice(
                 self.config['lst_dropdown_interest_basis']),
 
-            pct_of_limit_hedge = _format_pct(random.random()),
+            pct_of_limit_hedge=_format_pct(random.random()),
 
-            maturity_date_of_hedge = _format_date(
+            maturity_date_of_hedge=_format_date(
                 self.config['min_maturity_date_of_hedge'] +
                 ((self.config['max_maturity_date_of_hedge'] -
                   self.config['min_maturity_date_of_hedge']) *
-                  random.random())
+                 random.random())
             ),
 
-            security = random.choice(self.config['lst_dropdown_security']),
+            security=random.choice(self.config['lst_dropdown_security']),
 
-            total_limit_on_transaction_including_other_lenders_debt_if_known = (
+            total_limit_on_transaction_including_other_lenders_debt_if_known=(
                 _format_float(random.random() * limit)),
 
-            weighted_average_remaining_lease_length = int(
+            weighted_average_remaining_lease_length=int(
                 random.random() * self.config['max_lease_length_months']),
 
-            average_tenant_credit_quality = random.choice(
+            average_tenant_credit_quality=random.choice(
                 self.config['lst_dropdown_average_tenant_credit_quality']),
 
-            projected_value_of_loan_at_maturity = _format_float(
+            projected_value_of_loan_at_maturity=_format_float(
                 limit * self.config['max_projected_value_of_loan_at_maturity_pct']),
 
-            identity_of_lead_lender = "Lender " + str(
+            identity_of_lead_lender="Lender " + str(
                 int(random.random() * self.config['num_lenders'])),
 
-            participating_lenders = "Lender " + str(
+            participating_lenders="Lender " + str(
                 int(random.random() * self.config['num_lenders'])),
 
-            ongoing_covenants = random.choice(
+            ongoing_covenants=random.choice(
                 self.config['lst_dropdown_ongoing_covenants']),
 
-            name_of_borrower = names.get_full_name(),
-            name_of_sponsor = names.get_full_name(),
+            name_of_borrower=names.get_full_name(),
+            name_of_sponsor=names.get_full_name(),
 
-            sponsor_quality = random.choice(
+            sponsor_quality=random.choice(
                 self.config['lst_dropdown_sponsor_quality']),
 
-            policy_exceptions = (
+            policy_exceptions=(
                 random.choice(self.config['lst_dropdown_policy_exception'])
                 if within_policy_or_exception == 'Exception'
                 else ""),
 
-            brief_reason_for_policy_exception = (
+            brief_reason_for_policy_exception=(
                 "A description of the policy exception"
                 if within_policy_or_exception == 'Exception'
                 else ""),
 
-            any_other_brief_comments = "",
+            any_other_brief_comments="",
         )
 
         # Initialize stock-specific fields
@@ -394,42 +399,42 @@ class RandomDataGenerator:
                 self.config['lst_dropdown_internal_credit_rating'])
 
             rec.update(
-                ltv_at_origination = _format_pct(ltv_at_origination),
+                ltv_at_origination=_format_pct(ltv_at_origination),
 
-                indexed_ltv = (
+                indexed_ltv=(
                     _format_pct(random.random())
                     if transaction_type == 'CRE Investment'
                     else None),
 
-                basel_approach = random.choice(
+                basel_approach=random.choice(
                     self.config['lst_dropdown_basel_approach']),
 
-                credit_rating_scale_name = random.choice(
+                credit_rating_scale_name=random.choice(
                     self.config['lst_dropdown_credit_rating_scale_name']),
 
-                internal_credit_rating = internal_credit_rating,
+                internal_credit_rating=internal_credit_rating,
 
-                internal_credit_rating_at_origination = (
+                internal_credit_rating_at_origination=(
                     random.choice(self.config['lst_dropdown_internal_credit_rating'])
                     if random.random() < self.config['frequency_of_change']
                     else internal_credit_rating),
 
-                rwa = (_format_float(random.random() * amount_kept_on_balance_sheet)),
+                rwa=(_format_float(random.random() * amount_kept_on_balance_sheet)),
 
-                pd_regulatory = _format_pct(random.random()),
+                pd_regulatory=_format_pct(random.random()),
 
-                lgd_regulatory = _format_pct(random.random()),
+                lgd_regulatory=_format_pct(random.random()),
 
-                expected_loss_regulatory = _format_pct(
+                expected_loss_regulatory=_format_pct(
                     random.random() * amount_kept_on_balance_sheet),
 
-                provisions = _format_float(random.random() * amount_kept_on_balance_sheet),
+                provisions=_format_float(random.random() * amount_kept_on_balance_sheet),
             )
 
         # Initialize flow-specific fields
         if rec_type == 'flow':
             rec.update(
-                ltv_pct = _format_pct(ltv_at_origination)
+                ltv_pct=_format_pct(ltv_at_origination)
             )
 
         return rec
@@ -477,7 +482,6 @@ def upload_rows_to_bigquery(client, table_id, num_rows, row_generator):
 
 
 if __name__ == "__main__":
-
     # Arguments
     parser = argparse.ArgumentParser(description='Create random CRE records')
     parser.add_argument('--project_id',
