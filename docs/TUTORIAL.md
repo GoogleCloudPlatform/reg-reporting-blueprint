@@ -111,7 +111,7 @@ See [Clean up](#clean-up) for more detail.
 
 7. Install  dbt:
     ```
-    sudo pip3 install dbt-bigquery
+    pip3 install dbt-bigquery
     ```
 
 
@@ -225,7 +225,7 @@ both the `homeloan_data` and `homeloan_expectedresults` datasets.
 2. Test the connection between your local dbt installation and
    your BigQuery datasets by running the following command:
     ```
-    dbt debug --profiles-dir profiles/
+    dbt debug 
     ```
     At the end of the connectivity, configuration and dependency info returned by the command, you should see the 
 following message: `All checks passed!`
@@ -236,14 +236,14 @@ in DBT.
 
 3. Run the reporting transformations to create the regulatory reporting metrics:
     ```
-    dbt run --profiles-dir profiles/ 
+    dbt run
     ```
 
 
 4. Run the transformations for a date of your choice:
 
     ```
-    dbt run --profiles-dir profiles/ --vars '{"reporting_day": "2021-09-03"}'
+    dbt run --vars '{"reporting_day": "2021-09-03"}'
     ```
    
     Notice the variables that control the execution of the transformations. The variable `reporting_day` indicates the 
@@ -274,7 +274,7 @@ For example, the `ACCOUNT_KEY` field in the src_current_accounts_attributes tabl
 
 7. Run the data quality tests that are specified in the config files:
     ```
-    dbt test --profiles-dir profiles/ -s test_type:generic 
+    dbt test -s test_type:generic 
     ```
    
 8. Inspect the code in the ` use_cases/examples/home_loan_delinquency/dbt/tests `folder, which contains `singular`
@@ -284,7 +284,7 @@ the `dbt run` command, and expected results as saved in the `homeloan_expectedre
 
 9. Run the singular tests:
     ```
-    dbt test --profiles-dir profiles/ -s test_type:singular
+    dbt test -s test_type:singular
     ```
 
 
@@ -306,49 +306,43 @@ the models’ documentation as specified in the  models/schema.yml files, and al
 ## (Optional) Containerize the transformations
 1. Create a container for the BigQuery data load step, and push the container to Google Container Repository:
     ```
-    cd ../data_load/     # Note the Dockerfile in this folder
-    gcloud builds submit --tag $GCR_DATALOAD_IMAGE  # Pushes the image to GCR     
+    cd ../../../../     # the gcloud command should be executed from the root 
+    gcloud builds submit --config use_cases/examples/home_loan_delinquency/data_load/cloudbuild.yaml
     ```
-    The Dockerfile in this directory enables this containerization, which simplifies orchestration of the workflow.
+    The Dockerfile in the data_load directory enables this containerization, which simplifies orchestration of the 
+   workflow.
 
 
 2. Containerize the DBT code for the data transformation step, and push the container to Google Container Repository. 
     ```
-    cd ../dbt
-    gcloud builds submit --tag $GCR_DBT_SAMPLE_REPORTING_IMAGE
+    gcloud builds submit --config use_cases/examples/home_loan_delinquency/dbt/cloudbuild.yaml
     ```
     Containerization helps you to create a package that can be easily versioned and deployed. 
 
 
-3. Retrieve the path of the Airflow UI and the GCS bucket for dags. 
-   You can use the terraform output command to retrieve those variables.
+3. Retrieve the path of the Airflow UI and the GCS bucket for dags, and store them in
+   environment variables. 
+   You will need to use the AIRFLOW_DAG_GCS to upload the Airflow DAG, and the AIRFLOW_UI 
+   to log into Composer and see the progress of the orchestration.
     ```
-    cd ../../../../common_components/orchestration/infrastructure/ 
-    terraform output | grep airflow
-    ```
-    For convenience, you may want to store the output in environment variables.
-    ```
+    cd common_components/orchestration/infrastructure/ 
     AIRFLOW_DAG_GCS=$(terraform output --raw airflow_dag_gcs_prefix)
     AIRFLOW_UI=$(terraform output --raw airflow_uri)
     ```
-   You will need to use the AIRFLOW_DAG_GCS to upload the Airflow DAG, and the AIRFLOW_UI to 
-    log into Composer and see the progress of the orchestration.
 
-
-5. Upload the home loan delinquency dag.
+4. Upload the home loan delinquency dag.
     ```
     cd ../../../use_cases/examples/home_loan_delinquency/deploy/
-    gsutil cp run_dag.py $AIRFLOW_DAG_GCS
+    gsutil cp run_homeloan_dag.py $AIRFLOW_DAG_GCS
     ```
    
-6. Head to the Airflow UI and see the process executing. 
+5. Head to the Airflow UI and see the process executing. 
    Execute the command below to retrieve the UI, and click on the link:
    ```
    echo $AIRFLOW_UI
    ```
-    
-   
-8. In the UI, after a few minutes you should see the home-loan-delinquency DAG.
+
+6. In the UI, after a few minutes you should see the home-loan-delinquency DAG.
    Click on the Last Run and you should see a diagram like the one below.
     ![image](images/airflow-ui.png)
 
@@ -376,7 +370,7 @@ If you plan to explore multiple tutorials and quickstarts, reusing projects can 
 ## Delete the individual resources
 To avoid incurring further charges, destroy the resources.
 ```
-cd infrastructure/environment
+cd ../../../../common_components/orchestration/infrastructure/
 terraform destroy
 ```
 

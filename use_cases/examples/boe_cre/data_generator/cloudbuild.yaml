@@ -12,7 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-packages:
-  - git: "https://github.com/GoogleCloudPlatform/reg-reporting-blueprint.git"
-    subdirectory: "common_components/monitoring/dbt_log"
-    revision: 7bc331e6a37a846b9e5836589f3564c3138a50a1
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-f', 'use_cases/examples/boe_cre/data_generator/Dockerfile',
+                   '-t', 'gcr.io/$PROJECT_ID/cre-data_generator',
+                   'use_cases/examples/boe_cre/data_generator' ]
+images: [ 'gcr.io/$PROJECT_ID/cre-data_generator' ]

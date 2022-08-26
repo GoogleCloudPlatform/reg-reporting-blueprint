@@ -60,7 +60,7 @@ def dbt_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
 
 # Define the DAG
 with models.DAG(
-    dag_id='home-loan-delinquency',
+    dag_id='home_loan_delinquency',
     schedule_interval= "0 * * * *",
     catchup=False,
     default_args={
@@ -75,18 +75,18 @@ with models.DAG(
 
     load_job = dbt_job(
         name='bq-data-load',
-        image_name='bq-data-load',
+        image_name='homeloan-bq-data-load',
         env_vars={
+            'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
+            'PROJECT_ID': PROJECT_ID,
             'HOMELOAN_BQ_DATA': 'homeloan_data',
             'HOMELOAN_BQ_EXPECTEDRESULTS': 'homeloan_expectedreresults',
-            'PROJECT_ID': PROJECT_ID,
-            'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
         }
     )
 
     run_hld_report = dbt_job(
         name='hld-run',
-        image_name='home-loan-delinquency',
+        image_name='homeloan-dbt',
         arguments=[
             "run",
             "--vars",
@@ -109,7 +109,7 @@ with models.DAG(
 
     test_hld_dq = dbt_job(
         name='hld-dq-test',
-        image_name='home-loan-delinquency',
+        image_name='homeloan-dbt',
         arguments=[
             "test",
             "-s",
@@ -134,7 +134,7 @@ with models.DAG(
 
     test_hld_regression = dbt_job(
         name='hld-regression-test',
-        image_name='home-loan-delinquency',
+        image_name='homeloan-dbt',
         arguments=[
             "test",
             "-s",

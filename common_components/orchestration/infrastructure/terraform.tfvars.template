@@ -16,9 +16,11 @@ project="PROJECT_ID"
 bq_datasets=[
   "HOMELOAN_BQ_DEV",
   "HOMELOAN_BQ_DATA",
-  "HOMELOAN_BQ_EXPECTEDRESULTS"
+  "HOMELOAN_BQ_EXPECTEDRESULTS",
+  "CRE_BQ_DEV",
+  "CRE_BQ_DATA"
 ]
 region="REGION"
 bq_location="BQ_LOCATION"
 gcs_location="GCS_LOCATION"
-enable_composer=false
+enable_composer=true

@@ -1,0 +1,519 @@
+# Copyright 2022 Google LLC
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     https://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+version: 2
+
+sources:
+  - name: input_data
+    database: "{{ env_var('PROJECT_ID') }}"
+    schema: "{{ env_var('CRE_BQ_DATA') }}"
+    tables:
+      - &loan_level_stock_granular
+        name: loan_level_stock_granular
+        description: >
+          {{ doc("cre_stock") }}
+          
+          {{ doc("definitions") }}
+        columns:
+          - &col_booking_entity
+            name: booking_entity
+            description: 'Booking entity'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - &col_legal_entity
+            name: legal_entity
+            description: 'Legal entity'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - &col_division_of_bank
+            name: division_of_bank
+            description: 'Division of bank'
+          - &col_within_policy_or_exception
+            name: within_policy_or_exception
+            description: 'Within policy or exception'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              - accepted_values:
+                    values: ['Policy', 'Exception']
+          - &col_transaction_type
+            name: transaction_type
+            description: 'Transaction Type'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              - accepted_values:
+                    values: ['CRE Investment', 'CRE Development']
+          - &col_if_cre_development_type_of_development
+            name: if_cre_development_type_of_development
+            description: 'If CRE development, type of development'
+            tests:
+              - not_null:
+                  where: "transaction_type = 'CRE Development'"
+                  config:
+                    severity: warn
+              - accepted_values:
+                    values: ['Speculative commercial', 'Fully pre-let commercial', 'Part speculative commercial; part fully pre-let commercial', 'Residential development for sale', 'Other (please state in "any other brief comments" variable)']
+          - &col_deal_type
+            name: deal_type
+            description: 'Deal Type'
+            tests:
+              - accepted_values:
+                    values: ['New client', 'Existing client, new transaction', 'Existing client, refinance of existing transaction']
+          - &col_limit_value
+            name: limit_value
+            description: >
+              Limit (£m).
+              The original/total amount of committed lending (i.e. drawn and undrawn commitments) against a 
+              specific property or portfolios of properties. 
+              In the case of club deals or syndications, please provide only your share of the wider loan.
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - &col_amount_kept_on_balance_sheet
+            name: amount_kept_on_balance_sheet
+            description: >
+              Amount kept on balance sheet (ie not distributed) (£m).
+              The amount kept on balance sheet after any parts of it were distributed. 
+              Please insert the original amount kept on balance sheet (£ limit), not what is currently 
+              outstanding.
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - &col_main_receiver_of_distributed_loan
+            name: main_receiver_of_distributed_loan
+            description: 'Main receiver of distributed loan'
+            tests:
+              - accepted_values:
+                    values: ['UK bank', 'Non-UK bank', 'UK insurer', 'Non-UK insurer', 'UK pension fund', 'Non-UK pension fund', 'Credit fund']
+          - &col_drawdown_date
+            name: drawdown_date
+            description: 'Drawdown Date'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - &col_maturity_date
+            name: maturity_date
+            description: 'Maturity Date'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - &col_sub_property_sector
+            name: sub_property_sector
+            description: 'Sub-Property Sector'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              - accepted_values:
+                    values: ['Office', 'High Street Retail', 'Shopping Centres', 'Warehouse/Distribution', 'Residential', 'Hotels', 'Nursing Care', 'Leisure', 'Student Accommodation', 'Serviced offices/co-working', 'Healthcare', 'Mixed']
+          - &col_region
+            name: region
+            description: 'Region'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              - accepted_values:
+                    values: ['North East ', 'North West', 'Yorkshire and the Humber', 'East Midlands', 'West Midlands', 'East of England', 'London', 'South East', 'South West', 'Northern Ireland', 'Scotland', 'Wales ', 'Nationwide']
+          - &col_property_quality
+            name: property_quality
+            description: 'Property quality'
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
+              - accepted_values:
+                    values: ['Prime', 'Good Secondary', 'Secondary', 'Tertiary']
+          - &col_ltv_at_origination
+            name: ltv_at_origination
+            description: >
+              LTV at origination (%). 
+              The LTV reported for all individual loans should refer to the total amount of the loan(s) against the value of the property. 
+              For loans with multiple tranches where some tranches distributed and others kept on balance sheet, please provide the LTV for the whole loan, including all distributed tranches.
+            tests:
+              - not_null:
+                  where: "transaction_type = 'CRE Investment'"
+                  config:
+                    severity: error
+          - &col_indexed_ltv
+            name: indexed_ltv
+            description: 'Indexed LTV (%)'
+            tests:
+              - not_null:
+                  where: "transaction_type = 'CRE Investment'"
+                  config:
+                    severity: error
+          - &col_ltev
+            name: ltev
+            description: >
+              LTeV (%). 
+              Loan to End Value (loan to value of the completed property) for whole loan, including all distributed tranches.
+            tests:
+              - not_null:
+                  where: "transaction_type = 'CRE Development'"
+                  config:
+                    severity: warn
+          - &col_ltc
+            name: ltc
+            description: >
+              LTC (%). 
+              Loan to Cost (loan to cost of developing the property) for whole loan, including all distributed tranches.
+            tests:
+              - not_null:
+                  where: "transaction_type = 'CRE Development'"
+                  config:
+                    severity: warn
+          - &col_icr
+            name: icr
+            description: >
+              ICR (x). 
+              ICRs should be actual net ICRs reported in the last covenant test. 
+              As such, they should be based on 
+                (1) net rental income after deduction of all non-recoverable costs including any maintenance reserves or costs, and 
+                (2) net interest costs. 
+              For special cases provide the following: 
+                guarantees: use passing rent to calculate ratio, 
+                vacant properties: set to 0.
+            tests:
+              - not_null:
+                  where: "transaction_type = 'CRE Investment'"
+                  config:
+                    severity: error
+          - &col_net_rental_income
+            name: net_rental_income
+            description: >
+              Net rental income (£m). 
+                Please provide on the same basis as ICRs. 
+                Similarly for special cases provide the following: 
+                  -guarantees: use passing rent to calculate ratio, 
+                  -vacant properties: set to 0.
+            tests:
+              - not_null:
+                  where: "transaction_type = 'CRE Investment'"
+                  config:
+                    severity: error
+          - &col_margin
+            name: margin
+            description: 'Margin (%)'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - &col_fees
+            name: fees
+            description: 'Fees (%)'
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
+          - &col_interest_basis
+            name: interest_basis
+            description: 'Interest Basis'
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
+              - accepted_values:
+                    values: ['Entirely floating rate with no interest rate protection', 'Entirely fixed rate', 'Partially fixed rate or with interest rate protection']
+          - &col_pct_of_limit_hedge
+            name: pct_of_limit_hedge
+            description: '% of Limit Hedge'
+            tests:
+              - not_null:
+                  where: "interest_basis = 'Partially fixed rate or with interest rate protection'"
+                  config:
+                    severity: error
+          - &col_maturity_date_of_hedge
+            name: maturity_date_of_hedge
+            description: 'Maturity Date of Hedge'
+          - &col_security
+            name: security
+            description: 'Security'
+            tests:
+              - accepted_values:
+                    values: ['First charge', 'Second charge', 'Unsecured']
+          - &col_total_limit_on_transaction_including_other_lenders_debt_if_known
+            name: total_limit_on_transaction_including_other_lenders_debt_if_known
+            description: >
+              Total limit on transaction including other lenders debt if known (£m). 
+              The total amount of committed lending against a specific property or portfolio of properties: all parts of a loan (for syndications and club deals), and including mezzanine and junior loans where there are any.
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - &col_weighted_average_remaining_lease_length
+            name: weighted_average_remaining_lease_length
+            description: >
+              Weighted average remaining lease length (months). 
+              As is common practice from lenders, please make sure you insert the residual length of the lease rather (to expiry or break, whichever comes first) than the overall lease length. 
+              For example, for a 10-year lease contracted in 2018, the lease length which should be reported in the 2020 CRE underwriting standards review will be 8 years, alternatively for a 10 year lease contracted in 2018 but with a contractual break after 5 years, the lease length remaining should be 3 years. 
+              For special cases provide the following (unless more applicable information is known): 
+                residential assured shorthold tenancies: 12 months, 
+                student accommodation: 6 months, 
+                vacant properties or guarantees: 0 months.
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - &col_average_tenant_credit_quality
+            name: average_tenant_credit_quality
+            description: 'Average tenant credit quality'
+            tests:
+              - accepted_values:
+                    values: ['Sovereign', 'Investment grade', 'Sub-investment grade', 'Individuals/Sole traders']
+          - &col_projected_value_of_loan_at_maturity
+            name: projected_value_of_loan_at_maturity
+            description: >
+              Projected value of loan at maturity (£m).
+              The projected value of the loan when it matures as per the agreed amortisation schedule. 
+              For club deals and syndications, please fill in with relation to your share of the wider loan, i.e. this should relate to "limit" variable, not the "total limit" provided by the club or syndicate.
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
+          - &col_identity_of_lead_lender
+            name: identity_of_lead_lender
+            description: 'Identity of lead lender (for club deals and syndications)'
+          - &col_participating_lenders
+            name: participating_lenders
+            description: 'Participating lenders (for club deals and syndications)'
+          - &col_ongoing_covenants
+            name: ongoing_covenants
+            description: 'Ongoing covenants'
+            tests:
+              - accepted_values:
+                    values: ['Running LTV and ICR/DSR covenants', 'Running LTV covenant', 'Running ICR/DSR covenant', 'Running LTC/LTeV covenant', 'No running covenants', 'Other (please state in "any other brief comments" variable)']
+          - &col_name_of_borrower
+            name: name_of_borrower
+            description: >
+              Name of borrower.
+              With respect to the EU General Data Protection Regulation (GDPR), please ensure that no personally identifiable information is included.
+              Please do not provide us with individual/personal data and ensure you remove any individual/personal data before submitting the template to the Bank of England. 
+              GDPR applies to ‘personal data’, meaning any information relating to an identifiable person who can be directly or indirectly identified in particular by reference to an identifier.
+          - &col_name_of_sponsor
+            name: name_of_sponsor
+            description: 'Name of sponsor (based on slotting assessment)'
+          - &col_sponsor_quality
+            name: sponsor_quality
+            description: 'Sponsor quality'
+            tests:
+              - accepted_values:
+                    values: ['Strong. Project is highly strategic for the sponsor (core business - long-term strategy)', 'Good. Project is strategic for the sponsor (core business - long-term strategy)', 'Acceptable. Project is considered important for the sponsor (core business)', 'Limited. Project is not key to sponsors long-term strategy or core business']
+          - &col_policy_exceptions
+            name: policy_exceptions
+            description: 'Policy Exceptions'
+            tests:
+              - accepted_values:
+                    values: ['Higher LTV (inv and land bank only)', 'Equity in pari-passu or last (dev only)', 'Higher LTC and/or LTeV (dev only)', 'Higher Residual Value percentage (inv only)', 'Lower ICR (inv only)', 'Lower risk reward return (all)', 'Weaker repayment structure (all)', 'Weaker planning requirement (land bank only)', 'Weaker interest payment basis (land bank only)', 'Weaker lending basis, i.e. LTV instead of LTC (land bank only)', 'Weaker pre-let requirement (dev only)', 'No hedging when hedging is mandatory (all)']
+          - &col_brief_reason_for_policy_exception
+            name: brief_reason_for_policy_exception
+            description: 'Brief Reason for Policy Exception(s)'
+          - &col_basel_approach
+            name: basel_approach
+            description: 'Basel approach'
+            tests:
+              - accepted_values:
+                    values: ['F-IRB', 'A-IRB', 'IRB Slotting', 'Standardised']
+          - &col_credit_rating_scale_name
+            name: credit_rating_scale_name
+            description: 'Credit rating scale name'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              - accepted_values:
+                    values: ['CQS', 'Firm slotting scale', 'Standardised no internal rating']
+          - &col_internal_credit_rating
+            name: internal_credit_rating
+            description: 'Internal credit rating'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              - accepted_values:
+                    values: ['1', '2', '3', '4', '5', '6', 'Default', 'Good', 'Satisfactory', 'Strong', 'Unrated', 'Weak']
+          - &col_internal_credit_rating_at_origination
+            name: internal_credit_rating_at_origination
+            description: 'Internal credit rating at origination'
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
+          - &col_rwa
+            name: rwa
+            description: 'RWA (£m)'
+          - &col_pd_regulatory
+            name: pd_regulatory
+            description: 'PD regulatory (%)'
+          - &col_lgd_regulatory
+            name: lgd_regulatory
+            description: 'LGD regulatory (%)'
+          - &col_expected_loss_regulatory
+            name: expected_loss_regulatory
+            description: 'Expected loss regulatory (£m)'
+          - &col_provisions
+            name: provisions
+            description: 'Provisions (£m)'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - &col_any_other_brief_comments
+            name: any_other_brief_comments
+            description: 'Any other brief comments'
+
+      - &loan_level_flow_granular
+        name: loan_level_flow_granular
+        description: >
+          {{ doc("cre_flow") }}
+          {{ doc("definitions") }}
+        columns:
+          - *col_booking_entity
+          - *col_legal_entity
+          - *col_division_of_bank
+          - *col_within_policy_or_exception
+          - *col_transaction_type
+          - *col_if_cre_development_type_of_development
+          - *col_deal_type
+          - *col_limit_value
+          - *col_amount_kept_on_balance_sheet
+          - *col_main_receiver_of_distributed_loan
+          - *col_drawdown_date
+          - *col_maturity_date
+          - *col_sub_property_sector
+          - *col_region
+          - *col_property_quality
+          - name: ltv_pct
+            description: 'LTV (%)'
+          - *col_ltev
+          - *col_ltc
+          - *col_icr
+          - *col_net_rental_income
+          - *col_margin
+          - *col_fees
+          - *col_interest_basis
+          - *col_pct_of_limit_hedge
+          - *col_maturity_date_of_hedge
+          - *col_security
+          - *col_total_limit_on_transaction_including_other_lenders_debt_if_known
+          - *col_weighted_average_remaining_lease_length
+          - *col_average_tenant_credit_quality
+          - *col_projected_value_of_loan_at_maturity
+          - *col_identity_of_lead_lender
+          - *col_participating_lenders
+          - *col_ongoing_covenants
+          - *col_name_of_borrower
+          - *col_name_of_sponsor
+          - *col_sponsor_quality
+          - *col_policy_exceptions
+          - *col_brief_reason_for_policy_exception
+          - *col_any_other_brief_comments
+
+models:
+  - <<: *loan_level_stock_granular
+    name: loan_level_stock
+    columns:
+      - &col_table_A_category
+        name: table_A_category
+        description: 'The category of loan to facilitate Table A breakdown'
+      - &col_ltv_band
+        name: ltv_band
+        description: 'The LTV band'
+      - &col_icr_band
+        name: icr_band
+        description: 'The ICR band'
+
+  - <<: *loan_level_flow_granular
+    name: loan_level_flow
+
+  - <<: *loan_level_stock_granular
+    name: loan_level_stock_below_10m
+    description: >
+      This is system generated for any loan below 10m
+
+  - <<: *loan_level_stock_granular
+    name: loan_level_stock_over_10m
+    description: >
+      This is system generated for any loan above 10m
+
+  - <<: *loan_level_flow_granular
+    name: table1_cre_loans_flow_2020
+    description: >
+      This report is system generated for flow level information of CRE syndicated loans and club deals issued in 2020 
+      (if in aggregate the amount distributed or to be distributed is greater than £300 million).
+      Filled if more than £300 million of UK CRE loans originated in 2020 have been or are expected to be distributed. 
+      This is to understand the types of loans that are distributed out to other lenders.
+      Please include all loans originated in 2020, regardless of whether they have been distributed or kept on balance 
+      sheet.
+
+  - <<: *loan_level_stock_granular
+    name: table1_cre_loans_stock_over_10m
+    description: >
+      Table 1: CRE loans >£10m
+      Transaction-level information on the stock of loans as at 31st December 2020.
+      This is system generated with all loans above £10m (ie extend the number of rows beyond 50 if necessary)
+
+  - name: tableA_cre_loans_stock_total_limits
+    description: > 
+      System generated report for Total limits (for all loan originations, regardless of size) - stock of CRE loans.
+      Breakdown by CRE development or investment, within policy or not
+    columns:
+      - name: class
+        description: 'Whether this is a CRE development or investment, and within policy or not'
+      - *col_table_A_category
+      - *col_limit_value
+
+  - name: tableB1_summary_stock_loans_below_10m_by_property_type
+    description: > 
+      System generated report for summary information on loans approved below £10m - stock of CRE loans
+      Breakdown by sub property sector
+    columns:
+      - *col_sub_property_sector
+      - *col_limit_value
+
+  - name: tableB1_summary_stock_loans_below_10m_by_region
+    description: > 
+      System generated report for summary information on loans approved below £10m - stock of CRE loans
+      Breakdown by region
+    columns:
+      - *col_region
+      - *col_limit_value
+
+  - name: tableB1_summary_stock_loans_below_10m_joint_ltv_icr
+    description: > 
+      System generated report for summary information on loans approved below £10m - stock of CRE loans
+      Breakdown by LTV and ICR bands
+    columns:
+      - *col_ltv_band
+      - *col_icr_band
+      - *col_limit_value
+
+  - name: tableC_cre_loans_flows_over_past_year
+    description: >
+      System generated report for CRE loan issuance FLOWS over the past year
+    columns:
+      - *col_main_receiver_of_distributed_loan
+      - *col_limit_value
+      - *col_amount_kept_on_balance_sheet
