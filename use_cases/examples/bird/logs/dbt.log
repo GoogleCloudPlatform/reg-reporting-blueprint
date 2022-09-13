@@ -1,0 +1,27 @@
+
+
+============================== 2022-09-16 09:51:49.490093 | 0c1c9ebd-2c60-417c-8863-a80b1e5deaf6 ==============================
+[0m09:51:49.490104 [info ] [MainThread]: Running with dbt=1.2.0
+[0m09:51:49.490572 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/Users/mtronci/Code/reg-reporting-blueprint/use_cases/examples/bird/profiles', 'send_anonymous_usage_stats': True, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'project_name': 'dbt', 'skip_profile_setup': False, 'which': 'init', 'indirect_selection': 'eager'}
+[0m09:51:49.490768 [debug] [MainThread]: Tracking: tracking
+[0m09:51:49.512688 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b69b940>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b69b790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b69b580>]}
+[0m09:51:49.515111 [info ] [MainThread]: Creating dbt configuration folder at /Users/mtronci/Code/reg-reporting-blueprint/use_cases/examples/bird/profiles
+[0m09:51:49.518015 [debug] [MainThread]: Starter project path: /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/dbt/include/starter_project
+[0m09:52:18.154982 [info ] [MainThread]: Profile dbt written to /Users/mtronci/Code/reg-reporting-blueprint/use_cases/examples/bird/profiles/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m09:52:18.155401 [info ] [MainThread]: 
+Your new dbt project "dbt" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m09:52:18.155772 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b69b700>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b69b1c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b69b5e0>]}

@@ -1,0 +1,13 @@
+dbt:
+  outputs:
+    dev:
+      dataset: test
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      location: EU
+      method: oauth
+      priority: interactive
+      project: mtronci-sandbox
+      threads: 5
+      type: bigquery
+  target: dev

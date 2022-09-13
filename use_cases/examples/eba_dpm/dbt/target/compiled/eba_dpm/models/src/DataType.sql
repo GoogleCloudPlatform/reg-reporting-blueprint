@@ -1,0 +1,1 @@
+SELECT * FROM `scannell-fsi-dev`.`dpm_model`.`v3_2_DataType`

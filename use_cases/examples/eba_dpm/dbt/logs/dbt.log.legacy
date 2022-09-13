@@ -1,0 +1,31 @@
+2022-08-26 15:06:43.837253 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:06:43.840088 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:06:43.842613 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:06:43.845199 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:06:47.677934 (Thread-3 (worker)): unclosed <ssl.SSLSocket fd=12, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 55529), raddr=('172.217.169.10', 443)>
+2022-08-26 15:06:47.678296 (Thread-3 (worker)): unclosed <ssl.SSLSocket fd=13, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 55534), raddr=('172.217.169.10', 443)>
+2022-08-26 15:19:23.969089 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:19:23.972277 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:19:45.922100 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:19:45.924912 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:22:00.747388 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:22:00.750139 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:22:02.272204 (Thread-1 (worker)): unclosed <ssl.SSLSocket fd=12, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 57334), raddr=('172.217.169.10', 443)>
+2022-08-26 15:22:02.272598 (Thread-1 (worker)): unclosed <ssl.SSLSocket fd=13, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 57339), raddr=('172.217.169.10', 443)>
+2022-08-26 15:25:22.469739 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:25:22.507991 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:25:22.510973 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:25:25.403057 (MainThread): unclosed <ssl.SSLSocket fd=13, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 57745), raddr=('142.250.179.234', 443)>
+2022-08-26 15:25:25.434061 (Thread-1 (worker)): unclosed <ssl.SSLSocket fd=12, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 57740), raddr=('142.250.179.234', 443)>
+2022-08-26 15:25:25.434407 (Thread-1 (worker)): unclosed <ssl.SSLSocket fd=14, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 57746), raddr=('142.250.179.234', 443)>
+2022-08-26 15:28:52.166161 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:28:56.364808 (Thread-1 (worker)): unclosed <ssl.SSLSocket fd=12, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 58151), raddr=('142.250.200.42', 443)>
+2022-08-26 15:28:56.365227 (Thread-1 (worker)): unclosed <ssl.SSLSocket fd=13, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 58154), raddr=('142.250.200.42', 443)>
+2022-08-26 15:42:11.143535 (Thread-1 (worker)): unclosed <ssl.SSLSocket fd=11, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 59687), raddr=('216.58.213.10', 443)>
+2022-08-26 15:42:11.144493 (Thread-1 (worker)): unclosed <ssl.SSLSocket fd=12, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 59690), raddr=('216.58.213.10', 443)>
+2022-08-26 15:42:11.246442 (MainThread): unclosed <ssl.SSLSocket fd=17, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 59691), raddr=('216.58.213.10', 443)>
+2022-08-26 15:45:36.697433 (MainThread): 'soft_unicode' has been renamed to 'soft_str'. The old name will be removed in MarkupSafe 2.1.
+2022-08-26 15:45:39.894279 (MainThread): unclosed <ssl.SSLSocket fd=13, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 60098), raddr=('216.58.213.10', 443)>
+2022-08-26 15:45:43.784181 (Thread-1 (worker)): unclosed <ssl.SSLSocket fd=12, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 60096), raddr=('216.58.213.10', 443)>
+2022-08-26 15:45:43.784552 (Thread-1 (worker)): unclosed <ssl.SSLSocket fd=14, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 60103), raddr=('216.58.213.10', 443)>
+2022-08-26 15:45:43.893601 (MainThread): unclosed <ssl.SSLSocket fd=18, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('192.168.1.164', 60105), raddr=('216.58.213.10', 443)>

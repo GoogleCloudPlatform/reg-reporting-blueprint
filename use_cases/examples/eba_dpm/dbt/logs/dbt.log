@@ -1,0 +1,1100 @@
+
+
+============================== 2022-08-26 15:06:24.058946 | 2661acf9-a338-4b68-826f-2d5a6bc43920 ==============================
+[0m15:06:24.058958 [info ] [MainThread]: Running with dbt=1.2.0
+[0m15:06:24.059416 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 100, 'version_check': True, 'partial_parse': False, 'static_parser': True, 'profiles_dir': '/Users/mtronci/Code/reg-reporting-blueprint/use_cases/examples/eba_dpm/dbt/profiles', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'config_dir': False, 'which': 'debug', 'indirect_selection': 'eager'}
+[0m15:06:24.059616 [debug] [MainThread]: Tracking: do not track
+[0m15:06:25.232747 [debug] [MainThread]: Executing "git --help"
+[0m15:06:25.260918 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone     Clone a repository into a new directory\n   init      Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add       Add file contents to the index\n   mv        Move or rename a file, a directory, or a symlink\n   restore   Restore working tree files\n   rm        Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect    Use binary search to find the commit that introduced a bug\n   diff      Show changes between commits, commit and working tree, etc\n   grep      Print lines matching a pattern\n   log       Show commit logs\n   show      Show various types of objects\n   status    Show the working tree status\n\ngrow, mark and tweak your common history\n   branch    List, create, or delete branches\n   commit    Record changes to the repository\n   merge     Join two or more development histories together\n   rebase    Reapply commits on top of another base tip\n   reset     Reset current HEAD to the specified state\n   switch    Switch branches\n   tag       Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch     Download objects and refs from another repository\n   pull      Fetch from and integrate with another repository or a local branch\n   push      Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m15:06:25.262298 [debug] [MainThread]: STDERR: "b''"
+[0m15:06:25.281140 [debug] [MainThread]: Acquiring new bigquery connection "debug"
+[0m15:06:25.282795 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m15:06:26.421592 [debug] [MainThread]: On debug: select 1 as id
+[0m15:06:27.211884 [debug] [MainThread]: Connection 'debug' was properly closed.
+
+
+============================== 2022-08-26 15:06:43.027454 | 517753a6-18b0-4c14-907b-3229d7b00c82 ==============================
+[0m15:06:43.027531 [info ] [MainThread]: Running with dbt=1.2.0
+[0m15:06:43.028669 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 100, 'version_check': True, 'partial_parse': False, 'static_parser': True, 'profiles_dir': '/Users/mtronci/Code/reg-reporting-blueprint/use_cases/examples/eba_dpm/dbt/profiles', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'which': 'run', 'rpc_method': 'run', 'indirect_selection': 'eager'}
+[0m15:06:43.029098 [debug] [MainThread]: Tracking: do not track
+[0m15:06:43.073752 [debug] [MainThread]: Partial parsing not enabled
+[0m15:06:43.121288 [debug] [MainThread]: Parsing macros/etc.sql
+[0m15:06:43.124096 [debug] [MainThread]: Parsing macros/catalog.sql
+[0m15:06:43.131078 [debug] [MainThread]: Parsing macros/adapters.sql
+[0m15:06:43.157869 [debug] [MainThread]: Parsing macros/materializations/seed.sql
+[0m15:06:43.160713 [debug] [MainThread]: Parsing macros/materializations/view.sql
+[0m15:06:43.163842 [debug] [MainThread]: Parsing macros/materializations/table.sql
+[0m15:06:43.168983 [debug] [MainThread]: Parsing macros/materializations/copy.sql
+[0m15:06:43.171902 [debug] [MainThread]: Parsing macros/materializations/incremental.sql
+[0m15:06:43.188588 [debug] [MainThread]: Parsing macros/materializations/snapshot.sql
+[0m15:06:43.190387 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:06:43.190818 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:06:43.191533 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:06:43.191967 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:06:43.193354 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:06:43.194121 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:06:43.195225 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:06:43.196693 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:06:43.197306 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:06:43.197895 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:06:43.198523 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:06:43.199058 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:06:43.200518 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:06:43.201142 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:06:43.204331 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m15:06:43.208535 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m15:06:43.211036 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m15:06:43.212843 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m15:06:43.231218 [debug] [MainThread]: Parsing macros/materializations/snapshots/helpers.sql
+[0m15:06:43.245439 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m15:06:43.258542 [debug] [MainThread]: Parsing macros/materializations/tests/test.sql
+[0m15:06:43.263417 [debug] [MainThread]: Parsing macros/materializations/tests/helpers.sql
+[0m15:06:43.265275 [debug] [MainThread]: Parsing macros/materializations/tests/where_subquery.sql
+[0m15:06:43.267187 [debug] [MainThread]: Parsing macros/materializations/models/incremental/column_helpers.sql
+[0m15:06:43.271893 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m15:06:43.289286 [debug] [MainThread]: Parsing macros/materializations/models/incremental/is_incremental.sql
+[0m15:06:43.290883 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m15:06:43.300804 [debug] [MainThread]: Parsing macros/materializations/models/incremental/on_schema_change.sql
+[0m15:06:43.316923 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m15:06:43.322575 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m15:06:43.325552 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m15:06:43.331108 [debug] [MainThread]: Parsing macros/materializations/models/view/helpers.sql
+[0m15:06:43.332463 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m15:06:43.335991 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m15:06:43.338368 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m15:06:43.345736 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m15:06:43.364864 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_alias.sql
+[0m15:06:43.366480 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_schema.sql
+[0m15:06:43.369002 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_database.sql
+[0m15:06:43.370625 [debug] [MainThread]: Parsing macros/generic_test_sql/relationships.sql
+[0m15:06:43.371700 [debug] [MainThread]: Parsing macros/generic_test_sql/not_null.sql
+[0m15:06:43.372561 [debug] [MainThread]: Parsing macros/generic_test_sql/unique.sql
+[0m15:06:43.373294 [debug] [MainThread]: Parsing macros/generic_test_sql/accepted_values.sql
+[0m15:06:43.374716 [debug] [MainThread]: Parsing macros/etc/statement.sql
+[0m15:06:43.379436 [debug] [MainThread]: Parsing macros/etc/datetime.sql
+[0m15:06:43.388150 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:06:43.389036 [debug] [MainThread]: Parsing macros/utils/replace.sql
+[0m15:06:43.390323 [debug] [MainThread]: Parsing macros/utils/concat.sql
+[0m15:06:43.391368 [debug] [MainThread]: Parsing macros/utils/length.sql
+[0m15:06:43.392374 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:06:43.393824 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:06:43.394796 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:06:43.395981 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:06:43.397240 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:06:43.399797 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:06:43.401130 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:06:43.402303 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:06:43.403475 [debug] [MainThread]: Parsing macros/utils/cast_bool_to_text.sql
+[0m15:06:43.404614 [debug] [MainThread]: Parsing macros/utils/any_value.sql
+[0m15:06:43.405713 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:06:43.406875 [debug] [MainThread]: Parsing macros/utils/literal.sql
+[0m15:06:43.407872 [debug] [MainThread]: Parsing macros/utils/data_types.sql
+[0m15:06:43.413976 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:06:43.414984 [debug] [MainThread]: Parsing macros/utils/last_day.sql
+[0m15:06:43.416971 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:06:43.419768 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:06:43.420976 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m15:06:43.423564 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m15:06:43.426409 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m15:06:43.442293 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m15:06:43.445402 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:06:43.460812 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m15:06:43.466245 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m15:06:43.474549 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m15:06:43.485709 [debug] [MainThread]: Parsing tests/generic/builtin.sql
+[0m15:06:43.788831 [debug] [MainThread]: 1699: static parser successfully parsed example/my_first_dbt_model.sql
+[0m15:06:43.802309 [debug] [MainThread]: 1699: static parser successfully parsed example/my_second_dbt_model.sql
+[0m15:06:43.878159 [info ] [MainThread]: Found 2 models, 4 tests, 0 snapshots, 0 analyses, 285 macros, 0 operations, 0 seed files, 0 sources, 0 exposures, 0 metrics
+[0m15:06:43.879759 [info ] [MainThread]: 
+[0m15:06:43.880259 [debug] [MainThread]: Acquiring new bigquery connection "master"
+[0m15:06:43.881134 [debug] [ThreadPool]: Acquiring new bigquery connection "list_reg-reporting-360309"
+[0m15:06:43.881483 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:06:45.077933 [debug] [ThreadPool]: Acquiring new bigquery connection "list_reg-reporting-360309_ebadpm_dev"
+[0m15:06:45.078348 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:06:45.243989 [info ] [MainThread]: Concurrency: 10 threads (target='dev')
+[0m15:06:45.244444 [info ] [MainThread]: 
+[0m15:06:45.250910 [debug] [Thread-1 (]: Began running node model.eba_dpm.my_first_dbt_model
+[0m15:06:45.251269 [info ] [Thread-1 (]: 1 of 2 START table model ebadpm_dev.my_first_dbt_model ............................................. [RUN]
+[0m15:06:45.251794 [debug] [Thread-1 (]: Acquiring new bigquery connection "model.eba_dpm.my_first_dbt_model"
+[0m15:06:45.251990 [debug] [Thread-1 (]: Began compiling node model.eba_dpm.my_first_dbt_model
+[0m15:06:45.252201 [debug] [Thread-1 (]: Compiling model.eba_dpm.my_first_dbt_model
+[0m15:06:45.255756 [debug] [Thread-1 (]: Writing injected SQL for node "model.eba_dpm.my_first_dbt_model"
+[0m15:06:45.256665 [debug] [Thread-1 (]: finished collecting timing info
+[0m15:06:45.256882 [debug] [Thread-1 (]: Began executing node model.eba_dpm.my_first_dbt_model
+[0m15:06:45.296358 [debug] [Thread-1 (]: Writing runtime SQL for node "model.eba_dpm.my_first_dbt_model"
+[0m15:06:45.297287 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m15:06:45.297569 [debug] [Thread-1 (]: On model.eba_dpm.my_first_dbt_model: /* {"app": "dbt", "dbt_version": "1.2.0", "profile_name": "eba_dpm_profile", "target_name": "dev", "node_id": "model.eba_dpm.my_first_dbt_model"} */
+
+
+  create or replace table `reg-reporting-360309`.`ebadpm_dev`.`my_first_dbt_model`
+  
+  
+  OPTIONS()
+  as (
+    /*
+    Welcome to your first dbt model!
+    Did you know that you can also configure models directly within SQL files?
+    This will override configurations stated in dbt_project.yml
+
+    Try changing "table" to "view" below
+*/
+
+
+
+with source_data as (
+
+    select 1 as id
+    union all
+    select null as id
+
+)
+
+select *
+from source_data
+
+/*
+    Uncomment the line below to remove records with null `id` values
+*/
+
+-- where id is not null
+  );
+  
+[0m15:06:47.671251 [debug] [Thread-1 (]: finished collecting timing info
+[0m15:06:47.671921 [info ] [Thread-1 (]: 1 of 2 OK created table model ebadpm_dev.my_first_dbt_model ........................................ [[32mCREATE TABLE (2.0 rows, 0 processed)[0m in 2.42s]
+[0m15:06:47.672475 [debug] [Thread-1 (]: Finished running node model.eba_dpm.my_first_dbt_model
+[0m15:06:47.673984 [debug] [Thread-3 (]: Began running node model.eba_dpm.my_second_dbt_model
+[0m15:06:47.674368 [info ] [Thread-3 (]: 2 of 2 START view model ebadpm_dev.my_second_dbt_model ............................................. [RUN]
+[0m15:06:47.674901 [debug] [Thread-3 (]: Acquiring new bigquery connection "model.eba_dpm.my_second_dbt_model"
+[0m15:06:47.675092 [debug] [Thread-3 (]: Began compiling node model.eba_dpm.my_second_dbt_model
+[0m15:06:47.675271 [debug] [Thread-3 (]: Compiling model.eba_dpm.my_second_dbt_model
+[0m15:06:47.680590 [debug] [Thread-3 (]: Writing injected SQL for node "model.eba_dpm.my_second_dbt_model"
+[0m15:06:47.681178 [debug] [Thread-3 (]: finished collecting timing info
+[0m15:06:47.681381 [debug] [Thread-3 (]: Began executing node model.eba_dpm.my_second_dbt_model
+[0m15:06:47.777519 [debug] [Thread-3 (]: Writing runtime SQL for node "model.eba_dpm.my_second_dbt_model"
+[0m15:06:47.778381 [debug] [Thread-3 (]: Opening a new connection, currently in state init
+[0m15:06:47.778657 [debug] [Thread-3 (]: On model.eba_dpm.my_second_dbt_model: /* {"app": "dbt", "dbt_version": "1.2.0", "profile_name": "eba_dpm_profile", "target_name": "dev", "node_id": "model.eba_dpm.my_second_dbt_model"} */
+
+
+  create or replace view `reg-reporting-360309`.`ebadpm_dev`.`my_second_dbt_model`
+  OPTIONS()
+  as -- Use the `ref` function to select from other models
+
+select *
+from `reg-reporting-360309`.`ebadpm_dev`.`my_first_dbt_model`
+where id = 1;
+
+
+[0m15:06:48.624484 [debug] [Thread-3 (]: finished collecting timing info
+[0m15:06:48.625036 [info ] [Thread-3 (]: 2 of 2 OK created view model ebadpm_dev.my_second_dbt_model ........................................ [[32mOK[0m in 0.95s]
+[0m15:06:48.625485 [debug] [Thread-3 (]: Finished running node model.eba_dpm.my_second_dbt_model
+[0m15:06:48.626720 [debug] [MainThread]: Acquiring new bigquery connection "master"
+[0m15:06:48.627080 [info ] [MainThread]: 
+[0m15:06:48.627383 [info ] [MainThread]: Finished running 1 table model, 1 view model in 0 hours 0 minutes and 4.75 seconds (4.75s).
+[0m15:06:48.627671 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:06:48.627838 [debug] [MainThread]: Connection 'model.eba_dpm.my_first_dbt_model' was properly closed.
+[0m15:06:48.627991 [debug] [MainThread]: Connection 'model.eba_dpm.my_second_dbt_model' was properly closed.
+[0m15:06:48.634481 [info ] [MainThread]: 
+[0m15:06:48.634802 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m15:06:48.635115 [info ] [MainThread]: 
+[0m15:06:48.635401 [info ] [MainThread]: Done. PASS=2 WARN=0 ERROR=0 SKIP=0 TOTAL=2
+
+
+============================== 2022-08-26 15:19:23.142384 | 0b052c56-a914-4dfe-a273-202c09a5ee35 ==============================
+[0m15:19:23.142429 [info ] [MainThread]: Running with dbt=1.2.0
+[0m15:19:23.153404 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 100, 'version_check': True, 'partial_parse': False, 'static_parser': True, 'profiles_dir': '/Users/mtronci/Code/reg-reporting-blueprint/use_cases/examples/eba_dpm/dbt/profiles', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'which': 'run', 'rpc_method': 'run', 'indirect_selection': 'eager'}
+[0m15:19:23.176764 [debug] [MainThread]: Tracking: do not track
+[0m15:19:23.228024 [debug] [MainThread]: Partial parsing not enabled
+[0m15:19:23.273803 [debug] [MainThread]: Parsing macros/etc.sql
+[0m15:19:23.276516 [debug] [MainThread]: Parsing macros/catalog.sql
+[0m15:19:23.283795 [debug] [MainThread]: Parsing macros/adapters.sql
+[0m15:19:23.311755 [debug] [MainThread]: Parsing macros/materializations/seed.sql
+[0m15:19:23.314574 [debug] [MainThread]: Parsing macros/materializations/view.sql
+[0m15:19:23.317699 [debug] [MainThread]: Parsing macros/materializations/table.sql
+[0m15:19:23.322846 [debug] [MainThread]: Parsing macros/materializations/copy.sql
+[0m15:19:23.325994 [debug] [MainThread]: Parsing macros/materializations/incremental.sql
+[0m15:19:23.343763 [debug] [MainThread]: Parsing macros/materializations/snapshot.sql
+[0m15:19:23.345708 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:19:23.346190 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:19:23.346954 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:19:23.347423 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:19:23.348117 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:19:23.348901 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:19:23.350020 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:19:23.351430 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:19:23.352035 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:19:23.352621 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:19:23.353262 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:19:23.353794 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:19:23.355400 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:19:23.356079 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:19:23.359217 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m15:19:23.363703 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m15:19:23.366388 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m15:19:23.368211 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m15:19:23.387184 [debug] [MainThread]: Parsing macros/materializations/snapshots/helpers.sql
+[0m15:19:23.401463 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m15:19:23.414236 [debug] [MainThread]: Parsing macros/materializations/tests/test.sql
+[0m15:19:23.418997 [debug] [MainThread]: Parsing macros/materializations/tests/helpers.sql
+[0m15:19:23.420891 [debug] [MainThread]: Parsing macros/materializations/tests/where_subquery.sql
+[0m15:19:23.422801 [debug] [MainThread]: Parsing macros/materializations/models/incremental/column_helpers.sql
+[0m15:19:23.427477 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m15:19:23.445483 [debug] [MainThread]: Parsing macros/materializations/models/incremental/is_incremental.sql
+[0m15:19:23.447147 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m15:19:23.457476 [debug] [MainThread]: Parsing macros/materializations/models/incremental/on_schema_change.sql
+[0m15:19:23.474988 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m15:19:23.481125 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m15:19:23.484341 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m15:19:23.490278 [debug] [MainThread]: Parsing macros/materializations/models/view/helpers.sql
+[0m15:19:23.491710 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m15:19:23.495269 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m15:19:23.497789 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m15:19:23.505265 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m15:19:23.525293 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_alias.sql
+[0m15:19:23.526998 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_schema.sql
+[0m15:19:23.529674 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_database.sql
+[0m15:19:23.531390 [debug] [MainThread]: Parsing macros/generic_test_sql/relationships.sql
+[0m15:19:23.532322 [debug] [MainThread]: Parsing macros/generic_test_sql/not_null.sql
+[0m15:19:23.533208 [debug] [MainThread]: Parsing macros/generic_test_sql/unique.sql
+[0m15:19:23.533952 [debug] [MainThread]: Parsing macros/generic_test_sql/accepted_values.sql
+[0m15:19:23.535412 [debug] [MainThread]: Parsing macros/etc/statement.sql
+[0m15:19:23.540041 [debug] [MainThread]: Parsing macros/etc/datetime.sql
+[0m15:19:23.548986 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:19:23.549893 [debug] [MainThread]: Parsing macros/utils/replace.sql
+[0m15:19:23.551186 [debug] [MainThread]: Parsing macros/utils/concat.sql
+[0m15:19:23.552305 [debug] [MainThread]: Parsing macros/utils/length.sql
+[0m15:19:23.553356 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:19:23.554787 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:19:23.555713 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:19:23.556898 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:19:23.558131 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:19:23.560809 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:19:23.562167 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:19:23.563352 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:19:23.564574 [debug] [MainThread]: Parsing macros/utils/cast_bool_to_text.sql
+[0m15:19:23.565758 [debug] [MainThread]: Parsing macros/utils/any_value.sql
+[0m15:19:23.566849 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:19:23.568014 [debug] [MainThread]: Parsing macros/utils/literal.sql
+[0m15:19:23.569021 [debug] [MainThread]: Parsing macros/utils/data_types.sql
+[0m15:19:23.575230 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:19:23.576308 [debug] [MainThread]: Parsing macros/utils/last_day.sql
+[0m15:19:23.578302 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:19:23.580563 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:19:23.581716 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m15:19:23.584167 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m15:19:23.587048 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m15:19:23.602701 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m15:19:23.611022 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:19:23.625806 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m15:19:23.630774 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m15:19:23.639230 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m15:19:23.649375 [debug] [MainThread]: Parsing tests/generic/builtin.sql
+[0m15:19:23.927316 [debug] [MainThread]: 1699: static parser successfully parsed table_layout.sql
+[0m15:19:23.958079 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'my_first_dbt_model' in the 'models' section of file 'models/schema.yml'
+
+
+============================== 2022-08-26 15:19:45.158807 | dd3ac762-cc29-4d2b-9277-1a011e87af7b ==============================
+[0m15:19:45.158850 [info ] [MainThread]: Running with dbt=1.2.0
+[0m15:19:45.159773 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 100, 'version_check': True, 'partial_parse': False, 'static_parser': True, 'profiles_dir': '/Users/mtronci/Code/reg-reporting-blueprint/use_cases/examples/eba_dpm/dbt/profiles', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'which': 'run', 'rpc_method': 'run', 'indirect_selection': 'eager'}
+[0m15:19:45.160070 [debug] [MainThread]: Tracking: do not track
+[0m15:19:45.201925 [debug] [MainThread]: Partial parsing not enabled
+[0m15:19:45.244733 [debug] [MainThread]: Parsing macros/etc.sql
+[0m15:19:45.247435 [debug] [MainThread]: Parsing macros/catalog.sql
+[0m15:19:45.254466 [debug] [MainThread]: Parsing macros/adapters.sql
+[0m15:19:45.282127 [debug] [MainThread]: Parsing macros/materializations/seed.sql
+[0m15:19:45.284902 [debug] [MainThread]: Parsing macros/materializations/view.sql
+[0m15:19:45.288196 [debug] [MainThread]: Parsing macros/materializations/table.sql
+[0m15:19:45.293242 [debug] [MainThread]: Parsing macros/materializations/copy.sql
+[0m15:19:45.296171 [debug] [MainThread]: Parsing macros/materializations/incremental.sql
+[0m15:19:45.313197 [debug] [MainThread]: Parsing macros/materializations/snapshot.sql
+[0m15:19:45.314985 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:19:45.315431 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:19:45.316135 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:19:45.316567 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:19:45.317206 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:19:45.317914 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:19:45.319009 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:19:45.320312 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:19:45.320897 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:19:45.321492 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:19:45.322112 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:19:45.322628 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:19:45.324040 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:19:45.324650 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:19:45.327509 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m15:19:45.331601 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m15:19:45.334022 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m15:19:45.335750 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m15:19:45.354510 [debug] [MainThread]: Parsing macros/materializations/snapshots/helpers.sql
+[0m15:19:45.368628 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m15:19:45.381189 [debug] [MainThread]: Parsing macros/materializations/tests/test.sql
+[0m15:19:45.385872 [debug] [MainThread]: Parsing macros/materializations/tests/helpers.sql
+[0m15:19:45.387745 [debug] [MainThread]: Parsing macros/materializations/tests/where_subquery.sql
+[0m15:19:45.389624 [debug] [MainThread]: Parsing macros/materializations/models/incremental/column_helpers.sql
+[0m15:19:45.394188 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m15:19:45.411293 [debug] [MainThread]: Parsing macros/materializations/models/incremental/is_incremental.sql
+[0m15:19:45.412859 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m15:19:45.422732 [debug] [MainThread]: Parsing macros/materializations/models/incremental/on_schema_change.sql
+[0m15:19:45.440120 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m15:19:45.446347 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m15:19:45.449566 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m15:19:45.455942 [debug] [MainThread]: Parsing macros/materializations/models/view/helpers.sql
+[0m15:19:45.457527 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m15:19:45.461762 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m15:19:45.464924 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m15:19:45.473245 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m15:19:45.493699 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_alias.sql
+[0m15:19:45.495656 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_schema.sql
+[0m15:19:45.498527 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_database.sql
+[0m15:19:45.500461 [debug] [MainThread]: Parsing macros/generic_test_sql/relationships.sql
+[0m15:19:45.501595 [debug] [MainThread]: Parsing macros/generic_test_sql/not_null.sql
+[0m15:19:45.502530 [debug] [MainThread]: Parsing macros/generic_test_sql/unique.sql
+[0m15:19:45.503294 [debug] [MainThread]: Parsing macros/generic_test_sql/accepted_values.sql
+[0m15:19:45.504792 [debug] [MainThread]: Parsing macros/etc/statement.sql
+[0m15:19:45.510056 [debug] [MainThread]: Parsing macros/etc/datetime.sql
+[0m15:19:45.519281 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:19:45.520241 [debug] [MainThread]: Parsing macros/utils/replace.sql
+[0m15:19:45.521596 [debug] [MainThread]: Parsing macros/utils/concat.sql
+[0m15:19:45.522693 [debug] [MainThread]: Parsing macros/utils/length.sql
+[0m15:19:45.523762 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:19:45.525132 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:19:45.526061 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:19:45.527234 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:19:45.528467 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:19:45.531296 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:19:45.532693 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:19:45.533906 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:19:45.535103 [debug] [MainThread]: Parsing macros/utils/cast_bool_to_text.sql
+[0m15:19:45.536330 [debug] [MainThread]: Parsing macros/utils/any_value.sql
+[0m15:19:45.537391 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:19:45.538597 [debug] [MainThread]: Parsing macros/utils/literal.sql
+[0m15:19:45.539640 [debug] [MainThread]: Parsing macros/utils/data_types.sql
+[0m15:19:45.545997 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:19:45.547052 [debug] [MainThread]: Parsing macros/utils/last_day.sql
+[0m15:19:45.548972 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:19:45.551220 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:19:45.552384 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m15:19:45.554790 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m15:19:45.557646 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m15:19:45.573491 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m15:19:45.576523 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:19:45.590716 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m15:19:45.595261 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m15:19:45.603103 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m15:19:45.613016 [debug] [MainThread]: Parsing tests/generic/builtin.sql
+[0m15:19:45.881994 [debug] [MainThread]: 1699: static parser successfully parsed table_layout.sql
+[0m15:19:45.911354 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'my_first_dbt_model' in the 'models' section of file 'models/schema.yml'
+
+
+============================== 2022-08-26 15:21:59.994474 | a32473dd-8ebe-4bf6-818e-9f5a38b20b9f ==============================
+[0m15:21:59.994744 [info ] [MainThread]: Running with dbt=1.2.0
+[0m15:21:59.995633 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 100, 'version_check': True, 'partial_parse': False, 'static_parser': True, 'profiles_dir': '/Users/mtronci/Code/reg-reporting-blueprint/use_cases/examples/eba_dpm/dbt/profiles', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'which': 'run', 'rpc_method': 'run', 'indirect_selection': 'eager'}
+[0m15:21:59.995864 [debug] [MainThread]: Tracking: do not track
+[0m15:22:00.040732 [debug] [MainThread]: Partial parsing not enabled
+[0m15:22:00.070912 [debug] [MainThread]: Parsing macros/etc.sql
+[0m15:22:00.073682 [debug] [MainThread]: Parsing macros/catalog.sql
+[0m15:22:00.081260 [debug] [MainThread]: Parsing macros/adapters.sql
+[0m15:22:00.108823 [debug] [MainThread]: Parsing macros/materializations/seed.sql
+[0m15:22:00.111578 [debug] [MainThread]: Parsing macros/materializations/view.sql
+[0m15:22:00.114546 [debug] [MainThread]: Parsing macros/materializations/table.sql
+[0m15:22:00.119615 [debug] [MainThread]: Parsing macros/materializations/copy.sql
+[0m15:22:00.122626 [debug] [MainThread]: Parsing macros/materializations/incremental.sql
+[0m15:22:00.139059 [debug] [MainThread]: Parsing macros/materializations/snapshot.sql
+[0m15:22:00.140879 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:22:00.141328 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:22:00.142039 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:22:00.142476 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:22:00.143116 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:22:00.143826 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:22:00.144886 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:22:00.146171 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:22:00.146756 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:22:00.147331 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:22:00.147946 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:22:00.148463 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:22:00.149866 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:22:00.150476 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:22:00.153957 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m15:22:00.157939 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m15:22:00.160379 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m15:22:00.162106 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m15:22:00.179399 [debug] [MainThread]: Parsing macros/materializations/snapshots/helpers.sql
+[0m15:22:00.192762 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m15:22:00.205544 [debug] [MainThread]: Parsing macros/materializations/tests/test.sql
+[0m15:22:00.210247 [debug] [MainThread]: Parsing macros/materializations/tests/helpers.sql
+[0m15:22:00.212131 [debug] [MainThread]: Parsing macros/materializations/tests/where_subquery.sql
+[0m15:22:00.213998 [debug] [MainThread]: Parsing macros/materializations/models/incremental/column_helpers.sql
+[0m15:22:00.218563 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m15:22:00.235665 [debug] [MainThread]: Parsing macros/materializations/models/incremental/is_incremental.sql
+[0m15:22:00.237245 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m15:22:00.246973 [debug] [MainThread]: Parsing macros/materializations/models/incremental/on_schema_change.sql
+[0m15:22:00.263460 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m15:22:00.269466 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m15:22:00.272562 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m15:22:00.278357 [debug] [MainThread]: Parsing macros/materializations/models/view/helpers.sql
+[0m15:22:00.279751 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m15:22:00.283300 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m15:22:00.285700 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m15:22:00.293089 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m15:22:00.314016 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_alias.sql
+[0m15:22:00.315772 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_schema.sql
+[0m15:22:00.318488 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_database.sql
+[0m15:22:00.320312 [debug] [MainThread]: Parsing macros/generic_test_sql/relationships.sql
+[0m15:22:00.321294 [debug] [MainThread]: Parsing macros/generic_test_sql/not_null.sql
+[0m15:22:00.322190 [debug] [MainThread]: Parsing macros/generic_test_sql/unique.sql
+[0m15:22:00.322956 [debug] [MainThread]: Parsing macros/generic_test_sql/accepted_values.sql
+[0m15:22:00.324515 [debug] [MainThread]: Parsing macros/etc/statement.sql
+[0m15:22:00.329243 [debug] [MainThread]: Parsing macros/etc/datetime.sql
+[0m15:22:00.338525 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:22:00.339609 [debug] [MainThread]: Parsing macros/utils/replace.sql
+[0m15:22:00.341030 [debug] [MainThread]: Parsing macros/utils/concat.sql
+[0m15:22:00.342219 [debug] [MainThread]: Parsing macros/utils/length.sql
+[0m15:22:00.343316 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:22:00.344724 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:22:00.345667 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:22:00.346847 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:22:00.348108 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:22:00.350822 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:22:00.352197 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:22:00.353481 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:22:00.354741 [debug] [MainThread]: Parsing macros/utils/cast_bool_to_text.sql
+[0m15:22:00.355912 [debug] [MainThread]: Parsing macros/utils/any_value.sql
+[0m15:22:00.356943 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:22:00.358138 [debug] [MainThread]: Parsing macros/utils/literal.sql
+[0m15:22:00.359331 [debug] [MainThread]: Parsing macros/utils/data_types.sql
+[0m15:22:00.365721 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:22:00.366749 [debug] [MainThread]: Parsing macros/utils/last_day.sql
+[0m15:22:00.368637 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:22:00.370849 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:22:00.371986 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m15:22:00.374413 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m15:22:00.377252 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m15:22:00.392539 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m15:22:00.395622 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:22:00.409920 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m15:22:00.414489 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m15:22:00.422144 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m15:22:00.432174 [debug] [MainThread]: Parsing tests/generic/builtin.sql
+[0m15:22:00.707928 [debug] [MainThread]: 1699: static parser successfully parsed table_layout.sql
+[0m15:22:00.738001 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'my_first_dbt_model' in the 'models' section of file 'models/schema.yml'
+[0m15:22:00.801497 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.eba_dpm.unique_my_first_dbt_model_id.16e066b321' (models/schema.yml) depends on a node named 'my_first_dbt_model' which was not found
+[0m15:22:00.801877 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.eba_dpm.not_null_my_first_dbt_model_id.5fb22c2710' (models/schema.yml) depends on a node named 'my_first_dbt_model' which was not found
+[0m15:22:00.827028 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.eba_dpm.example
+
+[0m15:22:00.846931 [info ] [MainThread]: Found 1 model, 0 tests, 0 snapshots, 0 analyses, 285 macros, 0 operations, 0 seed files, 78 sources, 0 exposures, 0 metrics
+[0m15:22:00.849555 [info ] [MainThread]: 
+[0m15:22:00.850087 [debug] [MainThread]: Acquiring new bigquery connection "master"
+[0m15:22:00.851015 [debug] [ThreadPool]: Acquiring new bigquery connection "list_reg-reporting-360309"
+[0m15:22:00.851352 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:22:02.014849 [debug] [ThreadPool]: Acquiring new bigquery connection "list_reg-reporting-360309_ebadpm_dev"
+[0m15:22:02.015226 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:22:02.230529 [info ] [MainThread]: Concurrency: 10 threads (target='dev')
+[0m15:22:02.230989 [info ] [MainThread]: 
+[0m15:22:02.236753 [debug] [Thread-1 (]: Began running node model.eba_dpm.table_layout
+[0m15:22:02.237102 [info ] [Thread-1 (]: 1 of 1 START view model ebadpm_dev.table_layout .................................................... [RUN]
+[0m15:22:02.237622 [debug] [Thread-1 (]: Acquiring new bigquery connection "model.eba_dpm.table_layout"
+[0m15:22:02.237817 [debug] [Thread-1 (]: Began compiling node model.eba_dpm.table_layout
+[0m15:22:02.238034 [debug] [Thread-1 (]: Compiling model.eba_dpm.table_layout
+[0m15:22:02.241408 [debug] [Thread-1 (]: Writing injected SQL for node "model.eba_dpm.table_layout"
+[0m15:22:02.241950 [debug] [Thread-1 (]: finished collecting timing info
+[0m15:22:02.242163 [debug] [Thread-1 (]: Began executing node model.eba_dpm.table_layout
+[0m15:22:02.281878 [debug] [Thread-1 (]: Writing runtime SQL for node "model.eba_dpm.table_layout"
+[0m15:22:02.283015 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m15:22:02.283303 [debug] [Thread-1 (]: On model.eba_dpm.table_layout: /* {"app": "dbt", "dbt_version": "1.2.0", "profile_name": "eba_dpm_profile", "target_name": "dev", "node_id": "model.eba_dpm.table_layout"} */
+
+
+  create or replace view `reg-reporting-360309`.`ebadpm_dev`.`table_layout`
+  OPTIONS()
+  as SELECT * FROM `scannell-fsi-dev`.`dpm_model`.`v3_2_DataType`;
+
+
+[0m15:22:03.024730 [debug] [Thread-1 (]: finished collecting timing info
+[0m15:22:03.025339 [info ] [Thread-1 (]: 1 of 1 OK created view model ebadpm_dev.table_layout ............................................... [[32mOK[0m in 0.79s]
+[0m15:22:03.025848 [debug] [Thread-1 (]: Finished running node model.eba_dpm.table_layout
+[0m15:22:03.030000 [debug] [MainThread]: Acquiring new bigquery connection "master"
+[0m15:22:03.030382 [info ] [MainThread]: 
+[0m15:22:03.030705 [info ] [MainThread]: Finished running 1 view model in 0 hours 0 minutes and 2.18 seconds (2.18s).
+[0m15:22:03.031029 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:22:03.031195 [debug] [MainThread]: Connection 'model.eba_dpm.table_layout' was properly closed.
+[0m15:22:03.040596 [info ] [MainThread]: 
+[0m15:22:03.040949 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m15:22:03.041318 [info ] [MainThread]: 
+[0m15:22:03.041613 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+
+
+============================== 2022-08-26 15:25:21.740766 | a9f29708-8711-4d72-bf00-faa4dce00902 ==============================
+[0m15:25:21.740846 [info ] [MainThread]: Running with dbt=1.2.0
+[0m15:25:21.742175 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 100, 'version_check': True, 'partial_parse': False, 'static_parser': True, 'profiles_dir': '/Users/mtronci/Code/reg-reporting-blueprint/use_cases/examples/eba_dpm/dbt/profiles', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'which': 'run', 'rpc_method': 'run', 'indirect_selection': 'eager'}
+[0m15:25:21.742435 [debug] [MainThread]: Tracking: do not track
+[0m15:25:21.787788 [debug] [MainThread]: Partial parsing not enabled
+[0m15:25:21.831140 [debug] [MainThread]: Parsing macros/etc.sql
+[0m15:25:21.833815 [debug] [MainThread]: Parsing macros/catalog.sql
+[0m15:25:21.840852 [debug] [MainThread]: Parsing macros/adapters.sql
+[0m15:25:21.867562 [debug] [MainThread]: Parsing macros/materializations/seed.sql
+[0m15:25:21.870253 [debug] [MainThread]: Parsing macros/materializations/view.sql
+[0m15:25:21.873419 [debug] [MainThread]: Parsing macros/materializations/table.sql
+[0m15:25:21.878439 [debug] [MainThread]: Parsing macros/materializations/copy.sql
+[0m15:25:21.881328 [debug] [MainThread]: Parsing macros/materializations/incremental.sql
+[0m15:25:21.897756 [debug] [MainThread]: Parsing macros/materializations/snapshot.sql
+[0m15:25:21.899476 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:25:21.899928 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:25:21.900614 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:25:21.901035 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:25:21.901665 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:25:21.902362 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:25:21.903406 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:25:21.904695 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:25:21.905275 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:25:21.905842 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:25:21.906439 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:25:21.906935 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:25:21.908329 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:25:21.908920 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:25:21.912444 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m15:25:21.916562 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m15:25:21.919009 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m15:25:21.920770 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m15:25:21.938332 [debug] [MainThread]: Parsing macros/materializations/snapshots/helpers.sql
+[0m15:25:21.951897 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m15:25:21.964518 [debug] [MainThread]: Parsing macros/materializations/tests/test.sql
+[0m15:25:21.969219 [debug] [MainThread]: Parsing macros/materializations/tests/helpers.sql
+[0m15:25:21.971064 [debug] [MainThread]: Parsing macros/materializations/tests/where_subquery.sql
+[0m15:25:21.972935 [debug] [MainThread]: Parsing macros/materializations/models/incremental/column_helpers.sql
+[0m15:25:21.977493 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m15:25:21.994678 [debug] [MainThread]: Parsing macros/materializations/models/incremental/is_incremental.sql
+[0m15:25:21.996251 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m15:25:22.006009 [debug] [MainThread]: Parsing macros/materializations/models/incremental/on_schema_change.sql
+[0m15:25:22.022151 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m15:25:22.027926 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m15:25:22.030947 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m15:25:22.037009 [debug] [MainThread]: Parsing macros/materializations/models/view/helpers.sql
+[0m15:25:22.038451 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m15:25:22.042080 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m15:25:22.044482 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m15:25:22.052085 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m15:25:22.071182 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_alias.sql
+[0m15:25:22.072744 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_schema.sql
+[0m15:25:22.075277 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_database.sql
+[0m15:25:22.076909 [debug] [MainThread]: Parsing macros/generic_test_sql/relationships.sql
+[0m15:25:22.077830 [debug] [MainThread]: Parsing macros/generic_test_sql/not_null.sql
+[0m15:25:22.078691 [debug] [MainThread]: Parsing macros/generic_test_sql/unique.sql
+[0m15:25:22.079426 [debug] [MainThread]: Parsing macros/generic_test_sql/accepted_values.sql
+[0m15:25:22.080840 [debug] [MainThread]: Parsing macros/etc/statement.sql
+[0m15:25:22.085447 [debug] [MainThread]: Parsing macros/etc/datetime.sql
+[0m15:25:22.094205 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:25:22.095093 [debug] [MainThread]: Parsing macros/utils/replace.sql
+[0m15:25:22.096395 [debug] [MainThread]: Parsing macros/utils/concat.sql
+[0m15:25:22.097441 [debug] [MainThread]: Parsing macros/utils/length.sql
+[0m15:25:22.098456 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:25:22.099764 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:25:22.100656 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:25:22.101784 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:25:22.102968 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:25:22.105504 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:25:22.106831 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:25:22.107996 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:25:22.109138 [debug] [MainThread]: Parsing macros/utils/cast_bool_to_text.sql
+[0m15:25:22.110260 [debug] [MainThread]: Parsing macros/utils/any_value.sql
+[0m15:25:22.111277 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:25:22.112430 [debug] [MainThread]: Parsing macros/utils/literal.sql
+[0m15:25:22.113412 [debug] [MainThread]: Parsing macros/utils/data_types.sql
+[0m15:25:22.119522 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:25:22.120526 [debug] [MainThread]: Parsing macros/utils/last_day.sql
+[0m15:25:22.122449 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:25:22.124593 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:25:22.125721 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m15:25:22.128213 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m15:25:22.131001 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m15:25:22.146313 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m15:25:22.149320 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:25:22.164131 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m15:25:22.168764 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m15:25:22.176656 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m15:25:22.186792 [debug] [MainThread]: Parsing tests/generic/builtin.sql
+[0m15:25:22.461848 [debug] [MainThread]: 1699: static parser successfully parsed src/DataType.sql
+[0m15:25:22.495838 [warn ] [MainThread]: [[33mWARNING[0m]: Did not find matching node for patch with name 'my_first_dbt_model' in the 'models' section of file 'models/schema.yml'
+[0m15:25:22.568216 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.eba_dpm.unique_my_first_dbt_model_id.16e066b321' (models/schema.yml) depends on a node named 'my_first_dbt_model' which was not found
+[0m15:25:22.568629 [warn ] [MainThread]: [[33mWARNING[0m]: Test 'test.eba_dpm.not_null_my_first_dbt_model_id.5fb22c2710' (models/schema.yml) depends on a node named 'my_first_dbt_model' which was not found
+[0m15:25:22.611489 [info ] [MainThread]: Found 1 model, 0 tests, 0 snapshots, 0 analyses, 285 macros, 0 operations, 0 seed files, 78 sources, 0 exposures, 0 metrics
+[0m15:25:22.614258 [info ] [MainThread]: 
+[0m15:25:22.614805 [debug] [MainThread]: Acquiring new bigquery connection "master"
+[0m15:25:22.615675 [debug] [ThreadPool]: Acquiring new bigquery connection "list_reg-reporting-360309"
+[0m15:25:22.616015 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:25:24.063248 [debug] [ThreadPool]: Acquiring new bigquery connection "create_reg-reporting-360309_ebadpm_dev_ebapdm_data"
+[0m15:25:24.063719 [debug] [ThreadPool]: Acquiring new bigquery connection "create_reg-reporting-360309_ebadpm_dev_ebapdm_data"
+[0m15:25:24.063927 [debug] [ThreadPool]: BigQuery adapter: Creating schema "reg-reporting-360309.ebadpm_dev_ebapdm_data".
+[0m15:25:24.064122 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:25:25.054309 [debug] [ThreadPool]: Acquiring new bigquery connection "list_reg-reporting-360309_ebadpm_dev_ebapdm_data"
+[0m15:25:25.054622 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:25:25.398577 [info ] [MainThread]: Concurrency: 10 threads (target='dev')
+[0m15:25:25.398973 [info ] [MainThread]: 
+[0m15:25:25.405069 [debug] [Thread-1 (]: Began running node model.eba_dpm.DataType
+[0m15:25:25.405408 [info ] [Thread-1 (]: 1 of 1 START table model ebadpm_dev_ebapdm_data.DataType ........................................... [RUN]
+[0m15:25:25.405933 [debug] [Thread-1 (]: Acquiring new bigquery connection "model.eba_dpm.DataType"
+[0m15:25:25.406135 [debug] [Thread-1 (]: Began compiling node model.eba_dpm.DataType
+[0m15:25:25.406385 [debug] [Thread-1 (]: Compiling model.eba_dpm.DataType
+[0m15:25:25.411019 [debug] [Thread-1 (]: Writing injected SQL for node "model.eba_dpm.DataType"
+[0m15:25:25.411680 [debug] [Thread-1 (]: finished collecting timing info
+[0m15:25:25.411901 [debug] [Thread-1 (]: Began executing node model.eba_dpm.DataType
+[0m15:25:25.453387 [debug] [Thread-1 (]: Writing runtime SQL for node "model.eba_dpm.DataType"
+[0m15:25:25.454146 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m15:25:25.454422 [debug] [Thread-1 (]: On model.eba_dpm.DataType: /* {"app": "dbt", "dbt_version": "1.2.0", "profile_name": "eba_dpm_profile", "target_name": "dev", "node_id": "model.eba_dpm.DataType"} */
+
+
+  create or replace table `reg-reporting-360309`.`ebadpm_dev_ebapdm_data`.`DataType`
+  
+  
+  OPTIONS()
+  as (
+    SELECT * FROM `scannell-fsi-dev`.`dpm_model`.`v3_2_DataType`
+  );
+  
+[0m15:25:29.208716 [debug] [Thread-1 (]: finished collecting timing info
+[0m15:25:29.209289 [info ] [Thread-1 (]: 1 of 1 OK created table model ebadpm_dev_ebapdm_data.DataType ...................................... [[32mCREATE TABLE (9.0 rows, 152.0 Bytes processed)[0m in 3.80s]
+[0m15:25:29.209771 [debug] [Thread-1 (]: Finished running node model.eba_dpm.DataType
+[0m15:25:29.211258 [debug] [MainThread]: Acquiring new bigquery connection "master"
+[0m15:25:29.211642 [info ] [MainThread]: 
+[0m15:25:29.211965 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 6.60 seconds (6.60s).
+[0m15:25:29.212293 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:25:29.212458 [debug] [MainThread]: Connection 'model.eba_dpm.DataType' was properly closed.
+[0m15:25:29.221872 [info ] [MainThread]: 
+[0m15:25:29.222216 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m15:25:29.222546 [info ] [MainThread]: 
+[0m15:25:29.222819 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+
+
+============================== 2022-08-26 15:28:51.309215 | 748569bb-805d-47be-8a76-400f60afa551 ==============================
+[0m15:28:51.309303 [info ] [MainThread]: Running with dbt=1.2.0
+[0m15:28:51.310288 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 100, 'version_check': True, 'partial_parse': False, 'static_parser': True, 'profiles_dir': '/Users/mtronci/Code/reg-reporting-blueprint/use_cases/examples/eba_dpm/dbt/profiles', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'which': 'run', 'rpc_method': 'run', 'indirect_selection': 'eager'}
+[0m15:28:51.310619 [debug] [MainThread]: Tracking: do not track
+[0m15:28:51.357179 [debug] [MainThread]: Partial parsing not enabled
+[0m15:28:51.403774 [debug] [MainThread]: Parsing macros/etc.sql
+[0m15:28:51.406940 [debug] [MainThread]: Parsing macros/catalog.sql
+[0m15:28:51.414615 [debug] [MainThread]: Parsing macros/adapters.sql
+[0m15:28:51.444016 [debug] [MainThread]: Parsing macros/materializations/seed.sql
+[0m15:28:51.447033 [debug] [MainThread]: Parsing macros/materializations/view.sql
+[0m15:28:51.450344 [debug] [MainThread]: Parsing macros/materializations/table.sql
+[0m15:28:51.456245 [debug] [MainThread]: Parsing macros/materializations/copy.sql
+[0m15:28:51.459588 [debug] [MainThread]: Parsing macros/materializations/incremental.sql
+[0m15:28:51.478494 [debug] [MainThread]: Parsing macros/materializations/snapshot.sql
+[0m15:28:51.480515 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:28:51.481028 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:28:51.481944 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:28:51.482461 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:28:51.483280 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:28:51.484109 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:28:51.485329 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:28:51.486874 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:28:51.487544 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:28:51.488192 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:28:51.488894 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:28:51.489468 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:28:51.491045 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:28:51.491720 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:28:51.495574 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m15:28:51.500287 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m15:28:51.503050 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m15:28:51.504997 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m15:28:51.525357 [debug] [MainThread]: Parsing macros/materializations/snapshots/helpers.sql
+[0m15:28:51.541243 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m15:28:51.555768 [debug] [MainThread]: Parsing macros/materializations/tests/test.sql
+[0m15:28:51.561319 [debug] [MainThread]: Parsing macros/materializations/tests/helpers.sql
+[0m15:28:51.563444 [debug] [MainThread]: Parsing macros/materializations/tests/where_subquery.sql
+[0m15:28:51.565560 [debug] [MainThread]: Parsing macros/materializations/models/incremental/column_helpers.sql
+[0m15:28:51.570710 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m15:28:51.590641 [debug] [MainThread]: Parsing macros/materializations/models/incremental/is_incremental.sql
+[0m15:28:51.592487 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m15:28:51.603933 [debug] [MainThread]: Parsing macros/materializations/models/incremental/on_schema_change.sql
+[0m15:28:51.622545 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m15:28:51.628991 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m15:28:51.632603 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m15:28:51.639222 [debug] [MainThread]: Parsing macros/materializations/models/view/helpers.sql
+[0m15:28:51.640823 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m15:28:51.644671 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m15:28:51.647689 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m15:28:51.656117 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m15:28:51.678010 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_alias.sql
+[0m15:28:51.679868 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_schema.sql
+[0m15:28:51.682769 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_database.sql
+[0m15:28:51.684636 [debug] [MainThread]: Parsing macros/generic_test_sql/relationships.sql
+[0m15:28:51.685666 [debug] [MainThread]: Parsing macros/generic_test_sql/not_null.sql
+[0m15:28:51.686626 [debug] [MainThread]: Parsing macros/generic_test_sql/unique.sql
+[0m15:28:51.687471 [debug] [MainThread]: Parsing macros/generic_test_sql/accepted_values.sql
+[0m15:28:51.689052 [debug] [MainThread]: Parsing macros/etc/statement.sql
+[0m15:28:51.694517 [debug] [MainThread]: Parsing macros/etc/datetime.sql
+[0m15:28:51.704258 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:28:51.705222 [debug] [MainThread]: Parsing macros/utils/replace.sql
+[0m15:28:51.706904 [debug] [MainThread]: Parsing macros/utils/concat.sql
+[0m15:28:51.708097 [debug] [MainThread]: Parsing macros/utils/length.sql
+[0m15:28:51.709265 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:28:51.710772 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:28:51.711776 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:28:51.713057 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:28:51.714411 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:28:51.717291 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:28:51.718800 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:28:51.720122 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:28:51.721438 [debug] [MainThread]: Parsing macros/utils/cast_bool_to_text.sql
+[0m15:28:51.722707 [debug] [MainThread]: Parsing macros/utils/any_value.sql
+[0m15:28:51.723855 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:28:51.725149 [debug] [MainThread]: Parsing macros/utils/literal.sql
+[0m15:28:51.726228 [debug] [MainThread]: Parsing macros/utils/data_types.sql
+[0m15:28:51.732709 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:28:51.751992 [debug] [MainThread]: Parsing macros/utils/last_day.sql
+[0m15:28:51.773669 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:28:51.776166 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:28:51.777465 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m15:28:51.780167 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m15:28:51.783700 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m15:28:51.801514 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m15:28:51.805382 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:28:51.822392 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m15:28:51.827652 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m15:28:51.836510 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m15:28:51.848002 [debug] [MainThread]: Parsing tests/generic/builtin.sql
+[0m15:28:52.156900 [debug] [MainThread]: 1699: static parser successfully parsed src/DataType.sql
+[0m15:28:52.293078 [info ] [MainThread]: Found 1 model, 0 tests, 0 snapshots, 0 analyses, 285 macros, 0 operations, 0 seed files, 78 sources, 0 exposures, 0 metrics
+[0m15:28:52.295937 [info ] [MainThread]: 
+[0m15:28:52.296497 [debug] [MainThread]: Acquiring new bigquery connection "master"
+[0m15:28:52.297356 [debug] [ThreadPool]: Acquiring new bigquery connection "list_reg-reporting-360309"
+[0m15:28:52.297691 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:28:53.890164 [debug] [ThreadPool]: Acquiring new bigquery connection "list_reg-reporting-360309_ebadpm_dev_ebapdm_data"
+[0m15:28:53.890697 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:28:54.066331 [info ] [MainThread]: Concurrency: 10 threads (target='dev')
+[0m15:28:54.066939 [info ] [MainThread]: 
+[0m15:28:54.074821 [debug] [Thread-1 (]: Began running node model.eba_dpm.DataType
+[0m15:28:54.075457 [info ] [Thread-1 (]: 1 of 1 START table model ebadpm_dev_ebapdm_data.DataType ........................................... [RUN]
+[0m15:28:54.076225 [debug] [Thread-1 (]: Acquiring new bigquery connection "model.eba_dpm.DataType"
+[0m15:28:54.076585 [debug] [Thread-1 (]: Began compiling node model.eba_dpm.DataType
+[0m15:28:54.076858 [debug] [Thread-1 (]: Compiling model.eba_dpm.DataType
+[0m15:28:54.081224 [debug] [Thread-1 (]: Writing injected SQL for node "model.eba_dpm.DataType"
+[0m15:28:54.081941 [debug] [Thread-1 (]: finished collecting timing info
+[0m15:28:54.082319 [debug] [Thread-1 (]: Began executing node model.eba_dpm.DataType
+[0m15:28:54.102936 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m15:28:54.283406 [debug] [Thread-1 (]: Writing runtime SQL for node "model.eba_dpm.DataType"
+[0m15:28:54.284066 [debug] [Thread-1 (]: On model.eba_dpm.DataType: /* {"app": "dbt", "dbt_version": "1.2.0", "profile_name": "eba_dpm_profile", "target_name": "dev", "node_id": "model.eba_dpm.DataType"} */
+
+
+  create or replace table `reg-reporting-360309`.`ebadpm_dev_ebapdm_data`.`DataType`
+  
+  
+  OPTIONS()
+  as (
+    SELECT * FROM `scannell-fsi-dev`.`dpm_model`.`v3_2_DataType`
+  );
+  
+[0m15:28:56.469581 [debug] [Thread-1 (]: BigQuery adapter: Unhandled error while running:
+/* {"app": "dbt", "dbt_version": "1.2.0", "profile_name": "eba_dpm_profile", "target_name": "dev", "node_id": "model.eba_dpm.DataType"} */
+
+
+  create or replace table `reg-reporting-360309`.`ebadpm_dev_ebapdm_data`.`DataType`
+  
+  
+  OPTIONS()
+  as (
+    SELECT * FROM `scannell-fsi-dev`.`dpm_model`.`v3_2_DataType`
+  );
+  
+[0m15:28:56.469937 [debug] [Thread-1 (]: BigQuery adapter: 404 Not found: Dataset reg-reporting-360309:ebadpm_dev_ebapdm_data
+
+Location: EU
+Job ID: 72720bf2-ce1c-4c4e-89cc-de1c6e8cbc53
+
+[0m15:28:56.470485 [debug] [Thread-1 (]: finished collecting timing info
+[0m15:28:56.471000 [debug] [Thread-1 (]: Runtime Error in model DataType (models/src/DataType.sql)
+  404 Not found: Dataset reg-reporting-360309:ebadpm_dev_ebapdm_data
+  
+  Location: EU
+  Job ID: 72720bf2-ce1c-4c4e-89cc-de1c6e8cbc53
+  
+[0m15:28:56.471498 [error] [Thread-1 (]: 1 of 1 ERROR creating table model ebadpm_dev_ebapdm_data.DataType .................................. [[31mERROR[0m in 2.40s]
+[0m15:28:56.472141 [debug] [Thread-1 (]: Finished running node model.eba_dpm.DataType
+[0m15:28:56.474230 [debug] [MainThread]: Acquiring new bigquery connection "master"
+[0m15:28:56.474644 [info ] [MainThread]: 
+[0m15:28:56.474989 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 4.18 seconds (4.18s).
+[0m15:28:56.475430 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:28:56.475646 [debug] [MainThread]: Connection 'model.eba_dpm.DataType' was properly closed.
+[0m15:28:56.561159 [info ] [MainThread]: 
+[0m15:28:56.561564 [info ] [MainThread]: [31mCompleted with 1 error and 0 warnings:[0m
+[0m15:28:56.561989 [info ] [MainThread]: 
+[0m15:28:56.562332 [error] [MainThread]: [33mRuntime Error in model DataType (models/src/DataType.sql)[0m
+[0m15:28:56.562624 [error] [MainThread]:   404 Not found: Dataset reg-reporting-360309:ebadpm_dev_ebapdm_data
+[0m15:28:56.562906 [error] [MainThread]:   
+[0m15:28:56.563325 [error] [MainThread]:   Location: EU
+[0m15:28:56.563619 [error] [MainThread]:   Job ID: 72720bf2-ce1c-4c4e-89cc-de1c6e8cbc53
+[0m15:28:56.563901 [error] [MainThread]:   
+[0m15:28:56.564190 [info ] [MainThread]: 
+[0m15:28:56.564485 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=1 SKIP=0 TOTAL=1
+
+
+============================== 2022-08-26 15:42:03.833914 | dd9d1401-cc61-4512-ba1e-3231c75ee772 ==============================
+[0m15:42:03.833968 [info ] [MainThread]: Running with dbt=1.2.0
+[0m15:42:03.835629 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 100, 'version_check': True, 'partial_parse': False, 'static_parser': True, 'profiles_dir': '/Users/mtronci/Code/reg-reporting-blueprint/use_cases/examples/eba_dpm/dbt/profiles', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'which': 'run', 'rpc_method': 'run', 'indirect_selection': 'eager'}
+[0m15:42:03.836013 [debug] [MainThread]: Tracking: do not track
+[0m15:42:03.917284 [debug] [MainThread]: Partial parsing not enabled
+[0m15:42:03.993610 [debug] [MainThread]: Parsing macros/etc.sql
+[0m15:42:03.999079 [debug] [MainThread]: Parsing macros/catalog.sql
+[0m15:42:04.009779 [debug] [MainThread]: Parsing macros/adapters.sql
+[0m15:42:04.054707 [debug] [MainThread]: Parsing macros/materializations/seed.sql
+[0m15:42:04.059899 [debug] [MainThread]: Parsing macros/materializations/view.sql
+[0m15:42:04.068461 [debug] [MainThread]: Parsing macros/materializations/table.sql
+[0m15:42:04.078571 [debug] [MainThread]: Parsing macros/materializations/copy.sql
+[0m15:42:04.085670 [debug] [MainThread]: Parsing macros/materializations/incremental.sql
+[0m15:42:04.116925 [debug] [MainThread]: Parsing macros/materializations/snapshot.sql
+[0m15:42:04.119741 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:42:04.120404 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:42:04.121400 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:42:04.122012 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:42:04.123765 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:42:04.125369 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:42:04.128482 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:42:04.132006 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:42:04.133237 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:42:04.134129 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:42:04.135423 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:42:04.136529 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:42:04.138620 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:42:04.139490 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:42:04.146580 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m15:42:04.152824 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m15:42:04.157950 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m15:42:04.161560 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m15:42:04.192762 [debug] [MainThread]: Parsing macros/materializations/snapshots/helpers.sql
+[0m15:42:04.214849 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m15:42:04.240588 [debug] [MainThread]: Parsing macros/materializations/tests/test.sql
+[0m15:42:04.251399 [debug] [MainThread]: Parsing macros/materializations/tests/helpers.sql
+[0m15:42:04.257391 [debug] [MainThread]: Parsing macros/materializations/tests/where_subquery.sql
+[0m15:42:04.280280 [debug] [MainThread]: Parsing macros/materializations/models/incremental/column_helpers.sql
+[0m15:42:04.305791 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m15:42:04.345034 [debug] [MainThread]: Parsing macros/materializations/models/incremental/is_incremental.sql
+[0m15:42:04.347552 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m15:42:04.364705 [debug] [MainThread]: Parsing macros/materializations/models/incremental/on_schema_change.sql
+[0m15:42:04.400368 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m15:42:04.410273 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m15:42:04.416332 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m15:42:04.427934 [debug] [MainThread]: Parsing macros/materializations/models/view/helpers.sql
+[0m15:42:04.432449 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m15:42:04.442138 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m15:42:04.455200 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m15:42:04.482491 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m15:42:04.528243 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_alias.sql
+[0m15:42:04.533578 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_schema.sql
+[0m15:42:04.541066 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_database.sql
+[0m15:42:04.545348 [debug] [MainThread]: Parsing macros/generic_test_sql/relationships.sql
+[0m15:42:04.548999 [debug] [MainThread]: Parsing macros/generic_test_sql/not_null.sql
+[0m15:42:04.551772 [debug] [MainThread]: Parsing macros/generic_test_sql/unique.sql
+[0m15:42:04.553449 [debug] [MainThread]: Parsing macros/generic_test_sql/accepted_values.sql
+[0m15:42:04.556174 [debug] [MainThread]: Parsing macros/etc/statement.sql
+[0m15:42:04.566414 [debug] [MainThread]: Parsing macros/etc/datetime.sql
+[0m15:42:04.586053 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:42:04.587910 [debug] [MainThread]: Parsing macros/utils/replace.sql
+[0m15:42:04.591951 [debug] [MainThread]: Parsing macros/utils/concat.sql
+[0m15:42:04.594455 [debug] [MainThread]: Parsing macros/utils/length.sql
+[0m15:42:04.597367 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:42:04.599382 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:42:04.600739 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:42:04.602499 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:42:04.604261 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:42:04.608830 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:42:04.611133 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:42:04.613761 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:42:04.615536 [debug] [MainThread]: Parsing macros/utils/cast_bool_to_text.sql
+[0m15:42:04.617193 [debug] [MainThread]: Parsing macros/utils/any_value.sql
+[0m15:42:04.618687 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:42:04.620716 [debug] [MainThread]: Parsing macros/utils/literal.sql
+[0m15:42:04.622943 [debug] [MainThread]: Parsing macros/utils/data_types.sql
+[0m15:42:04.640015 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:42:04.642572 [debug] [MainThread]: Parsing macros/utils/last_day.sql
+[0m15:42:04.646774 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:42:04.650175 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:42:04.652599 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m15:42:04.657151 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m15:42:04.665548 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m15:42:04.700430 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m15:42:04.705592 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:42:04.736580 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m15:42:04.745858 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m15:42:04.760883 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m15:42:04.781295 [debug] [MainThread]: Parsing tests/generic/builtin.sql
+[0m15:42:05.435413 [debug] [MainThread]: 1699: static parser successfully parsed src/DataType.sql
+[0m15:42:05.735286 [info ] [MainThread]: Found 1 model, 0 tests, 0 snapshots, 0 analyses, 285 macros, 0 operations, 0 seed files, 78 sources, 0 exposures, 0 metrics
+[0m15:42:05.739288 [info ] [MainThread]: 
+[0m15:42:05.740006 [debug] [MainThread]: Acquiring new bigquery connection "master"
+[0m15:42:05.741322 [debug] [ThreadPool]: Acquiring new bigquery connection "list_reg-reporting-360309"
+[0m15:42:05.741871 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:42:08.140012 [debug] [ThreadPool]: Acquiring new bigquery connection "list_reg-reporting-360309_ebadpm_dev"
+[0m15:42:08.140544 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:42:08.333360 [info ] [MainThread]: Concurrency: 10 threads (target='dev')
+[0m15:42:08.334040 [info ] [MainThread]: 
+[0m15:42:08.342654 [debug] [Thread-1 (]: Began running node model.eba_dpm.DataType
+[0m15:42:08.343403 [info ] [Thread-1 (]: 1 of 1 START table model ebadpm_dev.DataType ....................................................... [RUN]
+[0m15:42:08.344809 [debug] [Thread-1 (]: Acquiring new bigquery connection "model.eba_dpm.DataType"
+[0m15:42:08.345405 [debug] [Thread-1 (]: Began compiling node model.eba_dpm.DataType
+[0m15:42:08.345988 [debug] [Thread-1 (]: Compiling model.eba_dpm.DataType
+[0m15:42:08.351981 [debug] [Thread-1 (]: Writing injected SQL for node "model.eba_dpm.DataType"
+[0m15:42:08.353205 [debug] [Thread-1 (]: finished collecting timing info
+[0m15:42:08.353535 [debug] [Thread-1 (]: Began executing node model.eba_dpm.DataType
+[0m15:42:08.412903 [debug] [Thread-1 (]: Writing runtime SQL for node "model.eba_dpm.DataType"
+[0m15:42:08.413946 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m15:42:08.414341 [debug] [Thread-1 (]: On model.eba_dpm.DataType: /* {"app": "dbt", "dbt_version": "1.2.0", "profile_name": "eba_dpm_profile", "target_name": "dev", "node_id": "model.eba_dpm.DataType"} */
+
+
+  create or replace table `reg-reporting-360309`.`ebadpm_dev`.`DataType`
+  
+  
+  OPTIONS()
+  as (
+    SELECT * FROM `scannell-fsi-dev`.`dpm_model`.`v3_2_DataType`
+  );
+  
+[0m15:42:11.163536 [debug] [Thread-1 (]: finished collecting timing info
+[0m15:42:11.164351 [info ] [Thread-1 (]: 1 of 1 OK created table model ebadpm_dev.DataType .................................................. [[32mCREATE TABLE (9.0 rows, 152.0 Bytes processed)[0m in 2.82s]
+[0m15:42:11.165164 [debug] [Thread-1 (]: Finished running node model.eba_dpm.DataType
+[0m15:42:11.167951 [debug] [MainThread]: Acquiring new bigquery connection "master"
+[0m15:42:11.168455 [info ] [MainThread]: 
+[0m15:42:11.168957 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 5.43 seconds (5.43s).
+[0m15:42:11.169447 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:42:11.169752 [debug] [MainThread]: Connection 'model.eba_dpm.DataType' was properly closed.
+[0m15:42:11.265231 [info ] [MainThread]: 
+[0m15:42:11.265723 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m15:42:11.266301 [info ] [MainThread]: 
+[0m15:42:11.266677 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+
+
+============================== 2022-08-26 15:45:35.653849 | 7cba58ad-1bbd-4e3e-9c68-bbe0cb1be385 ==============================
+[0m15:45:35.653930 [info ] [MainThread]: Running with dbt=1.2.0
+[0m15:45:35.667316 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 100, 'version_check': True, 'partial_parse': False, 'static_parser': True, 'profiles_dir': '/Users/mtronci/Code/reg-reporting-blueprint/use_cases/examples/eba_dpm/dbt/profiles', 'send_anonymous_usage_stats': False, 'event_buffer_size': 100000, 'quiet': False, 'no_print': False, 'which': 'run', 'rpc_method': 'run', 'indirect_selection': 'eager'}
+[0m15:45:35.686723 [debug] [MainThread]: Tracking: do not track
+[0m15:45:35.746412 [debug] [MainThread]: Partial parsing not enabled
+[0m15:45:35.794979 [debug] [MainThread]: Parsing macros/etc.sql
+[0m15:45:35.798573 [debug] [MainThread]: Parsing macros/catalog.sql
+[0m15:45:35.807166 [debug] [MainThread]: Parsing macros/adapters.sql
+[0m15:45:35.840658 [debug] [MainThread]: Parsing macros/materializations/seed.sql
+[0m15:45:35.844667 [debug] [MainThread]: Parsing macros/materializations/view.sql
+[0m15:45:35.848552 [debug] [MainThread]: Parsing macros/materializations/table.sql
+[0m15:45:35.854307 [debug] [MainThread]: Parsing macros/materializations/copy.sql
+[0m15:45:35.858700 [debug] [MainThread]: Parsing macros/materializations/incremental.sql
+[0m15:45:35.883799 [debug] [MainThread]: Parsing macros/materializations/snapshot.sql
+[0m15:45:35.886042 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:45:35.886602 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:45:35.887570 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:45:35.888176 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:45:35.888967 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:45:35.889828 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:45:35.891383 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:45:35.893029 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:45:35.893909 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:45:35.894636 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:45:35.895377 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:45:35.896013 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:45:35.898180 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:45:35.898982 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:45:35.903468 [debug] [MainThread]: Parsing macros/materializations/hooks.sql
+[0m15:45:35.910359 [debug] [MainThread]: Parsing macros/materializations/configs.sql
+[0m15:45:35.913717 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot_merge.sql
+[0m15:45:35.915912 [debug] [MainThread]: Parsing macros/materializations/snapshots/strategies.sql
+[0m15:45:35.941230 [debug] [MainThread]: Parsing macros/materializations/snapshots/helpers.sql
+[0m15:45:35.961303 [debug] [MainThread]: Parsing macros/materializations/snapshots/snapshot.sql
+[0m15:45:35.981477 [debug] [MainThread]: Parsing macros/materializations/tests/test.sql
+[0m15:45:35.988008 [debug] [MainThread]: Parsing macros/materializations/tests/helpers.sql
+[0m15:45:35.990621 [debug] [MainThread]: Parsing macros/materializations/tests/where_subquery.sql
+[0m15:45:35.994110 [debug] [MainThread]: Parsing macros/materializations/models/incremental/column_helpers.sql
+[0m15:45:36.000622 [debug] [MainThread]: Parsing macros/materializations/models/incremental/merge.sql
+[0m15:45:36.023439 [debug] [MainThread]: Parsing macros/materializations/models/incremental/is_incremental.sql
+[0m15:45:36.025562 [debug] [MainThread]: Parsing macros/materializations/models/incremental/incremental.sql
+[0m15:45:36.039227 [debug] [MainThread]: Parsing macros/materializations/models/incremental/on_schema_change.sql
+[0m15:45:36.062265 [debug] [MainThread]: Parsing macros/materializations/models/table/table.sql
+[0m15:45:36.069899 [debug] [MainThread]: Parsing macros/materializations/models/table/create_table_as.sql
+[0m15:45:36.074591 [debug] [MainThread]: Parsing macros/materializations/models/view/view.sql
+[0m15:45:36.084041 [debug] [MainThread]: Parsing macros/materializations/models/view/helpers.sql
+[0m15:45:36.085830 [debug] [MainThread]: Parsing macros/materializations/models/view/create_or_replace_view.sql
+[0m15:45:36.091375 [debug] [MainThread]: Parsing macros/materializations/models/view/create_view_as.sql
+[0m15:45:36.095888 [debug] [MainThread]: Parsing macros/materializations/seeds/seed.sql
+[0m15:45:36.106395 [debug] [MainThread]: Parsing macros/materializations/seeds/helpers.sql
+[0m15:45:36.133352 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_alias.sql
+[0m15:45:36.135528 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_schema.sql
+[0m15:45:36.138989 [debug] [MainThread]: Parsing macros/get_custom_name/get_custom_database.sql
+[0m15:45:36.141162 [debug] [MainThread]: Parsing macros/generic_test_sql/relationships.sql
+[0m15:45:36.142503 [debug] [MainThread]: Parsing macros/generic_test_sql/not_null.sql
+[0m15:45:36.143822 [debug] [MainThread]: Parsing macros/generic_test_sql/unique.sql
+[0m15:45:36.144795 [debug] [MainThread]: Parsing macros/generic_test_sql/accepted_values.sql
+[0m15:45:36.146729 [debug] [MainThread]: Parsing macros/etc/statement.sql
+[0m15:45:36.152370 [debug] [MainThread]: Parsing macros/etc/datetime.sql
+[0m15:45:36.164525 [debug] [MainThread]: Parsing macros/utils/except.sql
+[0m15:45:36.165719 [debug] [MainThread]: Parsing macros/utils/replace.sql
+[0m15:45:36.167376 [debug] [MainThread]: Parsing macros/utils/concat.sql
+[0m15:45:36.168695 [debug] [MainThread]: Parsing macros/utils/length.sql
+[0m15:45:36.169960 [debug] [MainThread]: Parsing macros/utils/dateadd.sql
+[0m15:45:36.171584 [debug] [MainThread]: Parsing macros/utils/intersect.sql
+[0m15:45:36.172686 [debug] [MainThread]: Parsing macros/utils/escape_single_quotes.sql
+[0m15:45:36.174079 [debug] [MainThread]: Parsing macros/utils/right.sql
+[0m15:45:36.176190 [debug] [MainThread]: Parsing macros/utils/listagg.sql
+[0m15:45:36.180162 [debug] [MainThread]: Parsing macros/utils/datediff.sql
+[0m15:45:36.182240 [debug] [MainThread]: Parsing macros/utils/safe_cast.sql
+[0m15:45:36.183755 [debug] [MainThread]: Parsing macros/utils/hash.sql
+[0m15:45:36.185466 [debug] [MainThread]: Parsing macros/utils/cast_bool_to_text.sql
+[0m15:45:36.187003 [debug] [MainThread]: Parsing macros/utils/any_value.sql
+[0m15:45:36.188696 [debug] [MainThread]: Parsing macros/utils/position.sql
+[0m15:45:36.190206 [debug] [MainThread]: Parsing macros/utils/literal.sql
+[0m15:45:36.191645 [debug] [MainThread]: Parsing macros/utils/data_types.sql
+[0m15:45:36.200436 [debug] [MainThread]: Parsing macros/utils/bool_or.sql
+[0m15:45:36.201744 [debug] [MainThread]: Parsing macros/utils/last_day.sql
+[0m15:45:36.204309 [debug] [MainThread]: Parsing macros/utils/split_part.sql
+[0m15:45:36.207182 [debug] [MainThread]: Parsing macros/utils/date_trunc.sql
+[0m15:45:36.210164 [debug] [MainThread]: Parsing macros/adapters/schema.sql
+[0m15:45:36.213516 [debug] [MainThread]: Parsing macros/adapters/indexes.sql
+[0m15:45:36.217252 [debug] [MainThread]: Parsing macros/adapters/relation.sql
+[0m15:45:36.238497 [debug] [MainThread]: Parsing macros/adapters/freshness.sql
+[0m15:45:36.243881 [debug] [MainThread]: Parsing macros/adapters/apply_grants.sql
+[0m15:45:36.263181 [debug] [MainThread]: Parsing macros/adapters/persist_docs.sql
+[0m15:45:36.269475 [debug] [MainThread]: Parsing macros/adapters/metadata.sql
+[0m15:45:36.281291 [debug] [MainThread]: Parsing macros/adapters/columns.sql
+[0m15:45:36.296188 [debug] [MainThread]: Parsing tests/generic/builtin.sql
+[0m15:45:36.682747 [debug] [MainThread]: 1699: static parser successfully parsed src/DataType.sql
+[0m15:45:36.854262 [info ] [MainThread]: Found 1 model, 0 tests, 0 snapshots, 0 analyses, 285 macros, 0 operations, 0 seed files, 78 sources, 0 exposures, 0 metrics
+[0m15:45:36.857779 [info ] [MainThread]: 
+[0m15:45:36.858649 [debug] [MainThread]: Acquiring new bigquery connection "master"
+[0m15:45:36.859789 [debug] [ThreadPool]: Acquiring new bigquery connection "list_reg-reporting-360309"
+[0m15:45:36.860196 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:45:38.631654 [debug] [ThreadPool]: Acquiring new bigquery connection "create_reg-reporting-360309_ebadpm_dev_ebapdm_data"
+[0m15:45:38.632244 [debug] [ThreadPool]: Acquiring new bigquery connection "create_reg-reporting-360309_ebadpm_dev_ebapdm_data"
+[0m15:45:38.632607 [debug] [ThreadPool]: BigQuery adapter: Creating schema "reg-reporting-360309.ebadpm_dev_ebapdm_data".
+[0m15:45:38.632894 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:45:39.506738 [debug] [ThreadPool]: Acquiring new bigquery connection "list_reg-reporting-360309_ebadpm_dev_ebapdm_data"
+[0m15:45:39.507112 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:45:39.886885 [info ] [MainThread]: Concurrency: 10 threads (target='dev')
+[0m15:45:39.887679 [info ] [MainThread]: 
+[0m15:45:39.897729 [debug] [Thread-1 (]: Began running node model.eba_dpm.DataType
+[0m15:45:39.898334 [info ] [Thread-1 (]: 1 of 1 START table model ebadpm_dev_ebapdm_data.DataType ........................................... [RUN]
+[0m15:45:39.899279 [debug] [Thread-1 (]: Acquiring new bigquery connection "model.eba_dpm.DataType"
+[0m15:45:39.899692 [debug] [Thread-1 (]: Began compiling node model.eba_dpm.DataType
+[0m15:45:39.900389 [debug] [Thread-1 (]: Compiling model.eba_dpm.DataType
+[0m15:45:39.909429 [debug] [Thread-1 (]: Writing injected SQL for node "model.eba_dpm.DataType"
+[0m15:45:39.910738 [debug] [Thread-1 (]: finished collecting timing info
+[0m15:45:39.911068 [debug] [Thread-1 (]: Began executing node model.eba_dpm.DataType
+[0m15:45:40.066170 [debug] [Thread-1 (]: Writing runtime SQL for node "model.eba_dpm.DataType"
+[0m15:45:40.067025 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m15:45:40.067579 [debug] [Thread-1 (]: On model.eba_dpm.DataType: /* {"app": "dbt", "dbt_version": "1.2.0", "profile_name": "eba_dpm_profile", "target_name": "dev", "node_id": "model.eba_dpm.DataType"} */
+
+
+  create or replace table `reg-reporting-360309`.`ebadpm_dev_ebapdm_data`.`DataType`
+  
+  
+  OPTIONS()
+  as (
+    SELECT * FROM `scannell-fsi-dev`.`dpm_model`.`v3_2_DataType`
+  );
+  
+[0m15:45:43.815620 [debug] [Thread-1 (]: finished collecting timing info
+[0m15:45:43.816416 [info ] [Thread-1 (]: 1 of 1 OK created table model ebadpm_dev_ebapdm_data.DataType ...................................... [[32mCREATE TABLE (9.0 rows, 152.0 Bytes processed)[0m in 3.92s]
+[0m15:45:43.817151 [debug] [Thread-1 (]: Finished running node model.eba_dpm.DataType
+[0m15:45:43.819276 [debug] [MainThread]: Acquiring new bigquery connection "master"
+[0m15:45:43.819725 [info ] [MainThread]: 
+[0m15:45:43.820106 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 6.96 seconds (6.96s).
+[0m15:45:43.820463 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:45:43.820655 [debug] [MainThread]: Connection 'model.eba_dpm.DataType' was properly closed.
+[0m15:45:43.908433 [info ] [MainThread]: 
+[0m15:45:43.908858 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m15:45:43.909284 [info ] [MainThread]: 
+[0m15:45:43.909714 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
