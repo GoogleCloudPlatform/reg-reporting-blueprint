@@ -1,7 +1,4 @@
-
+dbt_packages/
 target/
 dbt_modules/
 logs/
-data/*csv
-dbt/sample_reporting
-../../dbt-env

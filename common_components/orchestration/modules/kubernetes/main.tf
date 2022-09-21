@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2022 The Reg Reporting Blueprint Authors
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,6 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+terraform {
+  required_providers {
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = ">= 2.11.0"
+    }
+  }
+}
 
 # Create namespace for running
 resource "kubernetes_namespace" "runner" {
@@ -27,12 +35,12 @@ resource "kubernetes_namespace" "runner" {
 module "my-app-workload-identity" {
   count = var.enabled ? 1 : 0
 
-  source = "github.com/terraform-google-modules/terraform-google-kubernetes-engine//modules/workload-identity?ref=v20.0.0"
+  source = "github.com/terraform-google-modules/terraform-google-kubernetes-engine//modules/workload-identity?ref=v22.0.0"
 
   name       = var.env_name
   namespace  = var.env_name
   project_id = var.project_id
-  roles      = ["roles/bigquery.dataEditor"]
+  roles      = ["roles/bigquery.dataEditor", "roles/bigquery.jobUser", "roles/storage.objectViewer"]
   depends_on = [
     kubernetes_namespace.runner
   ]

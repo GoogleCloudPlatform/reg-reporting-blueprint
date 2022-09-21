@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2022 The Reg Reporting Blueprint Authors
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,8 +25,7 @@ module "project_services" {
   activate_apis               = [
     "cloudbuild.googleapis.com",
     "compute.googleapis.com",
-    "container.googleapis.com",
-    "composer.googleapis.com"
+    "containerregistry.googleapis.com",
   ]
 }
 
@@ -66,7 +65,9 @@ module "composer_reg_reporting" {
 
   enabled = var.enable_composer
 
-  project  = module.project_services.project_id
-  region   = var.region
-  env_name = "reg-runner"
+  project           = module.project_services.project_id
+  bq_location       = var.bq_location
+  region            = var.region
+  env_name          = "reg-runner"
+  gcs_ingest_bucket = module.gcs_buckets.bucket.name
 }

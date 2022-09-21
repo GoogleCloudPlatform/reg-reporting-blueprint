@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2022 The Reg Reporting Blueprint Authors
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,3 +32,10 @@ variable "region" {
   description = "The region to host composer"
 }
 
+variable "bq_location" {
+  description = "The location of BigQuery datasets"
+}
+
+variable "gcs_ingest_bucket" {
+  description = "GCS ingest bucket for loading data"
+}
