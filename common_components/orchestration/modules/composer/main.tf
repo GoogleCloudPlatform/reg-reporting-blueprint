@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2022 The Reg Reporting Blueprint Authors
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -103,6 +103,13 @@ resource "google_composer_environment" "composer_env" {
   config {
     software_config {
       image_version = "composer-2.0.7-airflow-2.2.3"
+      env_variables = {
+        AIRFLOW_VAR_PROJECT_ID        = var.project
+        AIRFLOW_VAR_REGION            = var.region
+        AIRFLOW_VAR_ENV_NAME          = var.env_name
+        AIRFLOW_VAR_BQ_LOCATION       = var.bq_location
+        AIRFLOW_VAR_GCS_INGEST_BUCKET = var.gcs_ingest_bucket
+      }
     }
     environment_size = "ENVIRONMENT_SIZE_SMALL"
     node_config {
@@ -152,6 +159,8 @@ module "gke_auth" {
 
 # Configure provider
 provider "kubernetes" {
+  alias = "composer_kubernetes"
+
   cluster_ca_certificate = (length(module.gke_auth)==1) ? module.gke_auth[0].cluster_ca_certificate : ""
   host                   = (length(module.gke_auth)==1) ? module.gke_auth[0].host : ""
   token                  = (length(module.gke_auth)==1) ? module.gke_auth[0].token : ""
@@ -164,6 +173,8 @@ module "config_k8s" {
   enabled    = var.enabled
   env_name   = var.env_name
   project_id = local.project_id
+
+  providers = {
+    kubernetes = kubernetes.composer_kubernetes
+  }
 }
-
-

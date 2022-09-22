@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2022 The Reg Reporting Blueprint Authors
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,4 +20,13 @@ output "airflow_uri" {
 output "airflow_dag_gcs_prefix" {
   description = "Airflow GCS DAG prefix"
   value       = module.composer_reg_reporting.airflow_dag_gcs_prefix
+}
+
+output "airflow_gke_cluster" {
+  description = "Airflow GKE Cluster"
+  value       = module.composer_reg_reporting.airflow_gke_cluster
+}
+
+output "ingest_gcs_bucket" {
+  value = module.gcs_buckets.bucket.name
 }

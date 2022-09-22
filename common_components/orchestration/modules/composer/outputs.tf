@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2022 The Reg Reporting Blueprint Authors
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,3 +25,14 @@ output "airflow_dag_gcs_prefix" {
                     google_composer_environment.composer_env[0].config.0.dag_gcs_prefix : "")
 }
 
+output "airflow_gke_host" {
+  description = "Airflow GKE Host"
+  value       = (length(google_composer_environment.composer_env)==1 ?
+                    module.gke_auth[0].host : "")
+}
+
+output "airflow_gke_cluster" {
+  description = "Airflow GKE Cluster"
+  value       = (length(google_composer_environment.composer_env)==1 ?
+                    google_composer_environment.composer_env[0].config.0.gke_cluster : "")
+}

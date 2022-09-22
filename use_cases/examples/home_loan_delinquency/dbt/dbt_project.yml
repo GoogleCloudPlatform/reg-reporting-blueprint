@@ -1,7 +1,17 @@
+# Copyright 2022 The Reg Reporting Blueprint Authors
 
-# Name your project! Project names should contain only lowercase characters
-# and underscores. A good package name should reflect your organization's
-# name or the intended use of these models
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     https://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 name: 'sample_reporting'
 version: '1.0.0'
 config-version: 2
@@ -22,11 +32,11 @@ snapshot-paths: ["snapshots"]
 target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
     - "target"
-    - "dbt_modules"
+    - "dbt_packages"
+    - "logs"
 
 # Variables used in the SQL models
 vars:
-    reporting_month: '202109'        # The reporting month in the format YYYYMM
     reporting_day: '2021-09-01'      # The date when the report is valued at. Typically this would be today's date, and
                                      # should always be provided when the run command is issued, using the var flag - e.g.
                                      # dbt run --profiles-dir profiles --vars '{"reporting_day": "2021-09-03"}'
@@ -54,3 +64,11 @@ models:
       calc:
           +tags: calculations
           materialized: ephemeral
+
+# Tracking DBT Performance
+on-run-start:
+  - "{{ dbt_log.create_dbt_log(target) }}"
+  - "{{ dbt_log.insert_dbt_log(target, 'START', dbt_log.graph_to_json(target, graph)) }}"
+
+on-run-end:
+  - "{{ dbt_log.insert_dbt_log(target, 'END', dbt_log.results_to_json(results)) }}"

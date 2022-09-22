@@ -1,0 +1,56 @@
+# Copyright 2022 The Reg Reporting Blueprint Authors
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     https://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: 'cre_demo'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'sample_regreporting_profile'
+
+# These configurations specify where dbt should look for different types of files.
+# The `source-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+    - "target"
+    - "dbt_packages"
+    - "logs"
+
+
+# Configuring models
+models:
+  cre_demo:
+    # Storing the failures for all the tests
+    +store_failures: true  # all tests
+    # Config to store the columns descriptions in datacatalog
+    +persist_docs:
+      relation: true
+      columns: true
+    preprocess:
+      materialized: ephemeral
+    reports:
+      materialized: table
+
+# Tracking DBT Performance
+on-run-start:
+  - "{{ dbt_log.create_dbt_log(target) }}"
+  - "{{ dbt_log.insert_dbt_log(target, 'START', dbt_log.graph_to_json(target, graph)) }}"
+
+on-run-end:
+  - "{{ dbt_log.insert_dbt_log(target, 'END', dbt_log.results_to_json(results)) }}"
