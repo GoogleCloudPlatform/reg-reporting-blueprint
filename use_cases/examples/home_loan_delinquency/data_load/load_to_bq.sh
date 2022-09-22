@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright 2022 Google LLC
+# Copyright 2022 The Reg Reporting Blueprint Authors
 
 # Licensed under the Apache License, Version 2.0 (the 'License');
 # you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Load the input data
+echo -e "\nLoad the input data"
 declare -a arr=( \
 "ref_legal_entity_mapping"
 "ref_products" \
@@ -29,15 +29,17 @@ declare -a arr=( \
 for table in "${arr[@]}"
 do
   bq load \
+  --replace=true \
   --source_format=CSV \
   --skip_leading_rows=1 \
   $PROJECT_ID:$HOMELOAN_BQ_DATA.$table \
-  gs://$GCS_INGEST_BUCKET/$table.csv \
+  gs://$GCS_INGEST_BUCKET/homeloan/input/$table.csv \
   schema/input/$table.json
 done
 
 
-# Load the expected results data
+echo -e "\nLoad the expected results data"
+echo $HOMELOAN_BQ_DATA
 declare -a arr=( \
 "stg_accounts" \
 "stg_products" \
@@ -47,10 +49,11 @@ declare -a arr=( \
 for table in "${arr[@]}"
 do
   bq load \
+  --replace=true \
   --source_format=CSV \
   --skip_leading_rows=1 \
   $PROJECT_ID:$HOMELOAN_BQ_EXPECTEDRESULTS.$table \
-  gs://$GCS_INGEST_BUCKET/$table.csv \
+  gs://$GCS_INGEST_BUCKET/homeloan/expected/$table.csv \
   schema/expected/$table.json
 done
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright 2022 Google LLC
+# Copyright 2022 The Reg Reporting Blueprint Authors
 
 # Licensed under the Apache License, Version 2.0 (the 'License');
 # you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@
 #### Description: Sets up the Terraform configuration files as per the
 #### variables entered by the user, and initialises the environment variables
 #### used by Argo and DBT
+
+## TODO: ask user input for Composer creation
 
 __text_welcome="
 This script performs the setup required to stand up the
@@ -74,6 +76,8 @@ cat terraform.tfvars.template | sed \
   -e s/HOMELOAN_BQ_EXPECTEDRESULTS/$HOMELOAN_BQ_EXPECTEDRESULTS/g \
   -e s/TF_VAR_FLASHING_BQ_MARKET_DATA/$TF_VAR_FLASHING_BQ_MARKET_DATA/g \
   -e s/TF_VAR_FLASHING_BQ_ORDER_DATA/$TF_VAR_FLASHING_BQ_ORDER_DATA/g \
+  -e s/CRE_BQ_DEV/$CRE_BQ_DEV/g \
+  -e s/CRE_BQ_DATA/$CRE_BQ_DATA/g \
   > terraform.tfvars
 
 echo -e "Creating the backend.tf file..."
