@@ -8,10 +8,10 @@
 - [Prepare your environment](#prepare-your-environment)
 - [Upload the sample data](#upload-the-sample-data)
 - [Run the regulatory reporting pipeline](#run-the-regulatory-reporting-pipeline)
-- [(Optional) Containerize the transformations](#-optional--containerize-the-transformations)
+- [(Optional) Containerize the transformations](#optional-containerize-the-transformations)
 - [Clean up](#clean-up)
 - [Delete the individual resources](#delete-the-individual-resources)
-- [What's next](#what-s-next)
+- [What's next](#whats-next)
 
 
 ## Introduction
