@@ -1,0 +1,186 @@
+# Copyright 2022 The Reg Reporting Blueprint Authors
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     https://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+version: 2
+
+sources:
+  - name: financial_data
+    database: "{{ env_var('PROJECT_ID') }}"
+    schema: "{{ var('financial_bq_data') }}"
+    tables:
+      - name: num
+        external:
+          location: "gs://{{ env_var('GCS_INGEST_BUCKET') }}/sec_data/*/num.txt.gz"
+          options:
+            format: CSV
+            skip_leading_rows: 1
+            field_delimiter: "\t"
+            quote: ""
+        columns:
+        - name:  adsh
+          data_type: string
+        - name:  tag
+          data_type: string
+        - name:  version
+          data_type: string
+        - name:  coreg
+          data_type: string
+        - name:  ddate
+          data_type: string
+        - name:  qtrs
+          data_type: int64
+        - name:  uom
+          data_type: string
+        - name:  value
+          data_type: float64
+        - name:  footnote
+          data_type: string
+      - name: pre
+        external:
+          location: "gs://{{ env_var('GCS_INGEST_BUCKET') }}/sec_data/*/pre.txt.gz"
+          options:
+            format: CSV
+            skip_leading_rows: 1
+            field_delimiter: "\t"
+            quote: ""
+        columns:
+        - name:  adsh
+          data_type: string
+        - name:  report
+          data_type: int64
+        - name:  line
+          data_type: int64
+        - name:  stmt
+          data_type: string
+        - name:  inpth
+          data_type: int64
+        - name:  rfile
+          data_type: string
+        - name:  tag
+          data_type: string
+        - name:  version
+          data_type: string
+        - name:  plabel
+          data_type: string
+        - name:  negating
+          data_type: int64
+      - name: tag
+        external:
+          location: "gs://{{ env_var('GCS_INGEST_BUCKET') }}/sec_data/*/tag.txt.gz"
+          options:
+            format: CSV
+            skip_leading_rows: 1
+            field_delimiter: "\t"
+            quote: ""
+        columns:
+        - name:  tag
+          data_type: string
+        - name:  version
+          data_type: string
+        - name:  custom
+          data_type: int64
+        - name:  abstract
+          data_type: int64
+        - name:  datatype
+          data_type: string
+        - name:  iord
+          data_type: string
+        - name:  crdr
+          data_type: string
+        - name:  tlabel
+          data_type: string
+        - name:  doc
+          data_type: string
+      - name: sub
+        external:
+          location: "gs://{{ env_var('GCS_INGEST_BUCKET') }}/sec_data/*/sub.txt.gz"
+          options:
+            format: CSV
+            skip_leading_rows: 1
+            field_delimiter: "\t"
+            quote: ""
+        columns:
+        - name: adsh
+          data_type: string
+        - name: cik
+          data_type: int64
+        - name: name
+          data_type: string
+        - name: sic
+          data_type: int64
+        - name: countrba
+          data_type: string
+        - name: stprba
+          data_type: string
+        - name: cityba
+          data_type: string
+        - name: zipba
+          data_type: string
+        - name: bas1
+          data_type: string
+        - name: bas2
+          data_type: string
+        - name: baph
+          data_type: string
+        - name: countryma
+          data_type: string
+        - name: stprma
+          data_type: string
+        - name: cityma
+          data_type: string
+        - name: zipma
+          data_type: string
+        - name: mas1
+          data_type: string
+        - name: mas2
+          data_type: string
+        - name: countryinc
+          data_type: string
+        - name: stprinc
+          data_type: string
+        - name: ein
+          data_type: string
+        - name: former
+          data_type: string
+        - name: changed
+          data_type: string
+        - name: afs
+          data_type: string
+        - name: wksi
+          data_type: string
+        - name: fye
+          data_type: string
+        - name: form
+          data_type: string
+        - name: period
+          data_type: string
+        - name: fy
+          data_type: string
+        - name: fp
+          data_type: string
+        - name: filed
+          data_type: string
+        - name: accepted
+          data_type: string
+        - name: prevrpt
+          data_type: string
+        - name: detail
+          data_type: string
+        - name: instance
+          data_type: string
+        - name: nciks
+          data_type: string
+        - name: aciks
+          data_type: string
