@@ -71,24 +71,24 @@ In the Google Cloud console, activate Cloud Shell.
  * [Activate Cloud Shell](https://console.cloud.google.com/?cloudshell=true&_ga=2.175791653.601714487.1648649282-1707141935.1648504534)
 
 
-
 ## Prepare your environment
 
-1. In Cloud Shell, specify the project that you want to use for this tutorial:
+1.  In Cloud Shell, specify the project that you want to use for this tutorial:
 
     ```
     gcloud config set project PROJECT_ID
     ```
+
     Replace `PROJECT_ID` with the ID of the project that
     you selected or created for this tutorial.
+
     If a dialog displays, click **Authorize**.
 
+1.  Specify a default region to use for infrastructure creation:
 
-2. Specify a default region to use for infrastructure creation:
+	     gcloud config set compute/region REGION
 
-         gcloud config set compute/region REGION
-
-3. Create and activate a Python virtual environment:
+1.  Create and activate a Python virtual environment:
 
     ```
     python -m venv reg-rpt-env
@@ -98,74 +98,67 @@ In the Google Cloud console, activate Cloud Shell.
     You see that your command-line prompt is prefixed with the name of the
     virtual environment.
 
-
-4. Clone the repository:
+1.  Clone the repository:
 
     ```
     git clone \
     "https://github.com/GoogleCloudPlatform/reg-reporting-blueprint"
     ```
 
-5. Install Terraform. To learn how to do this installation, see the
+1.  Install Terraform. To learn how to do this installation, see the
     [HashiCorp documentation](https://learn.hashicorp.com/tutorials/terraform/install-cli#install-terraform).
 
-
-6. [Verify](https://learn.hashicorp.com/tutorials/terraform/install-cli#verify-the-installation)
+1.  [Verify](https://learn.hashicorp.com/tutorials/terraform/install-cli#verify-the-installation)
     the installation.
+1.  Install dbt:
 
+        pip3 install dbt-bigquery --upgrade
 
-7. Install dbt:
-
-        sudo pip3 install dbt-bigquery --upgrade
-
-8. Verify the dbt installation:
+1.   Verify the dbt installation:
 
          dbt --version
 
      You see the installation details displayed.
 
+1.  Initialize the environment variables:
 
-9. Initialize the environment variables:
+    ```
+    cd reg-reporting-blueprint && source environment-variables.sh
+    ```
 
-     ```
-     cd reg-reporting-blueprint && source environment-variables.sh
-     ```
+1.  Run the setup script:
 
-10. Run the setup script:
+    ```
+    cd common_components && ./setup_script.sh
+    ```
 
-     ```
-     cd common_components && ./setup_script.sh
-     ```
+1.  Run terraform to create the required infrastructure:
 
-11. Run terraform to create the required infrastructure:
+    ```
+    cd orchestration/infrastructure/
+    terraform init -upgrade
+    terraform plan
+    terraform apply
+    ```
+    Type 'yes' when you see the confirmation prompt.
 
-     ```
-     cd orchestration/infrastructure/
-     terraform init -upgrade
-     terraform plan
-     terraform apply
-     ```
-     Type 'yes' when you see the confirmation prompt.
-
-
-12. To verify that an ingest bucket has been created, in the Google Cloud console,
-     go to the **GCS** page and check for a bucket with a name
-     that's similar to the value of `PROJECT ID`.
+1.  To verify that an ingest bucket has been created, in the Google Cloud console,
+    go to the **Cloud Storage** page and check for a bucket with a name
+    that's similar to the value of `PROJECT ID`.
     
+1.  Go to the **BigQuery** page and verify that the following
+    datasets have been created:
 
-13. Go to the **Big Query** page and verify that the following
-     datasets have been created:
-
-     ```
-     homeloan_dev
-     homeloan_data
-     homeloan_expectedresults
-     ```
+    ```
+    homeloan_dev
+    homeloan_data
+    homeloan_expectedresults
+    ```
 
 ## Upload the sample data
 
 In this section, you explore the contents of the repository's `data` and
-`data_load` folders, and load sample data to Big Query.
+`data_load` folders, and load sample data to BigQuery.
 
 1.  In the Cloud Shell Editor instance, navigate to the `data` folder in
     the repository:
@@ -183,38 +176,35 @@ In this section, you explore the contents of the repository's `data` and
     Inspect the contents of the `expected` folder. This folder contains the
     CSV files specifying the expected results once the transformations are applied.
 
-
-2.  Open, and inspect, the `data_load/schema` folder, which contains
+1.  Open, and inspect, the `data_load/schema` folder, which contains
     files specifying the schema of the staging data:
 
     ```
     cd ../data_load
     ```
     The scripts in this folder allow the data to be loaded into
-    GCS first, and then into Big Query. The data
+    Cloud Storage first, and then into BigQuery. The data
     conforms to the expected schema for the example regulatory reporting pipeline
     use case in this tutorial.
 
-
-3.  Load the data into GCS:
+1.  Load the data into Cloud Storage:
 
     ```
     ./load_to_gcs.sh ../data/input
     ./load_to_gcs.sh ../data/expected
     ```
 
-    The data is now available in your GCS ingest bucket.
+    The data is now available in your Cloud Storage ingest bucket.
 
-
-4.  Load the data from the GCS ingest bucket to
-    Big Query:
+1.  Load the data from the Cloud Storage ingest bucket to
+    BigQuery:
 
     ```
     ./load_to_bq.sh
     ```
 
-5.  To verify that the data has been loaded in Big Query, in
-    the Google Cloud console, go to the Big Query page and
+1.  To verify that the data has been loaded in BigQuery, in
+    the Google Cloud console, go to the BigQuery page and
     select a table in both the `homeloan_data` and `homeloan_expectedresults`
     datasets.
 
@@ -232,12 +222,11 @@ In this section, you explore the contents of the repository's `data` and
 
     This will install any needed dbt dependencies in your dbt project.
 
-
-2.  Test the connection between your local dbt installation and your
-    Big Query datasets:
+1.  Test the connection between your local dbt installation and your
+    BigQuery datasets:
 
     ```
-    dbt debug --profiles-dir profiles/
+    dbt debug
     ```
 
     At the end of the connectivity, configuration, and dependency information
@@ -246,33 +235,29 @@ In this section, you explore the contents of the repository's `data` and
     In the `models` folder, open a SQL file and inspect the logic of the
     sample reporting transformations implemented in dbt.
 
-
-3.  Run the reporting transformations to create the regulatory
+1.  Run the reporting transformations to create the regulatory
     reporting metrics:
 
     ```
-    dbt run --profiles-dir profiles/
+    dbt run
     ```
 
-
-4.  Run the transformations for a date of your choice:
+1.  Run the transformations for a date of your choice:
 
     ```
-    dbt run --profiles-dir profiles/ --vars '{"reporting_day": "2021-09-03"}'
+    dbt run --vars '{"reporting_day": "2021-09-03"}'
     ```
     Notice the variables that control the execution of the transformations.
     The variable `reporting_day` indicates the date value that the portfolio
     should have. When you run the `dbt run` command, it's a best practice to provide
     this value.
 
-
-5.  In the Google Cloud console, go to the **Big Query** page
+1.  In the Google Cloud console, go to the **BigQuery** page
     and inspect the `homeloan_dev` dataset. Notice how the data has been
     populated, and how the `reporting_day` variable that you passed is used in
     the **`control.reporting_day`** field of the `wh_denormalised` view.
 
-
-6.  Inspect the `models/schema.yml` file:
+1.  Inspect the `models/schema.yml` file:
 
     ```
     models:
@@ -288,74 +273,88 @@ In this section, you explore the contents of the repository's `data` and
     data quality tests. For example,  the **`ACCOUNT_KEY`** field in the
     `src_current_accounts_attributes` table must be unique and not null.
 
-
-7.  Run the data quality tests that are specified in the config files:
+1.  Run the data quality tests that are specified in the config files:
 
     ```
-    dbt test --profiles-dir profiles/ -s test_type:generic
+    dbt test -s test_type:generic
     ```
 
-
-8.  Inspect the code in the `use_cases/examples/home_loan_delinquency/dbt/tests`
+1.  Inspect the code in the `use_cases/examples/home_loan_delinquency/dbt/tests`
     folder, which contains `singular` tests. Notice that the tests in this folder
     implement a table comparison between the actual results that are output by the
     `dbt run` command, and the expected results that are saved in the `homeloan_expectedresults`
     dataset.
 
-
-9.  Run the singular tests:
-
-    ```
-    dbt test --profiles-dir profiles/ -s test_type:singular
-    ```
-
-
-10. Generate the documentation for the project:
+1.  Run the singular tests:
 
     ```
-    dbt docs generate --profiles-dir profiles && \
-    dbt docs serve --profiles-dir profiles
+    dbt test -s test_type:singular
     ```
-    
-11. In the output that you see, search for, and then click, the following URL
+
+1.  Generate the documentation for the project:
+
+    ```
+    dbt docs generate && dbt docs serve
+    ```
+1.  In the output that you see, search for, and then click, the following URL
     text: `http://127.0.0.1:8080`
 
     Your browser opens a new tab that shows the dbt documentation web interface.
 
-
-12. Inspect the lineage of the models and their documentation. You see that the 
+1.  Inspect the lineage of the models and their documentation. You see that the 
     documentation includes all of the code and the documentation for the models
     (as specified in the `models/schema.yml` files).
-
     
-13. In Cloud Shell, enter the following:
+1.  In Cloud Shell, enter the following:
 
-        Ctrl + c
+	    Ctrl + c
 
-      Cloud Shell stops hosting the dbt web interface.
+	  Cloud Shell stops hosting the dbt web interface.
 
 ## Optional: Containerize the transformations
 
-1.   In Cloud Shell, create a container for the Big Query
-     data load step, and push the container to Google Container Repository:
-
-     ```
-     cd ../data_load/     # Note the Dockerfile in this folder
-     gcloud builds submit --tag $GCR_DATALOAD_IMAGE  # Pushes the image to GCR
-     ```
-     The Dockerfile in this directory enables this containerization, which
-     simplifies orchestration of the workflow.
-
-
-2.  Containerize the code for the data transformation step, and push
-    the container to Container Registry:
+1.  In Cloud Shell, create a container for the BigQuery
+    data load step, and push the container to Google Container Repository:
 
     ```
-    cd ../dbt
-    gcloud builds submit --tag $GCR_DBT_SAMPLE_REPORTING_IMAGE
+    cd ../../../../  # the gcloud command should be executed from the root 
+    gcloud builds submit --config use_cases/examples/home_loan_delinquency/data_load/cloudbuild.yaml
+    ```
+    The Dockerfile in the `data_load` directory enables containerization, which
+    simplifies orchestration of the workflow.
+
+1.  Containerize the code for the data transformation step, and push
+    the container to {{registry_name}}:
+
+    ```
+    gcloud builds submit --config use_cases/examples/home_loan_delinquency/dbt/cloudbuild.yaml
     ```
     Containerization helps you to create a package that you can version and
     deploy.
+
+1.  Retrieve the path of the Airflow page and the **Cloud Storage** bucket for dags, 
+    and store them in environment variables:
+
+    ```
+    cd common_components/orchestration/infrastructure/ 
+    AIRFLOW_DAG_GCS=$(terraform output --raw airflow_dag_gcs_prefix)
+    AIRFLOW_UI=$(terraform output --raw airflow_uri)
+    ```
+
+1.  Upload the home loan delinquency dag:
+
+    ```
+    cd ../../../use_cases/examples/home_loan_delinquency/deploy/
+    gsutil cp run_homeloan_dag.py $AIRFLOW_DAG_GCS
+    ```
+   
+1.  Go to the Airflow page by executing the following 
+    command to retrieve the UI, and clicking on the link:
+
+    ```
+    echo $AIRFLOW_UI
+    ```
+
 
 ## Clean up
 To avoid incurring charges to your Google Cloud account for the resources used in this tutorial, 
