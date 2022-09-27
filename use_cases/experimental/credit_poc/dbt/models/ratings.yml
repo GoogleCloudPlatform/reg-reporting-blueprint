@@ -1,0 +1,95 @@
+# Copyright 2022 The Reg Reporting Blueprint Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     https://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+version: 2
+
+sources:
+  - name: financial_data
+    database: "{{ env_var('PROJECT_ID') }}"
+    schema: "{{ var('financial_bq_data') }}"
+    tables:
+      - name: ratings
+        external:
+          location: "gs://{{ env_var('GCS_INGEST_BUCKET') }}/rating_data/*.csv.gz"
+          options:
+            format: CSV
+            skip_leading_rows: 1
+            field_delimiter: ","
+            quote: "\""
+        columns:
+          - name: rating_agency_name
+            data_type: string
+          - name: file_creating_date
+            data_type: string
+          - name: sec_category
+            data_type: string
+          - name: issuer_name
+            data_type: string
+          - name: legal_entity_identifier
+            data_type: string
+          - name: object_type_rated
+            data_type: string
+          - name: instrument_name
+            data_type: string
+          - name: CUSIP_number
+            data_type: string
+          - name: coupon_date
+            data_type: string
+          - name: maturity_date
+            data_type: string
+          - name: par_value
+            data_type: string
+          - name: issued_paid
+            data_type: string
+          - name: rating
+            data_type: string
+          - name: rating_action_date
+            data_type: string
+          - name: rating_action_class
+            data_type: string
+          - name: rating_type
+            data_type: string
+          - name: rating_sub_type
+            data_type: string
+          - name: rating_type_term
+            data_type: string
+          - name: other_announcement_type
+            data_type: string
+          - name: watch_status
+            data_type: string
+          - name: rating_outlook
+            data_type: string
+          - name: issuer_identifier
+            data_type: string
+          - name: issuer_identifier_schema
+            data_type: string
+          - name: instrument_identifier
+            data_type: string
+          - name: instrument_identifier_schema
+            data_type: string
+          - name: central_index_key
+            data_type: string
+          - name: obligor_identifier
+            data_type: string
+          - name: obligor_identifier_schema
+            data_type: string
+          - name: obligor_identifier_other
+            data_type: string
+          - name: obligor_sec_category
+            data_type: string
+          - name: obligor_industry_group
+            data_type: string
+          - name: obligor_name
+            data_type: string
