@@ -324,7 +324,7 @@ In this section, you explore the contents of the repository's `data` and
     simplifies orchestration of the workflow.
 
 1.  Containerize the code for the data transformation step, and push
-    the container to {{registry_name}}:
+    the container to Google Container Repository:
 
     ```
     gcloud builds submit --config use_cases/examples/home_loan_delinquency/dbt/cloudbuild.yaml
