@@ -2,7 +2,7 @@
 
 This folder contains an example reporting solution for detection of Flashing activity on a stock market.
 Flashing in a financial market is a type of <a href="https://en.wikipedia.org/wiki/Spoofing_(finance)">Spoofing</a>
-market manipulation in which participants exhibit a patten of submitting orders that are not intended to be fulfilled, but rather only to move ("improve") the market to benefit a subsequent order on the other side of the market. The "flashed" orders are short lived orders, which are canceled quickly after being entered and prior to getting executed. In the world of High Frequency Trading, these types of operations are done through algorithmic trading systems and typically happen within milliseconds or microseconds.
+market manipulation in which participants exhibit a pattern of submitting orders that are not intended to be fulfilled, but rather only to move ("improve") the market to benefit a subsequent order on the other side of the market. The "flashed" orders are short lived orders, which are canceled quickly after being entered and prior to getting executed. In the world of High Frequency Trading, these types of operations are done through algorithmic trading systems and typically happen within milliseconds or microseconds.
 
 The code herein is designed to use the power of BigQuery to effortlessly scale these complex analytics to terabytes or beyond of data with no additional operational overhead.
 
