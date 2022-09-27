@@ -1,0 +1,131 @@
+# Copyright 2022 The Reg Reporting Blueprint Authors
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     https://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+version: 2
+
+sources:
+  - name: flashing_detection_source_market_data
+    database: "{{ env_var('PROJECT_ID') }}"
+    schema: "{{ env_var('TF_VAR_FLASHING_BQ_MARKET_DATA') }}"
+    #loaded_at_field: _loaded_at # configure for all sources
+
+    tables:
+      - name: nbbo
+        description: Table containing national best bids and offers
+        #loaded_at_field: updated_at # override source defaults
+        columns:
+          - name: trade_date
+            description: Trade Date
+            tests:
+              - not_null
+          - name: timestamp
+            description: Order event timestamp (microsecond resolution)
+            tests:
+              - not_null
+          - name: symbol
+            description: Financial instrument identifier (e.g. a company's stock ticker)
+            tests:
+              - not_null
+          - name: bid
+            description: Bid (buy price)
+          - name: bid_size
+            description: Quantity being bid
+          - name: ask
+            description: Ask (sell price)
+          - name: ask_size
+            description: Quantity being asked
+
+  - name: flashing_detection_source_order_data
+    database: "{{ env_var('PROJECT_ID') }}"
+    schema: "{{ env_var('TF_VAR_FLASHING_BQ_ORDER_DATA') }}"
+    #loaded_at_field: _loaded_at # configure for all sources
+
+    tables:
+      - name: orders
+        description: Table containing all orders submitted to the market
+        #loaded_at_field: updated_at # override source defaults
+        columns:
+          - name: trade_date
+            description: Date of order
+            tests:
+              - not_null
+          - name: timestamp
+            description: Order event timestamp (microsecond resolution)
+            tests:
+              - not_null
+          - name: trading_model
+            description: Trading strategy name or identifier
+            tests:
+              - not_null
+          - name: account
+            description: Trading account
+            tests:
+              - not_null
+          - name: order_id
+            description: Unique order ID (guaranteed to be unique per trade date)
+            tests:
+              - unique
+              - not_null
+          - name: event
+            description: Order event
+            tests:
+              - accepted_values:
+                  values: ['Sent', 'Acknowledged', 'CancelSent', 'Canceled', 'ReplaceSent', 'Replaced', 'Filled']
+          - name: symbol
+            description: Financial instrument identifier (e.g. a company's stock ticker)
+            tests:
+              - not_null
+          - name: exchange
+            description: Financial exchange the order was sent to
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['ARCA', 'BATS', 'NASDAQ', 'NYSE']
+          - name: side
+            description: Order side (Buy or Sell)
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['Buy', 'Sell']
+          - name: size
+            description: Size of order in shares
+            tests:
+              - not_null
+          - name: price
+            description: Price of order
+            tests:
+              - not_null
+          - name: tif
+            description: Time in force (maximal order lifespan)
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['Day', 'opc']
+          - name: prev_size
+            description: Previous order size (if replaced)
+          - name: prev_price
+            description: Previous order price (if replaced)
+          - name: fill_size
+            description: Number of filled shares (if Filled event)
+            tests:
+              - not_null
+          - name: fill_price
+            description: Trade price (if Filled event)
+            tests:
+              - not_null
+          - name: exec_id
+            description: Exchange fill/execution ID (if Filled event)
+            tests:
+              - unique
+              - not_null

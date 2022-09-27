@@ -29,6 +29,7 @@ fi
 export EMAIL=$(gcloud config get-value account)
 export ENV_ID=${EMAIL%@*}-dev
 export PROJECT_ID=$(gcloud config get-value project)
+export TF_VAR_PROJECT_ID=$PROJECT_ID
 export PROJECT_NUMBER=$(gcloud projects list --filter="project_id=$PROJECT_ID" --format="value(PROJECT_NUMBER)")
 export GCS_TF_STATE=${PROJECT_ID}-tfstate
 export GCS_INGEST_BUCKET=$PROJECT_ID-$GCS_LOCATION-ingest-bucket
@@ -69,6 +70,13 @@ echo -e "\t\tHOMELOAN_GCR_DBT                 :" $HOMELOAN_GCR_DBT
 echo -e "\t\tHOMELOAN_BQ_DEV                  :" $HOMELOAN_BQ_DEV
 echo -e "\t\tHOMELOAN_BQ_DATA                 :" $HOMELOAN_BQ_DATA
 echo -e "\t\tHOMELOAN_BQ_EXPECTEDRESULTS      :" $HOMELOAN_BQ_EXPECTEDRESULTS
+
+# TRADING FLASHING
+export TF_VAR_FLASHING_BQ_MARKET_DATA=market_data
+export TF_VAR_FLASHING_BQ_ORDER_DATA=order_data
+echo -e "\n\tUse case: Trading Flashing:"
+echo -e "\tTF_VAR_FLASHING_BQ_MARKET_DATA   :" $TF_VAR_FLASHING_BQ_MARKET_DATA
+echo -e "\tTF_VAR_FLASHING_BQ_ORDER_DATA    :" $TF_VAR_FLASHING_BQ_ORDER_DATA 
 
 # Edit to reflect use-case specific vars
 export CRE_GCR_DATALOAD=gcr.io/${PROJECT_ID}/cre-data_generator

@@ -1,0 +1,81 @@
+# Copyright 2022 The Reg Reporting Blueprint Authors
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     https://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+version: 2
+
+models:
+  &take_events
+  - name: take_events
+    description: Orders that are filled within 10 seconds of a flashed order
+    columns:
+      - name: trade_date
+        description: Date of order
+        tests:
+          - not_null
+      - name: symbol
+        description: Financial instrument identifier (e.g. a company's stock ticker)
+        tests:
+          - not_null
+      - name: flash_order_id
+        description: ID of flashed order
+        tests:
+          - unique
+          - not_null
+      - name: flash_timestamp
+        description: Flashed order send time
+        tests:
+          - not_null
+      - name: flash_side
+        description: Side of flash (Buy or Sell)
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Buy', 'Sell']
+      - name: flash_size
+        description: Size of flashed order
+        tests:
+          - not_null
+      - name: flash_price
+        description: Price of flashed order
+        tests:
+          - not_null
+      - name: flash_order_life_span
+        description: Milliseconds for which flash order lived
+        tests:
+          - not_null
+      - name: take_order_id
+        description: ID of the order capitalizing on the flash (getting filled on the other side of the market)
+        tests:
+          - unique
+          - not_null
+      - name: take_timestamp
+        description: Take order timestamp
+        tests:
+          - not_null
+      - name: take_exec_id
+        description: Exchange fill/execution ID of take event
+        tests:
+          - not_null
+      - name: take_size
+        description: Trade size of take event
+        tests:
+          - not_null
+      - name: take_price
+        description: Trade price of take event
+        tests:
+          - not_null
+      - name: sent_to_fill_timespan
+        description: Milliseconds between flashed order and take fill
+        tests:
+          - not_null
