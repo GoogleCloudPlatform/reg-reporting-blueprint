@@ -60,6 +60,27 @@ dbt run-operation stage_external_sources --vars 'ext_full_refresh: true'
 
 ## Running DBT
 
+### Data preparation
+Execute the data transformations that create the basic training data set.
 ```
-dbt run
+dbt run -m +tag:modelling
+```
+
+### Univariate analysis
+Analise the predictive power of the basic features against the label.
+
+First, make sure the documentation JSON file is generated, as this is required to create the univariate 
+analysis script.
+```
+dbt docs generate
+```
+
+Then, run this scrip to generate a BQML model running a logistic regression for each feature.
+```
+python3 generate_metrics_uv_eval.py
+```
+
+Now, run the univariate analysis for all the features
+```
+dbt run -m tag:uv_eval
 ```

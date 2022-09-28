@@ -1,3 +1,4 @@
 target/
-dbt_packages/
 logs/
+dbt_packages/
+models/uv_eval/*.sql
