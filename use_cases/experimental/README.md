@@ -49,7 +49,7 @@ git switch -c github_sync
 Fetch the current files (as-is, copied) from github main to the current working
 set:
 ```
-git restore --source github/main .
+git restore --overlay --source github/main .
 ```
 
 Note that this will then require some fix-up if there are any conflicts.
