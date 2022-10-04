@@ -1,4 +1,4 @@
 target/
 logs/
 dbt_packages/
-models/uv_eval/*.sql
+models/01_data_analysis/uv_logistic/*.sql

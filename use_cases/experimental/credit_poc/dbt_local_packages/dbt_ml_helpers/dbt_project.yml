@@ -1,0 +1,6 @@
+name: "dbt_ml_helpers"
+version: "0.0.1"
+
+config-version: 2
+
+require-dbt-version: [">=0.20.0"]

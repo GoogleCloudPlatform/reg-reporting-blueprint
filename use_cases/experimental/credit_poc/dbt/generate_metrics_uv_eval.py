@@ -83,11 +83,11 @@ def create_metrics_eval_models(lst_features: [], label_name, dbt_model_ref, path
 #TODO: create main with some parameters using proper arguments
 
 features = get_metrics_list(path_to_catalog='target/catalog.json',
-                            model_name='model.credit_poc.submissions_pivoted',
-                            column_prefixes=['metrics.'])
+                            model_name='model.credit_poc.training_data',
+                            column_prefixes=['metric_', 'ratio_', 'log_'])
 
 create_metrics_eval_models(features,
                            label_name='will_default',
-                           path='./models/uv_eval/',
-                           dbt_model_ref="{{ref('submissions_pivoted')}}")
+                           path='./models/01_data_analysis/uv_logistic/',
+                           dbt_model_ref="{{ref('training_data')}}")
 

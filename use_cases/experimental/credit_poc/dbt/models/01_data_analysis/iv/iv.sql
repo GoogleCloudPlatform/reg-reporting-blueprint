@@ -25,7 +25,7 @@ WITH
       will_default,
       values
     FROM
-      {{ ref('submissions_modelled') }} s
+      {{ ref('submissions_preprocessed') }} s
   ),
 
   -- Metric coverage stats

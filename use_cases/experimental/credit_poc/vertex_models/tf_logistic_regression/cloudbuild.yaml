@@ -1,0 +1,17 @@
+steps:
+
+# Pull last built version
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker pull ${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/custom:latest || exit 0' ]
+
+# Build training code based on previous repo
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+          'build',
+          '-t', '${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/custom', '.',
+          '--cache-from', '${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/custom'
+        ]
+
+# Publish the image
+images: [ '${LOCATION}-docker.pkg.dev/$PROJECT_ID/reg-repo/custom' ]

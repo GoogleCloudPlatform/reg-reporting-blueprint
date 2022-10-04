@@ -1,3 +1,19 @@
+-- Copyright 2022 The Reg Reporting Blueprint Authors
+
+-- Licensed under the Apache License, Version 2.0 (the "License");
+-- you may not use this file except in compliance with the License.
+-- You may obtain a copy of the License at
+
+--     https://www.apache.org/licenses/LICENSE-2.0
+
+-- Unless required by applicable law or agreed to in writing, software
+-- distributed under the License is distributed on an "AS IS" BASIS,
+-- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+-- See the License for the specific language governing permissions and
+-- limitations under the License.
+
+-- This is a variation of the pivot macro in dbt_utils which sums the values in the then_value column
+
 {#
 This is a variation of the pivot macro in dbt_utils which sums the values in the then_value column
 
@@ -14,28 +30,6 @@ Arguments:
     quote_identifiers: Whether to surround column aliases with double quotes, default is true
     distinct: Whether to use distinct in the aggregation, default is False
 #}
-
-{% macro divide_value(table, key, nom, denom) %}
-  STRUCT(
-     '{{ key }}'
-       AS key,
-     SAFE_DIVIDE(
-        (SELECT ANY_VALUE(value) FROM {{ table }} WHERE key='{{ nom }}'),
-        (SELECT ANY_VALUE(value) FROM {{ table }} WHERE key='{{ denom }}'))
-      AS value
-  )
-{% endmacro %}
-
-{% macro log_value(table, key, value) %}
-  STRUCT(
-     '{{ key }}'
-       AS key,
-     SAFE.LOG(
-        (SELECT ANY_VALUE(value) FROM {{ table }} WHERE key='{{ value }}')
-     )
-      AS value
-  )
-{% endmacro %}
 
 {% macro pivot_and_aggregate(column,
                              values,

@@ -13,18 +13,19 @@
 -- limitations under the License.
 
 
--- Pivot the ratios to be in columns rather than key-value in an array
---
 -- As BigQuery has a limit of 10,000 columns, this will focus on the
 -- the most interesting metrics according to iv_value and metric_coverage.
+
+{{ config(materialized='ephemeral') }}
+
 
 SELECT
   * EXCEPT (values),
   (
     SELECT AS STRUCT
-      {{ pivot_and_aggregate(
+      {{ dbt_ml_helpers.pivot_and_aggregate(
            column='key',
-           values=get_top_metrics(
+           values=dbt_ml_helpers.get_top_metrics(
              from_clause=
                ref('iv') ~
                " WHERE metric_coverage > 0.04 AND" ~
@@ -38,4 +39,4 @@ SELECT
       s.values
   ) AS metrics
 FROM
-  {{ ref('submissions_modelled') }} s
+  {{ ref('submissions_preprocessed') }} s

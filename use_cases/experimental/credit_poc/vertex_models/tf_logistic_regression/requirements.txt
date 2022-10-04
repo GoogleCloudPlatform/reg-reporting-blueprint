@@ -1,0 +1,8 @@
+gcsfs==0.7.1
+pandas_gbq==0.15.0
+numpy==1.21.6
+tensorboard==2.8.0
+tensorflow==2.8.2
+tensorflow-io==0.25.0
+google-cloud-aiplatform==1.12.1
+google-cloud-bigquery==1.28.0
