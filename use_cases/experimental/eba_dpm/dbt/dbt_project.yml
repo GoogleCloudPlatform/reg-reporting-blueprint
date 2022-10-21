@@ -1,0 +1,34 @@
+
+name: 'eba_dpm'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'eba_dpm_profile'
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+
+# Configuring models
+models:
+  eba_dpm:
+    # Config indicated by + and applies to all files under
+    src:
+      materialized: table
+      dataset: "{{ env_var('EBADPM_BQ_DATA') }}"
+    # Replication of DPM database queries
+    qDPM:
+      materialized: ephemeral
+    # Store the final consumable results of the model
+    model:
+      materialized: table

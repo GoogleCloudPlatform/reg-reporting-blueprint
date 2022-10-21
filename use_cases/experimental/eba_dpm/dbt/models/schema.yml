@@ -1,0 +1,89 @@
+
+version: 2
+
+sources:
+  - name: dpm_model
+    database: "{{ env_var('DPM_PROJECT_ID') }}"
+    schema: "{{ env_var('DPM_DATASET') }}"
+    tables:
+      - name: v3_2_ModuleTableOrGroup
+      - name: v3_2_MetricVariable
+      - name: v3_2_References
+      - name: v3_2_OpenMemberRestriction
+      - name: v3_2_Table
+      - name: v3_2_Metric
+      - name: v3_2_InstanceLevelConcept
+      - name: v3_2_InstanceLevelDimension
+      - name: v3_2_InstanceLevelDataPoint
+      - name: v3_2_ReferenceCategorisation
+      - name: v3_2_Module
+      - name: v3_2_Template
+      - name: v3_2_DataPoint
+      - name: v3_2_OrdinateVariable
+      - name: v3_2_VariableOfExpression
+      - name: v3_2_ValidationRuleSet
+      - name: v3_2_CellReference
+      - name: v3_2_CellPosition
+      - name: v3_2_ValidationRule
+      - name: v3_2_DimensionalCoordinate
+      - name: v3_2_Member
+      - name: v3_2_PreCondition
+      - name: v3_2_ContextDefinition
+      - name: v3_2_DataPointVersionVariable
+      - name: v3_2_AxisOrdinate
+      - name: v3_2_ConceptualModule
+      - name: v3_2_ModuleDataPointRestriction
+      - name: v3_2_TaxonomyHistory
+      - name: v3_2_ValidationScope
+      - name: v3_2_Hierarchy
+      - name: v3_2_HierarchyValidationRule
+      - name: v3_2_ReferenceSources
+      - name: v3_2_TemplateGroup
+      - name: v3_2_ModuleTableVersion
+      - name: v3_2_StringListValues
+      - name: v3_2_ConceptTranslation
+      - name: v3_2_DataPointVersion
+      - name: v3_2_DatapointVersionTransition
+      - name: v3_2_AdditivityCode
+      - name: v3_2_DataType
+      - name: v3_2_Expression
+      - name: v3_2_TaxonomyTableVersion
+      - name: v3_2_SpecificCellVariable
+      - name: v3_2_DataPointVersionTransitionLink
+      - name: v3_2_Axis
+      - name: v3_2_DataSign
+      - name: v3_2_ReferencePeriodOffset
+      - name: v3_2_TemplateGroupTemplate
+      - name: v3_2_aaDatabaseVersionHistory
+      - name: v3_2_Taxonomy
+      - name: v3_2_TableCell
+      - name: v3_2_TableGroupTemplates
+      - name: v3_2_ModuleDimensionImpliedValue
+      - name: v3_2_DpmPackage
+      - name: v3_2_Owner
+      - name: v3_2_SumOverOpenAxis
+      - name: v3_2_ContextOfDataPoints
+      - name: v3_2_Concept
+      - name: v3_2_ConceptualModuleTemplate
+      - name: v3_2_AxisOrdinateTrace
+      - name: v3_2_TableVersion
+      - name: v3_2_Language
+      - name: v3_2_TableGroup
+      - name: v3_2_zzTableChanges
+      - name: v3_2_ExpressionScope
+      - name: v3_2_ReportingFramework
+      - name: v3_2_HierarchyScope
+      - name: v3_2_mvCellLocation
+      - name: v3_2_OpenAxisValueRestriction
+      - name: v3_2_OrdinateCategorisation
+      - name: v3_2_StringList
+      - name: v3_2_FlowType
+      - name: v3_2_Domain
+      - name: v3_2_ConceptReference
+      - name: v3_2_Dimension
+      - name: v3_2_HierarchyNode
+      - name: v3_2_SumOfManyOrdinates
+      - name: v3_2_BalanceType
+
+models:
+  - name: DataType

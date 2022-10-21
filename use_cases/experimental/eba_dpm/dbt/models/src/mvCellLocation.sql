@@ -1,0 +1,1 @@
+SELECT * FROM {{ source('dpm_model', 'v3_2_mvCellLocation') }}
