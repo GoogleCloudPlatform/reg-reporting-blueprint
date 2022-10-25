@@ -18,17 +18,12 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
-
 # Configuring models
 models:
   eba_dpm:
-    # Config indicated by + and applies to all files under
-    src:
-      materialized: table
-      dataset: "{{ env_var('EBADPM_BQ_DATA') }}"
     # Replication of DPM database queries
     qDPM:
-      materialized: ephemeral
+      materialized: table
     # Store the final consumable results of the model
-    model:
+    output:
       materialized: table

@@ -1,4 +1,4 @@
-SELECT 
+SELECT
     Member.MemberID, 
     Metric.MetricID, 
     Member.MemberCode, 
@@ -6,25 +6,35 @@ SELECT
     DataType.DataTypeCode, 
     FlowType.FlowTypeCode, 
     Domain.DomainCode, 
-    Hierarchy.HierarchyCode, 
-    IIf(datatypecode Is Null, "", " " & datatypecode & flowtypecode) & 
-    IIf(domaincode Is Null,"",":" & domaincode) & 
-    IIf(hierarchycode Is Null,"",":" & hierarchycode) & 
-    IIf(datatypecode Is Null,"","") AS DataType, 
-    MemberLabel & DataType AS MemberName
+    Hierarchy.HierarchyCode,
+    -- DataType refactored from this
+    --IIf(datatypecode Is Null, "", " " & datatypecode & flowtypecode) &
+    --IIf(domaincode Is Null,"",":" & domaincode) &
+    --IIf(hierarchycode Is Null,"",":" & hierarchycode) &
+    --IIf(datatypecode Is Null,"","") AS DataType,
+    CONCAT(
+        IF(datatypecode Is Null, "", CONCAT(" ", datatypecode, flowtypecode)),
+        IF(domaincode Is Null,"", CONCAT(":", domaincode)),
+        IF(hierarchycode Is Null,"", CONCAT(":", hierarchycode)),
+        IF(datatypecode Is Null,"","")
+    ) AS DataType,
+    CONCAT(MemberLabel,
+        CONCAT(
+            IF(datatypecode Is Null, "", CONCAT(" ", datatypecode, flowtypecode)),
+            IF(domaincode Is Null,"", CONCAT(":", domaincode)),
+            IF(hierarchycode Is Null,"", CONCAT(":", hierarchycode)),
+            IF(datatypecode Is Null,"","")
+        )
+    ) AS MemberName
 FROM
-    {{source('dpm_model', 'v3_2_Member')}} Member LEFT JOIN
-    {{source('dpm_model', 'v3_2_Metric')}} Metric ON
-
-
-
-
-    {{source('dpm_model', 'v3_2_FlowType')}} FlowType RIGHT JOIN
-    {{source('dpm_model', 'v3_2_Hierarchy')}} Hierarchy RIGHT JOIN
-    {{source('dpm_model', 'v3_2_Domain')}} Domain RIGHT JOIN
-    {{source('dpm_model', 'v3_2_DataType')}} DataType RIGHT JOIN
-        DataType.DataTypeID = Metric.DataTypeID AND
-        Domain.DomainID = Metric.CodeDomainID AND
-        Hierarchy.HierarchyID = Metric.CodeSubdomainID AND
-        Member.MemberID = Metric.MetricID AND
-        FlowType.FlowTypeID = Metric.FlowTypeID
+    {{source('dpm_model', 'dpm_Member')}} Member LEFT JOIN
+    {{source('dpm_model', 'dpm_Metric')}} Metric ON
+        Member.MemberID = Metric.MetricID LEFT JOIN
+    {{source('dpm_model', 'dpm_DataType')}} DataType ON
+        DataType.DataTypeID = Metric.DataTypeID LEFT JOIN
+    {{source('dpm_model', 'dpm_FlowType')}} FlowType ON
+        FlowType.FlowTypeID = Metric.FlowTypeID LEFT JOIN
+    {{source('dpm_model', 'dpm_Domain')}} Domain ON
+        Domain.DomainID = Metric.CodeDomainID LEFT JOIN
+    {{source('dpm_model', 'dpm_Hierarchy')}} Hierarchy ON
+        Hierarchy.HierarchyID = Metric.CodeSubdomainID

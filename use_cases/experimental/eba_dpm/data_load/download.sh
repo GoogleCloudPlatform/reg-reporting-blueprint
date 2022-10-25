@@ -4,7 +4,7 @@ function process_dpm_db() {
   URL=$1
   FILE=$2
   DB_FILE=$3
-  NAME=$4
+  #NAME=$4
 
   if [ ! -f "${FILE}" ]; then
     echo "Downloading URL ${FILE}"
@@ -20,9 +20,9 @@ function process_dpm_db() {
   fi
 
   mdb-tables -1 "${DB_FILE}" | while read table; do
-    if [ ! -f "${NAME}.${table}.csv.gz" ]; then
+    if [ ! -f "${table}.csv.gz" ]; then
       echo "Extracting from table ${NAME}.${table}"
-      mdb-export -H -B "${DB_FILE}" "${table}" | gzip > "${NAME}.${table}.csv.gz"
+      mdb-export -H -B "${DB_FILE}" "${table}" | gzip > "${table}.csv.gz"
     fi
   done
 }
@@ -37,9 +37,9 @@ PHASE2_DB="DPM Database 3.2.phase1.accdb"
 
 mkdir -p dpm_model
 cd dpm_model
-process_dpm_db "${BASE_URL}${PATH_URL}" "${PHASE1}" "${PHASE1_DB}" "dpm_query_tool"
-process_dpm_db "${BASE_URL}${PATH_URL}" "${PHASE2}" "${PHASE2_DB}" "dpm_database"
+#process_dpm_db "${BASE_URL}${PATH_URL}" "${PHASE1}" "${PHASE1_DB}" "dpm_query_tool"
+process_dpm_db "${BASE_URL}${PATH_URL}" "${PHASE2}" "${PHASE2_DB}"
 cd ..
 
 echo "Copying to GCS"
-gsutil -m cp -r dpm_model/*.csv.gz "gs://${GCS_INGEST_BUCKET}/"
+gsutil -m cp -r dpm_model/*.csv.gz "gs://${GCS_INGEST_BUCKET}/eba_dpm/"

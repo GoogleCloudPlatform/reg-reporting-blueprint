@@ -3,4 +3,4 @@ SELECT
     100 AS DimensionID,
     DataPointVersion.MetricID AS MemberID
 FROM
-    {{source('dpm_model', 'v3_2_DataPointVersion')}} as DataPointVersion;
+    {{source('dpm_model', 'dpm_DataPointVersion')}} as DataPointVersion

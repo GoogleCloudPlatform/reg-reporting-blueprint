@@ -21,6 +21,6 @@ SELECT
     mvCellLocation.ReplacesTaxonomyID,
     mvCellLocation.TableID
 FROM
-    {{ source ('dpm_model', 'v3_2_mvCellLocation')}} as mvCellLocation INNER JOIN
-    {{ source ('dpm_model', 'v3_2_TableVersion')}}  as TableVersion ON
+    {{source('dpm_model', 'dpm_mvCellLocation')}} as mvCellLocation INNER JOIN
+    {{source('dpm_model', 'dpm_TableVersion')}}  as TableVersion ON
         mvCellLocation.TableVID = TableVersion.TableVID
