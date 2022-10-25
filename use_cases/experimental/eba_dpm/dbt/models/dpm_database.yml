@@ -1,0 +1,1235 @@
+version: 2
+sources:
+- name: dpm_database
+  database: '{{ env_var(''PROJECT_ID'') }}'
+  schema: '{{ env_var(''DPM_DATASET'') }}'
+  tables:
+  - name: dpm_database_aaDatabaseVersionHistory
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.aaDatabaseVersionHistory.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: EventDate
+      data_type: DATETIME
+    - name: Event
+      data_type: STRING
+    - name: ExplicitlyPublished
+      data_type: BOOLEAN
+    - name: Details
+      data_type: STRING
+  - name: dpm_database_AdditivityCode
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.AdditivityCode.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: Additivity
+      data_type: STRING
+    - name: Description
+      data_type: STRING
+  - name: dpm_database_AxisOrdinate
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.AxisOrdinate.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: OrdinateID
+      data_type: INT64
+    - name: AxisID
+      data_type: INT64
+    - name: IsAbstractHeader
+      data_type: BOOLEAN
+    - name: OrdinateCode
+      data_type: STRING
+    - name: OrdinateLabel
+      data_type: STRING
+    - name: OrderKey
+      data_type: INT64
+    - name: Level
+      data_type: INT64
+    - name: Path
+      data_type: STRING
+    - name: ParentOrdinateID
+      data_type: INT64
+    - name: DisplayBeforeChildren
+      data_type: BOOLEAN
+    - name: CategorisationKey
+      data_type: STRING
+    - name: IsRowKey
+      data_type: BOOLEAN
+    - name: RequiredDataSign
+      data_type: STRING
+    - name: TypicalDataSign
+      data_type: STRING
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_AxisOrdinateTrace
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.AxisOrdinateTrace.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: OrdinateID
+      data_type: INT64
+    - name: OldOrdinateID
+      data_type: INT64
+  - name: dpm_database_BalanceType
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.BalanceType.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: BalanceTypeID
+      data_type: INT64
+    - name: BalanceTypeCode
+      data_type: STRING
+    - name: BalanceTypeLabel
+      data_type: STRING
+  - name: dpm_database_CellPosition
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.CellPosition.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: CellID
+      data_type: INT64
+    - name: OrdinateID
+      data_type: INT64
+  - name: dpm_database_Concept
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Concept.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ConceptID
+      data_type: INT64
+    - name: ConceptType
+      data_type: STRING
+    - name: OwnerID
+      data_type: INT64
+    - name: CreationDate
+      data_type: DATETIME
+    - name: ModificationDate
+      data_type: DATETIME
+    - name: FromDate
+      data_type: DATETIME
+    - name: ToDate
+      data_type: DATETIME
+  - name: dpm_database_ConceptReference
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ConceptReference.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ConceptID
+      data_type: INT64
+    - name: ReferenceID
+      data_type: INT64
+  - name: dpm_database_ConceptTranslation
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ConceptTranslation.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ConceptID
+      data_type: INT64
+    - name: LanguageID
+      data_type: INT64
+    - name: FieldName
+      data_type: STRING
+    - name: Text
+      data_type: STRING
+    - name: OwnerID
+      data_type: INT64
+  - name: dpm_database_ConceptualModule
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ConceptualModule.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ConceptualModuleID
+      data_type: INT64
+    - name: ConceptualModuleCode
+      data_type: STRING
+    - name: ConceptualModuleLabel
+      data_type: STRING
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_ConceptualModuleTemplate
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ConceptualModuleTemplate.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: TemplateID
+      data_type: INT64
+    - name: ConceptualModuleID
+      data_type: INT64
+    - name: FromDate
+      data_type: DATETIME
+    - name: ToDate
+      data_type: DATETIME
+  - name: dpm_database_ContextDefinition
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ContextDefinition.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ContextID
+      data_type: INT64
+    - name: DimensionID
+      data_type: INT64
+    - name: MemberID
+      data_type: INT64
+    - name: RestrictionID
+      data_type: INT64
+  - name: dpm_database_ContextOfDataPoints
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ContextOfDataPoints.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ContextID
+      data_type: INT64
+    - name: ContextKey
+      data_type: STRING
+    - name: XbrlContextKey
+      data_type: STRING
+  - name: dpm_database_DataPoint
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.DataPoint.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: DataPointID
+      data_type: INT64
+    - name: PeriodOffsetID
+      data_type: INT64
+    - name: RelatedDataPointID
+      data_type: INT64
+    - name: IsNew
+      data_type: BOOLEAN
+  - name: dpm_database_DataPointVersion
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.DataPointVersion.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: DataPointVID
+      data_type: INT64
+    - name: DataPointID
+      data_type: INT64
+    - name: MetricID
+      data_type: INT64
+    - name: ContextID
+      data_type: INT64
+    - name: FromDate
+      data_type: DATETIME
+    - name: ToDate
+      data_type: DATETIME
+    - name: CategorisationKey
+      data_type: STRING
+    - name: CategorisationKeyWithoutDefaults
+      data_type: STRING
+  - name: dpm_database_DatapointVersionTransition
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.DatapointVersionTransition.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: TransitionID
+      data_type: STRING
+    - name: TransitionType
+      data_type: STRING
+    - name: TransitionSummary
+      data_type: STRING
+    - name: TransitionDescription
+      data_type: STRING
+    - name: Created
+      data_type: DATETIME
+  - name: dpm_database_DataPointVersionVariable
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.DataPointVersionVariable.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ExpressionID
+      data_type: INT64
+    - name: VariableCode
+      data_type: STRING
+    - name: DataPointVID
+      data_type: INT64
+  - name: dpm_database_DataSign
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.DataSign.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: DataSign
+      data_type: STRING
+  - name: dpm_database_DataType
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.DataType.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: DataTypeID
+      data_type: INT64
+    - name: DataTypeCode
+      data_type: STRING
+    - name: DataTypeLabel
+      data_type: STRING
+  - name: dpm_database_Dimension
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Dimension.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: DimensionID
+      data_type: INT64
+    - name: DomainID
+      data_type: INT64
+    - name: DimensionCode
+      data_type: STRING
+    - name: DimensionLabel
+      data_type: STRING
+    - name: DimensionDescription
+      data_type: STRING
+    - name: IsImpliedIfNotExplicitlyModelled
+      data_type: BOOLEAN
+    - name: DimensionXbrlCode
+      data_type: STRING
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_DimensionalCoordinate
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.DimensionalCoordinate.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: DimensionID
+      data_type: INT64
+    - name: MemberID
+      data_type: INT64
+  - name: dpm_database_Domain
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Domain.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: DomainID
+      data_type: INT64
+    - name: DomainCode
+      data_type: STRING
+    - name: DomainLabel
+      data_type: STRING
+    - name: IsTypedDomain
+      data_type: BOOLEAN
+    - name: IsExternalRefData
+      data_type: BOOLEAN
+    - name: ReferenceDataSource
+      data_type: STRING
+    - name: DataTypeID
+      data_type: INT64
+    - name: DomainDescription
+      data_type: STRING
+    - name: DomainXbrlCode
+      data_type: STRING
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_DpmPackage
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.DpmPackage.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: DpmPackageCode
+      data_type: STRING
+  - name: dpm_database_Expression
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Expression.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ExpressionID
+      data_type: INT64
+    - name: ExpressionType
+      data_type: STRING
+    - name: TableBasedFormula
+      data_type: STRING
+    - name: LogicalExpression
+      data_type: STRING
+    - name: ErrorMessage
+      data_type: STRING
+  - name: dpm_database_ExpressionScope
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ExpressionScope.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ExpressionID
+      data_type: INT64
+    - name: OrdinateID
+      data_type: INT64
+  - name: dpm_database_FlowType
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.FlowType.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: FlowTypeID
+      data_type: INT64
+    - name: FlowTypeCode
+      data_type: STRING
+    - name: FlowTypeLabel
+      data_type: STRING
+  - name: dpm_database_Hierarchy
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Hierarchy.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: HierarchyID
+      data_type: INT64
+    - name: HierarchyCode
+      data_type: STRING
+    - name: HierarchyLabel
+      data_type: STRING
+    - name: DomainID
+      data_type: INT64
+    - name: HierarchyDescription
+      data_type: STRING
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_HierarchyNode
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.HierarchyNode.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: HierarchyID
+      data_type: INT64
+    - name: MemberID
+      data_type: INT64
+    - name: IsAbstract
+      data_type: BOOLEAN
+    - name: ComparisonOperator
+      data_type: STRING
+    - name: UnaryOperator
+      data_type: STRING
+    - name: OrderKey
+      data_type: INT64
+    - name: Level
+      data_type: INT64
+    - name: Path
+      data_type: STRING
+    - name: ParentHierarchyID
+      data_type: INT64
+    - name: ParentMemberID
+      data_type: INT64
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_HierarchyScope
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.HierarchyScope.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: HierarchyID
+      data_type: INT64
+    - name: TableVID
+      data_type: INT64
+  - name: dpm_database_HierarchyValidationRule
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.HierarchyValidationRule.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: HierarchyID
+      data_type: INT64
+    - name: MemberID
+      data_type: INT64
+    - name: ValidationID
+      data_type: INT64
+  - name: dpm_database_InstanceLevelConcept
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.InstanceLevelConcept.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: InstanceLevelConceptID
+      data_type: INT64
+    - name: ConceptLabel
+      data_type: STRING
+  - name: dpm_database_InstanceLevelDimension
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.InstanceLevelDimension.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: InstanceLevelConceptID
+      data_type: INT64
+    - name: DimensionID
+      data_type: INT64
+  - name: dpm_database_Language
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Language.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: LanguageID
+      data_type: INT64
+    - name: LanguageName
+      data_type: STRING
+    - name: EnglishName
+      data_type: STRING
+    - name: IsoCode
+      data_type: STRING
+  - name: dpm_database_Member
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Member.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: MemberID
+      data_type: INT64
+    - name: DomainID
+      data_type: INT64
+    - name: MemberCode
+      data_type: STRING
+    - name: MemberLabel
+      data_type: STRING
+    - name: IsDefaultMember
+      data_type: BOOLEAN
+    - name: MemberXbrlCode
+      data_type: STRING
+    - name: MemberDescription
+      data_type: STRING
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_Metric
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Metric.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: MetricID
+      data_type: INT64
+    - name: DataTypeID
+      data_type: INT64
+    - name: FlowTypeID
+      data_type: INT64
+    - name: CodeDomainID
+      data_type: INT64
+    - name: CodeSubdomainID
+      data_type: INT64
+    - name: StringListID
+      data_type: INT64
+    - name: RequiredDataSign
+      data_type: STRING
+    - name: TypicalDataSign
+      data_type: STRING
+    - name: Additivity
+      data_type: STRING
+  - name: dpm_database_MetricVariable
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.MetricVariable.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ExpressionID
+      data_type: INT64
+    - name: VariableCode
+      data_type: STRING
+    - name: MetricID
+      data_type: INT64
+  - name: dpm_database_Module
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Module.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ModuleID
+      data_type: INT64
+    - name: TaxonomyID
+      data_type: INT64
+    - name: ModuleCode
+      data_type: STRING
+    - name: ModuleLabel
+      data_type: STRING
+    - name: XbrlSchemaRef
+      data_type: STRING
+    - name: ConceptualModuleID
+      data_type: INT64
+    - name: ConceptID
+      data_type: INT64
+    - name: FromDate
+      data_type: DATETIME
+    - name: ToDate
+      data_type: DATETIME
+  - name: dpm_database_ModuleDataPointRestriction
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ModuleDataPointRestriction.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ModuleID
+      data_type: INT64
+    - name: InstanceLevelConceptID
+      data_type: INT64
+    - name: DataPointID
+      data_type: INT64
+    - name: RequiredMemberID
+      data_type: INT64
+    - name: RequiredValue
+      data_type: STRING
+  - name: dpm_database_ModuleTableOrGroup
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ModuleTableOrGroup.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ModuleID
+      data_type: INT64
+    - name: OrderKey
+      data_type: INT64
+    - name: TableVID
+      data_type: INT64
+    - name: TableGroupID
+      data_type: INT64
+  - name: dpm_database_ModuleTableVersion
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ModuleTableVersion.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ModuleID
+      data_type: INT64
+    - name: TableVID
+      data_type: INT64
+    - name: IsSimpleReuse
+      data_type: BOOLEAN
+  - name: dpm_database_mvCellLocation
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.mvCellLocation.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: CellID
+      data_type: INT64
+    - name: CellCode
+      data_type: STRING
+    - name: TableVersionCode
+      data_type: STRING
+    - name: RowCode
+      data_type: STRING
+    - name: ColumnCode
+      data_type: STRING
+    - name: SheetCode
+      data_type: STRING
+    - name: DataPointVID
+      data_type: INT64
+    - name: DataPointID
+      data_type: INT64
+    - name: MetricID
+      data_type: INT64
+    - name: IsShaded
+      data_type: BOOLEAN
+    - name: IsRowKey
+      data_type: BOOLEAN
+    - name: TableVID
+      data_type: INT64
+    - name: TableID
+      data_type: INT64
+    - name: TaxonomyCode
+      data_type: STRING
+    - name: TaxonomyID
+      data_type: INT64
+    - name: ReplacesTaxonomyID
+      data_type: INT64
+  - name: dpm_database_OpenMemberRestriction
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.OpenMemberRestriction.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: RestrictionID
+      data_type: INT64
+    - name: HierarchyID
+      data_type: INT64
+    - name: MemberID
+      data_type: INT64
+    - name: MemberIncluded
+      data_type: BOOLEAN
+    - name: AllowsDefaultMember
+      data_type: BOOLEAN
+    - name: IgnoreMemberID
+      data_type: BOOLEAN
+  - name: dpm_database_OrdinateCategorisation
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.OrdinateCategorisation.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: OrdinateID
+      data_type: INT64
+    - name: DimensionID
+      data_type: INT64
+    - name: MemberID
+      data_type: INT64
+    - name: RestrictionID
+      data_type: INT64
+  - name: dpm_database_OrdinateVariable
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.OrdinateVariable.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ExpressionID
+      data_type: INT64
+    - name: VariableCode
+      data_type: STRING
+    - name: OrdinateID
+      data_type: INT64
+    - name: IsScopeFilter
+      data_type: BOOLEAN
+  - name: dpm_database_Owner
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Owner.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: OwnerID
+      data_type: INT64
+    - name: OwnerName
+      data_type: STRING
+    - name: OwnerNamespace
+      data_type: STRING
+    - name: OwnerLocation
+      data_type: STRING
+    - name: OwnerPrefix
+      data_type: STRING
+    - name: OwnerCopyright
+      data_type: STRING
+    - name: ParentOwnerID
+      data_type: INT64
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_PreCondition
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.PreCondition.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ValidationId
+      data_type: INT64
+    - name: PrecondExprID
+      data_type: INT64
+  - name: dpm_database_ReferenceCategorisation
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ReferenceCategorisation.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ReferenceID
+      data_type: INT64
+    - name: DimensionID
+      data_type: INT64
+    - name: MemberID
+      data_type: INT64
+  - name: dpm_database_References
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.References.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ReferenceID
+      data_type: INT64
+    - name: SourceCode
+      data_type: STRING
+    - name: Article
+      data_type: STRING
+    - name: Paragraph
+      data_type: STRING
+    - name: Point
+      data_type: STRING
+    - name: Romans
+      data_type: STRING
+    - name: ReferenceText
+      data_type: STRING
+    - name: CategorisationKey
+      data_type: STRING
+    - name: WildcardCategorisationKey
+      data_type: STRING
+  - name: dpm_database_ReferenceSources
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ReferenceSources.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: SourceCode
+      data_type: STRING
+    - name: SourceLabel
+      data_type: STRING
+    - name: SourceDescription
+      data_type: STRING
+  - name: dpm_database_ReportingFramework
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ReportingFramework.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: FrameworkID
+      data_type: INT64
+    - name: FrameworkCode
+      data_type: STRING
+    - name: FrameworkLabel
+      data_type: STRING
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_SpecificCellVariable
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.SpecificCellVariable.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ExpressionID
+      data_type: INT64
+    - name: VariableCode
+      data_type: STRING
+    - name: CellID
+      data_type: INT64
+  - name: dpm_database_StringList
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.StringList.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: StringListID
+      data_type: INT64
+    - name: StringListCode
+      data_type: STRING
+  - name: dpm_database_StringListValues
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.StringListValues.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: StringListID
+      data_type: INT64
+    - name: ValidValue
+      data_type: STRING
+    - name: Description
+      data_type: STRING
+    - name: Note
+      data_type: STRING
+  - name: dpm_database_SumOfManyOrdinates
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.SumOfManyOrdinates.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ExpressionID
+      data_type: INT64
+    - name: VariableCode
+      data_type: STRING
+    - name: OrdinateID
+      data_type: INT64
+  - name: dpm_database_Table
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Table.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: TableID
+      data_type: INT64
+    - name: TemplateID
+      data_type: INT64
+    - name: OriginalTableCode
+      data_type: STRING
+    - name: OriginalTableLabel
+      data_type: STRING
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_TableCell
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.TableCell.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: CellID
+      data_type: INT64
+    - name: TableVID
+      data_type: INT64
+    - name: IsShaded
+      data_type: BOOLEAN
+    - name: DataPointVID
+      data_type: INT64
+    - name: CellCode
+      data_type: STRING
+  - name: dpm_database_TableGroup
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.TableGroup.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: TableGroupID
+      data_type: INT64
+    - name: TaxonomyID
+      data_type: INT64
+    - name: TableGroupCode
+      data_type: STRING
+    - name: TableGroupLabel
+      data_type: STRING
+    - name: OrderKey
+      data_type: INT64
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_TableGroupTemplates
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.TableGroupTemplates.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: TableGroupId
+      data_type: INT64
+    - name: TemplateID
+      data_type: INT64
+    - name: OrderKey
+      data_type: INT64
+  - name: dpm_database_TableVersion
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.TableVersion.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: TableVID
+      data_type: INT64
+    - name: TableID
+      data_type: INT64
+    - name: TableVersionCode
+      data_type: STRING
+    - name: TableVersionLabel
+      data_type: STRING
+    - name: XbrlFilingIndicatorCode
+      data_type: STRING
+    - name: XbrlTableCode
+      data_type: STRING
+    - name: FromDate
+      data_type: DATETIME
+    - name: ToDate
+      data_type: DATETIME
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_Taxonomy
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Taxonomy.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: TaxonomyID
+      data_type: INT64
+    - name: FrameworkID
+      data_type: INT64
+    - name: TaxonomyCode
+      data_type: STRING
+    - name: TaxonomyLabel
+      data_type: STRING
+    - name: TechnicalStandard
+      data_type: STRING
+    - name: NotionalPublicationDate
+      data_type: DATETIME
+    - name: ActualPublicationDate
+      data_type: DATETIME
+    - name: Version
+      data_type: STRING
+    - name: DpmPackageCode
+      data_type: STRING
+    - name: ConceptID
+      data_type: INT64
+    - name: FromDate
+      data_type: DATETIME
+    - name: ToDate
+      data_type: DATETIME
+  - name: dpm_database_TaxonomyTableVersion
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.TaxonomyTableVersion.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: TaxonomyID
+      data_type: INT64
+    - name: TableVID
+      data_type: INT64
+    - name: TemplateID
+      data_type: INT64
+    - name: TableGroupID
+      data_type: INT64
+    - name: IsSimpleReuse
+      data_type: BOOLEAN
+  - name: dpm_database_Template
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Template.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: TemplateID
+      data_type: INT64
+    - name: TemplateCode
+      data_type: STRING
+    - name: TemplateLabel
+      data_type: STRING
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_TemplateGroup
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.TemplateGroup.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: TemplateGroupID
+      data_type: INT64
+    - name: TemplateGroupCode
+      data_type: STRING
+    - name: TemplateGroupLabel
+      data_type: STRING
+    - name: FrameworkID
+      data_type: INT64
+  - name: dpm_database_TemplateGroupTemplate
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.TemplateGroupTemplate.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: TemplateID
+      data_type: INT64
+    - name: TemplateGroupID
+      data_type: INT64
+    - name: FromDate
+      data_type: DATETIME
+    - name: ToDate
+      data_type: DATETIME
+  - name: dpm_database_ValidationRule
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ValidationRule.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ValidationId
+      data_type: INT64
+    - name: ValidationCode
+      data_type: STRING
+    - name: Severity
+      data_type: STRING
+    - name: Scope
+      data_type: STRING
+    - name: ValidationType
+      data_type: STRING
+    - name: RowsKey
+      data_type: STRING
+    - name: Columns
+      data_type: STRING
+    - name: Sheets
+      data_type: STRING
+    - name: Filter
+      data_type: STRING
+    - name: ArithmeticApproach
+      data_type: STRING
+    - name: TablePrerequisite
+      data_type: STRING
+    - name: NarrativeExplanation
+      data_type: STRING
+    - name: ExpressionID
+      data_type: INT64
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_ValidationRuleSet
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ValidationRuleSet.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ModuleID
+      data_type: INT64
+    - name: ValidationRuleId
+      data_type: INT64
+    - name: ValidationRuleSetCode
+      data_type: STRING
+    - name: Severity
+      data_type: STRING
+  - name: dpm_database_VariableOfExpression
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.VariableOfExpression.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ExpressionID
+      data_type: INT64
+    - name: VariableCode
+      data_type: STRING
+    - name: IfMissing
+      data_type: STRING
+    - name: Filter
+      data_type: STRING
+    - name: IsSequence
+      data_type: BOOLEAN
+    - name: IsSummed
+      data_type: BOOLEAN
+  - name: dpm_database_zzTableChanges
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.zzTableChanges.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ID
+      data_type: INT64
+    - name: TableCode
+      data_type: STRING
+    - name: ComponentTypeName
+      data_type: STRING
+    - name: ComponentCode
+      data_type: STRING
+    - name: ComponentLabel
+      data_type: STRING
+    - name: HeaderFlag
+      data_type: BOOLEAN
+    - name: Level
+      data_type: INT64
+    - name: Change
+      data_type: STRING
+    - name: LastChangedIn
+      data_type: STRING
+  - name: dpm_database_Axis
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.Axis.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: AxisID
+      data_type: INT64
+    - name: TableVID
+      data_type: INT64
+    - name: AxisOrientation
+      data_type: STRING
+    - name: AxisLabel
+      data_type: STRING
+    - name: AxisOrder
+      data_type: INT64
+    - name: IsOpenAxis
+      data_type: BOOLEAN
+    - name: ConceptID
+      data_type: INT64
+  - name: dpm_database_CellReference
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.CellReference.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: CellID
+      data_type: INT64
+    - name: ReferenceID
+      data_type: INT64
+  - name: dpm_database_DataPointVersionTransitionLink
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.DataPointVersionTransitionLink.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: TransitionID
+      data_type: STRING
+    - name: LinkNumber
+      data_type: INT64
+    - name: DataPointVID
+      data_type: INT64
+    - name: ItemType
+      data_type: STRING
+    - name: Note
+      data_type: STRING
+  - name: dpm_database_InstanceLevelDataPoint
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.InstanceLevelDataPoint.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: InstanceLevelConceptID
+      data_type: INT64
+    - name: DataPointID
+      data_type: INT64
+  - name: dpm_database_ModuleDimensionImpliedValue
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ModuleDimensionImpliedValue.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ModuleID
+      data_type: INT64
+    - name: InstanceLevelConceptID
+      data_type: INT64
+    - name: ImpliedMemberID
+      data_type: INT64
+    - name: ImpliedValue
+      data_type: STRING
+  - name: dpm_database_OpenAxisValueRestriction
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.OpenAxisValueRestriction.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: AxisID
+      data_type: INT64
+    - name: RestrictionID
+      data_type: INT64
+  - name: dpm_database_ReferencePeriodOffset
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ReferencePeriodOffset.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: PeriodOffsetID
+      data_type: INT64
+    - name: PeriodOffsetLabel
+      data_type: STRING
+    - name: PeriodType
+      data_type: STRING
+    - name: OffsetValue
+      data_type: INT64
+  - name: dpm_database_SumOverOpenAxis
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.SumOverOpenAxis.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ExpressionID
+      data_type: INT64
+    - name: VariableCode
+      data_type: STRING
+    - name: OpenAxis
+      data_type: INT64
+    - name: OpenDimensionID
+      data_type: INT64
+  - name: dpm_database_TaxonomyHistory
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.TaxonomyHistory.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: TaxonomyID
+      data_type: INT64
+    - name: IsVariantOf
+      data_type: INT64
+    - name: Replaces
+      data_type: INT64
+  - name: dpm_database_ValidationScope
+    external:
+      location: gs://{{ env_var('GCS_INGEST_BUCKET') }}/dpm_model/dpm_database.ValidationScope.csv.gz
+      options:
+        format: CSV
+    columns:
+    - name: ValidationID
+      data_type: INT64
+    - name: Alternative
+      data_type: INT64
+    - name: TableVID
+      data_type: INT64
+
