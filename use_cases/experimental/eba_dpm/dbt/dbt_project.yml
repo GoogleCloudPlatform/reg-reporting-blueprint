@@ -24,6 +24,9 @@ models:
     # Replication of DPM database queries
     qDPM:
       materialized: table
+    # Auxiliary queries added
+    auxiliary:
+      materialized: ephemeral
     # Store the final consumable results of the model
     output:
       materialized: table
