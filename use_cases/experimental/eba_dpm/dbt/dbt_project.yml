@@ -18,6 +18,10 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+# Variables / parameters used
+vars:
+  num_datapoints_copies: 1  # How many times each data point is duplicated in the TestDataGenerator
+
 # Configuring models
 models:
   eba_dpm:
@@ -30,3 +34,6 @@ models:
     # Store the final consumable results of the model
     output:
       materialized: table
+    # Store the random test data generation
+    test_data:
+      materialized: incremental # Set as incremental table so that additional data can be added at each re-run

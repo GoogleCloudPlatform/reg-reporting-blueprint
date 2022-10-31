@@ -1,5 +1,6 @@
 SELECT
-    TableCellDataPoints.*,
+    SAFE_CAST(DataPointVID AS INT) as DataPointVID,
+    TableCellDataPoints.* EXCEPT (DataPointVID),
     row_labels.RowLabel,
     column_labels.ColumnLabel,
 FROM
