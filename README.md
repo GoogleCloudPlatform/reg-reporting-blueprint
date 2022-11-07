@@ -15,9 +15,8 @@ The platform's open-source repository is divided into three main sections:
 * ```use_cases/examples```: consists of subdirectories housing resources addressing specific regulatory acts or
 types of regulatory reporting. 
 
-Currently, the repository demonstrates an example home loan delinquency use case; additional use
-cases for commercial real estate reporting, quarterly derivatives reporting, and equities flash order detection are on
-the roadmap.
+Currently, the repository contains a few example use cases. All the use cases leveragthe same generic architecture,
+and each one of them showcases a different aspect of the solution.
 
 A user must understand the applicable regulatory requirements and then carefully configure the solution to produce data
 that complies with that particular set of requirements. These configuration steps are outlined in the
@@ -43,8 +42,17 @@ If you plan to use the Regulatory Reporting solution, you should follow the proc
 the [tutorial](./docs/TUTORIAL.md).
 
 ## Architecture
-
 ![Architecture](docs/images/architecture.png "Architecture")
+
+## Use cases
+The repository contains a number of example use cases, all leveraging the architecture above.
+
+| Use case | Description | Aspect highlighted |
+|---|---|---|
+| [Home Loan Delinquency](https://github.com/GoogleCloudPlatform/reg-reporting-blueprint/tree/main/use_cases/examples/home_loan_delinquency) | Classify a portfolio of loans into buckets which determine the banding for the days delinquency. | Simple use case highlighting all key aspects of the platform. |
+| [Flashing Detection](https://github.com/GoogleCloudPlatform/reg-reporting-blueprint/tree/main/use_cases/examples/flashing_detection) | Detection of Flashing activity on a stock market. Contributed by Strike GTS. | Showcase usage of BigQuery to scale complex analytics to terabytes or beyond of data with no additional operational overhead. |
+| [BoE Commercial Real Estate](https://github.com/GoogleCloudPlatform/reg-reporting-blueprint/tree/main/use_cases/examples/boe_cre) | Reporting requirements for Commercial Real Estate, as published by the Bank of England as part of the Transforming the Data Collection programme. | Demonstrate a possible approach to data collection, leveraging granular data requests. |
+| [BoE Quarterly Derivatives](https://github.com/GoogleCloudPlatform/reg-reporting-blueprint/tree/main/use_cases/examples/boe_qd) | Reporting requirements for Quarterly Derivatives, as published by the Bank of England as part of the Transforming the Data Collection programme. | Demonstrate a possible approach to data collection, leveraging common data models. |
 
 ## Contributing
 If you would like to contribute to this project, please consult our [how to contribute](./docs/contributing.md) guide.

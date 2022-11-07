@@ -1,0 +1,156 @@
+version: 2
+
+sources:
+  - name: input_data
+    database: "{{ env_var('PROJECT_ID') }}"
+    schema: "{{ env_var('QD_BQ_DATA') }}"
+    tables:
+      - &cds_deal_level_granular
+        name: cds_deal_level_granular
+        description: '{{ doc("definitions") }}'
+        columns:
+          - name: trade_date
+            description: 'Trade Date'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - name: sched_term_date
+            description: 'Contract Scheduled Termination Date'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - name: buyer_party_reference
+            description: 'Reference to Buyer Party'
+            tests:
+              - accepted_values:
+                    values: ['party_1_id', 'party_2_id']
+              - not_null:
+                  config:
+                    severity: error
+          - name: seller_party_reference
+            description: 'Reference to Seller Party'
+            tests:
+              - accepted_values:
+                    values: ['party_1_id', 'party_2_id']
+              - not_null:
+                  config:
+                    severity: error
+          - name: party_1_trade_id
+            description: 'Trade Id of Party 1'
+          - name: party_2_trade_id
+            description: 'Trade Id of Party 2'
+          - name: index_name
+            description: 'Name of Reference Index'
+            tests:
+              - accepted_values:
+                    values: ['CDX-EMS36V1', 'CDX-NAHYS37V1', 'CDX-NAIGS37V1', 'CDX-NAHYS37V1', 'CDX-NAIGS37V1', 'ITRAXX-ASIAXJIGRESS34V1', 'ITRAXX-ASIAXJIGS36V1', 'ITRAXX-AUSTRALIAS36V1', 'ITRAXX-EUROPES36V1', 'ITRAXX-EUROPES36V1', 'ITRAXX-EUROPES36V1', 'ITRAXX-FINSENS36V1','ITRAXX-FINSUBS36V1', 'ITRAXX-XOVERS36V1']
+              - not_null:
+                  config:
+                    severity: error
+          - name: index_series
+            description: 'Series of Reference Index'
+            tests:
+              - accepted_values:
+                    values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+                    quote: false
+              - not_null:
+                  config:
+                    severity: error
+          - name: index_annex_version
+            description: 'Series of Reference Index'
+            tests:
+              - accepted_values:
+                    values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+                    quote: false
+              - not_null:
+                  config:
+                    severity: error
+          - name: payer_party_reference
+            description: 'Reference to the party paying the upfront fee'
+            tests:
+              - accepted_values:
+                    values: ['party_1_id', 'party_2_id']
+              - not_null:
+                  config:
+                    severity: error
+          - name: receiver_party_reference
+            description: 'Reference to the party receiving the upfront fee'
+            tests:
+              - accepted_values:
+                    values: ['party_1_id', 'party_2_id']
+              - not_null:
+                  config:
+                    severity: error
+          - name: fee_currency
+            description: 'Currency of the CDS new trade upfront fee'
+            tests:
+              - accepted_values:
+                    values: ['USD','EUR']
+              - not_null:
+                  config:
+                    severity: error
+          - name: fee_amount
+            description: 'Amount of the CDS new trade upfront fee'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - name: notional_currency
+            description: 'Currency of the CDS contract notional protection amount'
+            tests:
+              - accepted_values:
+                  values: ['USD', 'EUR']
+              - not_null:
+                  config:
+                    severity: error
+          - name: notional_amount
+            description: 'CDS contracts notional protection amount'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - name: master_confirmation_type
+            description: "Transaction type of ISDA docs specifying this contract's terms"
+            tests:
+              - accepted_values:
+                  values: ['CDX.EmergingMarkets', 'CDX.NorthAmericanHighYield', 'CDX.NorthAmericanEmergingMarkets', 'iTraxxAsiaExJapan', 'iTraxxAsiaExJapan', 'iTraxxAustralia', 'iTraxxEurope', 'iTraxxFinancials', 'iTraxxCrossover']
+              - not_null:
+                  config:
+                    severity: error
+          - name: master_confirmation_date
+            description: 'For this pair of parties, signing date of ISDA docs governing contracts of this type'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - name: party_1_id
+            description: 'ID of first party'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - name: party_1_name
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - name: party_2_id
+            description: 'ID of second party'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+          - name: party_2_name
+            description: 'Name of second party'
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+
+models:
+  - <<: *cds_deal_level_granular
+    name: table1_cds_deal_level_granular
+    description: >
+      A simple select all statement from the "cds_deal_level_granular" table

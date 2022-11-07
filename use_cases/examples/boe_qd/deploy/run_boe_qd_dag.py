@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Composer DAG to excute the CRE workflow
+# Composer DAG to excute the BoE Quarterly Derivatives workflow
 
 import datetime
 import json
@@ -83,8 +83,8 @@ def containerised_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
 
 # Define the DAG
 with models.DAG(
-    dag_id='boe_commercial_real_estate',
-    schedule_interval= "30 * * * *",
+    dag_id='boe_quarterly_derivatives',
+    schedule_interval= "00 12 * * *",
     catchup=False,
     default_args={
         'depends_on_past': False,
@@ -98,7 +98,7 @@ with models.DAG(
 
     generate_data_job = containerised_job(
         name='generate-data',
-        image_name='cre-data_generator',
+        image_name='boe_qd-data_generator',
         env_vars={
             'PROJECT_ID': PROJECT_ID,
         },
@@ -106,37 +106,41 @@ with models.DAG(
             # The project where the data will be ingested
             '--project_id', PROJECT_ID,
             # The BQ dataset where the data will be ingested
-            '--bq_dataset', 'cre_data',
+            '--bq_dataset', 'boe_qd_data',
+            # The number of counterparties to generate
+            '--num_counterparties', '100',
+            # The number of records to generate
+            '--num_records', '1000'
         ]
     )
 
-    run_cre_report = containerised_job(
+    run_boe_qd_report = containerised_job(
         name='transform-data',
-        image_name='cre-dbt',
+        image_name='boe-qd-dbt',
         arguments=[
             "run",
         ],
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
-            'CRE_BQ_DEV': 'cre_dev',
-            'CRE_BQ_DATA': 'cre_data',
+            'QD_BQ_DEV': 'boe_qd_dev',
+            'QD_BQ_DATA': 'boe_qd_data',
         }
     )
 
-    test_cre_report = containerised_job(
+    test_boe_qd_report = containerised_job(
         name='data-quality-test',
-        image_name='cre-dbt',
+        image_name='boe-qd-dbt',
         arguments=[
             "test",
         ],
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
-            'CRE_BQ_DEV': 'cre_dev',
-            'CRE_BQ_DATA': 'cre_data',
+            'QD_BQ_DEV': 'boe_qd_dev',
+            'QD_BQ_DATA': 'boe_qd_data',
         }
     )
 
-    generate_data_job >> run_cre_report >> test_cre_report
+    generate_data_job >> run_boe_qd_report >> test_boe_qd_report
 
