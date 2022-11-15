@@ -15,7 +15,7 @@ The platform's open-source repository is divided into three main sections:
 * ```use_cases/examples```: consists of subdirectories housing resources addressing specific regulatory acts or
 types of regulatory reporting. 
 
-Currently, the repository contains a few example use cases. All the use cases leveragthe same generic architecture,
+Currently, the repository contains a few example use cases. All the use cases leverage the same generic architecture,
 and each one of them showcases a different aspect of the solution.
 
 A user must understand the applicable regulatory requirements and then carefully configure the solution to produce data
