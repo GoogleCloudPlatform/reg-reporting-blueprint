@@ -75,17 +75,29 @@ echo -e "\t\tHOMELOAN_BQ_EXPECTEDRESULTS      :" $HOMELOAN_BQ_EXPECTEDRESULTS
 export TF_VAR_FLASHING_BQ_MARKET_DATA=market_data
 export TF_VAR_FLASHING_BQ_ORDER_DATA=order_data
 echo -e "\n\tUse case: Trading Flashing:"
-echo -e "\tTF_VAR_FLASHING_BQ_MARKET_DATA   :" $TF_VAR_FLASHING_BQ_MARKET_DATA
-echo -e "\tTF_VAR_FLASHING_BQ_ORDER_DATA    :" $TF_VAR_FLASHING_BQ_ORDER_DATA 
+echo -e "\t\tTF_VAR_FLASHING_BQ_MARKET_DATA   :" $TF_VAR_FLASHING_BQ_MARKET_DATA
+echo -e "\t\tTF_VAR_FLASHING_BQ_ORDER_DATA    :" $TF_VAR_FLASHING_BQ_ORDER_DATA 
 
-# Edit to reflect use-case specific vars
+# BoE Commercial Real Estate
 export CRE_GCR_DATALOAD=gcr.io/${PROJECT_ID}/cre-data_generator
 export CRE_GCR_DBT=gcr.io/${PROJECT_ID}/cre-dbt
-export CRE_BQ_DEV=cre_dev
-export CRE_BQ_DATA=cre_data
+export CRE_BQ_DEV=boe_cre_dev
+export CRE_BQ_DATA=boe_cre_data
 echo -e "\n\tUse case: BoE Commercial Real Estate:"
 echo -e "\t\tCRE_GCR_DATALOAD                 :" $CRE_GCR_DATALOAD
 echo -e "\t\tCRE_GCR_DBT                      :" $CRE_GCR_DBT
 echo -e "\t\tCRE_BQ_DEV                       :" $CRE_BQ_DEV
 echo -e "\t\tCRE_BQ_DATA                      :" $CRE_BQ_DATA
+
+# BoE Quarterly Derivatives
+export QD_GCR_DATALOAD=gcr.io/${PROJECT_ID}/qd-data_generator
+export QD_GCR_DBT=gcr.io/${PROJECT_ID}/qd-dbt
+export QD_BQ_DEV=boe_qd_dev
+export QD_BQ_DATA=boe_qd_data
+echo -e "\n\tUse case: BoE Quarterly Derivatives:"
+echo -e "\t\tQD_GCR_DATALOAD                 :" $QD_GCR_DATALOAD
+echo -e "\t\tQD_GCR_DBT                      :" $QD_GCR_DBT
+echo -e "\t\tQD_BQ_DEV                       :" $QD_BQ_DEV
+echo -e "\t\tQD_BQ_DATA                      :" $QD_BQ_DATA
+
 echo -e "\n"
