@@ -17,7 +17,7 @@ FROM python:3.9
 # Default build ARGs
 ARG BUILD_TAG=dev
 ENV BUILD_TAG=${BUILD_TAG}
-ARG BULID_COMMIT=dev
+ARG BUILD_COMMIT=dev
 ENV BUILD_COMMIT=${BUILD_COMMIT}
 
 # Install required system packages and cleanup to reduce image size
