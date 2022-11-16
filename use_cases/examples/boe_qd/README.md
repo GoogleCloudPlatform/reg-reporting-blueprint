@@ -30,5 +30,5 @@ The script will do the following:
 ## How to tailor the code to your need
 If you wish to use this solution in a real implementation, you may want to start by tailoring the following files to 
 your needs:
-* `dbt/models/schema.yml`: moodify the sources to align to your data
-* `dbt/models/preprocess`: moodify the files in this folder to implement a mapping logic from your data into these structures
+* `dbt/models/schema.yml`: modify the sources to align to your data
+* `dbt/models/preprocess`: modify the files in this folder to implement a mapping logic from your data into these structures
