@@ -78,6 +78,8 @@ cat terraform.tfvars.template | sed \
   -e s/TF_VAR_FLASHING_BQ_ORDER_DATA/$TF_VAR_FLASHING_BQ_ORDER_DATA/g \
   -e s/CRE_BQ_DEV/$CRE_BQ_DEV/g \
   -e s/CRE_BQ_DATA/$CRE_BQ_DATA/g \
+  -e s/QD_BQ_DEV/$QD_BQ_DEV/g \
+  -e s/QD_BQ_DATA/$QD_BQ_DATA/g \
   > terraform.tfvars
 
 echo -e "Creating the backend.tf file..."
