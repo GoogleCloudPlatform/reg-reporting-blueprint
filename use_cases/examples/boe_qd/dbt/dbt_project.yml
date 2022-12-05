@@ -23,6 +23,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Configuring models
 models:
   qd_demo:
+    # Add solutions label - PLEASE DO NOT REMOVE
+    +labels: 
+      goog-packaged-solution: gcp-reg-reporting
     preprocess:
       materialized: ephemeral
     reports:
