@@ -17,7 +17,7 @@ version: 2
 sources:
   - name: flashing_detection_source_market_data
     database: "{{ env_var('PROJECT_ID') }}"
-    schema: "{{ env_var('TF_VAR_FLASHING_BQ_MARKET_DATA') }}"
+    schema: "{{ env_var('TF_VAR_FLASHING_BQ_DATA') }}"
     #loaded_at_field: _loaded_at # configure for all sources
 
     tables:
@@ -48,7 +48,7 @@ sources:
 
   - name: flashing_detection_source_order_data
     database: "{{ env_var('PROJECT_ID') }}"
-    schema: "{{ env_var('TF_VAR_FLASHING_BQ_ORDER_DATA') }}"
+    schema: "{{ env_var('TF_VAR_FLASHING_BQ_DATA') }}"
     #loaded_at_field: _loaded_at # configure for all sources
 
     tables:

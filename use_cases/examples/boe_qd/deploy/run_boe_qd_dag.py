@@ -84,7 +84,7 @@ def containerised_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
 # Define the DAG
 with models.DAG(
     dag_id='boe_quarterly_derivatives',
-    schedule_interval= "00 12 * * *",
+    schedule_interval= "00 14 * * *",
     catchup=False,
     default_args={
         'depends_on_past': False,

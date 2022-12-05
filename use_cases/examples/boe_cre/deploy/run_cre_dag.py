@@ -84,7 +84,7 @@ def containerised_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
 # Define the DAG
 with models.DAG(
     dag_id='boe_commercial_real_estate',
-    schedule_interval= "30 * * * *",
+    schedule_interval= "00 13 * * *",
     catchup=False,
     default_args={
         'depends_on_past': False,
@@ -106,7 +106,7 @@ with models.DAG(
             # The project where the data will be ingested
             '--project_id', PROJECT_ID,
             # The BQ dataset where the data will be ingested
-            '--bq_dataset', 'cre_data',
+            '--bq_dataset', 'boe_cre_data',
         ]
     )
 
@@ -119,8 +119,8 @@ with models.DAG(
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
-            'CRE_BQ_DEV': 'cre_dev',
-            'CRE_BQ_DATA': 'cre_data',
+            'CRE_BQ_DEV': 'boe_cre_dev',
+            'CRE_BQ_DATA': 'boe_cre_data',
         }
     )
 
@@ -133,8 +133,8 @@ with models.DAG(
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
-            'CRE_BQ_DEV': 'cre_dev',
-            'CRE_BQ_DATA': 'cre_data',
+            'CRE_BQ_DEV': 'boe_cre_dev',
+            'CRE_BQ_DATA': 'boe_cre_data',
         }
     )
 
