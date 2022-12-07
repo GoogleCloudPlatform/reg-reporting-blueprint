@@ -51,6 +51,9 @@ models:
       +persist_docs:
           relation: true
           columns: true
+      # Add solutions label - PLEASE DO NOT REMOVE
+      +labels: 
+        goog-packaged-solution: gcp-reg-reporting
       # Folder specific specs
       src:
           +tags: source

@@ -36,6 +36,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Configuring models
 models:
   cre_demo:
+    # Add solutions label - PLEASE DO NOT REMOVE
+    +labels: 
+      goog-packaged-solution: gcp-reg-reporting
     # Storing the failures for all the tests
     +store_failures: true  # all tests
     # Config to store the columns descriptions in datacatalog

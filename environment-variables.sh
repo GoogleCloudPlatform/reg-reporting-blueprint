@@ -72,11 +72,11 @@ echo -e "\t\tHOMELOAN_BQ_DATA                 :" $HOMELOAN_BQ_DATA
 echo -e "\t\tHOMELOAN_BQ_EXPECTEDRESULTS      :" $HOMELOAN_BQ_EXPECTEDRESULTS
 
 # TRADING FLASHING
-export TF_VAR_FLASHING_BQ_MARKET_DATA=market_data
-export TF_VAR_FLASHING_BQ_ORDER_DATA=order_data
+export TF_VAR_FLASHING_BQ_DATA=flashing_data
+export TF_VAR_FLASHING_BQ_DEV=flashing_dev
 echo -e "\n\tUse case: Trading Flashing:"
-echo -e "\t\tTF_VAR_FLASHING_BQ_MARKET_DATA   :" $TF_VAR_FLASHING_BQ_MARKET_DATA
-echo -e "\t\tTF_VAR_FLASHING_BQ_ORDER_DATA    :" $TF_VAR_FLASHING_BQ_ORDER_DATA 
+echo -e "\t\tTF_VAR_FLASHING_BQ_DATA          :" $TF_VAR_FLASHING_BQ_DATA
+echo -e "\t\tTF_VAR_FLASHING_BQ_DEV           :" $TF_VAR_FLASHING_BQ_DEV 
 
 # BoE Commercial Real Estate
 export CRE_GCR_DATALOAD=gcr.io/${PROJECT_ID}/cre-data_generator

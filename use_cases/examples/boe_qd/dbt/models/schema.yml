@@ -7,7 +7,7 @@ sources:
     tables:
       - &cds_deal_level_granular
         name: cds_deal_level_granular
-        description: '{{ doc("definitions") }}'
+        description: 'Granular deal data'
         columns:
           - name: trade_date
             description: 'Trade Date'
