@@ -62,7 +62,7 @@ def dbt_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
 # Define the DAG
 with models.DAG(
     dag_id='home_loan_delinquency',
-    schedule_interval= "0 * * * *",
+    schedule_interval= "00 12 * * *",
     catchup=False,
     default_args={
         'depends_on_past': False,
