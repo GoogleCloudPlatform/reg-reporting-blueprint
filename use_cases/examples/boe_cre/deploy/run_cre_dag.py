@@ -20,7 +20,6 @@ import os
 
 from airflow import models
 from airflow.models import Variable
-from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 
 # Project and region for the repository
 PROJECT_ID = Variable.get("PROJECT_ID")
@@ -53,6 +52,7 @@ def containerised_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
     :param repo: fully qualified path to the repo (optional, and defaulted to f'gcr.io/{PROJECT_ID}'
     :return: the KubernetesPodOperator which executes the containerised step
     """
+    from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
     return KubernetesPodOperator(
 
         # task_id is the unique identifier in Airflow,
@@ -84,7 +84,7 @@ def containerised_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
 # Define the DAG
 with models.DAG(
     dag_id='boe_commercial_real_estate',
-    schedule_interval= "00 13 * * *",
+    schedule_interval= "30 * * * *",
     catchup=False,
     default_args={
         'depends_on_past': False,
