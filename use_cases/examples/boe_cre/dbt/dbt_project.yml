@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: 'cre_demo'
+name: 'reg_reporting_cre_sample'
 version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'sample_regreporting_profile'
+profile: 'regrep_profile'
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
@@ -31,16 +31,19 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "target"
     - "dbt_packages"
     - "logs"
+    - "dbt_modules"
 
 
 # Configuring models
 models:
-  cre_demo:
+  reg_reporting_cre_sample:
     # Add solutions label - PLEASE DO NOT REMOVE
-    +labels: 
+    +labels:
       goog-packaged-solution: gcp-reg-reporting
     # Storing the failures for all the tests
     +store_failures: true  # all tests
+    # Create new cre-specific dataset
+    +dataset: boe_cre
     # Config to store the columns descriptions in datacatalog
     +persist_docs:
       relation: true

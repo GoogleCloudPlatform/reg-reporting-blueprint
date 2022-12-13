@@ -17,6 +17,9 @@ import datetime as dt
 import numpy as np
 import pandas as pd
 
+from google.cloud import bigquery
+from io import StringIO
+
 
 params = {'random_seed': 1,  # help generate consistent set of randomized data
           'start_price': 5,
@@ -36,7 +39,7 @@ params = {'random_seed': 1,  # help generate consistent set of randomized data
           'exchange_delay_max_ms': 20}
 
 
-def generate(date_str: str, symbol: str, output_dir: str) -> None:
+def generate(client, table_prefix, date_str, symbol):
     num_of_points = 23401
     np.random.seed(params['random_seed'])
     trade_date = dt.datetime.strptime(date_str, '%Y-%m-%d').date()
@@ -91,11 +94,10 @@ def generate(date_str: str, symbol: str, output_dir: str) -> None:
     slim_md = md_table[['timestamp', 'bid', 'ask']]
     sent_table = pd.merge_asof(sent_table, slim_md, on='timestamp')
 
-    ol_table = pd.DataFrame(columns=['trade_date', 'timestamp', 'trading_model', 'account', 'order_id', 'event',
-                                     'symbol', 'exchange', 'side', 'size', 'price', 'tif', 'prev_size', 'prev_price',
-                                     'fill_size', 'fill_price', 'exec_id'])
     exec_id_counter = 1
+
     # Create the following events for each orders sent
+    ol_orders = []
     for _, row in sent_table.iterrows():
         d = row.to_dict()
 
@@ -109,16 +111,16 @@ def generate(date_str: str, symbol: str, output_dir: str) -> None:
 
         if outcome == 'fill':
             d['price'] = d['ask'] if d['side'] == 'Buy' else d['bid']
-            ol_table = ol_table.append(d, ignore_index=True)
+            ol_orders.append(d)
         else:
             d['price'] = d['bid'] if d['side'] == 'Buy' else d['ask']
-            ol_table = ol_table.append(d, ignore_index=True)
+            ol_orders.append(d)
 
         # Assume all orders are ack-ed
         d['timestamp'] += dt.timedelta(milliseconds=exchange_delay_pool[global_delay_num])
         global_delay_num = (global_delay_num + 1) % 5000
         d['event'] = 'Acknowledged'
-        ol_table = ol_table.append(d, ignore_index=True)
+        ol_orders.append(d)
 
         if outcome != 'fill':
             # Immediate cancel of IOC orders
@@ -126,7 +128,7 @@ def generate(date_str: str, symbol: str, output_dir: str) -> None:
                 d['timestamp'] += dt.timedelta(milliseconds=exchange_delay_pool[global_delay_num])
                 global_delay_num = (global_delay_num + 1) % 5000
                 d['event'] = 'Canceled'
-                ol_table = ol_table.append(d, ignore_index=True)
+                ol_orders.append(d)
                 continue
 
             # Day order: random arrival of cancel/replace, with possibility of flash cancel/replace
@@ -138,7 +140,7 @@ def generate(date_str: str, symbol: str, output_dir: str) -> None:
                 d['timestamp'] += dt.timedelta(milliseconds=interval_ms)
 
             d['event'] = 'CancelSent' if 'Cancel' in outcome else 'ReplaceSent'
-            ol_table = ol_table.append(d, ignore_index=True)
+            ol_orders.append(d)
             d['timestamp'] += dt.timedelta(milliseconds=exchange_delay_pool[global_delay_num])
             global_delay_num = (global_delay_num + 1) % 5000
             d['event'] = 'Canceled' if 'Cancel' in outcome else 'Replaced'
@@ -149,7 +151,7 @@ def generate(date_str: str, symbol: str, output_dir: str) -> None:
                     d['price'] += 0.01
                 else:
                     d['size'] = str(int(d['size'] + 100))
-            ol_table = ol_table.append(d, ignore_index=True)
+            ol_orders.append(d)
         else:
             # order filled
             if d['tif'] == 'IOC':
@@ -162,32 +164,74 @@ def generate(date_str: str, symbol: str, output_dir: str) -> None:
             d['fill_price'] = d['price']
             d['exec_id'] = f'Exec_id_{exec_id_counter}'
             exec_id_counter += 1
-            ol_table = ol_table.append(d, ignore_index=True)
+            ol_orders.append(d)
 
+    ol_table = pd.DataFrame(columns=['trade_date', 'timestamp', 'trading_model', 'account', 'order_id', 'event',
+                                     'symbol', 'exchange', 'side', 'size', 'price', 'tif', 'prev_size', 'prev_price',
+                                     'fill_size', 'fill_price', 'exec_id'])
+    ol_table = pd.concat([ol_table, pd.DataFrame.from_records(ol_orders)], ignore_index=True)
     ol_table = ol_table.drop(columns=['ask', 'bid']).sort_values(by=['timestamp'])
     ol_table['trading_model'] = 'Strategy_A'
     ol_table['account'] = 'Account_123'
 
-    ol_table.to_csv(f'{output_dir}/orders_log_{date_str}_{symbol}.csv', index=False)
-    md_table.to_csv(f'{output_dir}/market_data_{date_str}_{symbol}.csv', index=False)
+    upload_rows_to_bigquery(client, f'{table_prefix}.flashing_orders', ol_table)
+    upload_rows_to_bigquery(client, f'{table_prefix}.flashing_nbbo', md_table)
+
+
+def upload_rows_to_bigquery(client, table_id, dataframe):
+    """
+    Load data into BigQuery
+    :param client:          BigQuery Client
+    :param table_id:        Full table_id target for BigQuery
+    :param dataframe:       Dataframe to upload
+    """
+
+    # Construct a load job
+    job_config = bigquery.LoadJobConfig(
+        source_format=bigquery.SourceFormat.CSV,
+        skip_leading_rows=1,
+        autodetect=True,
+    )
+
+    # In-memory buffer for data to be uploaded
+    memory_buffer = StringIO()
+
+    # Load dataframe into memory buffer
+    dataframe.to_csv(memory_buffer, index=False)
+
+    # Load into BigQuery
+    print(f"{table_id}: Loading data into BigQuery")
+    job = client.load_table_from_file(memory_buffer, table_id,
+                                      job_config=job_config, rewind=True)
+
+    job.result()  # Waits for the job to complete.
+
+    # Gather statistics of target table
+    table = client.get_table(table_id)
+    print(f"{table_id}: There are {table.num_rows} rows and " +
+          f"{len(table.schema)} columns")
 
 
 def main():
     parser = argparse.ArgumentParser(description='Generate randomized OL/MD')
+    parser.add_argument('--project_id',
+                        required=True,
+                        help='The GCP project ID where the data should be loaded')
+    parser.add_argument('--bq_dataset',
+                        required=True,
+                        help='The BigQuery dataset where the data should be loaded')
     parser.add_argument('-d',
                         '--date',
                         required=True)
     parser.add_argument('-s',
                         '--symbol',
                         required=True)
-    parser.add_argument('-o',
-                        '--output_dir',
-                        metavar='<PATH>',
-                        help='Path to write output data files',
-                        default='.')
     args = parser.parse_args()
 
-    generate(args.date, args.symbol, args.output_dir)
+    bigquery_client = bigquery.Client(project=args.project_id)
+    bigquery_table_prefix =  f"{args.project_id}.{args.bq_dataset}"
+
+    generate(bigquery_client, bigquery_table_prefix, args.date, args.symbol)
 
 
 if __name__ == '__main__':

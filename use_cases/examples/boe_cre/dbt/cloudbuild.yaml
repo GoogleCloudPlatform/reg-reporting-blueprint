@@ -13,10 +13,17 @@
 # limitations under the License.
 
 steps:
+
+# Pull previous version
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: [ '-c', 'docker pull gcr.io/$PROJECT_ID/cre-dbt:latest || exit 0' ]
+
+# Build DBT containerised image
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-f', 'use_cases/examples/boe_cre/dbt/Dockerfile',
-                   '--build-arg=BUILD_TAG=$TAG_NAME',
-                   '--build-arg=BUILD_COMMIT=$COMMIT_SHA',
+                   '--build-arg=BUILD_REF=$BUILD_ID',
                    '-t', 'gcr.io/$PROJECT_ID/cre-dbt',
                    'use_cases/examples/boe_cre/dbt' ]
+
 images: [ 'gcr.io/$PROJECT_ID/cre-dbt' ]

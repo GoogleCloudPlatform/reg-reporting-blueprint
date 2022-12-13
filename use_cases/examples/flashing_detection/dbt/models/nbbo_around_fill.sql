@@ -20,7 +20,7 @@ SELECT
       MIN(ask) AS min_ask
     FROM
       {{ ref('take_events') }},
-      {{ source('flashing_detection_source_market_data', 'nbbo') }}
+      {{ source('flashing_detection_source_market_data', 'nbbo') }} AS nbbo
     JOIN {{ ref('latest_nbbo') }} ON
       take_events.trade_date = latest_nbbo.trade_date
       AND take_events.symbol = latest_nbbo.symbol

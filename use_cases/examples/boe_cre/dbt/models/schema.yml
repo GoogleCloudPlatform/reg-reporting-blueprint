@@ -16,14 +16,15 @@ version: 2
 
 sources:
   - name: input_data
-    database: "{{ env_var('PROJECT_ID') }}"
-    schema: "{{ env_var('CRE_BQ_DATA') }}"
+    database: "{{ var('source_project_id', env_var('SOURCE_PROJECT_ID', env_var('PROJECT_ID'))) }}"
+    schema: "{{ var('source_dataset_id', env_var('SOURCE_DATASET_ID', 'regrep_source')) }}"
     tables:
       - &loan_level_stock_granular
         name: loan_level_stock_granular
+        identifier: boe_cre_loan_level_stock_granular
         description: >
           {{ doc("cre_stock") }}
-          
+
           {{ doc("definitions") }}
         columns:
           - &col_booking_entity
@@ -386,6 +387,7 @@ sources:
 
       - &loan_level_flow_granular
         name: loan_level_flow_granular
+        identifier: boe_cre_loan_level_flow_granular
         description: >
           {{ doc("cre_flow") }}
           {{ doc("definitions") }}

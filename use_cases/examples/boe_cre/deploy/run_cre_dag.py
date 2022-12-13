@@ -20,7 +20,6 @@ import os
 
 from airflow import models
 from airflow.models import Variable
-from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 
 # Project and region for the repository
 PROJECT_ID = Variable.get("PROJECT_ID")
@@ -53,6 +52,9 @@ def containerised_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
     :param repo: fully qualified path to the repo (optional, and defaulted to f'gcr.io/{PROJECT_ID}'
     :return: the KubernetesPodOperator which executes the containerised step
     """
+
+    from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
+
     return KubernetesPodOperator(
 
         # task_id is the unique identifier in Airflow,
@@ -106,7 +108,7 @@ with models.DAG(
             # The project where the data will be ingested
             '--project_id', PROJECT_ID,
             # The BQ dataset where the data will be ingested
-            '--bq_dataset', 'boe_cre_data',
+            '--bq_dataset', 'regrep_source',
         ]
     )
 
@@ -119,8 +121,6 @@ with models.DAG(
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
-            'CRE_BQ_DEV': 'boe_cre_dev',
-            'CRE_BQ_DATA': 'boe_cre_data',
         }
     )
 
@@ -133,8 +133,6 @@ with models.DAG(
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
-            'CRE_BQ_DEV': 'boe_cre_dev',
-            'CRE_BQ_DATA': 'boe_cre_data',
         }
     )
 

@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: 'sample_reporting'
+name: 'reg_reporting_homeloan_sample'
 version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'sample_regreporting_profile'
+profile: 'regrep_profile'
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
@@ -44,7 +44,7 @@ vars:
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 models:
-  sample_reporting:
+  reg_reporting_homeloan_sample:
       # Storing the failures for all the tests
       +store_failures: true  # all tests
       # Config to store the columns descriptions in datacatalog
@@ -52,8 +52,10 @@ models:
           relation: true
           columns: true
       # Add solutions label - PLEASE DO NOT REMOVE
-      +labels: 
+      +labels:
         goog-packaged-solution: gcp-reg-reporting
+      # Create new homeloan-specific dataset
+      +dataset: homeloan
       # Folder specific specs
       src:
           +tags: source

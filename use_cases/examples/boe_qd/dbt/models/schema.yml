@@ -2,11 +2,12 @@ version: 2
 
 sources:
   - name: input_data
-    database: "{{ env_var('PROJECT_ID') }}"
-    schema: "{{ env_var('QD_BQ_DATA') }}"
+    database: "{{ var('source_project_id', env_var('SOURCE_PROJECT_ID', env_var('PROJECT_ID'))) }}"
+    schema: "{{ var('source_dataset_id', env_var('SOURCE_DATASET_ID', 'regrep_source')) }}"
     tables:
       - &cds_deal_level_granular
         name: cds_deal_level_granular
+        identifier: boe_qd_cds_deal_level_granular
         description: 'Granular deal data'
         columns:
           - name: trade_date

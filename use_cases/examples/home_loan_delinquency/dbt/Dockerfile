@@ -14,6 +14,10 @@
 
 FROM python:3.9
 
+# Default build ARGs
+ARG BUILD_REF=dev
+ENV BUILD_REF=${BUILD_ID}
+
 # Install required system packages and cleanup to reduce image size
 RUN apt-get update -y && \
   apt-get install --no-install-recommends -y -q \
@@ -43,3 +47,4 @@ RUN dbt deps
 # Run dbt. Profiles defaults locally through DBT_PROFILES_DIR.
 ENV DBT_PROFILES_DIR /dbt/profiles
 ENTRYPOINT [ "dbt" ]
+

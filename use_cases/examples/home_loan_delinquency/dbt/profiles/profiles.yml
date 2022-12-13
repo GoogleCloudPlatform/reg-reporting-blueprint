@@ -1,20 +1,40 @@
+# Copyright 2022 The Reg Reporting Blueprint Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 config:
   partial_parse: false
   use_colors: true
   printer_width: 100
   send_anonymous_usage_stats: false
 
-sample_regreporting_profile:
-  target: dev
+#
+# For development, it is suggested to copy this profile to $HOME/.dbt
+#
+# See https://docs.getdbt.com/docs/get-started/connection-profiles for details
+#
+regrep_profile:
+  target: prod
 
   outputs:
-    dev:
+    prod:
       type: bigquery
       method: oauth
       project: "{{ env_var('PROJECT_ID') }}"
-      dataset: "{{ env_var('HOMELOAN_BQ_DEV') }}"
+      location: "{{ env_var('BQ_LOCATION') }}"
+      dataset: regrep
       threads: 10
       timeout_seconds: 300
-      location: "{{ env_var('BQ_LOCATION') }}"
       priority: interactive
       retries: 1
+

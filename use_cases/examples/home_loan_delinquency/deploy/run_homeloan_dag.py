@@ -5,7 +5,6 @@ import os
 
 from airflow import models
 from airflow.models import Variable
-from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 
 # Project and region for the repository
 PROJECT_ID = Variable.get("PROJECT_ID")
@@ -30,6 +29,9 @@ REPO = f'gcr.io/{PROJECT_ID}'  # if using container registry
 # https://github.com/GoogleCloudPlatform/professional-services/blob/main/examples/dbt-on-cloud-composer/basic/dag/dbt_with_kubernetes.py
 #
 def dbt_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
+
+    from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
+
     return KubernetesPodOperator(
 
         # task_id is the unique identifier in Airflow,
@@ -79,8 +81,6 @@ with models.DAG(
         env_vars={
             'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
             'PROJECT_ID': PROJECT_ID,
-            'HOMELOAN_BQ_DATA': 'homeloan_data',
-            'HOMELOAN_BQ_EXPECTEDRESULTS': 'homeloan_expectedreresults',
         }
     )
 
@@ -98,12 +98,8 @@ with models.DAG(
             })
         ],
         env_vars={
-            'PROJECT_ID': PROJECT_ID,
-            'PROJECT_ID_PRD': PROJECT_ID,
-            'HOMELOAN_BQ_DEV': 'homeloan_dev',
-            'HOMELOAN_BQ_DATA': 'homeloan_data',
-            'HOMELOAN_BQ_EXPECTEDRESULTS': 'homeloan_expectedreresults',
-            'BQ_LOCATION': BQ_LOCATION,
+            'DBT_PROJECT_ID': PROJECT_ID,
+            'DBT_BQ_LOCATION': BQ_LOCATION,
         }
     )
 
@@ -123,12 +119,8 @@ with models.DAG(
             })
         ],
         env_vars={
-            'PROJECT_ID': PROJECT_ID,
-            'PROJECT_ID_PRD': PROJECT_ID,
-            'HOMELOAN_BQ_DEV': 'homeloan_dev',
-            'HOMELOAN_BQ_DATA': 'homeloan_data',
-            'HOMELOAN_BQ_EXPECTEDRESULTS': 'homeloan_expectedreresults',
-            'BQ_LOCATION': BQ_LOCATION,
+            'DBT_PROJECT_ID': PROJECT_ID,
+            'DBT_BQ_LOCATION': BQ_LOCATION,
         }
     )
 
@@ -148,12 +140,8 @@ with models.DAG(
             })
         ],
         env_vars={
-            'PROJECT_ID': PROJECT_ID,
-            'PROJECT_ID_PRD': PROJECT_ID,
-            'HOMELOAN_BQ_DEV': 'homeloan_dev',
-            'HOMELOAN_BQ_DATA': 'homeloan_data',
-            'HOMELOAN_BQ_EXPECTEDRESULTS': 'homeloan_expectedreresults',
-            'BQ_LOCATION': BQ_LOCATION,
+            'DBT_PROJECT_ID': PROJECT_ID,
+            'DBT_BQ_LOCATION': BQ_LOCATION,
         }
     )
 
