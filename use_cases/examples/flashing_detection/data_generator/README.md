@@ -57,7 +57,7 @@ Note that the data generation tool depends on numpy and pandas. It is recommende
 
 
 ```bash
-  $ cd use_cases/examples/flashing_detection/data/generation
+  $ cd use_cases/examples/flashing_detection/data_generator
 
   $ pip3 install numpy pandas google-cloud-bigquery
 

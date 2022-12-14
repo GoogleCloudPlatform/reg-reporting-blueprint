@@ -1,3 +1,18 @@
+# Copyright 2022 The Reg Reporting Blueprint Authors
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     https://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Composer DAG to excute the BoE Quarterly Derivatives workflow
 
 import datetime
 import json
@@ -20,7 +35,6 @@ ENV_NAME = Variable.get("ENV_NAME")
 BQ_LOCATION = Variable.get("BQ_LOCATION")
 
 # Inferred repository
-# REPO = f'{REGION}-docker.pkg.dev/{PROJECT_ID}/reg-repo' # if using artefacts registry
 REPO = f'gcr.io/{PROJECT_ID}'  # if using container registry
 
 
@@ -28,7 +42,16 @@ REPO = f'gcr.io/{PROJECT_ID}'  # if using container registry
 # Simplified version based on the following -
 # https://github.com/GoogleCloudPlatform/professional-services/blob/main/examples/dbt-on-cloud-composer/basic/dag/dbt_with_kubernetes.py
 #
-def dbt_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
+def containerised_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
+    """
+    Returns a KubernetesPodOperator, which can execute a containerised step
+    :param name: the name of the containerised step
+    :param image_name: the name of the image to use
+    :param arguments: arguments required by the job
+    :param env_vars: environment variables for the job
+    :param repo: fully qualified path to the repo (optional, and defaulted to f'gcr.io/{PROJECT_ID}'
+    :return: the KubernetesPodOperator which executes the containerised step
+    """
 
     from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 
@@ -62,40 +85,42 @@ def dbt_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
 
 # Define the DAG
 with models.DAG(
-    dag_id='home_loan_delinquency',
-    schedule_interval= "00 12 * * *",
+    dag_id='flashing_detection',
+    schedule_interval= "00 15 * * *",
     catchup=False,
     default_args={
         'depends_on_past': False,
         'start_date': datetime.datetime(2022, 1, 1),
         'end_date': datetime.datetime(2100, 1, 2),
-        'catchup':False,
-        'catchup_by_default':False,
+        'catchup': False,
+        'catchup_by_default': False,
         'retries': 0
     }
 ) as dag:
 
-    load_job = dbt_job(
-        name='bq-data-load',
-        image_name='homeloan-bq-data-load',
+    generate_data_job = containerised_job(
+        name='generate-data',
+        image_name='flashing-data_generator',
         env_vars={
-            'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
             'PROJECT_ID': PROJECT_ID,
-        }
+        },
+        arguments=[
+            # The project where the data will be ingested
+            '--project_id', PROJECT_ID,
+            # The BQ dataset where the data will be ingested
+            '--bq_dataset', 'regrep_source',
+            # The date to generate
+            '--date', '2022-08-15',
+            # The symbol to generate
+            '--symbol', 'ABC'
+        ]
     )
 
-    run_hld_report = dbt_job(
-        name='hld-run',
-        image_name='homeloan-dbt',
+    run_flashing_report = containerised_job(
+        name='transform-data',
+        image_name='flashing-dbt',
         arguments=[
             "run",
-            "--vars",
-            json.dumps({
-                # { ds } is a template that it interpolated in the
-                # KubernetesPodOperator from Airflow as the execution
-                # date
-                "reporting_day": "{{ ds }}",
-            })
         ],
         env_vars={
             'PROJECT_ID': PROJECT_ID,
@@ -103,20 +128,11 @@ with models.DAG(
         }
     )
 
-    test_hld_dq = dbt_job(
-        name='hld-dq-test',
-        image_name='homeloan-dbt',
+    test_flashing_report = containerised_job(
+        name='data-quality-test',
+        image_name='flashing-dbt',
         arguments=[
             "test",
-            "-s",
-            "test_type:generic",
-            "--vars",
-            json.dumps({
-                # { ds } is a template that it interpolated in the
-                # KubernetesPodOperator from Airflow as the execution
-                # date
-                "reporting_day": "{{ ds }}",
-            })
         ],
         env_vars={
             'PROJECT_ID': PROJECT_ID,
@@ -124,28 +140,4 @@ with models.DAG(
         }
     )
 
-    test_hld_regression = dbt_job(
-        name='hld-regression-test',
-        image_name='homeloan-dbt',
-        arguments=[
-            "test",
-            "-s",
-            "test_type:singular",
-            "--vars",
-            json.dumps({
-                # { ds } is a template that it interpolated in the
-                # KubernetesPodOperator from Airflow as the execution
-                # date
-                "reporting_day": "{{ ds }}",
-            })
-        ],
-        env_vars={
-            'PROJECT_ID': PROJECT_ID,
-            'BQ_LOCATION': BQ_LOCATION,
-        }
-    )
-
-    load_job >> run_hld_report
-    run_hld_report >> test_hld_regression
-    run_hld_report >> test_hld_dq
-
+    generate_data_job >> run_flashing_report >> test_flashing_report
