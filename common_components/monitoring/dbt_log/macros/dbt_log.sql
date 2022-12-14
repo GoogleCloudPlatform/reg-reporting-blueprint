@@ -20,7 +20,7 @@
 
 {%- set target_relation = api.Relation.create(
           database=var("dbt_log_project", target.project),
-          schema=var("dbt_log_dataset", "dbt_log"),
+          schema=var("dbt_log_dataset", "monitoring"),
           identifier=var("dbt_log_table", "dbt_log"))
 -%}
 

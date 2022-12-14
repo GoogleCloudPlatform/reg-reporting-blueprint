@@ -111,16 +111,16 @@ def generate(client, table_prefix, date_str, symbol):
 
         if outcome == 'fill':
             d['price'] = d['ask'] if d['side'] == 'Buy' else d['bid']
-            ol_orders.append(d)
+            ol_orders.append(dict(d))
         else:
             d['price'] = d['bid'] if d['side'] == 'Buy' else d['ask']
-            ol_orders.append(d)
+            ol_orders.append(dict(d))
 
         # Assume all orders are ack-ed
         d['timestamp'] += dt.timedelta(milliseconds=exchange_delay_pool[global_delay_num])
         global_delay_num = (global_delay_num + 1) % 5000
         d['event'] = 'Acknowledged'
-        ol_orders.append(d)
+        ol_orders.append(dict(d))
 
         if outcome != 'fill':
             # Immediate cancel of IOC orders
@@ -128,7 +128,7 @@ def generate(client, table_prefix, date_str, symbol):
                 d['timestamp'] += dt.timedelta(milliseconds=exchange_delay_pool[global_delay_num])
                 global_delay_num = (global_delay_num + 1) % 5000
                 d['event'] = 'Canceled'
-                ol_orders.append(d)
+                ol_orders.append(dict(d))
                 continue
 
             # Day order: random arrival of cancel/replace, with possibility of flash cancel/replace
@@ -140,7 +140,7 @@ def generate(client, table_prefix, date_str, symbol):
                 d['timestamp'] += dt.timedelta(milliseconds=interval_ms)
 
             d['event'] = 'CancelSent' if 'Cancel' in outcome else 'ReplaceSent'
-            ol_orders.append(d)
+            ol_orders.append(dict(d))
             d['timestamp'] += dt.timedelta(milliseconds=exchange_delay_pool[global_delay_num])
             global_delay_num = (global_delay_num + 1) % 5000
             d['event'] = 'Canceled' if 'Cancel' in outcome else 'Replaced'
@@ -151,7 +151,7 @@ def generate(client, table_prefix, date_str, symbol):
                     d['price'] += 0.01
                 else:
                     d['size'] = str(int(d['size'] + 100))
-            ol_orders.append(d)
+            ol_orders.append(dict(d))
         else:
             # order filled
             if d['tif'] == 'IOC':
@@ -164,7 +164,7 @@ def generate(client, table_prefix, date_str, symbol):
             d['fill_price'] = d['price']
             d['exec_id'] = f'Exec_id_{exec_id_counter}'
             exec_id_counter += 1
-            ol_orders.append(d)
+            ol_orders.append(dict(d))
 
     ol_table = pd.DataFrame(columns=['trade_date', 'timestamp', 'trading_model', 'account', 'order_id', 'event',
                                      'symbol', 'exchange', 'side', 'size', 'price', 'tif', 'prev_size', 'prev_price',
