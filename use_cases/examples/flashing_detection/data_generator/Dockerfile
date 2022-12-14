@@ -12,11 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM python:3.9
-
-# Default build ARGs
-ARG BUILD_REF=dev
-ENV BUILD_REF=${BUILD_ID}
+FROM python:3.8.5
 
 # Install required system packages and cleanup to reduce image size
 RUN apt-get update -y && \
@@ -25,26 +21,18 @@ RUN apt-get update -y && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install data build tool
-RUN pip install -U pip
-RUN pip install \
-        dbt-core~=1.2.0 \
-        dbt-bigquery==1.2.0
-
 # Create users
-ENV HOME /dbt/
-RUN useradd -rm -d $HOME -s /bin/bash -u 1000 dbt
+ENV HOME /user/
+RUN useradd -rm -d $HOME -s /bin/bash -u 1000 user
 WORKDIR $HOME
-USER dbt
+USER user
 
 # Copy files to the image
-COPY --chown=dbt . $HOME
+COPY --chown=user . $HOME
 
-# Run DBT debs to install dependencies
-RUN dbt clean # ensure no dbt_packages directory is present
-RUN dbt deps
+# Install dependencies
+RUN pip install -U pip
+RUN pip install -r requirements.txt
 
 # Run dbt. Profiles defaults locally through DBT_PROFILES_DIR.
-ENV DBT_PROFILES_DIR /dbt/profiles
-ENTRYPOINT [ "dbt" ]
-
+ENTRYPOINT ["python3", "datagen.py"]

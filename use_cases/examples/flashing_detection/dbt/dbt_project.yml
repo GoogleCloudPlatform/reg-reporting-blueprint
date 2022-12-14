@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: 'flashing_detection'
+name: 'reg_reporting_flashing_detection_sample'
 version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'flashing_detection'
+profile: 'regrep_profile'
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
@@ -30,6 +30,8 @@ target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
+  - "dbt_modules"
+  - "logs"
 
 
 # Configuring models
@@ -39,10 +41,12 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  flashing_detection:
+  reg_reporting_flashing_detection_sample:
     # Add solutions label - PLEASE DO NOT REMOVE
-    +labels: 
+    +labels:
       goog-packaged-solution: gcp-reg-reporting
+    # Create new flashing-specific dataset
+    +dataset: flashing
     +materialized: table
     # Storing the failures for all the tests
     +store_failures: true  # all tests
@@ -50,3 +54,11 @@ models:
     +persist_docs:
       relation: true
       columns: true
+
+# Tracking DBT Performance
+on-run-start:
+  - "{{ dbt_log.create_dbt_log(target) }}"
+  - "{{ dbt_log.insert_dbt_log(target, 'START', dbt_log.graph_to_json(target, graph)) }}"
+
+on-run-end:
+  - "{{ dbt_log.insert_dbt_log(target, 'END', dbt_log.results_to_json(results)) }}"

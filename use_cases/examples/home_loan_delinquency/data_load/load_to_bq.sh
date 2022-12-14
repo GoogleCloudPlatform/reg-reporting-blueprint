@@ -32,14 +32,13 @@ do
   --replace=true \
   --source_format=CSV \
   --skip_leading_rows=1 \
-  $PROJECT_ID:$HOMELOAN_BQ_DATA.$table \
+  $PROJECT_ID:regrep_source.homeloan_$table \
   gs://$GCS_INGEST_BUCKET/homeloan/input/$table.csv \
   schema/input/$table.json
 done
 
 
 echo -e "\nLoad the expected results data"
-echo $HOMELOAN_BQ_DATA
 declare -a arr=( \
 "stg_accounts" \
 "stg_products" \
@@ -52,7 +51,7 @@ do
   --replace=true \
   --source_format=CSV \
   --skip_leading_rows=1 \
-  $PROJECT_ID:$HOMELOAN_BQ_EXPECTEDRESULTS.$table \
+  $PROJECT_ID:regrep_source.homeloan_expected_$table \
   gs://$GCS_INGEST_BUCKET/homeloan/expected/$table.csv \
   schema/expected/$table.json
 done

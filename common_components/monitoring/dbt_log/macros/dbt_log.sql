@@ -14,19 +14,22 @@
 
 
 
-{# get_dbt_log -- get the dbt log table name #}
-{% macro get_dbt_log(target) %}
-`{{ var("dbt_log_project", target.project) }}`.
-`{{ var("dbt_log_dataset", target.dataset) }}`.
-`{{ var("dbt_log_table",   "dbt_log") }}`
-{% endmacro %}
-
-
 {# create_dbt_log -- create a dbt_log table in the target dataset if not #}
 {#                   already there #}
 {% macro create_dbt_log(target) %}
 
-CREATE TABLE IF NOT EXISTS {{ dbt_log.get_dbt_log(target) }} (
+{%- set target_relation = api.Relation.create(
+          database=var("dbt_log_project", target.project),
+          schema=var("dbt_log_dataset", "monitoring"),
+          identifier=var("dbt_log_table", "dbt_log"))
+-%}
+
+
+{# Create schema if necessary #}
+{% do adapter.create_schema(target_relation) %}
+
+{# Create table if necessary #}
+CREATE TABLE IF NOT EXISTS {{ target_relation }} (
   update_time TIMESTAMP,
   dbt_invocation_id STRING,
   stage STRING,
@@ -39,7 +42,13 @@ CREATE TABLE IF NOT EXISTS {{ dbt_log.get_dbt_log(target) }} (
 {# insert_dbt_log -- insert a log message in the dbt_log #}
 {% macro insert_dbt_log(target, stage, json) %}
 
-INSERT INTO {{ dbt_log.get_dbt_log(target) }} VALUES (
+{%- set target_relation = api.Relation.create(
+          database=var("dbt_log_project", target.project),
+          schema=var("dbt_log_dataset", "dbt_log"),
+          identifier=var("dbt_log_table", "dbt_log"))
+-%}
+
+INSERT INTO {{ target_relation }} VALUES (
   CURRENT_TIMESTAMP(),
   '{{ invocation_id }}',
   '{{ stage }}',
@@ -81,9 +90,11 @@ INSERT INTO {{ dbt_log.get_dbt_log(target) }} VALUES (
 {% endmacro %}
 
 {# graph_to_json -- convert target and graph to JSON for logging #}
-{% macro graph_to_json(target, graph) %}
+{#               -- env includes extra environment info for logging #}
+{% macro graph_to_json(target, graph, env) %}
     {%- set results_list = {} -%}
     {%- if execute %}
+
       {%- set nodes_list = [] -%}
       {%- for unique_id, info in graph["nodes"].items()-%}
         {%- set result_dict = {} -%}
@@ -93,13 +104,28 @@ INSERT INTO {{ dbt_log.get_dbt_log(target) }} VALUES (
         ) -%}
         {%- do nodes_list.append(result_dict) -%}
       {% endfor %}
-      {# NOTE: Add your own custom var and env_var here #}
+
+      {# Collect generally useful environment information if launched from Airflow #}
+      {%- set execution_date = env_var('AIRFLOW_CTX_EXECUTION_DATE', 'unset') | replace(':', '%3A') | replace ('+', '%2B') -%}
+      {%- set var_dict = {} -%}
+      {%- do var_dict.update(
+        build_ref=env_var('BUILD_REF', 'unset'),
+        doc_ref=env_var('DOC_REF', 'unset'),
+        airflow_task_id=env_var('AIRFLOW_CTX_TASK_ID', 'unset'),
+        airflow_dag_id=env_var('AIRFLOW_CTX_DAG_ID', 'unset'),
+        airflow_execution_date=execution_date,
+      ) -%}
+
+      {# NOTE: graph data has a *lot* of information in it, but it #}
+      {# can be too big for BigQuery in an INSERT statement. #}
+
       {%- do results_list.update(
         dbt_version=dbt_version,
         target=target | as_text,
-        graph=graph | as_text,
         tree=nodes_list,
         flags=flags.get_flag_dict() | as_text,
+        vars=var_dict | tojson,
+        env=env | default(''),
       ) -%}
     {%- endif %}
     {%- do return(tojson(results_list)) -%}

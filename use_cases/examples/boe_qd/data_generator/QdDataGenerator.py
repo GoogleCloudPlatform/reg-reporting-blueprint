@@ -15,7 +15,7 @@
 # QD Data Generator
 # Generate pseudo-random credit default swap (CDS) trade data & write to files.
 
-# This utility provide a class with  methods to generate sample CDS trade details, 
+# This utility provide a class with  methods to generate sample CDS trade details,
 # and persist them to n number of FpML files, and, to 1 csv file (with n rows).
 
 import copy
@@ -936,25 +936,25 @@ if __name__ == "__main__":
   parser.add_argument('--num_records',
                       required=True,
                       help='The number of records to be created')
-  
+
   args = parser.parse_args()
   bigquery_client = bigquery.Client(project=args.project_id)
-  
+
   # Instantiate the data generator class
   generator = QdDataGenerator()
-  
+
   # Generate random data
   lei_list = generator.make_random_leis(int(args.num_counterparties))
   fpml_dict = generator.make_random_fpml(int(args.num_records), lei_list)
   generator.write_fpml(fpml_dict)
-  
+
   # Write the data to BQ
-  generator.write_fpml_to_bq(xml_trees=fpml_dict, 
-                             client=bigquery_client, 
-                             table_id=f"{args.project_id}.{args.bq_dataset}.cds_deal_level_granular")
-  
-  generator.write_lei_recs_to_bq(lei_list, 
-                             client=bigquery_client, 
-                             table_id=f"{args.project_id}.{args.bq_dataset}.lei_records")
+  generator.write_fpml_to_bq(xml_trees=fpml_dict,
+                             client=bigquery_client,
+                             table_id=f"{args.project_id}.{args.bq_dataset}.boe_qd_cds_deal_level_granular")
+
+  generator.write_lei_recs_to_bq(lei_list,
+                             client=bigquery_client,
+                             table_id=f"{args.project_id}.{args.bq_dataset}.boe_qd_lei_records")
 
   print("FpML and JSON generation complete and data loaded to BQ")

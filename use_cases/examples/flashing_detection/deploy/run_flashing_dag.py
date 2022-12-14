@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Composer DAG to excute the CRE workflow
+# Composer DAG to excute the BoE Quarterly Derivatives workflow
 
 import datetime
 import json
@@ -85,8 +85,8 @@ def containerised_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
 
 # Define the DAG
 with models.DAG(
-    dag_id='boe_commercial_real_estate',
-    schedule_interval= "00 13 * * *",
+    dag_id='flashing_detection',
+    schedule_interval= "00 15 * * *",
     catchup=False,
     default_args={
         'depends_on_past': False,
@@ -100,7 +100,7 @@ with models.DAG(
 
     generate_data_job = containerised_job(
         name='generate-data',
-        image_name='cre-data_generator',
+        image_name='flashing-data_generator',
         env_vars={
             'PROJECT_ID': PROJECT_ID,
         },
@@ -109,12 +109,16 @@ with models.DAG(
             '--project_id', PROJECT_ID,
             # The BQ dataset where the data will be ingested
             '--bq_dataset', 'regrep_source',
+            # The date to generate
+            '--date', '2022-08-15',
+            # The symbol to generate
+            '--symbol', 'ABC'
         ]
     )
 
-    run_cre_report = containerised_job(
+    run_flashing_report = containerised_job(
         name='transform-data',
-        image_name='cre-dbt',
+        image_name='flashing-dbt',
         arguments=[
             "run",
         ],
@@ -124,9 +128,9 @@ with models.DAG(
         }
     )
 
-    test_cre_report = containerised_job(
+    test_flashing_report = containerised_job(
         name='data-quality-test',
-        image_name='cre-dbt',
+        image_name='flashing-dbt',
         arguments=[
             "test",
         ],
@@ -136,5 +140,4 @@ with models.DAG(
         }
     )
 
-    generate_data_job >> run_cre_report >> test_cre_report
-
+    generate_data_job >> run_flashing_report >> test_flashing_report

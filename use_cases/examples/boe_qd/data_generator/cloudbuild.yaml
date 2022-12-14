@@ -13,8 +13,16 @@
 # limitations under the License.
 
 steps:
+
+# Pull previous version
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: [ '-c', 'docker pull gcr.io/$PROJECT_ID/boe_qd-data_generator:latest || exit 0' ]
+
+# Build DBT containerised image
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-f', 'use_cases/examples/boe_qd/data_generator/Dockerfile',
                    '-t', 'gcr.io/$PROJECT_ID/boe_qd-data_generator',
                    'use_cases/examples/boe_qd/data_generator' ]
+
 images: [ 'gcr.io/$PROJECT_ID/boe_qd-data_generator' ]

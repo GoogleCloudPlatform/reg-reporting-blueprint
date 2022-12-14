@@ -1,0 +1,28 @@
+
+#
+# Ignore data load sub-directories
+#
+use_cases/**/data_load/*_data
+
+#
+# Ignore dbt normal directories
+#
+use_cases/**/*dbt*/target
+use_cases/**/*dbt*/logs
+use_cases/**/*dbt*/dbt_packages
+
+#
+# Root IDE configuration ignore
+#
+.idea/
+.vscode
+.terraform
+.venv
+
+#
+# Local .terraform files
+#
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.terraform.lock.*

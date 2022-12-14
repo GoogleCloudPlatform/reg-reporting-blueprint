@@ -40,7 +40,7 @@ are available here: [Download Graphviz](https://graphviz.org/download/).
 ### Find a DBT instance
 
 ```
-./dbt_perf.py --dataset_id "${HOMELOAN_BQ_DEV}"
+./dbt_perf.py --dataset_id "regrep_homeloan"
 ```
 
 This will display a list of start and end times (if it ended)

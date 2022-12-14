@@ -15,11 +15,12 @@
 version: 2
 sources:
   - name: sample_data
-    database: "{{ env_var('PROJECT_ID') }}"
-    schema: "{{ env_var('HOMELOAN_BQ_DATA') }}"
+    database: "{{ var('source_project_id', env_var('SOURCE_PROJECT_ID', env_var('PROJECT_ID'))) }}"
+    schema: "{{ var('source_dataset_id', env_var('SOURCE_DATASET_ID', 'regrep_source')) }}"
     tables:
       - &ref_legal_entity_mapping
         name: ref_legal_entity_mapping
+        identifier: homeloan_ref_legal_entity_mapping
         description: A mapping between cost centre codes and legal entities
         columns:
           - name: COST_CENTRE_CODE
@@ -31,6 +32,7 @@ sources:
 
       - &ref_products
         name: ref_products
+        identifier: homeloan_ref_products
         description: Reference data containing banking products information
         columns:
           - name: PRODUCT_ID
@@ -46,6 +48,7 @@ sources:
 
       - &ref_region_codes
         name: ref_region_codes
+        identifier: homeloan_ref_region_codes
         description: Reference data containing a list of property post codes, mapped to a region
         columns:
           - name: PROPERTY_POST_CODE
@@ -55,6 +58,7 @@ sources:
 
       - &src_current_accounts_attributes
         name: src_current_accounts_attributes
+        identifier: homeloan_src_current_accounts_attributes
         description: Source data containing current accounts information
         columns:
         - name: ACCOUNT_KEY
@@ -92,6 +96,7 @@ sources:
 
       - &src_current_accounts_balances
         name: src_current_accounts_balances
+        identifier: homeloan_src_current_accounts_balances
         description: Source data containing current accounts balances
         columns:
         - name: ACCOUNT_KEY
@@ -101,6 +106,7 @@ sources:
 
       - &src_link_securities_accounts
         name: src_link_securities_accounts
+        identifier: homeloan_src_link_securities_accounts
         description: Source data containing the linkages between securities and accounts
         columns:
           - name: SEC_NUMBER
@@ -110,6 +116,7 @@ sources:
 
       - &src_loans
         name: src_loans
+        identifier: homeloan_src_loans
         description: Source data containing the loans information
         columns:
         - name: LOAN_NUMBER
@@ -133,6 +140,7 @@ sources:
 
       - &src_provisions
         name: src_provisions
+        identifier: homeloan_src_provisions
         description: Source data containing the provisions information
         columns:
         - name: PERIOD
@@ -148,6 +156,7 @@ sources:
 
       - &src_securities
         name: src_securities
+        identifier: homeloan_src_securities
         description: Source data containing the securities information
         columns:
         - name: SEC_NUMBER
@@ -170,13 +179,17 @@ sources:
           description: The post code where the security is located
 
   - name: expected_results
-    database: "{{ env_var('PROJECT_ID') }}"
-    schema: "{{ env_var('HOMELOAN_BQ_EXPECTEDRESULTS') }}"
+    database: "{{ var('source_project_id', env_var('SOURCE_PROJECT_ID', env_var('PROJECT_ID'))) }}"
+    schema: "{{ var('source_dataset_id', env_var('SOURCE_DATASET_ID', 'regrep_source')) }}"
     tables:
       - name: stg_accounts
+        identifier: homeloan_expected_stg_accounts
       - name: stg_products
+        identifier: homeloan_expected_stg_products
       - name: stg_provisions
+        identifier: homeloan_expected_stg_provisions
       - name: stg_securities
+        identifier: homeloan_expected_stg_securities
 
 
 

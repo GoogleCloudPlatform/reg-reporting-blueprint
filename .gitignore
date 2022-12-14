@@ -1,6 +1,7 @@
 .idea/
 .vscode
 .terraform
+.venv
 
 # Local .terraform files
 **/.terraform/*

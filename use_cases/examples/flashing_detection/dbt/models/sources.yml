@@ -16,12 +16,13 @@ version: 2
 
 sources:
   - name: flashing_detection_source_market_data
-    database: "{{ env_var('PROJECT_ID') }}"
-    schema: "{{ env_var('TF_VAR_FLASHING_BQ_DATA') }}"
+    database: "{{ var('source_project_id', env_var('SOURCE_PROJECT_ID', env_var('PROJECT_ID'))) }}"
+    schema: "{{ var('source_dataset_id', env_var('SOURCE_DATASET_ID', 'regrep_source')) }}"
     #loaded_at_field: _loaded_at # configure for all sources
 
     tables:
       - name: nbbo
+        identifier: flashing_nbbo
         description: Table containing national best bids and offers
         #loaded_at_field: updated_at # override source defaults
         columns:
@@ -47,12 +48,13 @@ sources:
             description: Quantity being asked
 
   - name: flashing_detection_source_order_data
-    database: "{{ env_var('PROJECT_ID') }}"
-    schema: "{{ env_var('TF_VAR_FLASHING_BQ_DATA') }}"
+    database: "{{ var('source_project_id', env_var('SOURCE_PROJECT_ID', env_var('PROJECT_ID'))) }}"
+    schema: "{{ var('source_dataset_id', env_var('SOURCE_DATASET_ID', 'regrep_source')) }}"
     #loaded_at_field: _loaded_at # configure for all sources
 
     tables:
       - name: orders
+        identifier: flashing_orders
         description: Table containing all orders submitted to the market
         #loaded_at_field: updated_at # override source defaults
         columns:
@@ -75,7 +77,6 @@ sources:
           - name: order_id
             description: Unique order ID (guaranteed to be unique per trade date)
             tests:
-              - unique
               - not_null
           - name: event
             description: Order event
@@ -111,21 +112,14 @@ sources:
             tests:
               - not_null
               - accepted_values:
-                  values: ['Day', 'opc']
+                  values: ['Day', 'opc', 'IOC']
           - name: prev_size
             description: Previous order size (if replaced)
           - name: prev_price
             description: Previous order price (if replaced)
           - name: fill_size
             description: Number of filled shares (if Filled event)
-            tests:
-              - not_null
           - name: fill_price
             description: Trade price (if Filled event)
-            tests:
-              - not_null
           - name: exec_id
             description: Exchange fill/execution ID (if Filled event)
-            tests:
-              - unique
-              - not_null

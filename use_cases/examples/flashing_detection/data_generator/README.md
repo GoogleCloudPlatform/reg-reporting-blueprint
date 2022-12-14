@@ -1,8 +1,8 @@
 # Sample Data Generation
 *datagen.py* is used to generate the sample datasets:
-  * market_data
+  * <dataset>.flashing_nbbo
     * Simulate the *public* NBBO market data feed disseminated by the exchanges
-  * order_data
+  * <dataset>.flashing_orders
     * Simulate the *proprietary* order activity of the market participant under review
     * Generated orders are priced to follow the NBBO bid/ask in market-data dataset
 
@@ -57,35 +57,14 @@ Note that the data generation tool depends on numpy and pandas. It is recommende
 
 
 ```bash
-  $ cd use_cases/examples/flashing_detection/data/generation
+  $ cd use_cases/examples/flashing_detection/data_generator
 
-  $ pip3 install numpy pandas
+  $ pip3 install numpy pandas google-cloud-bigquery
 
-  $ python3 datagen.py --date 2022-08-15 --symbol ABC --output_dir /tmp
+  $ python3 datagen.py --date 2022-08-15 --symbol ABC --project_id=$PROJECT_ID --bq_dataset=regrep_source
 ```
 
-The tool takes ~3mins to complete and output two files:
-  1. market_data_2022-08-15_ABC.csv
-  1. orders_log_2022-08-15_ABC.csv
+The tool takes ~3mins to complete and uploads to BigQuery into two tables:
+  1. <dataset>.flashing_nbbo
+  1. <dataset>.flashing_orders
 
-
-## Uploading the Datasets into BigQuery
-
-```bash
-  $ gsutil cp \
-    /tmp/market_data_2022-08-15_ABC.csv \
-    /tmp/orders_log_2022-08-15_ABC.csv \
-    gs://$GCS_INGEST_BUCKET
-
-
-  $ bq load \
-    --source_format=CSV --skip_leading_rows=1 \
-    $PROJECT_ID:$TF_VAR_FLASHING_BQ_MARKET_DATA.nbbo \
-    gs://$GCS_INGEST_BUCKET/market_data_2022-08-15_ABC.csv
-
-
-  $ bq load \
-    --source_format=CSV --skip_leading_rows=1 \
-    $PROJECT_ID:$TF_VAR_FLASHING_BQ_ORDER_DATA.orders \
-    gs://$GCS_INGEST_BUCKET/orders_log_2022-08-15_ABC.csv
-```

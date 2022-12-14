@@ -17,13 +17,12 @@ steps:
 # Pull previous version
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: [ '-c', 'docker pull gcr.io/$PROJECT_ID/cre-data_generator:latest || exit 0' ]
+  args: [ '-c', 'docker pull gcr.io/$PROJECT_ID/flashing-data_generator:latest || exit 0' ]
 
 # Build DBT containerised image
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-f', 'use_cases/examples/boe_cre/data_generator/Dockerfile',
-                   '-t', 'gcr.io/$PROJECT_ID/cre-data_generator',
-                   'use_cases/examples/boe_cre/data_generator' ]
+  args: [ 'build', '-f', 'use_cases/examples/flashing_detection/data_generator/Dockerfile',
+                   '-t', 'gcr.io/$PROJECT_ID/flashing-data_generator',
+                   'use_cases/examples/flashing_detection/data_generator' ]
 
-images: [ 'gcr.io/$PROJECT_ID/cre-data_generator' ]
-
+images: [ 'gcr.io/$PROJECT_ID/flashing-data_generator' ]

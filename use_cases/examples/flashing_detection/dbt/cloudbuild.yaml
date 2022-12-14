@@ -12,27 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-variable "PROJECT_ID" {
-	type		= string
-	description	= "The GCP project name to use for your flashing reporting schema"
-}
+steps:
 
-variable "REGION_NAME" {
-	type		= string
-	description	= "The GCP region in which to populate the sample flashing report data"
-	default		= "us-central1"
-}
+# Pull previous version
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: [ '-c', 'docker pull gcr.io/$PROJECT_ID/flashing-dbt:latest || exit 0' ]
 
-variable "MARKET_DATA_DATASET" {
-	type		= string
-	description	= "The dataset name that will store the market data"
-	default		= "market_data"
-	nullable    = false
-}
+# Build DBT containerised image
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-f', 'use_cases/examples/boe_qd/dbt/Dockerfile',
+                   '--build-arg=BUILD_REF=$BUILD_ID',
+                   '-t', 'gcr.io/$PROJECT_ID/flashing-dbt',
+                   'use_cases/examples/boe_qd/dbt' ]
 
-variable "ORDER_DATA_DATASET" {
-	type		= string
-	description	= "The dataset name that will store the order data"
-	default		= "order_data"
-	nullable    = false
-}
+images: [ 'gcr.io/$PROJECT_ID/flashing-dbt' ]

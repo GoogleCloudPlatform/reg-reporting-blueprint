@@ -505,12 +505,12 @@ if __name__ == "__main__":
 
     upload_rows_to_bigquery(
         bigquery_client,
-        f"{args.project_id}.{args.bq_dataset}.loan_level_stock_granular",
+        f"{args.project_id}.{args.bq_dataset}.boe_cre_loan_level_stock_granular",
         args.num_records_stock,
         generator.generate_stock_record)
 
     upload_rows_to_bigquery(
         bigquery_client,
-        f"{args.project_id}.{args.bq_dataset}.loan_level_flow_granular",
+        f"{args.project_id}.{args.bq_dataset}.boe_cre_loan_level_flow_granular",
         args.num_records_flow,
         generator.generate_flow_record)

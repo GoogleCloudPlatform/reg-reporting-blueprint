@@ -36,14 +36,6 @@ export GCS_INGEST_BUCKET=$PROJECT_ID-$GCS_LOCATION-ingest-bucket
 export DBT_PROFILES_DIR=./profiles # DBT specific configuration
 
 
-# Use case specific configuration
-# Define use-case-specific datasets &
-# edit:
-# ./common_components/orchestration/infrastructure/terraform.tfvars.template
-# and
-# ./common_components/orchestration/setup_script.sh
-# to reflect these vars
-
 # Print variables
 echo -e "\nYour environment variables have been initialised as follows:"
 echo -e "\tUse case indipendent variables:"
@@ -56,48 +48,5 @@ echo -e "\t\tGCS_TF_STATE                     :" $GCS_TF_STATE
 echo -e "\t\tGCS_LOCATION                     :" $GCS_LOCATION
 echo -e "\t\tGCS_INGEST_BUCKET                :" $GCS_INGEST_BUCKET
 echo -e "\t\tDBT_PROFILES_DIR                 :" $DBT_PROFILES_DIR
-
-# Edit to reflect use-case specific vars
-# HOME LOAN DELINQUENCY
-export HOMELOAN_GCR_DATALOAD=gcr.io/${PROJECT_ID}/homeloan-bq-data-load
-export HOMELOAN_GCR_DBT=gcr.io/${PROJECT_ID}/homeloan-dbt
-export HOMELOAN_BQ_DEV=homeloan_dev
-export HOMELOAN_BQ_DATA=homeloan_data
-export HOMELOAN_BQ_EXPECTEDRESULTS=homeloan_expectedreresults
-echo -e "\n\tUse case: Home Loan Delinquency:"
-echo -e "\t\tHOMELOAN_GCR_DATALOAD            :" $HOMELOAN_GCR_DATALOAD
-echo -e "\t\tHOMELOAN_GCR_DBT                 :" $HOMELOAN_GCR_DBT
-echo -e "\t\tHOMELOAN_BQ_DEV                  :" $HOMELOAN_BQ_DEV
-echo -e "\t\tHOMELOAN_BQ_DATA                 :" $HOMELOAN_BQ_DATA
-echo -e "\t\tHOMELOAN_BQ_EXPECTEDRESULTS      :" $HOMELOAN_BQ_EXPECTEDRESULTS
-
-# TRADING FLASHING
-export TF_VAR_FLASHING_BQ_DATA=flashing_data
-export TF_VAR_FLASHING_BQ_DEV=flashing_dev
-echo -e "\n\tUse case: Trading Flashing:"
-echo -e "\t\tTF_VAR_FLASHING_BQ_DATA          :" $TF_VAR_FLASHING_BQ_DATA
-echo -e "\t\tTF_VAR_FLASHING_BQ_DEV           :" $TF_VAR_FLASHING_BQ_DEV 
-
-# BoE Commercial Real Estate
-export CRE_GCR_DATALOAD=gcr.io/${PROJECT_ID}/cre-data_generator
-export CRE_GCR_DBT=gcr.io/${PROJECT_ID}/cre-dbt
-export CRE_BQ_DEV=boe_cre_dev
-export CRE_BQ_DATA=boe_cre_data
-echo -e "\n\tUse case: BoE Commercial Real Estate:"
-echo -e "\t\tCRE_GCR_DATALOAD                 :" $CRE_GCR_DATALOAD
-echo -e "\t\tCRE_GCR_DBT                      :" $CRE_GCR_DBT
-echo -e "\t\tCRE_BQ_DEV                       :" $CRE_BQ_DEV
-echo -e "\t\tCRE_BQ_DATA                      :" $CRE_BQ_DATA
-
-# BoE Quarterly Derivatives
-export QD_GCR_DATALOAD=gcr.io/${PROJECT_ID}/qd-data_generator
-export QD_GCR_DBT=gcr.io/${PROJECT_ID}/qd-dbt
-export QD_BQ_DEV=boe_qd_dev
-export QD_BQ_DATA=boe_qd_data
-echo -e "\n\tUse case: BoE Quarterly Derivatives:"
-echo -e "\t\tQD_GCR_DATALOAD                 :" $QD_GCR_DATALOAD
-echo -e "\t\tQD_GCR_DBT                      :" $QD_GCR_DBT
-echo -e "\t\tQD_BQ_DEV                       :" $QD_BQ_DEV
-echo -e "\t\tQD_BQ_DATA                      :" $QD_BQ_DATA
 
 echo -e "\n"
