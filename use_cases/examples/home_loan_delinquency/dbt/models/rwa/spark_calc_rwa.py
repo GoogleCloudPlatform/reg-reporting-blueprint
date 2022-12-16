@@ -17,22 +17,6 @@
 #
 
 #
-# Setup:
-# - Inspect the profile.yml in the profiles directory.
-# - Specify the dataproc cluster name (if not using serverless),
-#   validate the region. (Should use environment variable)
-# - Grant access to the default compute service account to the homeloan_dev
-#   dataset. (Very important -- not done by terraform.)
-# - Ensure the subnet used by Dataproc (likely the default network -- not best
-#   practice) has Google Private Access enabled.
-#   https://console.cloud.google.com/networking/networks/list?project=<project>&pageTab=CURRENT_PROJECT_SUBNETS
-#   ... and edit the subnet and enable Google Private Access.
-#
-# Running:
-# dbt run -s tag:rwa -m models/stats/calc_rwa.py
-#
-
-#
 # Define the residential RWA calculation
 #
 
