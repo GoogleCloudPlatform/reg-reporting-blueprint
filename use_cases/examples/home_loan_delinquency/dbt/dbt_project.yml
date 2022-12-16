@@ -69,6 +69,12 @@ models:
       calc:
           +tags: calculations
           materialized: ephemeral
+      # By default disable RWA, unless enable_var is set to True
+      # This can be done on the CLI by using --var '{"enable_rwa":True}'
+      rwa:
+          +tags: rwa
+          +enabled: "{{ var('enable_rwa', false) }}"
+          materialized: table
 
 # Tracking DBT Performance
 on-run-start:
