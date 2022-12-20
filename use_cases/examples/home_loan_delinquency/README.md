@@ -11,6 +11,7 @@ This example contains the following folders:
 * `data`: contains test data 
 * `data_load`: contains a simple containerised application to load data from GCS into BQ
 * `dbt`: contains a DBT project which specifies the source to report transformation
+* `deploy`: contains a Composer DAG which executes the end to end pipeline
 
 ## How to tailor the code to your need
 
