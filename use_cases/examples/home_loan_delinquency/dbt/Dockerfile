@@ -16,7 +16,7 @@ FROM python:3.9
 
 # Default build ARGs
 ARG BUILD_REF=dev
-ENV BUILD_REF=${BUILD_ID}
+ENV BUILD_REF=${BUILD_REF}
 
 # Install required system packages and cleanup to reduce image size
 RUN apt-get update -y && \
