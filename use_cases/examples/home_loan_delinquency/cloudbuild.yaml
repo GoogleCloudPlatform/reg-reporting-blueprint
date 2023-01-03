@@ -26,8 +26,9 @@ steps:
 # Build DBT containerised image
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-f', 'use_cases/examples/home_loan_delinquency/data_load/Dockerfile',
-                   '-t', 'gcr.io/$PROJECT_ID/homeloan-bq-data-load:$BRANCH_NAME',
-                   '-t', 'gcr.io/$PROJECT_ID/homeloan-bq-data-load:$SHORT_SHA',
+                   '-t', 'gcr.io/$PROJECT_ID/homeloan-bq-data-load:$_VER_BY_BRANCH',
+                   '-t', 'gcr.io/$PROJECT_ID/homeloan-bq-data-load:$_VER_BY_SHA',
+                   '-t', 'gcr.io/$PROJECT_ID/homeloan-bq-data-load:latest',
                    'use_cases/examples/home_loan_delinquency/data_load' ]
 
 #
@@ -43,20 +44,49 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-f', 'use_cases/examples/home_loan_delinquency/dbt/Dockerfile',
                    '--build-arg=BUILD_REF=$BUILD_ID',
-                   '--build-arg=COMMIT_SHA=$COMMIT_SHA',
-                   '-t', 'gcr.io/$PROJECT_ID/homeloan-dbt:$BRANCH_NAME',
-                   '-t', 'gcr.io/$PROJECT_ID/homeloan-dbt:$SHORT_SHA',
+                   '--build-arg=DOC_REF=$COMMIT_SHA',
+                   '-t', 'gcr.io/$PROJECT_ID/homeloan-dbt:$_VER_BY_BRANCH',
+                   '-t', 'gcr.io/$PROJECT_ID/homeloan-dbt:$_VER_BY_SHA',
+                   '-t', 'gcr.io/$PROJECT_ID/homeloan-dbt:latest',
                    'use_cases/examples/home_loan_delinquency/dbt' ]
 
 
 #
-# Save images
+# DBT Documentation
 #
+
+# NOTE: This is skipped if _GCS_DOCS_BUCKET isn't set
+#       in the build configuration or from the command line.
+- name: 'gcr.io/$PROJECT_ID/homeloan-dbt:$_VER_BY_SHA'
+  env:
+    - 'BUILD_REF=$BULID_ID'
+    - 'GCS_DOCS_BUCKET=$_GCS_DOCS_BUCKET'
+    - 'PROJECT_ID=$PROJECT_ID'
+    - 'BQ_LOCATION='
+  script: |
+    #!/bin/bash
+
+    if [ "${GCS_DOCS_BUCKET}" != "unset" ]; then
+      cd /dbt
+      dbt docs generate
+      ./dbt_generate_docs.py
+    fi
+
 
 # Built images
 images: [
-  'gcr.io/$PROJECT_ID/homeloan-dbt:$BRANCH_NAME',
-  'gcr.io/$PROJECT_ID/homeloan-dbt:$SHORT_SHA',
-  'gcr.io/$PROJECT_ID/homeloan-bq-data-load:$BRANCH_NAME',
-  'gcr.io/$PROJECT_ID/homeloan-bq-data-load:$SHORT_SHA'
+  'gcr.io/$PROJECT_ID/homeloan-dbt:$_VER_BY_BRANCH',
+  'gcr.io/$PROJECT_ID/homeloan-dbt:$_VER_BY_SHA',
+  'gcr.io/$PROJECT_ID/homeloan-dbt:latest',
+  'gcr.io/$PROJECT_ID/homeloan-bq-data-load:$_VER_BY_BRANCH',
+  'gcr.io/$PROJECT_ID/homeloan-bq-data-load:$_VER_BY_SHA',
+  'gcr.io/$PROJECT_ID/homeloan-bq-data-load:latest'
 ]
+
+substitutions:
+  _GCS_DOCS_BUCKET: unset
+  _VER_BY_BRANCH: ${BRANCH_NAME:-latest}
+  _VER_BY_SHA: ${SHORT_SHA:-latest}
+
+options:
+  dynamic_substitutions: true
