@@ -42,7 +42,8 @@ steps:
 # Build containerised image
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-f', 'use_cases/examples/home_loan_delinquency/dbt/Dockerfile',
-                   '--build-arg=BUILD_REF=$BUILD_ID',
+                   '--build-arg=BUILD_REF=$BUILD_REF',
+                   '--build-arg=COMMIT_SHA=$COMMIT_SHA',
                    '-t', 'gcr.io/$PROJECT_ID/homeloan-dbt:$BRANCH_NAME',
                    '-t', 'gcr.io/$PROJECT_ID/homeloan-dbt:$SHORT_SHA',
                    'use_cases/examples/home_loan_delinquency/dbt' ]
