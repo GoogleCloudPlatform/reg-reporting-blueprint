@@ -59,7 +59,7 @@ steps:
 #       in the build configuration or from the command line.
 - name: 'gcr.io/$PROJECT_ID/homeloan-dbt:$_VER_BY_SHA'
   env:
-    - 'BUILD_REF=$BULID_ID'
+    - 'BUILD_REF=$BUILD_ID'
     - 'GCS_DOCS_BUCKET=$_GCS_DOCS_BUCKET'
     - 'PROJECT_ID=$PROJECT_ID'
     - 'BQ_LOCATION='
