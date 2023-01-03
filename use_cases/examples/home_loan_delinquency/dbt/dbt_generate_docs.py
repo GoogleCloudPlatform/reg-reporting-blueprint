@@ -6,87 +6,59 @@ import json
 import subprocess
 import argparse
 
-from google.cloud.storage import client, bucket, blob
 
-
-#
-# Generate static documentation
-#
-def generate_static_docs(dbt_project_dir=None, subs=None):
-
-  if not subs:
-    subs=dict()
+def main(dbt_project_dir, build_ref, gcs_bucket):
 
   # Find path of target (using script as root of DBT project)
   dbt_target = os.path.join(dbt_project_dir, 'target')
 
-  # Data structure we want to substitute for the actual contents
-  # of manifest and catalog
-  search_str = '[i("manifest","manifest.json"+t),i("catalog","catalog.json"+t)]'
-  subs[search_str] = json.dumps([
-    {
-      'label': 'manifest',
-      'data': json.load(open(os.path.join(dbt_target, 'manifest.json')))
-    },
-    {
-      'label': 'catalog',
-      'data': json.load(open(os.path.join(dbt_target, 'catalog.json')))
-    }
-  ])
-
   # Read current index.html
   index = open(os.path.join(dbt_target, 'index.html')).read()
 
-  # Replace substitutions
-  for (key, value) in subs.items():
-    index = index.replace(key, value)
+  # Data structure we want to substitute for the actual contents
+  # of manifest and catalog
+  index.replace(
+    '[i("manifest","manifest.json"+t),i("catalog","catalog.json"+t)]',
+    json.dumps([
+      {
+        'label': 'manifest',
+        'data': json.load(open(os.path.join(dbt_target, 'manifest.json')))
+      },
+      {
+        'label': 'catalog',
+        'data': json.load(open(os.path.join(dbt_target, 'catalog.json')))
+      }
+    ])
+  )
 
   # Write new static index.html with our substitutions
   target_path = os.path.join(dbt_target, 'static-index.html')
   open(os.path.join(dbt_target, 'static-index.html'), 'w').write(index)
   print(f'Saved new docs as {target_path}')
 
+  if gcs_bucket:
+    from google.cloud.storage import client
 
-#
-# Generate normal DBT documentations
-#
-def generate_dbt_docs(dbt_project_dir=None):
-  subprocess.run(["dbt", "docs", "generate"], cwd=dbt_project_dir)
-
-
-parser = argparse.ArgumentParser(
-    prog = 'static_index',
-    description = 'Generates static index for DBT with substitutions')
-parser.add_argument('--dbt_project_dir', nargs='?',
-                    default=os.path.dirname(sys.argv[0]))
-parser.add_argument('--build_ref', nargs='?',
-                    default=os.environ.get('BUILD_REF', 'unset'))
-parser.add_argument('--save_gcs', nargs='?',
-                    default=os.environ.get('GCS_DOCS_BUCKET', None))
-
-args = parser.parse_args()
-
-#
-# Save static documentation to GCS
-#
-def save_static_docs(gcs_bucket, gcs_object, dbt_project_dir):
-
-  from google.cloud.storage import client
-
-  source_file = os.path.join(dbt_project_dir, 'target', 'static-index.html')
-  print(f'Uploading {source_file} to object gs://{gcs_bucket}/{gcs_object} ')
-  target_blob = client.Client().bucket(gcs_bucket).blob(gcs_object)
-  target_blob.upload_from_filename(source_file)
+    print(f'Uploading {target_path} to bucket {gcs_bucket}')
+    target_blob = client.Client().bucket(gcs_bucket).blob(
+        'build/' + build_ref + '/index.html')
+    target_blob.upload_from_filename(target_path)
 
 
+if __name__ == "__main__":
+  parser = argparse.ArgumentParser(
+      prog = 'static_index',
+      description = 'Generates static index for DBT with substitutions')
+  parser.add_argument('--dbt_project_dir', nargs='?',
+                      default=os.path.dirname(sys.argv[0]))
+  parser.add_argument('--build_ref', nargs='?',
+                      default=os.environ.get('BUILD_REF', 'unset'))
+  parser.add_argument('--gcs_bucket', nargs='?',
+                      default=os.environ.get('GCS_DOCS_BUCKET', None))
 
-# generate_dbt_docs(args.dbt_project_dir)
+  args = parser.parse_args()
 
-generate_static_docs(args.dbt_project_dir, subs={
-    '%{BULID_REF}':  args.build_ref,
-    '%{COMMIT_SHA}': args.commit_sha,
-})
-
-if args.save_gcs:
-  save_static_docs(args.save_gcs, 'build/' + args.build_ref + '/index.html', args.dbt_project_dir)
-
+  main(
+      args.dbt_project_dir,
+      args.build_ref,
+      args.gcs_bucket)
