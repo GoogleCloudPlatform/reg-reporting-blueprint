@@ -25,8 +25,7 @@ RUN apt-get update -y && \
 RUN pip install -U pip
 RUN pip install \
         dbt-core~=1.3.1 \
-        dbt-bigquery==1.3.0 \
-	google-cloud-storage==2.6.0
+        dbt-bigquery==1.3.0
 
 # Create users
 ENV HOME /dbt/
@@ -44,8 +43,10 @@ RUN dbt deps
 # Default build ARGs
 ARG BUILD_REF=dev
 ENV BUILD_REF=${BUILD_REF}
-ARG DOC_REF=dev
-ENV DOC_REF=${DOC_REF}
+ARG SOURCE_REF=dev
+ENV SOURCE_REF=${SOURCE_REF}
+ARG SOURCE_PATH=dev
+ENV SOURCE_PATH=${SOURCE_PATH}
 
 # Run dbt. Profiles defaults locally through DBT_PROFILES_DIR.
 ENV DBT_PROFILES_DIR /dbt/profiles

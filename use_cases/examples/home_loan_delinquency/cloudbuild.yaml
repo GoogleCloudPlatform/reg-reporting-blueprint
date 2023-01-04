@@ -50,7 +50,8 @@ steps:
 
     # Build and commit references in the built image
     - 'BUILD_REF=$BUILD_ID'
-    - 'DOC_REF=$COMMIT_SHA'
+    - 'SOURCE_REF=$COMMIT_SHA'
+    - 'SOURCE_PATH=use_cases/examples/home_loan_delinquency/dbt'
   script: |
 
     # Pull previous version
