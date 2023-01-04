@@ -68,6 +68,7 @@ steps:
 # DBT Documentation
 #
 
+# Initialize the volume (just be writable by non-root)
 - name: bash
   id: initialize_docs_volume
   waitFor: ['-']
@@ -77,6 +78,7 @@ steps:
   script: |
     chmod -R 777 /dbt/target
 
+# Generate DBT documentation (if needed)
 - name: 'gcr.io/$PROJECT_ID/homeloan-dbt:$_IMAGE_TAG'
   id: generate_docs
   waitFor: ['build_homeloan_dbt']
@@ -89,8 +91,11 @@ steps:
     - 'PROJECT_ID=$PROJECT_ID'
     - 'BQ_LOCATION='
   script: |
-    [ "${_GCS_DOCS_BUCKET}" != "unset" ] && dbt docs generate
+    if [ "${_GCS_DOCS_BUCKET}" != "unset" ]; then
+      dbt docs generate
+    fi
 
+# Copy DBT documentation (if needed)
 - name: 'gcr.io/cloud-builders/gsutil'
   id: save_docs_to_gcs
   waitFor: ['generate_docs']
@@ -101,10 +106,11 @@ steps:
     - 'BUILD_REF=$BUILD_ID'
     - '_GCS_DOCS_BUCKET=$_GCS_DOCS_BUCKET'
   script: |
-    [ "${_GCS_DOCS_BUCKET}" != "unset" ] && \
+    if [ "${_GCS_DOCS_BUCKET}" != "unset" ]; then
       gsutil cp \
         /dbt/target/* \
         "gs://${_GCS_DOCS_BUCKET}/build/${BUILD_REF}"
+    fi
 
 
 #
@@ -117,7 +123,12 @@ images: [
 ]
 
 substitutions:
+  # Define this if the DBT documentation needs to be persisted
+  # to GCS at build time
   _GCS_DOCS_BUCKET: unset
+
+  # Build image is 'latest' or the branchname, depending if built
+  # by CLI or via a trigger
   _IMAGE_TAG: ${BRANCH_NAME:-latest}
 
 options:
