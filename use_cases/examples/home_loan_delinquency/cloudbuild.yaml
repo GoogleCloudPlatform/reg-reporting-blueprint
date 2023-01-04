@@ -18,75 +18,107 @@ steps:
 # Data Loader
 #
 
-# Pull previous version
 - name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: [ '-c', 'docker pull gcr.io/$PROJECT_ID/homeloan-bq-data-load:latest || exit 0' ]
+  id: build_homeloan_bq_data_load
+  waitFor: ['-']
+  env:
+    - '_IMAGE_TAG=$_IMAGE_TAG'
+    - 'PROJECT_ID=$PROJECT_ID'
+  script: |
 
-# Build DBT containerised image
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-f', 'use_cases/examples/home_loan_delinquency/data_load/Dockerfile',
-                   '-t', 'gcr.io/$PROJECT_ID/homeloan-bq-data-load:$_VER_BY_BRANCH',
-                   '-t', 'gcr.io/$PROJECT_ID/homeloan-bq-data-load:$_VER_BY_SHA',
-                   '-t', 'gcr.io/$PROJECT_ID/homeloan-bq-data-load:latest',
-                   'use_cases/examples/home_loan_delinquency/data_load' ]
+    # Pull previous version
+    docker pull gcr.io/$PROJECT_ID/homeloan-bq-data-load:$_IMAGE_TAG
+
+    # Build new version
+    docker build \
+      -f use_cases/examples/home_loan_delinquency/data_load/Dockerfile \
+      --cache-from gcr.io/$PROJECT_ID/homeloan-bq-data-load:$_IMAGE_TAG \
+      -t gcr.io/$PROJECT_ID/homeloan-bq-data-load:$_IMAGE_TAG \
+      use_cases/examples/home_loan_delinquency/data_load
 
 #
 # DBT
 #
 
-# Pull previous version
 - name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'bash'
-  args: [ '-c', 'docker pull gcr.io/$PROJECT_ID/homeloan-dbt:latest || exit 0' ]
+  id: build_homeloan_dbt
+  waitFor: ['-']
+  env:
+    # Tags for images
+    - '_IMAGE_TAG=$_IMAGE_TAG'
+    - 'PROJECT_ID=$PROJECT_ID'
 
-# Build containerised image
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-f', 'use_cases/examples/home_loan_delinquency/dbt/Dockerfile',
-                   '--build-arg=BUILD_REF=$BUILD_ID',
-                   '--build-arg=DOC_REF=$COMMIT_SHA',
-                   '-t', 'gcr.io/$PROJECT_ID/homeloan-dbt:$_VER_BY_BRANCH',
-                   '-t', 'gcr.io/$PROJECT_ID/homeloan-dbt:$_VER_BY_SHA',
-                   '-t', 'gcr.io/$PROJECT_ID/homeloan-dbt:latest',
-                   'use_cases/examples/home_loan_delinquency/dbt' ]
+    # Build and commit references in the built image
+    - 'BUILD_REF=$BUILD_ID'
+    - 'DOC_REF=$COMMIT_SHA'
+  script: |
+
+    # Pull previous version
+    docker pull gcr.io/$PROJECT_ID/homeloan-dbt:$_IMAGE_TAG
+
+    # Build new version
+    docker build \
+      -f use_cases/examples/home_loan_delinquency/dbt/Dockerfile \
+      --cache-from gcr.io/$PROJECT_ID/homeloan-dbt:$_IMAGE_TAG \
+      -t gcr.io/$PROJECT_ID/homeloan-dbt:$_IMAGE_TAG \
+      use_cases/examples/home_loan_delinquency/dbt
 
 
 #
 # DBT Documentation
 #
 
-# NOTE: This is skipped if _GCS_DOCS_BUCKET isn't set
-#       in the build configuration or from the command line.
-- name: 'gcr.io/$PROJECT_ID/homeloan-dbt:$_VER_BY_SHA'
+- name: bash
+  id: initialize_docs_volume
+  waitFor: ['-']
+  volumes:
+    - name: 'dbt_docs_target'
+      path: '/dbt/target'
+  script: |
+    chmod -R 777 /dbt/target
+
+- name: 'gcr.io/$PROJECT_ID/homeloan-dbt:$_IMAGE_TAG'
+  id: generate_docs
+  waitFor: ['build_homeloan_dbt']
+  volumes:
+    - name: 'dbt_docs_target'
+      path: '/dbt/target'
+  dir: '/dbt'
   env:
-    - 'BUILD_REF=$BUILD_ID'
-    - 'GCS_DOCS_BUCKET=$_GCS_DOCS_BUCKET'
+    - '_GCS_DOCS_BUCKET=$_GCS_DOCS_BUCKET'
     - 'PROJECT_ID=$PROJECT_ID'
     - 'BQ_LOCATION='
   script: |
-    #!/bin/bash
+    [ "${_GCS_DOCS_BUCKET}" != "unset" ] && dbt docs generate
 
-    if [ "${GCS_DOCS_BUCKET}" != "unset" ]; then
-      cd /dbt
-      dbt docs generate
-      ./dbt_generate_docs.py
-    fi
+- name: 'gcr.io/cloud-builders/gsutil'
+  id: save_docs_to_gcs
+  waitFor: ['generate_docs']
+  volumes:
+    - name: 'dbt_docs_target'
+      path: '/dbt/target'
+  env:
+    - 'BUILD_REF=$BUILD_ID'
+    - '_GCS_DOCS_BUCKET=$_GCS_DOCS_BUCKET'
+  script: |
+    [ "${_GCS_DOCS_BUCKET}" != "unset" ] && \
+      gsutil cp \
+        /dbt/target/* \
+        "gs://${_GCS_DOCS_BUCKET}/build/${BUILD_REF}"
 
 
+#
 # Built images
+#
+
 images: [
-  'gcr.io/$PROJECT_ID/homeloan-dbt:$_VER_BY_BRANCH',
-  'gcr.io/$PROJECT_ID/homeloan-dbt:$_VER_BY_SHA',
-  'gcr.io/$PROJECT_ID/homeloan-dbt:latest',
-  'gcr.io/$PROJECT_ID/homeloan-bq-data-load:$_VER_BY_BRANCH',
-  'gcr.io/$PROJECT_ID/homeloan-bq-data-load:$_VER_BY_SHA',
-  'gcr.io/$PROJECT_ID/homeloan-bq-data-load:latest'
+  'gcr.io/$PROJECT_ID/homeloan-dbt:$_IMAGE_TAG',
+  'gcr.io/$PROJECT_ID/homeloan-bq-data-load:$_IMAGE_TAG',
 ]
 
 substitutions:
   _GCS_DOCS_BUCKET: unset
-  _VER_BY_BRANCH: ${BRANCH_NAME:-latest}
-  _VER_BY_SHA: ${SHORT_SHA:-latest}
+  _IMAGE_TAG: ${BRANCH_NAME:-latest}
 
 options:
   dynamic_substitutions: true
