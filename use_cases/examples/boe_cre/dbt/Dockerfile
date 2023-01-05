@@ -24,7 +24,7 @@ RUN apt-get update -y && \
 # Install data build tool
 RUN pip install -U pip
 RUN pip install \
-        dbt-core==1.3.1 \
+        dbt-core==1.3.2 \
         dbt-bigquery==1.3.0
 
 # Create users
