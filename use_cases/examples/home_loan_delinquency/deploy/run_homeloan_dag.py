@@ -191,7 +191,7 @@ with models.DAG(
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
-        }
+        },
     )
 
     load_job >> run_hld_report

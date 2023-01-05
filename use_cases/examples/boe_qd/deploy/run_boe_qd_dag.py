@@ -162,7 +162,7 @@ with models.DAG(
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
-        }
+        },
     )
 
     generate_data_job >> run_boe_qd_report >> test_boe_qd_report
