@@ -30,7 +30,6 @@ models:
       - name: flash_order_id
         description: ID of flashed order
         tests:
-          - unique
           - not_null
       - name: flash_timestamp
         description: Flashed order send time

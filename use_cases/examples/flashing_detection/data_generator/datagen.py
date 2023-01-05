@@ -16,9 +16,12 @@ import argparse
 import datetime as dt
 import numpy as np
 import pandas as pd
+import random
+import string
 
 from google.cloud import bigquery
 from io import StringIO
+from datetime import datetime
 
 
 params = {'random_seed': 1,  # help generate consistent set of randomized data
@@ -87,7 +90,7 @@ def generate(client, table_prefix, date_str, symbol):
     sent_table['size'] = (np.random.poisson(params['size_poisson_lambda'], order_num) + 1) * 100
     sent_table['event'] = 'Sent'
 
-    sent_table['order_id'] = [f'Order_{symbol}_{x + 1}' for x in sent_table.index]
+    sent_table['order_id'] = [f'Order_{date_str}_{symbol}_{x + 1}' for x in sent_table.index]
     sent_table['trade_date'] = trade_date
     sent_table['symbol'] = symbol
 
@@ -162,7 +165,7 @@ def generate(client, table_prefix, date_str, symbol):
             d['event'] = 'Filled'
             d['fill_size'] = '100'
             d['fill_price'] = d['price']
-            d['exec_id'] = f'Exec_id_{exec_id_counter}'
+            d['exec_id'] = f'Exec_id_{date_str}_{exec_id_counter}'
             exec_id_counter += 1
             ol_orders.append(dict(d))
 
@@ -225,7 +228,8 @@ def main():
                         required=True)
     parser.add_argument('-s',
                         '--symbol',
-                        required=True)
+                        default=''.join(random.choice(string.ascii_uppercase)
+                                          for i in range(10)))
     args = parser.parse_args()
 
     bigquery_client = bigquery.Client(project=args.project_id)

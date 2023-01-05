@@ -127,9 +127,7 @@ with models.DAG(
             # The BQ dataset where the data will be ingested
             '--bq_dataset', 'regrep_source',
             # The date to generate
-            '--date', '2022-08-15',
-            # The symbol to generate
-            '--symbol', 'ABC'
+            '--date', '{{ dag_run.logical_date | ds }}',
         ],
         tag="{{ params.tag }}",
         env_vars={
