@@ -15,4 +15,8 @@
 packages:
   - git: "https://github.com/GoogleCloudPlatform/reg-reporting-blueprint.git"
     subdirectory: "common_components/monitoring/dbt_log"
+<<<<<<< Updated upstream
     revision: 1ad02c4b22a5d975ce94d90749420b64b6408a6e
+=======
+    revision: 005199162384a4d4faa0d9488e1c770543f9dbb4
+>>>>>>> Stashed changes
