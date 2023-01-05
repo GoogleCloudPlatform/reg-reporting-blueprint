@@ -53,12 +53,20 @@ def containerised_job(name, image_name, arguments=[], tag=TAG, env_vars={}, repo
     :param name: the name of the containerised step
     :param image_name: the name of the image to use
     :param arguments: arguments required by the job
+    :param tag: the tag of the image to use
     :param env_vars: environment variables for the job
     :param repo: fully qualified path to the repo (optional, and defaulted to f'gcr.io/{PROJECT_ID}'
     :return: the KubernetesPodOperator which executes the containerised step
     """
 
     from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
+
+    # Add generic Airflow environment variables
+    env_vars.update({
+        'AIRFLOW_CTX_TASK_ID': "{{ task.task_id }}",
+        'AIRFLOW_CTX_DAG_ID': "{{ dag_run.dag_id }}",
+        'AIRFLOW_CTX_EXECUTION_DATE': "{{ execution_date | ts }}",
+    })
 
     return KubernetesPodOperator(
 
