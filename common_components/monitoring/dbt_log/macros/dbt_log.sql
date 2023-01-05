@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS {{ target_relation }} (
 
 {%- set target_relation = api.Relation.create(
           database=var("dbt_log_project", target.project),
-          schema=var("dbt_log_dataset", "dbt_log"),
+          schema=var("dbt_log_dataset", "monitoring"),
           identifier=var("dbt_log_table", "dbt_log"))
 -%}
 
@@ -110,7 +110,8 @@ INSERT INTO {{ target_relation }} VALUES (
       {%- set var_dict = {} -%}
       {%- do var_dict.update(
         build_ref=env_var('BUILD_REF', 'unset'),
-        doc_ref=env_var('DOC_REF', 'unset'),
+        source_ref=env_var('SOURCE_REF', 'unset'),
+        source_path=env_var('SOURCE_PATH', 'unset'),
         airflow_task_id=env_var('AIRFLOW_CTX_TASK_ID', 'unset'),
         airflow_dag_id=env_var('AIRFLOW_CTX_DAG_ID', 'unset'),
         airflow_execution_date=execution_date,
@@ -123,7 +124,6 @@ INSERT INTO {{ target_relation }} VALUES (
         dbt_version=dbt_version,
         target=target | as_text,
         tree=nodes_list,
-        flags=flags.get_flag_dict() | as_text,
         vars=var_dict | tojson,
         env=env | default(''),
       ) -%}
