@@ -131,9 +131,13 @@ substitutions:
   # to GCS at build time
   _GCS_DOCS_BUCKET: unset
 
+  # Cleanup branch name for invalid characters (for a tag)
+  _BRANCH_TAG1: ${BRANCH_NAME//@/_}
+  _BRANCH_TAG2: ${_BRANCH_TAG1//\//-}
+
   # Build image is 'latest' or the branchname, depending if built
   # by CLI or via a trigger
-  _IMAGE_TAG: ${BRANCH_NAME:-latest}
+  _IMAGE_TAG: ${_BRANCH_TAG2:-latest}
 
 options:
   dynamic_substitutions: true
