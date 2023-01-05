@@ -108,7 +108,7 @@ steps:
     - '_GCS_DOCS_BUCKET=$_GCS_DOCS_BUCKET'
   script: |
     if [ "${_GCS_DOCS_BUCKET}" != "unset" ]; then
-      gsutil cp \
+      gsutil -m cp \
         /dbt/target/* \
         "gs://${_GCS_DOCS_BUCKET}/build/${BUILD_REF}"
     fi
