@@ -124,7 +124,7 @@ INSERT INTO {{ target_relation }} VALUES (
         dbt_version=dbt_version,
         target=target | as_text,
         tree=nodes_list,
-        vars=var_dict | tojson,
+        vars=var_dict,
         env=env | default(''),
       ) -%}
     {%- endif %}
