@@ -13,7 +13,6 @@
 # limitations under the License.
 
 packages:
-  - local: ../../../../common_components/monitoring/dbt_log
-#  - git: "https://github.com/GoogleCloudPlatform/reg-reporting-blueprint.git"
-#    subdirectory: "common_components/monitoring/dbt_log"
-#    revision: 7bc331e6a37a846b9e5836589f3564c3138a50a1
+  - git: "https://github.com/GoogleCloudPlatform/reg-reporting-blueprint.git"
+    subdirectory: "common_components/monitoring/dbt_log"
+    revision: 1ad02c4b22a5d975ce94d90749420b64b6408a6e

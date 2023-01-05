@@ -20,6 +20,8 @@ import os
 
 from airflow import models
 from airflow.models import Variable
+from airflow.models.param import Param
+
 
 # Project and region for the repository
 PROJECT_ID = Variable.get("PROJECT_ID")
@@ -37,12 +39,15 @@ BQ_LOCATION = Variable.get("BQ_LOCATION")
 # Inferred repository
 REPO = f'gcr.io/{PROJECT_ID}'  # if using container registry
 
+# Tag to run (default is latest if not set)
+TAG = Variable.get("tag", default_var="latest")
+
 
 #
 # Simplified version based on the following -
 # https://github.com/GoogleCloudPlatform/professional-services/blob/main/examples/dbt-on-cloud-composer/basic/dag/dbt_with_kubernetes.py
 #
-def containerised_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
+def containerised_job(name, image_name, arguments=[], tag=TAG, env_vars={}, repo=REPO):
     """
     Returns a KubernetesPodOperator, which can execute a containerised step
     :param name: the name of the containerised step
@@ -77,7 +82,7 @@ def containerised_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
         is_delete_operator_pod=True, # To clean up the pod after runs
 
         # Image for this particular job
-        image=f'{repo}/{image_name}:latest',
+        image=f'{repo}/{image_name}:{tag}',
         arguments=arguments,
         env_vars=env_vars
     )
@@ -86,7 +91,7 @@ def containerised_job(name, image_name, arguments=[], env_vars={}, repo=REPO):
 # Define the DAG
 with models.DAG(
     dag_id='boe_quarterly_derivatives',
-    schedule_interval= "00 14 * * *",
+    schedule_interval= "0 2 * * *",
     catchup=False,
     default_args={
         'depends_on_past': False,
@@ -95,15 +100,19 @@ with models.DAG(
         'catchup': False,
         'catchup_by_default': False,
         'retries': 0
-    }
+    },
+    params={
+        'tag': Param(
+            default=TAG,
+            type='string',
+        ),
+    },
+
 ) as dag:
 
     generate_data_job = containerised_job(
         name='generate-data',
-        image_name='boe_qd-data_generator',
-        env_vars={
-            'PROJECT_ID': PROJECT_ID,
-        },
+        image_name='boe-qd-data-generator',
         arguments=[
             # The project where the data will be ingested
             '--project_id', PROJECT_ID,
@@ -113,15 +122,21 @@ with models.DAG(
             '--num_counterparties', '100',
             # The number of records to generate
             '--num_records', '1000'
-        ]
+        ],
+        tag="{{ params.tag }}",
+        env_vars={
+            'PROJECT_ID': PROJECT_ID,
+        },
     )
 
     run_boe_qd_report = containerised_job(
         name='transform-data',
         image_name='boe-qd-dbt',
         arguments=[
+            "--no-use-colors",
             "run",
         ],
+        tag="{{ params.tag }}",
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
@@ -132,8 +147,10 @@ with models.DAG(
         name='data-quality-test',
         image_name='boe-qd-dbt',
         arguments=[
+            "--no-use-colors",
             "test",
         ],
+        tag="{{ params.tag }}",
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,

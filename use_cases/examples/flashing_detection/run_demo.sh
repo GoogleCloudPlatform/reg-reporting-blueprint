@@ -45,16 +45,10 @@ popd
 # dbt run
 # popd
 
-# Create containerised app for data load
-echo -e "\n\nCreate a containerised data load application"
+# Create containerised apps
+echo -e "\n\nCreate containerised apps"
 pushd ${ROOT_DIR}
-gcloud builds submit --config use_cases/examples/flashing_detection/data_generator/cloudbuild.yaml
-popd
-
-# Create containerised app for DBT transformation
-echo -e "\n\nCreate a containerised data transformation application"
-pushd ${ROOT_DIR}
-gcloud builds submit --config use_cases/examples/flashing_detection/dbt/cloudbuild.yaml
+gcloud builds submit --config use_cases/examples/flashing_detection/cloudbuild.yaml
 popd
 
 # Submit the DAG to Composer

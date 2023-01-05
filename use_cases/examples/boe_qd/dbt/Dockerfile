@@ -14,10 +14,6 @@
 
 FROM python:3.9
 
-# Default build ARGs
-ARG BUILD_REF=dev
-ENV BUILD_REF=${BUILD_COMMIT}
-
 # Install required system packages and cleanup to reduce image size
 RUN apt-get update -y && \
   apt-get install --no-install-recommends -y -q \
@@ -28,8 +24,8 @@ RUN apt-get update -y && \
 # Install data build tool
 RUN pip install -U pip
 RUN pip install \
-        dbt-core~=1.2.0 \
-        dbt-bigquery~=1.2.0
+        dbt-core==1.3.1 \
+        dbt-bigquery==1.3.0
 
 # Create users
 ENV HOME /dbt/
@@ -43,6 +39,14 @@ COPY --chown=dbt . $HOME
 # Run DBT debs to install dependencies
 RUN dbt clean
 RUN dbt deps
+
+# Default build ARGs
+ARG BUILD_REF=dev
+ENV BUILD_REF=${BUILD_REF}
+ARG SOURCE_REF=dev
+ENV SOURCE_REF=${SOURCE_REF}
+ARG SOURCE_PATH=dev
+ENV SOURCE_PATH=${SOURCE_PATH}
 
 # Run dbt. Profiles defaults locally through DBT_PROFILES_DIR.
 ENV DBT_PROFILES_DIR $HOME/profiles

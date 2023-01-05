@@ -313,24 +313,15 @@ In this section, you explore the contents of the repository's `data` and
 
 ## Optional: Containerize the transformations
 
-1.  In Cloud Shell, create a container for the BigQuery
-    data load step, and push the container to Google Container Repository:
+1.  In Cloud Shell, create containers for data load and DBT and push the container to Google
+    Container Repository:
 
     ```
     cd ../../../../  # the gcloud command should be executed from the root 
-    gcloud builds submit --config use_cases/examples/home_loan_delinquency/data_load/cloudbuild.yaml
+    gcloud builds submit --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml
     ```
-    The Dockerfile in the `data_load` directory enables containerization, which
+    The Dockerfile in the `dbt` and `data_load` directories enables containerization, which
     simplifies orchestration of the workflow.
-
-1.  Containerize the code for the data transformation step, and push
-    the container to Google Container Repository:
-
-    ```
-    gcloud builds submit --config use_cases/examples/home_loan_delinquency/dbt/cloudbuild.yaml
-    ```
-    Containerization helps you to create a package that you can version and
-    deploy.
 
 1.  Retrieve the path of the Airflow page and the **Cloud Storage** bucket for dags, 
     and store them in environment variables:

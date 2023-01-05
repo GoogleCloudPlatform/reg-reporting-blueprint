@@ -24,7 +24,7 @@ RUN apt-get update -y && \
 # Install data build tool
 RUN pip install -U pip
 RUN pip install \
-        dbt-core~=1.3.1 \
+        dbt-core==1.3.1 \
         dbt-bigquery==1.3.0
 
 # Create users
@@ -37,7 +37,7 @@ USER dbt
 COPY --chown=dbt . $HOME
 
 # Run DBT debs to install dependencies
-RUN dbt clean # ensure no dbt_packages directory is present
+RUN dbt clean
 RUN dbt deps
 
 # Default build ARGs
@@ -49,5 +49,5 @@ ARG SOURCE_PATH=dev
 ENV SOURCE_PATH=${SOURCE_PATH}
 
 # Run dbt. Profiles defaults locally through DBT_PROFILES_DIR.
-ENV DBT_PROFILES_DIR /dbt/profiles
+ENV DBT_PROFILES_DIR $HOME/profiles
 ENTRYPOINT [ "dbt" ]

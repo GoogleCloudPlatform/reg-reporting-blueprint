@@ -1,0 +1,136 @@
+# Copyright 2022 The Reg Reporting Blueprint Authors
+
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+
+#     https://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+steps:
+
+#
+# Data Loader
+#
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: build_cre_data_generator
+  waitFor: ['-']
+  env:
+    - '_IMAGE_TAG=$_IMAGE_TAG'
+    - 'PROJECT_ID=$PROJECT_ID'
+  script: |
+
+    # Pull previous version
+    docker pull gcr.io/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG
+
+    # Build new version
+    docker build \
+      -f use_cases/examples/boe_cre/data_generator/Dockerfile \
+      --cache-from gcr.io/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG \
+      -t gcr.io/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG \
+      use_cases/examples/boe_cre/data_generator
+
+#
+# DBT
+#
+
+- name: 'gcr.io/cloud-builders/docker'
+  id: build_cre_dbt
+  waitFor: ['-']
+  env:
+    # Tags for images
+    - '_IMAGE_TAG=$_IMAGE_TAG'
+    - 'PROJECT_ID=$PROJECT_ID'
+
+    # Build and commit references in the built image
+    - 'BUILD_REF=$BUILD_ID'
+    - 'SOURCE_REF=$COMMIT_SHA'
+    - 'SOURCE_PATH=use_cases/examples/boe_cre/dbt'
+  script: |
+
+    # Pull previous version
+    docker pull gcr.io/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG
+
+    # Build new version
+    docker build \
+      -f use_cases/examples/boe_cre/dbt/Dockerfile \
+      --cache-from gcr.io/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG \
+      -t gcr.io/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG \
+      use_cases/examples/boe_cre/dbt
+
+
+#
+# DBT Documentation
+#
+
+# Initialize the volume (just be writable by non-root)
+- name: bash
+  id: initialize_docs_volume
+  waitFor: ['-']
+  volumes:
+    - name: 'dbt_docs_target'
+      path: '/dbt/target'
+  script: |
+    chmod -R 777 /dbt/target
+
+# Generate DBT documentation (if needed)
+- name: 'gcr.io/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG'
+  id: generate_docs
+  waitFor: ['build_cre_dbt']
+  volumes:
+    - name: 'dbt_docs_target'
+      path: '/dbt/target'
+  dir: '/dbt'
+  env:
+    - '_GCS_DOCS_BUCKET=$_GCS_DOCS_BUCKET'
+    - 'PROJECT_ID=$PROJECT_ID'
+    - 'BQ_LOCATION='
+  script: |
+    if [ "${_GCS_DOCS_BUCKET}" != "unset" ]; then
+      dbt docs generate
+    fi
+
+# Copy DBT documentation (if needed)
+- name: 'gcr.io/cloud-builders/gsutil'
+  id: save_docs_to_gcs
+  waitFor: ['generate_docs']
+  volumes:
+    - name: 'dbt_docs_target'
+      path: '/dbt/target'
+  env:
+    - 'BUILD_REF=$BUILD_ID'
+    - '_GCS_DOCS_BUCKET=$_GCS_DOCS_BUCKET'
+  script: |
+    if [ "${_GCS_DOCS_BUCKET}" != "unset" ]; then
+      gsutil cp \
+        /dbt/target/* \
+        "gs://${_GCS_DOCS_BUCKET}/build/${BUILD_REF}"
+    fi
+
+
+#
+# Built images
+#
+
+images: [
+  'gcr.io/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG',
+  'gcr.io/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG',
+]
+
+substitutions:
+  # Define this if the DBT documentation needs to be persisted
+  # to GCS at build time
+  _GCS_DOCS_BUCKET: unset
+
+  # Build image is 'latest' or the branchname, depending if built
+  # by CLI or via a trigger
+  _IMAGE_TAG: ${BRANCH_NAME:-latest}
+
+options:
+  dynamic_substitutions: true
