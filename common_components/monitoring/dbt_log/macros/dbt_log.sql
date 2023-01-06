@@ -121,6 +121,7 @@ INSERT INTO {{ target_relation }} VALUES (
       {# can be too big for BigQuery in an INSERT statement. #}
 
       {%- do results_list.update(
+        project=project_name,
         dbt_version=dbt_version,
         target=target | as_text,
         tree=nodes_list,

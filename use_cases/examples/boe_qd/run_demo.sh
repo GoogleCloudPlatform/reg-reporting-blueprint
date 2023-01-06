@@ -33,16 +33,10 @@ echo -e "\tAIRFLOW_DAG_GCS: "${AIRFLOW_DAG_GCS}
 echo -e "\tAIRFLOW_UI:      "${AIRFLOW_UI}
 popd
 
-# Create containerised app for data generation
-echo -e "\n\nCreate a containerised data generator application"
+# Create containerised apps
+echo -e "\n\nCreate a containerised apps"
 pushd ${ROOT_DIR}
-gcloud builds submit --config use_cases/examples/boe_qd/data_generator/cloudbuild.yaml
-popd
-
-# Create containerised app for data transformation
-echo -e "\n\nCreate a containerised data transformation application"
-pushd ${ROOT_DIR}
-gcloud builds submit --config use_cases/examples/boe_qd/dbt/cloudbuild.yaml
+gcloud builds submit --config use_cases/examples/boe_qd/cloudbuild.yaml
 popd
 
 # Submit ther DAG to Composer
