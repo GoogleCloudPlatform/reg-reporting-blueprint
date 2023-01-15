@@ -34,13 +34,13 @@ popd
 # Create containerised apps
 echo -e "\n\nCreate a containerised apps"
 pushd ${ROOT_DIR}
-gcloud builds submit --config use_cases/examples/boe_cre/cloudbuild.yaml
+gcloud builds submit --substitutions _GCR_LOCATION=${GCR_LOCATION} --config use_cases/examples/boe_cre/cloudbuild.yaml
 popd
 
 # Submit ther DAG to Composer
 echo -e "\n\nSubmit the DAG to Composer"
 pushd ${BOE_CRE_DIR}/deploy
-gsutil cp run_cre_dag.py $AIRFLOW_DAG_GCS
+gsutil cp run_boe_cre_dag.py $AIRFLOW_DAG_GCS
 
 echo -e "\tClick on the link to see progress: "${AIRFLOW_UI}
 popd

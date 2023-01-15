@@ -29,7 +29,7 @@ module "project_services" {
   ]
 }
 
-# Create GCS Buckets
+# Create ingest GCS Bucket
 # See https://github.com/terraform-google-modules/terraform-google-cloud-storage
 module "gcs_buckets" {
   source = "github.com/terraform-google-modules/terraform-google-cloud-storage?ref=v3.2.0"
@@ -42,6 +42,13 @@ module "gcs_buckets" {
   names = [
     "ingest-bucket"
   ]
+}
+
+# Create cloudbuild GCS Bucket
+module "cloudbuild_gcs_bucket" {
+  source = "../modules/cloud_storage"
+  project_id = module.project_services.project_id
+  location   = var.gcs_location
 }
 
 # Create BigQuery Datasets
@@ -67,6 +74,7 @@ module "composer_reg_reporting" {
 
   project           = module.project_services.project_id
   bq_location       = var.bq_location
+  gcr_location      = var.gcr_location
   region            = var.region
   env_name          = "reg-runner"
   gcs_ingest_bucket = module.gcs_buckets.bucket.name

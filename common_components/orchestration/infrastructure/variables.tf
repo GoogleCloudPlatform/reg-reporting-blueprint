@@ -27,6 +27,10 @@ variable "bq_location" {
   description = "The BQ location where the datasets will be created"
 }
 
+variable "gcr_location" {
+  description = "The GCR location that will be utilised for container images"
+}
+
 variable "bq_datasets" {
   description = "The BQ datasets to create"
 }

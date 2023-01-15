@@ -13,8 +13,9 @@
 # limitations under the License.
 
 
-resource "google_storage_bucket" "ingest-bucket" {
-  name          = "${var.project}-ingest-bucket"
-  location      = "US"
+resource "google_storage_bucket" "cloudbuild-bucket" {
+  name          = "${var.project_id}_cloudbuild"
+  project       = var.project_id
+  location      = var.location
   uniform_bucket_level_access = true
 }

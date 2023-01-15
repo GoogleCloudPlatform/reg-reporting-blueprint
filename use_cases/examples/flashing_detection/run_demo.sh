@@ -48,7 +48,7 @@ popd
 # Create containerised apps
 echo -e "\n\nCreate containerised apps"
 pushd ${ROOT_DIR}
-gcloud builds submit --config use_cases/examples/flashing_detection/cloudbuild.yaml
+gcloud builds submit --substitutions _GCR_LOCATION=${GCR_LOCATION} --config use_cases/examples/flashing_detection/cloudbuild.yaml
 popd
 
 # Submit the DAG to Composer

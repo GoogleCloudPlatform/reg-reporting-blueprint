@@ -23,5 +23,5 @@ is intended for development and testing purposes only.
 
 # Create containerised data load app
 ```
-gcloud builds submit --tag gcr.io/${PROJECT_ID}/cre-data_generator
+gcloud builds submit --tag ${GCR_LOCATION}/${PROJECT_ID}/cre-data_generator
 ```

@@ -20,9 +20,11 @@ export REGION=${REGION:="us-central1"}
 if [[ "$REGION" == europe-* ]]; then
   export BQ_LOCATION="EU"
   export GCS_LOCATION="eu"
+  export GCR_LOCATION="eu.gcr.io"
 else
   export BQ_LOCATION="US"
   export GCS_LOCATION="us"
+  export GCR_LOCATION="gcr.io"
 fi
 
 # Generic configuration
@@ -44,6 +46,7 @@ echo -e "\t\tPROJECT_ID                       :" $PROJECT_ID
 echo -e "\t\tPROJECT_NUMBER                   :" $PROJECT_NUMBER
 echo -e "\t\tREGION                           :" $REGION
 echo -e "\t\tBQ_LOCATION                      :" $BQ_LOCATION
+echo -e "\t\tGCR_LOCATION                     :" $GCR_LOCATION
 echo -e "\t\tGCS_TF_STATE                     :" $GCS_TF_STATE
 echo -e "\t\tGCS_LOCATION                     :" $GCS_LOCATION
 echo -e "\t\tGCS_INGEST_BUCKET                :" $GCS_INGEST_BUCKET
