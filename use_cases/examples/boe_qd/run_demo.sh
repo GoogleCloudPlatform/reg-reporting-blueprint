@@ -36,7 +36,7 @@ popd
 # Create containerised apps
 echo -e "\n\nCreate a containerised apps"
 pushd ${ROOT_DIR}
-gcloud builds submit --substitutions _GCR_LOCATION=${GCR_LOCATION} --config use_cases/examples/boe_qd/cloudbuild.yaml
+gcloud builds submit --substitutions _GCR_HOSTNAME=${GCR_HOSTNAME} --config use_cases/examples/boe_qd/cloudbuild.yaml
 popd
 
 # Submit ther DAG to Composer

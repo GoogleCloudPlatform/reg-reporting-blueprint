@@ -18,4 +18,5 @@ resource "google_storage_bucket" "cloudbuild-bucket" {
   project       = var.project_id
   location      = var.location
   uniform_bucket_level_access = true
+  force_destroy = var.force_destroy
 }

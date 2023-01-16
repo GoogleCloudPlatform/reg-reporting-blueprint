@@ -49,6 +49,7 @@ module "cloudbuild_gcs_bucket" {
   source = "../modules/cloud_storage"
   project_id = module.project_services.project_id
   location   = var.gcs_location
+  force_destroy = true
 }
 
 # Create BigQuery Datasets
@@ -61,6 +62,7 @@ module "bigquery" {
   dataset_name = each.value
   description  = "Dataset ${each.value} created by terraform"
   location     = var.bq_location
+  delete_contents_on_destroy = true
 
   # List of datasets to create
   for_each = toset(var.bq_datasets)
@@ -74,7 +76,7 @@ module "composer_reg_reporting" {
 
   project           = module.project_services.project_id
   bq_location       = var.bq_location
-  gcr_location      = var.gcr_location
+  gcr_hostname      = var.gcr_hostname
   region            = var.region
   env_name          = "reg-runner"
   gcs_ingest_bucket = module.gcs_buckets.bucket.name

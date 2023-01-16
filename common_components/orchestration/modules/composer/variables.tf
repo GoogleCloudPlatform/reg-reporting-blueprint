@@ -36,8 +36,8 @@ variable "bq_location" {
   description = "The location of BigQuery datasets"
 }
 
-variable "gcr_location" {
-  description = "The GCR domain to be utilised for container images"
+variable "gcr_hostname" {
+  description = "The GCR hostname that determines the location where the image is stored"
 }
 
 variable "gcs_ingest_bucket" {
