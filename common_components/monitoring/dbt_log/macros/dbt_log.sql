@@ -39,6 +39,16 @@ CREATE TABLE IF NOT EXISTS {{ target_relation }} (
 {% endmacro %}
 
 
+{# Log in the middle of a model #}
+{% macro dbt_log(target, stage, dict) %}
+
+{%- call statement('dbt_log', fetch_result=False) -%}
+  {{ dbt_log.insert_dbt_log(target, stage, dict | tojson) }}
+{%- endcall %}
+
+{% endmacro %}
+
+
 {# insert_dbt_log -- insert a log message in the dbt_log #}
 {% macro insert_dbt_log(target, stage, json) %}
 
@@ -52,7 +62,7 @@ INSERT INTO {{ target_relation }} VALUES (
   CURRENT_TIMESTAMP(),
   '{{ invocation_id }}',
   '{{ stage }}',
-  SAFE.PARSE_JSON(R"""{{ json }}""")
+  SAFE.PARSE_JSON(R"""{{ json }}""", wide_number_mode=>'round')
 );
 
 {% endmacro %}
