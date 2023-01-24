@@ -29,7 +29,7 @@ module "project_services" {
   ]
 }
 
-# Create ingest GCS Bucket
+# Create ingest & cloudbuild source staging GCS Buckets
 # See https://github.com/terraform-google-modules/terraform-google-cloud-storage
 module "gcs_buckets" {
   source = "github.com/terraform-google-modules/terraform-google-cloud-storage?ref=v3.2.0"
@@ -40,16 +40,9 @@ module "gcs_buckets" {
 
   # List of buckets to create
   names = [
-    "ingest-bucket"
+    "ingest-bucket",
+    "cloudbuild-source-staging-bucket"
   ]
-}
-
-# Create cloudbuild GCS Bucket
-module "cloudbuild_gcs_bucket" {
-  source = "../modules/cloud_storage"
-  project_id = module.project_services.project_id
-  location   = var.gcs_location
-  force_destroy = true
 }
 
 # Create BigQuery Datasets

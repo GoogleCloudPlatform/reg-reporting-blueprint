@@ -27,17 +27,19 @@ echo -e "\n\nGet the terraform configuration"
 pushd ${ROOT_DIR}/common_components/orchestration/infrastructure/
 AIRFLOW_DAG_GCS=$(terraform output --raw airflow_dag_gcs_prefix)
 AIRFLOW_UI=$(terraform output --raw airflow_uri)
+GCS_SOURCE_STAGING_BUCKET=$(terraform output --raw gcs_cloudbuild_source_staging_bucket)
 echo -e "\tAIRFLOW_DAG_GCS: "${AIRFLOW_DAG_GCS}
 echo -e "\tAIRFLOW_UI:      "${AIRFLOW_UI}
+echo -e "\tGCS_SOURCE_STAGING_BUCKET: "${GCS_SOURCE_STAGING_BUCKET}
 popd
 
 # Create containerised apps
 echo -e "\n\nCreate a containerised apps"
 pushd ${ROOT_DIR}
-gcloud builds submit --substitutions _GCR_HOSTNAME=${GCR_HOSTNAME} --config use_cases/examples/boe_cre/cloudbuild.yaml
+gcloud builds submit --gcs-source-staging-dir gs://$GCS_SOURCE_STAGING_BUCKET/source --substitutions _GCR_HOSTNAME=${GCR_HOSTNAME} --config use_cases/examples/boe_cre/cloudbuild.yaml
 popd
 
-# Submit ther DAG to Composer
+# Submit the DAG to Composer
 echo -e "\n\nSubmit the DAG to Composer"
 pushd ${BOE_CRE_DIR}/deploy
 gsutil cp run_boe_cre_dag.py $AIRFLOW_DAG_GCS
