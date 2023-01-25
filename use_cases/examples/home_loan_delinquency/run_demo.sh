@@ -45,7 +45,7 @@ popd
 # Create containerised apps
 echo -e "\n\nCreate a containerised apps"
 pushd ${ROOT_DIR}
-gcloud builds submit --gcs-source-staging-dir gs://$GCS_SOURCE_STAGING_BUCKET/source --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml
+gcloud builds submit --gcs-source-staging-dir gs://$GCS_SOURCE_STAGING_BUCKET/source --region=${REGION} --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml
 popd
 
 # Submit the DAG to Composer
