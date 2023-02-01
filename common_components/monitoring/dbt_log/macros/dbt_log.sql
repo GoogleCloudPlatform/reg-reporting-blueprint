@@ -39,12 +39,22 @@ CREATE TABLE IF NOT EXISTS {{ target_relation }} (
 {% endmacro %}
 
 
+{# Log in the middle of a model #}
+{% macro dbt_log(target, stage, dict) %}
+
+{%- call statement('dbt_log', fetch_result=False) -%}
+  {{ dbt_log.insert_dbt_log(target, stage, dict | tojson) }}
+{%- endcall %}
+
+{% endmacro %}
+
+
 {# insert_dbt_log -- insert a log message in the dbt_log #}
 {% macro insert_dbt_log(target, stage, json) %}
 
 {%- set target_relation = api.Relation.create(
           database=var("dbt_log_project", target.project),
-          schema=var("dbt_log_dataset", "dbt_log"),
+          schema=var("dbt_log_dataset", "monitoring"),
           identifier=var("dbt_log_table", "dbt_log"))
 -%}
 
@@ -52,7 +62,7 @@ INSERT INTO {{ target_relation }} VALUES (
   CURRENT_TIMESTAMP(),
   '{{ invocation_id }}',
   '{{ stage }}',
-  SAFE.PARSE_JSON(R"""{{ json }}""")
+  SAFE.PARSE_JSON(R"""{{ json }}""", wide_number_mode=>'round')
 );
 
 {% endmacro %}
@@ -110,7 +120,8 @@ INSERT INTO {{ target_relation }} VALUES (
       {%- set var_dict = {} -%}
       {%- do var_dict.update(
         build_ref=env_var('BUILD_REF', 'unset'),
-        doc_ref=env_var('DOC_REF', 'unset'),
+        source_ref=env_var('SOURCE_REF', 'unset'),
+        source_path=env_var('SOURCE_PATH', 'unset'),
         airflow_task_id=env_var('AIRFLOW_CTX_TASK_ID', 'unset'),
         airflow_dag_id=env_var('AIRFLOW_CTX_DAG_ID', 'unset'),
         airflow_execution_date=execution_date,
@@ -120,11 +131,11 @@ INSERT INTO {{ target_relation }} VALUES (
       {# can be too big for BigQuery in an INSERT statement. #}
 
       {%- do results_list.update(
+        project=project_name,
         dbt_version=dbt_version,
         target=target | as_text,
         tree=nodes_list,
-        flags=flags.get_flag_dict() | as_text,
-        vars=var_dict | tojson,
+        vars=var_dict,
         env=env | default(''),
       ) -%}
     {%- endif %}

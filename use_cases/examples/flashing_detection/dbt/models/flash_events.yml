@@ -81,17 +81,12 @@ models:
         description: Previous order price (if replaced)
       - name: fill_size
         description: Number of filled shares (if Filled event)
-        tests:
-          - not_null
       - name: fill_price
         description: Trade price (if Filled event)
-        tests:
-          - not_null
       - name: exec_id
         description: Exchange fill/execution ID (if Filled event)
         tests:
           - unique
-          - not_null
       - name: flash_order_life_span
         description: Milliseconds for which flash order lived
         tests:

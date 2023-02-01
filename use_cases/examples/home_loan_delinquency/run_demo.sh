@@ -33,21 +33,15 @@ popd
 
 # Load the data to GCS
 echo -e "\n\nLoad the sample data for the Home Loan Delinquency example"
-pushd data_load
+pushd ${HOMELOAN_DIR}/data_load
 ./load_to_gcs.sh ../data/input
 ./load_to_gcs.sh ../data/expected
 popd
 
-# Create containerised app for data load
-echo -e "\n\nCreate a containerised data load application"
+# Create containerised apps
+echo -e "\n\nCreate a containerised apps"
 pushd ${ROOT_DIR}
-gcloud builds submit --config use_cases/examples/home_loan_delinquency/data_load/cloudbuild.yaml
-popd
-
-# Create containerised app for DBT transformation
-echo -e "\n\nCreate a containerised data transformation application"
-pushd ${ROOT_DIR}
-gcloud builds submit --config use_cases/examples/home_loan_delinquency/dbt/cloudbuild.yaml
+gcloud builds submit --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml
 popd
 
 # Submit the DAG to Composer
