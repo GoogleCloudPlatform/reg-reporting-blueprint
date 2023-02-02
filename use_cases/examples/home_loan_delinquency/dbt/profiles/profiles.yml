@@ -38,3 +38,11 @@ regrep_profile:
       priority: interactive
       retries: 1
 
+      # Specify region to run the dataproc job
+      dataproc_region: "{{ env_var('REGION') }}"
+
+      # Staging bucket for dataproc jobs
+      gcs_bucket: "{{ env_var('GCS_INGEST_BUCKET') }}"
+
+      # Use this if you have a persistent dataproc cluster
+      # dataproc_cluster_name: <cluster-id>
