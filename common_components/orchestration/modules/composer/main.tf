@@ -108,6 +108,7 @@ resource "google_composer_environment" "composer_env" {
         AIRFLOW_VAR_REGION            = var.region
         AIRFLOW_VAR_ENV_NAME          = var.env_name
         AIRFLOW_VAR_BQ_LOCATION       = var.bq_location
+        AIRFLOW_VAR_GCR_HOSTNAME      = var.gcr_hostname
         AIRFLOW_VAR_GCS_INGEST_BUCKET = var.gcs_ingest_bucket
       }
     }

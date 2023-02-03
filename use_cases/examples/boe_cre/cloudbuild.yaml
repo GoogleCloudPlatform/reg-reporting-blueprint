@@ -24,16 +24,19 @@ steps:
   env:
     - '_IMAGE_TAG=$_IMAGE_TAG'
     - 'PROJECT_ID=$PROJECT_ID'
+
+    # The GCR hostname to pull and push to 
+    - '_GCR_HOSTNAME=$_GCR_HOSTNAME'
   script: |
 
     # Pull previous version
-    docker pull gcr.io/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG
+    docker pull $_GCR_HOSTNAME/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG
 
     # Build new version
     docker build \
       -f use_cases/examples/boe_cre/data_generator/Dockerfile \
-      --cache-from gcr.io/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG \
-      -t gcr.io/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG \
+      --cache-from $_GCR_HOSTNAME/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG \
+      -t $_GCR_HOSTNAME/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG \
       use_cases/examples/boe_cre/data_generator
 
 #
@@ -52,10 +55,13 @@ steps:
     - 'BUILD_REF=$BUILD_ID'
     - 'SOURCE_REF=$COMMIT_SHA'
     - 'SOURCE_PATH=use_cases/examples/boe_cre/dbt'
+
+    # The GCR hostname to pull and push to 
+    - '_GCR_HOSTNAME=$_GCR_HOSTNAME'
   script: |
 
     # Pull previous version
-    docker pull gcr.io/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG
+    docker pull $_GCR_HOSTNAME/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG
 
     # Build new version
     docker build \
@@ -63,8 +69,8 @@ steps:
       --build-arg=BUILD_REF=$BUILD_REF \
       --build-arg=SOURCE_REF=$SOURCE_REF \
       --build-arg=SOURCE_PATH=$SOURCE_PATH \
-      --cache-from gcr.io/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG \
-      -t gcr.io/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG \
+      --cache-from $_GCR_HOSTNAME/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG \
+      -t $_GCR_HOSTNAME/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG \
       use_cases/examples/boe_cre/dbt
 
 
@@ -83,7 +89,7 @@ steps:
     chmod -R 777 /dbt/target
 
 # Generate DBT documentation (if needed)
-- name: 'gcr.io/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG'
+- name: '$_GCR_HOSTNAME/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG'
   id: generate_docs
   waitFor: ['build_cre_dbt']
   volumes:
@@ -122,8 +128,8 @@ steps:
 #
 
 images: [
-  'gcr.io/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG',
-  'gcr.io/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG',
+  '$_GCR_HOSTNAME/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG',
+  '$_GCR_HOSTNAME/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG',
 ]
 
 substitutions:

@@ -36,8 +36,11 @@ ENV_NAME = Variable.get("ENV_NAME")
 # BigQuery location
 BQ_LOCATION = Variable.get("BQ_LOCATION")
 
+# GCR hostname
+GCR_HOSTNAME = Variable.get("GCR_HOSTNAME")
+
 # Inferred repository
-REPO = f'gcr.io/{PROJECT_ID}'  # if using container registry
+REPO = f'{GCR_HOSTNAME}/{PROJECT_ID}'  # if using container registry
 
 # Tag to run (default is latest if not set)
 TAG = Variable.get("tag", default_var="latest")
@@ -55,7 +58,7 @@ def containerised_job(name, image_name, arguments=[], tag=TAG, env_vars={}, repo
     :param arguments: arguments required by the job
     :param tag: the tag of the image to use
     :param env_vars: environment variables for the job
-    :param repo: fully qualified path to the repo (optional, and defaulted to f'gcr.io/{PROJECT_ID}'
+    :param repo: fully qualified path to the repo (optional, and defaulted to f'{GCR_HOSTNAME}/{PROJECT_ID}'
     :return: the KubernetesPodOperator which executes the containerised step
     """
 

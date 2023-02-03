@@ -14,5 +14,5 @@
 
 
 output "bucket_name" {
-  value = "${var.project}-ingest-bucket"
+  value = google_storage_bucket.cloudbuild-bucket.name
 }
