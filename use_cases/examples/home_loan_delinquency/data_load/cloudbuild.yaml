@@ -17,12 +17,16 @@ steps:
 # Pull previous version
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: [ '-c', 'docker pull $GCR_HOSTNAME/$PROJECT_ID/homeloan-bq-data-load:latest || exit 0' ]
+  args: [ '-c', 'docker pull $_GCR_HOSTNAME/$PROJECT_ID/homeloan-bq-data-load:latest || exit 0' ]
 
 # Build DBT containerised image
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-f', 'use_cases/examples/home_loan_delinquency/data_load/Dockerfile',
-                   '-t', '$GCR_HOSTNAME/$PROJECT_ID/homeloan-bq-data-load',
+                   '-t', '$_GCR_HOSTNAME/$PROJECT_ID/homeloan-bq-data-load',
                    'use_cases/examples/home_loan_delinquency/data_load' ]
 
-images: [ '$GCR_HOSTNAME/$PROJECT_ID/homeloan-bq-data-load' ]
+images: [ '$_GCR_HOSTNAME/$PROJECT_ID/homeloan-bq-data-load' ]
+
+substitutions:
+  _GCR_HOSTNAME: 'gcr.io'
+

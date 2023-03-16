@@ -24,8 +24,8 @@ RUN apt-get update -y && \
 # Install data build tool
 RUN pip install -U pip
 RUN pip install \
-        dbt-core==1.3.2 \
-        dbt-bigquery==1.3.0
+        dbt-core~=1.4 \
+        dbt-bigquery~=1.4
 
 # Create users
 ENV HOME /dbt/
