@@ -145,6 +145,9 @@ substitutions:
   # by CLI or via a trigger
   _IMAGE_TAG: ${_BRANCH_TAG2:-latest}
 
+  # GCR Hostname default
+  _GCR_HOSTNAME: "gcr.io"
+
 options:
   dynamic_substitutions: true
   substitution_option: 'ALLOW_LOOSE'
