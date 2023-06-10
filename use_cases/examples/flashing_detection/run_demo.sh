@@ -37,7 +37,7 @@ popd
 
 # # Create some sample data
 # pushd ${FLASHING_DIR}/data_generator
-# python3 -m pip install -r requirements.txt
+# python3 -m pip install --require-hashes -r requirements.txt
 # python3 datagen.py --project_id $PROJECT_ID --bq_dataset regrep_source --date 2022-08-15 --symbol ABC
 # popd
 # 

@@ -54,7 +54,7 @@ Note that the data generation tool depends on numpy and pandas. It is recommende
 ```bash
   $ cd use_cases/examples/flashing_detection/data_generator
 
-  $ python3 -m pip install -r requirements.txt
+  $ python3 -m pip install --require-hashes -r requirements.txt
   
   $ python3 datagen.py --project_id $PROJECT_ID --bq_dataset regrep_source --date 2022-08-15 --symbol ABC
 ```
