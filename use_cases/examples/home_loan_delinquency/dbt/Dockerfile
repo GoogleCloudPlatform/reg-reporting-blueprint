@@ -16,16 +16,10 @@ FROM python:3.9
 
 # Install required system packages and cleanup to reduce image size
 RUN apt-get update -y && \
-  apt-get install --no-install-recommends -y -q \
-  git libpq-dev python-dev && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Install data build tool
-RUN pip install -U pip
-RUN pip install \
-        dbt-core~=1.4 \
-        dbt-bigquery~=1.4
+    apt-get install --no-install-recommends -y -q \
+    git libpq-dev python-dev && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Create users
 ENV HOME /dbt/
@@ -36,9 +30,12 @@ USER dbt
 # Copy files to the image
 COPY --chown=dbt . $HOME
 
-# Run DBT debs to install dependencies
-RUN dbt clean
-RUN dbt deps
+# Put target install dir on path
+ENV PATH="${PATH}:/dbt/.local/bin"
+
+# Install dependencies
+RUN python3 -m ensurepip --upgrade
+RUN pip install --require-hashes -r requirements.txt
 
 # Default build ARGs
 ARG BUILD_REF=dev
@@ -50,4 +47,6 @@ ENV SOURCE_PATH=${SOURCE_PATH}
 
 # Run dbt. Profiles defaults locally through DBT_PROFILES_DIR.
 ENV DBT_PROFILES_DIR $HOME/profiles
+RUN dbt clean
+RUN dbt deps
 ENTRYPOINT [ "dbt" ]
