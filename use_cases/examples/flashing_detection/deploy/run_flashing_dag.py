@@ -16,7 +16,6 @@
 
 import datetime
 import json
-import os
 
 from airflow import models
 from airflow.models import Variable
@@ -50,7 +49,9 @@ TAG = Variable.get("tag", default_var="latest")
 # Simplified version based on the following -
 # https://github.com/GoogleCloudPlatform/professional-services/blob/main/examples/dbt-on-cloud-composer/basic/dag/dbt_with_kubernetes.py
 #
-def containerised_job(name, image_name, arguments=[], tag=TAG, env_vars={}, repo=REPO):
+def containerised_job(name, image_name,
+                      arguments=[], tag=TAG,
+                      env_vars={}, repo=REPO):
     """
     Returns a KubernetesPodOperator, which can execute a containerised step
     :param name: the name of the containerised step
@@ -58,11 +59,13 @@ def containerised_job(name, image_name, arguments=[], tag=TAG, env_vars={}, repo
     :param arguments: arguments required by the job
     :param tag: the tag of the image to use
     :param env_vars: environment variables for the job
-    :param repo: fully qualified path to the repo (optional, and defaulted to f'{GCR_HOSTNAME}/{PROJECT_ID}'
+    :param repo: fully qualified path to the repo (optional, and defaulted
+                 to f'{GCR_HOSTNAME}/{PROJECT_ID}'
     :return: the KubernetesPodOperator which executes the containerised step
     """
 
-    from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
+    from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
+        KubernetesPodOperator)
 
     # Add generic Airflow environment variables
     env_vars.update({
@@ -82,15 +85,20 @@ def containerised_job(name, image_name, arguments=[], tag=TAG, env_vars={}, repo
         # Always pull -- if image is updated, we need to use the latest
         image_pull_policy='Always',
 
-        # namespace and k8s service account (Kubernetes)
-        # have the correct permissions setup with Workload Identity
-        namespace=ENV_NAME,
-        service_account_name=ENV_NAME,
+        # See the following URL for why the config file needs to be set:
+        # https://cloud.google.com/composer/docs/how-to/using/using-kubernetes-pod-operator#version-5-0-0
+        config_file="/home/airflow/composer_kube_config",
+
+        # As per
+        # https://cloud.google.com/composer/docs/composer-2/use-kubernetes-pod-operator,
+        # use the composer-user-workloads namespace unless workload
+        # identity is setup.
+        namespace='composer-user-workloads',
 
         # Capture all of the logs
-        get_logs=True,               # Capture logs from the pod
-        log_events_on_failure=True,  # Capture and log events in case of pod failure
-        is_delete_operator_pod=True, # To clean up the pod after runs
+        get_logs=True,                # Capture logs from the pod
+        log_events_on_failure=True,   # Capture and log events on failure
+        is_delete_operator_pod=True,  # To clean up the pod after runs
 
         # Image for this particular job
         image=f'{repo}/{image_name}:{tag}',
@@ -149,6 +157,8 @@ with models.DAG(
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
+            'REGION': REGION,
+            'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
         }
     )
 
@@ -163,6 +173,8 @@ with models.DAG(
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
+            'REGION': REGION,
+            'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
         },
     )
 

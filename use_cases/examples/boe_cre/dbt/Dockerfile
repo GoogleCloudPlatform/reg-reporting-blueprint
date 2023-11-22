@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM python:3.9
+FROM python:3.11
 
 # Install required system packages and cleanup to reduce image size
 RUN apt-get update -y && \
     apt-get install --no-install-recommends -y -q \
-    git libpq-dev python-dev && \
+    git libpq-dev python3-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -35,7 +35,16 @@ ENV PATH="${PATH}:/dbt/.local/bin"
 
 # Install dependencies
 RUN python3 -m ensurepip --upgrade
-RUN pip install --require-hashes -r requirements.txt
+RUN pip install \
+  --require-hashes \
+  --no-deps \
+  --no-cache-dir \
+  -r requirements.txt
+
+# Run dbt. Profiles defaults locally through DBT_PROFILES_DIR.
+ENV DBT_PROFILES_DIR $HOME/profiles
+RUN dbt clean
+RUN dbt deps
 
 # Default build ARGs
 ARG BUILD_REF=dev
@@ -45,8 +54,4 @@ ENV SOURCE_REF=${SOURCE_REF}
 ARG SOURCE_PATH=dev
 ENV SOURCE_PATH=${SOURCE_PATH}
 
-# Run dbt. Profiles defaults locally through DBT_PROFILES_DIR.
-ENV DBT_PROFILES_DIR $HOME/profiles
-RUN dbt clean
-RUN dbt deps
 ENTRYPOINT [ "dbt" ]

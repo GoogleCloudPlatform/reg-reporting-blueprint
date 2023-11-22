@@ -48,6 +48,9 @@ module "composer_service_account" {
   names         = ["runner"]
   project_roles = [
     "${var.project}=>roles/composer.worker",
+    "${var.project}=>roles/iam.serviceAccountUser",
+    "${var.project}=>roles/bigquery.dataEditor",
+    "${var.project}=>roles/bigquery.jobUser",
   ]
 }
 
@@ -63,9 +66,10 @@ module "vpc" {
   routing_mode = "GLOBAL"
 
   subnets = [{
-    subnet_name   = "composer-subnet"
-    subnet_ip     = "10.10.10.0/24"
-    subnet_region = var.region
+    subnet_name           = "composer-subnet"
+    subnet_ip             = "10.10.10.0/24"
+    subnet_region         = var.region
+    subnet_private_access = true
   }]
 
   secondary_ranges = {
@@ -102,7 +106,7 @@ resource "google_composer_environment" "composer_env" {
 
   config {
     software_config {
-      image_version = "composer-2.0.7-airflow-2.2.3"
+      image_version = "composer-2.5.1-airflow-2.6.3"
       env_variables = {
         AIRFLOW_VAR_PROJECT_ID        = var.project
         AIRFLOW_VAR_REGION            = var.region
@@ -127,55 +131,4 @@ resource "google_composer_environment" "composer_env" {
   depends_on = [
     module.project_services
   ]
-}
-
-
-######
-#
-# Configure Kubernetes Provider and Kubernetes
-#
-
-locals {
-  cluster_info  = (var.enabled ?
-                      regex("^projects/([^/]*)/locations/([^/]*)/clusters/(.*)$",
-                          google_composer_environment.composer_env[0].config.0.gke_cluster) :
-                      ["","",""])
-  project_id    = local.cluster_info[0]
-  location      = local.cluster_info[1]
-  cluster_name  = local.cluster_info[2]
-}
-
-# Extract Kubernetes credentials
-# See https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/tree/master/modules/auth
-module "gke_auth" {
-  source = "github.com/terraform-google-modules/terraform-google-kubernetes-engine//modules/auth?ref=v20.0.0"
-
-  count = var.enabled ? 1 : 0
-
-  project_id           = local.project_id
-  location             = local.location
-  cluster_name         = local.cluster_name
-  use_private_endpoint = false
-}
-
-# Configure provider
-provider "kubernetes" {
-  alias = "composer_kubernetes"
-
-  cluster_ca_certificate = (length(module.gke_auth)==1) ? module.gke_auth[0].cluster_ca_certificate : ""
-  host                   = (length(module.gke_auth)==1) ? module.gke_auth[0].host : ""
-  token                  = (length(module.gke_auth)==1) ? module.gke_auth[0].token : ""
-}
-
-# Configure Kubernetes cluster
-module "config_k8s" {
-  source = "../kubernetes"
-
-  enabled    = var.enabled
-  env_name   = var.env_name
-  project_id = local.project_id
-
-  providers = {
-    kubernetes = kubernetes.composer_kubernetes
-  }
 }

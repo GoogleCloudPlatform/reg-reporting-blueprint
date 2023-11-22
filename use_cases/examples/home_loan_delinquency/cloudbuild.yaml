@@ -100,9 +100,12 @@ steps:
     - '_GCS_DOCS_BUCKET=$_GCS_DOCS_BUCKET'
     - 'PROJECT_ID=$PROJECT_ID'
     - 'BQ_LOCATION='
+    - 'REGION='
+    - 'GCS_INGEST_BUCKET='
+    - 'HOME=/dbt'
   script: |
     if [ "${_GCS_DOCS_BUCKET}" != "unset" ]; then
-      dbt docs generate
+      dbt docs generate --static
     fi
 
 # Copy DBT documentation (if needed)

@@ -150,9 +150,8 @@ In the Google Cloud console, activate Cloud Shell.
     datasets have been created:
 
     ```
-    homeloan_dev
-    homeloan_data
-    homeloan_expectedresults
+    regrep
+    regrep_source
     ```
 
 ## Upload the sample data
@@ -205,8 +204,9 @@ In this section, you explore the contents of the repository's `data` and
 
 1.  To verify that the data has been loaded in BigQuery, in
     the Google Cloud console, go to the BigQuery page and
-    select a table in both the `homeloan_data` and `homeloan_expectedresults`
-    datasets.
+    select a table in the `regrep_source` dataset and open
+    a table starting with `homeloan_ref` and
+    starting with `homeloan_expected`.
 
     Select the **Preview** tab for each table, and confirm that each table has
     data.
@@ -318,7 +318,10 @@ In this section, you explore the contents of the repository's `data` and
 
     ```
     cd ../../../../  # the gcloud command should be executed from the root 
-    gcloud builds submit --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml
+    gcloud builds submit \
+      --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml \
+      --substitutions=_GCS_DOCS_BUCKET=${GCS_DOCS_BUCKET} \
+      --substitutions=_GCR_HOSTNAME=${GCR_HOSTNAME}
     ```
     The Dockerfile in the `dbt` and `data_load` directories enables containerization, which
     simplifies orchestration of the workflow.
@@ -346,6 +349,31 @@ In this section, you explore the contents of the repository's `data` and
     echo $AIRFLOW_UI
     ```
 
+## Optional: Repeat for all the use cases
+
+1.   Use a shell that has the environment variables set. Ensure that
+     you have run the following in the root of the repository:
+     ```
+     source environment-variables.sh
+     ```
+
+1.   Build all of the use cases.
+     ```
+     for build in use_cases/examples/*/cloudbuild.yaml ; do
+        gcloud builds submit \
+          --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml \
+          --substitutions=_GCS_DOCS_BUCKET=${GCS_DOCS_BUCKET} \
+          --substitutions=_GCR_HOSTNAME=${GCR_HOSTNAME}
+     done
+     ```
+
+1.   Deploy all of the dags.
+     ```
+     AIRFLOW_DAG_GCS=$(cd common_components/orchestration/infrastructure && terraform output --raw airflow_dag_gcs_prefix)
+     for dag in use_cases/examples/*/deploy/*.py ; do
+       gsutil cp $dag $AIRFLOW_DAG_GCS
+     done
+     ```
 
 ## Clean up
 To avoid incurring charges to your Google Cloud account for the resources used in this tutorial, 
