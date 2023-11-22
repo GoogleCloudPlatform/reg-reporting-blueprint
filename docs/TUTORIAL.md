@@ -320,8 +320,7 @@ In this section, you explore the contents of the repository's `data` and
     cd ../../../../  # the gcloud command should be executed from the root 
     gcloud builds submit \
       --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml \
-      --substitutions=_GCS_DOCS_BUCKET=${GCS_DOCS_BUCKET} \
-      --substitutions=_GCR_HOSTNAME=${GCR_HOSTNAME}
+      --substitutions=_GCS_DOCS_BUCKET=${GCS_DOCS_BUCKET},_GCR_HOSTNAME=${GCR_HOSTNAME}
     ```
     The Dockerfile in the `dbt` and `data_load` directories enables containerization, which
     simplifies orchestration of the workflow.
@@ -362,8 +361,7 @@ In this section, you explore the contents of the repository's `data` and
      for build in use_cases/examples/*/cloudbuild.yaml ; do
         gcloud builds submit \
           --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml \
-          --substitutions=_GCS_DOCS_BUCKET=${GCS_DOCS_BUCKET} \
-          --substitutions=_GCR_HOSTNAME=${GCR_HOSTNAME}
+          --substitutions=_GCS_DOCS_BUCKET=${GCS_DOCS_BUCKET},_GCR_HOSTNAME=${GCR_HOSTNAME}
      done
      ```
 
