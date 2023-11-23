@@ -35,8 +35,14 @@ variable "bq_datasets" {
   description = "The BQ datasets to create"
 }
 
+variable "src_url" {
+  description = "Source URL for dbt_dashboard (embedded into dashboards)"
+  default     = "https://github.com/GoogleCloudPlatform/reg-reporting-blueprint/tree"
+}
+
 variable "enable_composer" {
   description = "Whether to build composer environment or not"
-  default = false
+  default     = true
 }
+
 

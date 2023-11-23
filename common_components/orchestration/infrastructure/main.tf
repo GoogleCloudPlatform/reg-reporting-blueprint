@@ -84,3 +84,14 @@ module "composer_reg_reporting" {
   env_name          = "reg-runner"
   gcs_ingest_bucket = module.gcs_buckets.bucket.name
 }
+
+# DBT log monitoring
+module "dbt_log_monitoring" {
+  source = "../../monitoring/module"
+
+  project_id        = module.project_services.project_id
+  bq_location       = var.bq_location
+  airflow_url       = module.composer_reg_reporting.airflow_uri
+  src_url           = var.src_url
+  docs_bucket       = module.gcs_buckets.names_list[2]
+}
