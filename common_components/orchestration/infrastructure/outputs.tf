@@ -22,11 +22,6 @@ output "airflow_dag_gcs_prefix" {
   value       = module.composer_reg_reporting.airflow_dag_gcs_prefix
 }
 
-output "airflow_gke_cluster" {
-  description = "Airflow GKE Cluster"
-  value       = module.composer_reg_reporting.airflow_gke_cluster
-}
-
 output "gcs_ingest_bucket" {
   value = module.gcs_buckets.names_list[0]
 }
@@ -34,3 +29,8 @@ output "gcs_ingest_bucket" {
 output "gcs_cloudbuild_source_staging_bucket" {
   value = module.gcs_buckets.names_list[1]
 }
+
+output "gcs_docs_bucket" {
+  value = module.gcs_buckets.names_list[2]
+}
+

@@ -27,6 +27,15 @@ module "project_services" {
     "compute.googleapis.com",
     "containerregistry.googleapis.com",
   ]
+
+  # Activate Composer API
+  activate_api_identities = [{
+    "api": "cloudbuild.googleapis.com",
+    "roles": [
+      "roles/bigquery.dataEditor",
+      "roles/bigquery.jobUser",
+    ]
+  }]
 }
 
 # Create ingest & cloudbuild source staging GCS Buckets
@@ -41,7 +50,8 @@ module "gcs_buckets" {
   # List of buckets to create
   names = [
     "ingest-bucket",
-    "cloudbuild-source-staging-bucket"
+    "cloudbuild-source-staging-bucket",
+    "docs-bucket"
   ]
 }
 

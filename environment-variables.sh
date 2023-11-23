@@ -35,6 +35,7 @@ export TF_VAR_PROJECT_ID=$PROJECT_ID
 export PROJECT_NUMBER=$(gcloud projects list --filter="project_id=$PROJECT_ID" --format="value(PROJECT_NUMBER)")
 export GCS_TF_STATE=${PROJECT_ID}-tfstate
 export GCS_INGEST_BUCKET=$PROJECT_ID-$GCS_LOCATION-ingest-bucket
+export GCS_DOCS_BUCKET=$PROJECT_ID-$GCS_LOCATION-docs-bucket
 export DBT_PROFILES_DIR=./profiles # DBT specific configuration
 
 
@@ -50,6 +51,7 @@ echo -e "\t\tGCR_HOSTNAME                     :" $GCR_HOSTNAME
 echo -e "\t\tGCS_TF_STATE                     :" $GCS_TF_STATE
 echo -e "\t\tGCS_LOCATION                     :" $GCS_LOCATION
 echo -e "\t\tGCS_INGEST_BUCKET                :" $GCS_INGEST_BUCKET
+echo -e "\t\tGCS_DOCS_BUCKET                  :" $GCS_DOCS_BUCKET
 echo -e "\t\tDBT_PROFILES_DIR                 :" $DBT_PROFILES_DIR
 
 echo -e "\n"

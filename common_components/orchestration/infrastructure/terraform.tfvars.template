@@ -15,7 +15,8 @@
 project="PROJECT_ID"
 bq_datasets=[
   "regrep_source", 
-  "regrep"
+  "regrep",
+  "monitoring"
 ]
 region="REGION"
 bq_location="BQ_LOCATION"
