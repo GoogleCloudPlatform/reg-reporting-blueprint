@@ -360,7 +360,7 @@ In this section, you explore the contents of the repository's `data` and
      ```
      for build in use_cases/examples/*/cloudbuild.yaml ; do
         gcloud builds submit \
-          --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml \
+          --config $build \
           --substitutions=_GCS_DOCS_BUCKET=${GCS_DOCS_BUCKET},_GCR_HOSTNAME=${GCR_HOSTNAME}
      done
      ```
