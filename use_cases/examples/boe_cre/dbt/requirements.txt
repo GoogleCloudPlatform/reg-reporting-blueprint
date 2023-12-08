@@ -181,9 +181,9 @@ dbt-bigquery==1.7.2 \
     --hash=sha256:27c7f492f65ab5d1d43432a4467a436fc3637e3cb72c5b4ab07ddf7573c43596 \
     --hash=sha256:75015755363d9e8b8cebe190d59a5e08375032b37bcfec41ec8753e7dea29f6e
     # via -r requirements.in
-dbt-core==1.7.2 \
-    --hash=sha256:8621546cf610e896e8d3e0580f2e3d2734b270ad8dde0edf26ec251379c23202 \
-    --hash=sha256:ec0a06a5015a830f63ad3fd506473cbf12edafeae89cf2d611a10836788da603
+dbt-core==1.7.3 \
+    --hash=sha256:a8f06203cd003ebcdda2af953f60c2b44fc0c69bd6cba79338225daedb1f41e1 \
+    --hash=sha256:ec9a9602f034da15d38534e0b50d1ee72a10d2a9b502939c0edad1460f861851
     # via
     #   -r requirements.in
     #   dbt-bigquery
@@ -486,7 +486,9 @@ markupsafe==2.1.3 \
 mashumaro[msgpack]==3.10 \
     --hash=sha256:0248a5c8574aa6cd20696621502d38a7ea66af3d6d93c5d03f93b33298edc878 \
     --hash=sha256:d2c0fd5e7878987629d41f4986d9b0903d362a92eeb299b7d88b87eb113f4f48
-    # via dbt-core
+    # via
+    #   dbt-core
+    #   mashumaro
 minimal-snowplow-tracker==0.0.2 \
     --hash=sha256:acabf7572db0e7f5cbf6983d495eef54081f71be392330eb3aadb9ccb39daaa4
     # via dbt-core
