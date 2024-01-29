@@ -22,22 +22,19 @@ steps:
   id: build_cre_data_generator
   waitFor: ['-']
   env:
-    - '_IMAGE_TAG=$_IMAGE_TAG'
-    - 'PROJECT_ID=$PROJECT_ID'
-
-    # The GCR hostname to pull and push to 
-    - '_GCR_HOSTNAME=$_GCR_HOSTNAME'
+    - '_IMAGE_TAG=$_LOAD_IMAGE_TAG'
+    - 'SOURCE_PATH=use_cases/examples/boe_cre/data_generator'
   script: |
 
     # Pull previous version
-    docker pull $_GCR_HOSTNAME/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG
+    (docker pull "$_IMAGE_TAG" || exit 0)
 
     # Build new version
     docker build \
-      -f use_cases/examples/boe_cre/data_generator/Dockerfile \
-      --cache-from $_GCR_HOSTNAME/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG \
-      -t $_GCR_HOSTNAME/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG \
-      use_cases/examples/boe_cre/data_generator
+      -f "${SOURCE_PATH}/Dockerfile" \
+      --cache-from "$_LOAD_IMAGE_TAG" \
+      -t "$_IMAGE_TAG" \
+      "${SOURCE_PATH}"
 
 #
 # DBT
@@ -48,82 +45,31 @@ steps:
   waitFor: ['-']
   env:
     # Tags for images
-    - '_IMAGE_TAG=$_IMAGE_TAG'
-    - 'PROJECT_ID=$PROJECT_ID'
+    - '_IMAGE_TAG=$_DBT_IMAGE_TAG'
 
     # Build and commit references in the built image
     - 'BUILD_REF=$BUILD_ID'
+    - 'BUILD_LOCATION=$LOCATION'
+    - 'SOURCE_URL=$_SOURCE_URL'
     - 'SOURCE_REF=$COMMIT_SHA'
     - 'SOURCE_PATH=use_cases/examples/boe_cre/dbt'
 
-    # The GCR hostname to pull and push to 
-    - '_GCR_HOSTNAME=$_GCR_HOSTNAME'
   script: |
 
     # Pull previous version
-    docker pull $_GCR_HOSTNAME/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG
+    (docker pull "$_IMAGE_TAG" || exit 0)
 
     # Build new version
     docker build \
-      -f use_cases/examples/boe_cre/dbt/Dockerfile \
+      -f "${SOURCE_PATH}/Dockerfile" \
       --build-arg=BUILD_REF=$BUILD_REF \
+      --build-arg=BUILD_LOCATION=$BUILD_LOCATION \
+      --build-arg=SOURCE_URL=$SOURCE_URL \
       --build-arg=SOURCE_REF=$SOURCE_REF \
       --build-arg=SOURCE_PATH=$SOURCE_PATH \
-      --cache-from $_GCR_HOSTNAME/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG \
-      -t $_GCR_HOSTNAME/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG \
-      use_cases/examples/boe_cre/dbt
-
-
-#
-# DBT Documentation
-#
-
-# Initialize the volume (just be writable by non-root)
-- name: bash
-  id: initialize_docs_volume
-  waitFor: ['-']
-  volumes:
-    - name: 'dbt_docs_target'
-      path: '/dbt/target'
-  script: |
-    chmod -R 777 /dbt/target
-
-# Generate DBT documentation (if needed)
-- name: '$_GCR_HOSTNAME/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG'
-  id: generate_docs
-  waitFor: ['build_cre_dbt']
-  volumes:
-    - name: 'dbt_docs_target'
-      path: '/dbt/target'
-  dir: '/dbt'
-  env:
-    - '_GCS_DOCS_BUCKET=$_GCS_DOCS_BUCKET'
-    - 'PROJECT_ID=$PROJECT_ID'
-    - 'BQ_LOCATION='
-    - 'REGION='
-    - 'GCS_INGEST_BUCKET='
-    - 'HOME=/dbt'
-  script: |
-    if [ "${_GCS_DOCS_BUCKET}" != "unset" ]; then
-      dbt docs generate --static
-    fi
-
-# Copy DBT documentation (if needed)
-- name: 'gcr.io/cloud-builders/gsutil'
-  id: save_docs_to_gcs
-  waitFor: ['generate_docs']
-  volumes:
-    - name: 'dbt_docs_target'
-      path: '/dbt/target'
-  env:
-    - 'BUILD_REF=$BUILD_ID'
-    - '_GCS_DOCS_BUCKET=$_GCS_DOCS_BUCKET'
-  script: |
-    if [ "${_GCS_DOCS_BUCKET}" != "unset" ]; then
-      gsutil -m cp \
-        /dbt/target/* \
-        "gs://${_GCS_DOCS_BUCKET}/build/${BUILD_REF}"
-    fi
+      --cache-from "$_IMAGE_TAG" \
+      -t "$_IMAGE_TAG" \
+      "${SOURCE_PATH}"
 
 
 #
@@ -131,25 +77,19 @@ steps:
 #
 
 images: [
-  '$_GCR_HOSTNAME/$PROJECT_ID/boe-cre-dbt:$_IMAGE_TAG',
-  '$_GCR_HOSTNAME/$PROJECT_ID/boe-cre-data-generator:$_IMAGE_TAG',
+  '$_LOAD_IMAGE_TAG',
+  '$_DBT_IMAGE_TAG',
 ]
 
 substitutions:
-  # Define this if the DBT documentation needs to be persisted
-  # to GCS at build time
-  _GCS_DOCS_BUCKET: unset
-
   # Cleanup branch name for invalid characters (for a tag)
   _BRANCH_TAG1: ${BRANCH_NAME//@/_}
   _BRANCH_TAG2: ${_BRANCH_TAG1//\//-}
 
   # Build image is 'latest' or the branchname, depending if built
   # by CLI or via a trigger
-  _IMAGE_TAG: ${_BRANCH_TAG2:-latest}
-
-  # GCR Hostname default
-  _GCR_HOSTNAME: "gcr.io"
+  _LOAD_IMAGE_TAG: '${_REGISTRY_URL}/boe-cre-data-generator:${_BRANCH_TAG2:-latest}'
+  _DBT_IMAGE_TAG: '${_REGISTRY_URL}/boe-cre-dbt:${_BRANCH_TAG2:-latest}'
 
 options:
   dynamic_substitutions: true

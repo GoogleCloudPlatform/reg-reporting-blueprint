@@ -313,14 +313,14 @@ In this section, you explore the contents of the repository's `data` and
 
 ## Optional: Containerize the transformations
 
-1.  In Cloud Shell, create containers for data load and DBT and push the container to Google
-    Container Repository:
+1.  In Cloud Shell, create containers for data load and DBT and push the container to 
+    Artifact Repository:
 
     ```
     cd ../../../../  # the gcloud command should be executed from the root 
     gcloud builds submit \
       --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml \
-      --substitutions=_GCS_DOCS_BUCKET=${GCS_DOCS_BUCKET},_GCR_HOSTNAME=${GCR_HOSTNAME}
+      --substitutions "_SOURCE_URL=${SOURCE_URL},_REGISTRY_URL=${REGISTRY_URL},COMMIT_SHA=main"
     ```
     The Dockerfile in the `dbt` and `data_load` directories enables containerization, which
     simplifies orchestration of the workflow.
@@ -361,7 +361,7 @@ In this section, you explore the contents of the repository's `data` and
      for build in use_cases/examples/*/cloudbuild.yaml ; do
         gcloud builds submit \
           --config $build \
-          --substitutions=_GCS_DOCS_BUCKET=${GCS_DOCS_BUCKET},_GCR_HOSTNAME=${GCR_HOSTNAME}
+          --substitutions "_SOURCE_URL=${SOURCE_URL},_REGISTRY_URL=${REGISTRY_URL},COMMIT_SHA=main"
      done
      ```
 
