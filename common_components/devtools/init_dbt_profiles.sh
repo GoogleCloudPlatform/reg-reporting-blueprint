@@ -37,7 +37,7 @@ if [[ "${USER_EMAIL}" != "" ]]; then
 fi
 
 # Profiles to update
-PROFILES_FILE="${HOME}/.dbt/profiles2.yml"
+PROFILES_FILE="${HOME}/.dbt/profiles.yml"
 if [ -f "${PROFILES_FILE}" ]; then
   exit 0
 fi
@@ -77,7 +77,7 @@ regrep_profile:
     prod:
       type: bigquery
       method: oauth
-      project: "{{ env_var('PROJECT_ID, '$PROJECT_ID') }}"
+      project: "{{ env_var('PROJECT_ID', '$PROJECT_ID') }}"
       location: "{{ env_var('BQ_LOCATION', '$BQ_LOCATION') }}"
       dataset: ${USER_DATASET}regrep
       threads: 10
