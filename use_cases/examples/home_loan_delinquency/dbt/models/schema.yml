@@ -15,7 +15,7 @@
 version: 2
 sources:
   - name: sample_data
-    database: "{{ var('source_project_id', env_var('SOURCE_PROJECT_ID', env_var('PROJECT_ID'))) }}"
+    database: "{{ var('source_project_id', env_var('SOURCE_PROJECT_ID', target.database)) }}"
     schema: "{{ var('source_dataset_id', env_var('SOURCE_DATASET_ID', 'regrep_source')) }}"
     tables:
       - &ref_legal_entity_mapping
@@ -179,7 +179,7 @@ sources:
           description: The post code where the security is located
 
   - name: expected_results
-    database: "{{ var('source_project_id', env_var('SOURCE_PROJECT_ID', env_var('PROJECT_ID'))) }}"
+    database: "{{ var('source_project_id', env_var('SOURCE_PROJECT_ID', target.database)) }}"
     schema: "{{ var('source_dataset_id', env_var('SOURCE_DATASET_ID', 'regrep_source')) }}"
     tables:
       - name: stg_accounts
