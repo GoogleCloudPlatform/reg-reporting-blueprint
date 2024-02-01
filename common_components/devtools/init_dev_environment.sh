@@ -16,7 +16,7 @@
 
 
 # Install DBT, DBT BigQuery, and sqlfmt
-sudo pip3 install --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]'
+pip3 install --user --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]'
 
 # Install vscode-dbt-power-user in Cloudshell (if possible)
 CLOUDSHELL_CODEOSS="/google/devshell/editor/code-oss-for-cloud-shell/bin/codeoss-cloudshell"
