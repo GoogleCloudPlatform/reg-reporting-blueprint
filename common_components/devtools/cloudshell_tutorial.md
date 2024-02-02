@@ -1,8 +1,17 @@
-# Introduction to the Tutorial
+# Setup DBT in Cloud Shell
+
+## Overview
+
+This tutorial will setup Cloud Shell to be useful for basic DBT
+development, both from the command line and using Cloud Shell Editor,
+for regulatory reporting.
+
+It is assumed that a Regulatory Reporting environment has already been setup
+using the [tutorial](https://github.com/GoogleCloudPlatform/reg-reporting-blueprint/blob/main/docs/TUTORIAL.md).
 
 ## Install development tools
 
-### Install Python tools
+### Python tools
 
 Open the Terminal and install Python tools.
 
@@ -10,7 +19,9 @@ Open the Terminal and install Python tools.
 sudo pip3 install --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]'
 ```
 
-### Install the DBT Power Tools if you're in Cloud Editor.
+### DBT Power Tool
+
+NOTE: This applied to Cloud Shell Editor only.
 
 * Click on the extensions icon on the left bar (the four boxes with one removed)
 * Find and install DBT Power User
@@ -26,19 +37,19 @@ common_components/devtools/init_dbt_profiles.sh
 
 ## Explore the project
 
-### Move to the home loan delinquency example use case.
+### Move to DBT project
 
 ```sh
 cd use_cases/examples/home_loan_delinquency/dbt
 ```
 
-### Install dependencies for DBT.
+### Install DBT dependencies
 
 ```sh
 dbt deps
 ```
 
-### Test out connectivity
+### Test out DBT
 
 ```sh
 dbt debug
