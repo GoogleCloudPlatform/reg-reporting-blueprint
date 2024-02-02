@@ -18,23 +18,21 @@
 # Set the project if necessary
 if [ "${PROJECT_ID}" == "" ]; then
   PROJECT_ID=$(curl -s -H "Metadata-Flavor: Google" http://metadata/computeMetadata/v1/project/project-id)
-  if [[ "${PROJECT_ID}" == "" ]]; then
-    PROJECT_ID="${GOOGLE_CLOUD_PROJECT}"
-  fi
+fi
+if [[ "${PROJECT_ID}" == "" ]]; then
+  PROJECT_ID="${GOOGLE_CLOUD_PROJECT}"
+fi
+if [[ "${PROJECT_ID}" == "" ]]; then
+  read -p "Enter PROJECT_ID: " PROJECT_ID
 fi
 
 # Identify the ZONE
 # Set REGION, and BQ_LOCATION if not already set
-ZONE="$(curl -s -H "Metadata-Flavor: Google" http://metadata/computeMetadata/v1/instance/zone)"
-ZONE="${ZONE#projects/*/zones/}"
 if [ "${REGION}" == "" ]; then
-  REGION="${ZONE%-?}"
+  read -p "Enter REGION: " REGION
 fi
 if [ "${BQ_LOCATION}" == "" ]; then
-  BQ_LOCATION="US"
-  if [[ "${REGION}" == "europe-"* ]]; then
-    BQ_LOCATION="EU"
-  fi
+  read -p "Enter BQ_LOCATION: " BQ_LOCATION
 fi
 
 # Identify the USER_DATA prefix (leave empty if cannot)
@@ -45,13 +43,12 @@ fi
 
 # Profiles to update
 PROFILES_FILE="${HOME}/.dbt/profiles.yml"
-if [ \! -f "${PROFILES_FILE}" ]; then
 
-  # Create the profile
-  mkdir -p "$(dirname ${PROFILES_FILE})"
+# Create the profile directory
+mkdir -p "$(dirname ${PROFILES_FILE})"
 
-  # Create the profiles file
-  cat > "${PROFILES_FILE}" <<EOF
+# Create the profiles file
+cat > "${PROFILES_FILE}" <<EOF
 # Copyright 2023 The Reg Reporting Blueprint Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -101,6 +98,3 @@ regrep_profile:
       # Use this if you have a persistent dataproc cluster
       # dataproc_cluster_name: <cluster-id>
 EOF
-
-fi
-
