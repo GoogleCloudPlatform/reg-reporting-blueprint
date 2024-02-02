@@ -3,6 +3,7 @@
 ## Cloud Shell quickstart
 
 Run the Cloud Shell quickstart, including a tutorial, to get up and running with DBT in Cloud Shell.
+
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ide.cloud.google.com/?cloudshell_git_branch=upgrade_to_terraform_dbt_composer&cloudshell_git_repo=https://github.com/GoogleCloudPlatform/reg-reporting-blueprint&show=ide&cloudshell_tutorial=common_components/devtools/cloudshell_tutorial.md)
 
 ## init_dbt_profiles.sh
