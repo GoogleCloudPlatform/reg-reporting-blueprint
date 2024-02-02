@@ -1,5 +1,8 @@
+# Setup your environment
+ 
+## Install development tools
 
-# Configure Development Environment
+### Install Python tools
 
 Open the Terminal and install Python tools.
 
@@ -7,18 +10,18 @@ Open the Terminal and install Python tools.
 sudo pip3 install --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]'
 ```
 
-Install the DBT Power Tools if you're in Cloud Editor.
+### Install the DBT Power Tools if you're in Cloud Editor.
 
 * Click on the extensions icon on the left bar (the four boxes with one removed)
 * Find and install DBT Power User
 
-# Set the DBT profile
+## Configure DBT profile
 
 This will prompt you for the project, region, and BigQuery location. This should be the same
 as the environment that you setup with terraform.
 
 ```sh
-common_components/devtools/init_dbt_profile.sh
+common_components/devtools/init_dbt_profiles.sh
 ```
 
 # Explore the project
