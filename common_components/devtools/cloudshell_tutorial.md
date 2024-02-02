@@ -19,7 +19,7 @@ sudo pip3 install --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]'
 
 ```sh
 mkdir $HOME/.dbt
-cp $HOME/$CLOUDSHELL_OPEN_DIR/reg-reporting-blueprint/common_components/devtools/cloudshell_profile.yml $HOME/.dbt/profiles.yml
+cat $HOME/$CLOUDSHELL_OPEN_DIR/reg-reporting-blueprint/common_components/devtools/cloudshell_profile.yml > $HOME/.dbt/profiles.yml
 ```
 
 ### Open and configure profile
