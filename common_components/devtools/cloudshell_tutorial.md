@@ -19,13 +19,13 @@ sudo pip3 install --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]'
 
 ```sh
 mkdir $HOME/.dbt
-cp common_components/devtools/cloudshell_profile.yml $HOME/.dbt/profiles
+cp $HOME/$CLOUDSHELL_OPEN_DIR/reg-reporting-blueprint/common_components/devtools/cloudshell_profile.yml $HOME/.dbt/profiles.yml
 ```
 
 ### Open and configure profile
 
- * Open the <walkthrough-editor-select-line filePath="$HOME/.dbt/profiles.yml" regex="BigQuery Location">$HOME/.dbt/profiles.yml</walkthrough-editor-open-file> file and replace the BigQuery Location.
- * Modify <walkthrough-editor-select-line filePath="$HOME/.dbt/profiles.yml" regex="BigQuery Location">/profiles.yml</walkthrough-editor-open-file> file and replace the Region.
+ * Open the <walkthrough-editor-select-line filePath="$HOME/.dbt/profiles.yml" regex="BigQuery Location">profiles.yml</walkthrough-editor-select-line> file and replace the BigQuery Location.
+ * Modify <walkthrough-editor-select-line filePath="$HOME/.dbt/profiles.yml" regex="BigQuery Location">profiles.yml</walkthrough-editor-select-line> file and replace the Region.
 
 # Explore the project
 
