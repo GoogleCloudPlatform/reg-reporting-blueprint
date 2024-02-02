@@ -30,9 +30,9 @@ regrep_profile:
     prod:
       type: bigquery
       method: oauth
-      project: "${GOOGLE_CLOUD_PROJECT}"
+      project: "{{ env_var('GOOGLE_CLOUD_PROJECT') }}"
       location: "BigQuery Location"
-      dataset: "${USER}_regrep"
+      dataset: "{{ env_var('USER') }}_regrep"
       threads: 10
       timeout_seconds: 300
       priority: interactive
@@ -42,7 +42,7 @@ regrep_profile:
       dataproc_region: "Region"
 
       # Staging bucket for dataproc jobs
-      gcs_bucket: "${GOOGLE_CLOUD_PROJECT}-ingest-bucket"
+      gcs_bucket: "{{ env_var('GOOGLE_CLOUD_PROJECT') }}-ingest-bucket"
 
       # Use this if you have a persistent dataproc cluster
       # dataproc_cluster_name: <cluster-id>
