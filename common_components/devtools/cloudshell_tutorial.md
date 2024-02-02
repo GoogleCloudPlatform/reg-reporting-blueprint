@@ -1,5 +1,5 @@
-# Setup your environment
- 
+# Introduction to the Tutorial
+
 ## Install development tools
 
 ### Install Python tools
@@ -24,21 +24,21 @@ as the environment that you setup with terraform.
 common_components/devtools/init_dbt_profiles.sh
 ```
 
-# Explore the project
+## Explore the project
 
-Move to the home loan delinquency example use case.
+### Move to the home loan delinquency example use case.
 
 ```sh
 cd use_cases/examples/home_loan_delinquency/dbt
 ```
 
-Install dependencies for DBT.
+### Install dependencies for DBT.
 
 ```sh
 dbt deps
 ```
 
-Test out connectivity
+### Test out connectivity
 
 ```sh
 dbt debug
