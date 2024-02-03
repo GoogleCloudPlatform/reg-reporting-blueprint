@@ -21,18 +21,25 @@ sudo pip3 install --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]'
 
 ### DBT Power Tool
 
-NOTE: This applied to Cloud Shell Editor only.
+Install the DBT Power User extension in Cloud Shell Editor
 
-* Click on the extensions icon on the left bar (the four boxes with one removed)
-* Find and install DBT Power User
+```sh
+/google/devshell/editor/code-oss-for-cloud-shell/bin/codeoss-cloudshell --install-extension innoverio.vscode-dbt-power-user
+```
 
 ## Configure DBT profile
 
-This will prompt you for the project, region, and BigQuery location. This should be the same
+### Choose a project that we want to open the editor with.
+
+<walkthrough-project-setup></walkthrough-project-setup>
+
+### Initialize the DBT profile
+
+This will prompt you for the region and BigQuery location. This should be the same
 as the environment that you setup with terraform.
 
 ```sh
-common_components/devtools/init_dbt_profiles.sh
+PROJECT_ID="<walkthrough-project-id/>" common_components/devtools/init_dbt_profiles.sh
 ```
 
 ## Explore the project
@@ -53,4 +60,10 @@ dbt deps
 
 ```sh
 dbt debug
+```
+
+## Open up the DBT folder in in Cloud Shell IDE
+
+```sh
+cloudshell workspace .
 ```
