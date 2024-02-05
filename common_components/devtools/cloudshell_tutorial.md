@@ -19,15 +19,10 @@ Open the Terminal and install Python tools.
 pip3 install --user --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]'
 ```
 
-Add .local/bin to your path.
+Adjust the .profile to add .local/bin to your path. Do this only if it is not already there.
 
 ```sh
-cat >> $HOME/.profile <<EOF
-# set PATH so it includes .local/bin
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-EOF
+(grep -q '$HOME/.local/bin' $HOME/.profile) || (echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.profile)
 ```
 
 ### DBT Power Tool
