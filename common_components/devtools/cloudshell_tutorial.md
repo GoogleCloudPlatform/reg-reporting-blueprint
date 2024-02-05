@@ -16,7 +16,18 @@ using the [tutorial](https://github.com/GoogleCloudPlatform/reg-reporting-bluepr
 Open the Terminal and install Python tools.
 
 ```sh
-sudo pip3 install --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]'
+pip3 install --user --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]'
+```
+
+Add .local/bin to your path.
+
+```sh
+cat >> $HOME/.profile <<EOF
+# set PATH so it includes .local/bin
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+EOF
 ```
 
 ### DBT Power Tool
