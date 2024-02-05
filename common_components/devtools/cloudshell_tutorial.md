@@ -11,18 +11,30 @@ using the [tutorial](https://github.com/GoogleCloudPlatform/reg-reporting-bluepr
 
 ## Install development tools
 
-### Python tools
+### Install Python tools
 
-Open the Terminal and install Python tools.
+Open the Terminal and run pip install.
 
 ```sh
 pip3 install --user --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]'
 ```
 
-Adjust the .profile to add .local/bin to your path. Do this only if it is not already there.
+### Configure your PATH
+
+Add $HOME/.local/bin to your path. This needs to be done both now in the shell, but also,
+if not already done, to your $HOME/.profile.
 
 ```sh
+export PATH="$PATH:$HOME/.local/bin"
 (grep -q '$HOME/.local/bin' $HOME/.profile) || (echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.profile)
+```
+
+### Test it out
+
+Make sure DBT is in your path correctly.
+
+```sh
+dbt --version
 ```
 
 ### DBT Power Tool
@@ -68,8 +80,13 @@ dbt deps
 dbt debug
 ```
 
-## Open up the DBT folder in in Cloud Shell IDE
+## Start exploring Cloud Shell IDE
+
+Open up the DBT folder in in Cloud Shell IDE
+
+NOTE: This may prompt you to open up the parent folder. It works either way.
 
 ```sh
 cloudshell workspace .
 ```
+
