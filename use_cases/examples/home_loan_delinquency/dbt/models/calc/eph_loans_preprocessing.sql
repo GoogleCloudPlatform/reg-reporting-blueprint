@@ -15,49 +15,49 @@
 
 -- Loans pre-processing
 --
--- This model performs the loans data preprocessing, including joining to the reference data to derive entity data.
+-- This model performs the loans data preprocessing, including joining to
+-- the reference data to derive entity data.
 
-select
-  -- type
-  "Loan" AS exposure_type,
+SELECT
+    -- type
+    "Loan" AS exposure_type,
 
-  -- entity code
-  em.LEGAL_ENTITY_CODE AS entity_code,
+    -- entity code
+    em.legal_entity_code AS entity_code,
 
-  -- entity name
-  em.LEGAL_ENTITY_NAME AS entity_name,
+    -- entity name
+    em.legal_entity_name AS entity_name,
 
-  -- account_number
-  loan.LOAN_NUMBER AS account_number,
+    -- account_number
+    loan.loan_number AS account_number,
 
-  -- account_status
-  loan.LOAN_STATUS AS account_status,
+    -- account_status
+    loan.loan_status AS account_status,
 
-  -- account_balance
-  loan.AMT_CURR_LOAN_BAL AS account_balance,
+    -- account_balance
+    loan.amt_curr_loan_bal AS account_balance,
 
-  -- product_code
-  loan.PRODUCT_CODE AS product_code,
+    -- product_code
+    loan.product_code AS product_code,
 
-  -- product_subcode
-  loan.PRODUCT_SUBCODE AS product_subcode,
+    -- product_subcode
+    loan.product_subcode AS product_subcode,
 
-  -- cost_center
-  em.COST_CENTRE_CODE AS cost_center,
+    -- cost_center
+    em.cost_centre_code AS cost_center,
 
-  -- days_delinquent
-  loan.NUMBER_DAYS_PAST_DUE AS days_delinquent,
+    -- days_delinquent
+    loan.number_days_past_due AS days_delinquent,
 
-  -- npl_flag
-  loan.NON_ACCRUAL_STATUS AS npl_flag,
+    -- npl_flag
+    loan.non_accrual_status AS npl_flag,
 
-  -- date_opened
-  loan.DATE_LOAN_ADDED AS date_opened
+    -- date_opened
+    loan.date_loan_added AS date_opened
 
 
 FROM
-  {{ref('src_loans')}} loan
+    {{ ref('src_loans') }} AS loan
 INNER JOIN
-  {{ref('ref_legal_entity_mapping')}} em ON
-  loan.cost_center = em.cost_centre_code
-
+    {{ ref('ref_legal_entity_mapping') }} AS em ON
+    loan.cost_center = em.cost_centre_code

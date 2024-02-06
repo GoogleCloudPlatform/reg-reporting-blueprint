@@ -16,19 +16,19 @@
 -- Source data containing the securities information
 --
 -- This query selects the relevant fields from the src_securities source,
--- which contains securities information which has been artificially manufactured.
--- This script performs minimum types conversions.
--- To inspect the definition of the fields, generate the DBT documentation
+-- which contains securities information which has been artificially
+-- manufactured. This script performs minimum types conversions. To inspect
+-- the definition of the fields, generate the DBT documentation
 
-SELECT
-    SEC_NUMBER,
-    PROPERTY_STATE,
-    PROPERTY_TYPE,
-    DATE(VALUATION_DATE) as VALUATION_DATE,
-    SECURITY_VALUE,
-    DATE(CONTRACT_OF_SALE_DATE) as CONTRACT_OF_SALE_DATE,
-    SEC_TYPE,
-    STATUS,
-    PROPERTY_POST_CODE
+SELECT -- noqa: ST06
+    sec_number,
+    property_state,
+    property_type,
+    DATE(valuation_date) AS valuation_date,
+    security_value,
+    DATE(contract_of_sale_date) AS contract_of_sale_date,
+    sec_type,
+    status,
+    property_post_code
 FROM
-    {{ source('sample_data', 'src_securities')}}
+    {{ source('sample_data', 'src_securities') }}

@@ -15,20 +15,27 @@
 
 -- Denormalised table with all accounts data, including history
 --
--- This model selects all the accounts data in a large denormalised structure, which includes:
--- * Control data, in a structured format. Contains the reporting_day and the execution time
+-- This model selects all the accounts data in a large denormalised structure,
+-- which includes:
+-- * Control data, in a structured format. Contains the reporting_day and the
+--   execution time
 -- * Account data, in a structured format with sub-fields
 -- * Product data, in a structured format with sub-fields
--- * Securities data, in a structured and repeated format. Contains all the securities associated to an account
--- * Primary security, in a structured format. Contains the data for the primary security (rank 1) associated to an account
--- * Provisions, in a structured format. Contains data about the provisions for an account.
--- * A placeholder for the regulatory calculations, in a structured format. Contains reg metrics (e.g. RWA), calculated at an account granularity
+-- * Securities data, in a structured and repeated format. Contains all the
+--   securities associated to an account
+-- * Primary security, in a structured format. Contains the data for the primary
+--   security (rank 1) associated to an account
+-- * Provisions, in a structured format. Contains data about the provisions for
+--   an account.
+-- * A placeholder for the regulatory calculations, in a structured format.
+--   Contains reg metrics (e.g. RWA), calculated at an account granularity
 -- To inspect the definition of the fields, generate the DBT documentation
+
 
 SELECT
     STRUCT(
         DATE('{{ var('reporting_day') }}') AS reporting_day,
-        TIMESTAMP('{{ run_started_at}}' )  AS run_started_at
+        TIMESTAMP('{{ run_started_at }}') AS run_started_at
     ) AS control,
     STRUCT(
         a.exposure_type,
@@ -44,28 +51,28 @@ SELECT
         a.days_delinquent_bucket,
         a.npl_flag,
         a.date_opened
-    ) AS account,
+    ) AS account, -- noqa: RF04
     STRUCT(
         p.product_code,
         p.product_subcode,
         p.description,
         p.active_flag
     ) AS product,
-     ARRAY(
-        select AS STRUCT
-           s.sec_number,
-           s.property_state,
-           s.property_type,
-           s.valuation_date,
-           s.security_value,
-           s.contract_of_sale_date,
-           s.security_type,
-           s.security_status,
-           s.security_rank,
-           s.region,
-           s.is_primary
-        from
-            {{ref('stg_securities')}} s
+    ARRAY(
+        SELECT AS STRUCT
+            s.sec_number,
+            s.property_state,
+            s.property_type,
+            s.valuation_date,
+            s.security_value,
+            s.contract_of_sale_date,
+            s.security_type,
+            s.security_status,
+            s.security_rank,
+            s.region,
+            s.is_primary
+        FROM
+            {{ ref('stg_securities') }} AS s
         WHERE
             s.account_number = a.account_number
     ) AS securities,
@@ -90,16 +97,23 @@ SELECT
         pr.provision_amount
     ) AS provisions,
     STRUCT(
-       NULL AS impaired_assets,
-       NULL AS rwa
+        NULL AS impaired_assets,
+        NULL AS rwa
     ) AS regulatory_calcs
 FROM
-    {{ref('stg_accounts')}} a                       LEFT OUTER JOIN
-    {{ref('stg_products')}} p                           ON
-    a.product_code = p.product_code                     AND
-    a.product_subcode = p.product_subcode           LEFT OUTER JOIN
-    {{ref('stg_securities')}} ps                        ON
-    ps.account_number = a.account_number                AND
-    ps.is_primary = true                            LEFT OUTER JOIN
-    {{ref('eph_provisions_at_reporting_month')}} pr     ON
-    pr.account_number = a.account_number
+    {{ ref('stg_accounts') }} AS a
+LEFT OUTER JOIN
+    {{ ref('stg_products') }} AS p
+    ON (
+        a.product_code = p.product_code
+        AND a.product_subcode = p.product_subcode
+    )
+LEFT OUTER JOIN
+    {{ ref('stg_securities') }} AS ps
+    ON (
+        ps.account_number = a.account_number
+        AND ps.is_primary = TRUE
+    )
+LEFT OUTER JOIN
+    {{ ref('eph_provisions_at_reporting_month') }} AS pr
+    ON pr.account_number = a.account_number

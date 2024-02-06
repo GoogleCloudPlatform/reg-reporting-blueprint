@@ -13,11 +13,14 @@
 -- limitations under the License.
 
 
--- Security (collateral) details (broadly split between property security and other)
+-- Security (collateral) details (broadly split between property security
+-- and other)
 --
--- This model selects security data. The business logic to identify the primary security is implemented in this model.
--- The data is enriched with reference data coming from the region reference data, which is joined via the accounts
--- linkage table.
+-- This model selects security data. The business logic to identify the
+-- primary security is implemented in this model. The data is enriched
+-- with reference data coming from the region reference data, which is
+-- joined via the accounts linkage table.
+--
 -- To inspect the definition of the fields, generate the DBT documentation
 
 WITH data AS (
@@ -31,36 +34,39 @@ WITH data AS (
         s.security_type,
         s.security_status,
         a.account_number,
-        DENSE_RANK() OVER(
+        mc.region AS region,
+        DENSE_RANK() OVER (
             PARTITION BY
                 a.account_number
             ORDER BY
                 CASE
-                    WHEN DATE_DIFF(a.date_opened, s.contract_of_sale_date, DAY) < 8
-                    THEN 1
+                    WHEN
+                        DATE_DIFF(a.date_opened, s.contract_of_sale_date, DAY)
+                        < 8
+                        THEN 1
                     ELSE 2
                 END ASC,
                 s.valuation_date DESC,
                 s.security_value DESC,
                 s.sec_number DESC
-        ) AS security_rank,
-        mc.Region AS region
+        ) AS security_rank
     FROM
-        {{ref('eph_securities_preprocessing')}}     s   JOIN
-        {{ref('src_link_securities_accounts')}}     x       ON
-        s.sec_number = x.sec_number                     JOIN
-        {{ref('stg_accounts')}}                     a       ON
-        x.account_number = a.account_number             JOIN
-        {{ref('ref_region_codes')}}                 mc      ON
-        mc.property_post_code = s.property_post_code
+        {{ ref('eph_securities_preprocessing') }} AS s
+    INNER JOIN {{ ref('src_link_securities_accounts') }} AS x
+        ON
+            s.sec_number = x.sec_number
+    INNER JOIN
+        {{ ref('stg_accounts') }} AS a
+        ON
+            x.account_number = a.account_number
+    INNER JOIN
+        {{ ref('ref_region_codes') }} AS mc ON
+        s.property_post_code = mc.property_post_code
 
 )
+
 SELECT DISTINCT
     *,
-    CASE
-        WHEN security_rank = 1
-        THEN true
-        ELSE false
-    END as is_primary
+    COALESCE(security_rank = 1, FALSE) AS is_primary
 FROM
     data

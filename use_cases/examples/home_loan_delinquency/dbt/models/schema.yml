@@ -23,11 +23,11 @@ sources:
         identifier: homeloan_ref_legal_entity_mapping
         description: A mapping between cost centre codes and legal entities
         columns:
-          - name: COST_CENTRE_CODE
+          - name: cost_centre_code
             description: The code of the cost centre
-          - name: LEGAL_ENTITY_CODE
+          - name: legal_entity_code
             description: The code of the legal entity
-          - name: LEGAL_ENTITY_NAME
+          - name: legal_entity_name
             description: The name of the legal entity
 
       - &ref_products
@@ -35,15 +35,15 @@ sources:
         identifier: homeloan_ref_products
         description: Reference data containing banking products information
         columns:
-          - name: PRODUCT_ID
+          - name: product_id
             description: The unique product ID
-          - name: PRODUCT_CODE
+          - name: product_code
             description: The code of the product, e.g. CA for Current Accounts
-          - name: PRODUCT_SUBCODE
+          - name: product_subcode
             description: A subcode of the product
-          - name: DESCRIPTION
+          - name: description
             description: A human readable description of the product
-          - name: ACTIVE_FLAG
+          - name: active_flag
             description: A boolean flag indicating whether the product is active
 
       - &ref_region_codes
@@ -51,9 +51,9 @@ sources:
         identifier: homeloan_ref_region_codes
         description: Reference data containing a list of property post codes, mapped to a region
         columns:
-          - name: PROPERTY_POST_CODE
+          - name: property_post_code
             description: The post code of the property
-          - name: REGION
+          - name: region
             description: The region of the property
 
       - &src_current_accounts_attributes
@@ -61,37 +61,37 @@ sources:
         identifier: homeloan_src_current_accounts_attributes
         description: Source data containing current accounts information
         columns:
-        - name: ACCOUNT_KEY
+        - name: account_key
           description: The unique key of the account
           tests:
             - unique
             - not_null
             - relationships:
                 to: ref('src_current_accounts_balances')
-                field: ACCOUNT_KEY
-        - name: ACT_STATUS
+                field: account_key
+        - name: act_status
           description: The status of the account, either Open or Closed
-        - name: PRODUCT_CODE
+        - name: product_code
           description: The product code, external reference to the products reference data
           tests:
             - not_null
             - relationships:
                 to: ref('ref_products')
-                field: PRODUCT_CODE
-        - name: PRODUCT_SUBCODE
+                field: product_code
+        - name: product_subcode
           description: The product sub-code, external reference to the products reference data
           tests:
             - not_null
             - relationships:
                 to: ref('ref_products')
-                field: PRODUCT_SUBCODE
-        - name: COST_CENTER
+                field: product_subcode
+        - name: cost_center
           description: The cost centre, external reference to the legal entities reference data
-        - name: DATE_EXCESS_BEGAN
+        - name: date_excess_began
           description: The date when the excess began
-        - name: CURRENT_OD_LIMIT
+        - name: current_od_limit
           description: The current overdraft limit
-        - name: DATE_OPENED
+        - name: date_opened
           description: The date when the account was opened
 
       - &src_current_accounts_balances
@@ -99,9 +99,9 @@ sources:
         identifier: homeloan_src_current_accounts_balances
         description: Source data containing current accounts balances
         columns:
-        - name: ACCOUNT_KEY
+        - name: account_key
           description: The key of the account
-        - name: CURRENT_BALANCE
+        - name: current_balance
           description: The balance of the account
 
       - &src_link_securities_accounts
@@ -109,9 +109,9 @@ sources:
         identifier: homeloan_src_link_securities_accounts
         description: Source data containing the linkages between securities and accounts
         columns:
-          - name: SEC_NUMBER
+          - name: sec_number
             description: The key of the security
-          - name: ACCOUNT_NUMBER
+          - name: account_number
             description: The key of the account
 
       - &src_loans
@@ -119,23 +119,23 @@ sources:
         identifier: homeloan_src_loans
         description: Source data containing the loans information
         columns:
-        - name: LOAN_NUMBER
+        - name: loan_number
           description: The identification of the loan
-        - name: LOAN_STATUS
+        - name: loan_status
           description: The status of the loan - e.g. Open
-        - name: AMT_CURR_LOAN_BAL
+        - name: amt_curr_loan_bal
           description: The current Balance Amount
-        - name: PRODUCT_CODE
+        - name: product_code
           description: The product code, external reference to the products reference data
-        - name: PRODUCT_SUBCODE
+        - name: product_subcode
           description: The product sub-code, external reference to the products reference data
-        - name: NUMBER_DAYS_PAST_DUE
+        - name: number_days_past_due
           description: The number of days the loan has been past due
-        - name: COST_CENTER
+        - name: cost_center
           description: The cost centre, external reference to the legal entities reference data
-        - name: NON_ACCRUAL_STATUS
+        - name: non_accrual_status
           description: A boolean flag indicating the accrual status
-        - name: DATE_LOAN_ADDED
+        - name: date_loan_added
           description: The date when the loand was added
 
       - &src_provisions
@@ -143,15 +143,15 @@ sources:
         identifier: homeloan_src_provisions
         description: Source data containing the provisions information
         columns:
-        - name: PERIOD
+        - name: period
           description: The period which the provision date relates to, in a YYYYMM format
-        - name: ACCOUNT_KEY
+        - name: account_key
           description: The key to the account record
-        - name: CASE_REFERENCE
+        - name: case_reference
           description: A human readable reference of why the provision
-        - name: REASON
+        - name: reason
           description: The reason why the provision was created
-        - name: PROVISION_AMOUNT
+        - name: provision_amount
           description: The provision amount
 
       - &src_securities
@@ -159,23 +159,23 @@ sources:
         identifier: homeloan_src_securities
         description: Source data containing the securities information
         columns:
-        - name: SEC_NUMBER
+        - name: sec_number
           description: The number of the security (property)
-        - name: PROPERTY_STATE
+        - name: property_state
           description: The state where the property is located
-        - name: PROPERTY_TYPE
+        - name: property_type
           description: The type of property, for example a flat or a detached house
-        - name: VALUATION_DATE
+        - name: valuation_date
           description: The date the property was valued
-        - name: SECURITY_VALUE
+        - name: security_value
           description: The value of the property
-        - name: CONTRACT_OF_SALE_DATE
+        - name: contract_of_sale_date
           description: The date when the sale contract was executed
-        - name: SEC_TYPE
+        - name: sec_type
           description: The type of securitiesed product
-        - name: STATUS
+        - name: status
           description: The status of the security
-        - name: PROPERTY_POST_CODE
+        - name: property_post_code
           description: The post code where the security is located
 
   - name: expected_results
@@ -197,56 +197,56 @@ models:
   - <<: *src_current_accounts_attributes
     name: src_current_accounts_attributes
     columns:
-      - name: ACCOUNT_KEY
+      - name: account_key
         tests:
           - unique
           - not_null
           - relationships:
               to: ref('src_current_accounts_balances')
-              field: ACCOUNT_KEY
-      - name: PRODUCT_CODE
+              field: account_key
+      - name: product_code
         tests:
           - not_null
           - relationships:
               to: ref('ref_products')
-              field: PRODUCT_CODE
-      - name: PRODUCT_SUBCODE
+              field: product_code
+      - name: product_subcode
         tests:
           - not_null
           - relationships:
               to: ref('ref_products')
-              field: PRODUCT_SUBCODE
+              field: product_subcode
 
   - name: src_current_accounts_balances
     columns:
-      - name: ACCOUNT_KEY
+      - name: account_key
         tests:
           - unique
           - not_null
           - relationships:
               to: ref('src_current_accounts_attributes')
-              field: ACCOUNT_KEY
+              field: account_key
 
   - name: src_loans
     columns:
-      - name: COST_CENTER
+      - name: cost_center
         tests:
           - not_null
           - relationships:
               to: ref('ref_legal_entity_mapping')
-              field: COST_CENTRE_CODE
-      - name: PRODUCT_CODE
+              field: cost_centre_code
+      - name: product_code
         tests:
           - not_null
           - relationships:
               to: ref('ref_products')
-              field: PRODUCT_CODE
-      - name: PRODUCT_SUBCODE
+              field: product_code
+      - name: product_subcode
         tests:
           - not_null
           - relationships:
               to: ref('ref_products')
-              field: PRODUCT_SUBCODE
+              field: product_subcode
 
   - name: src_link_securities_accounts
     description: Links accounts to the security for the loan
@@ -260,40 +260,40 @@ models:
           - not_null
           - relationships:
               to: ref('src_loans')
-              field: LOAN_NUMBER
+              field: loan_number
       - name: sec_number
         description: The key of the security
         tests:
           - not_null
           - relationships:
               to: ref('src_securities')
-              field: SEC_NUMBER
+              field: sec_number
 
   - name: src_provisions
     description: Source data containing the provisions information
     columns:
-      - name: ACCOUNT_KEY
+      - name: account_key
         tests:
           - not_null
           - relationships:
               to: ref('src_loans')
-              field: LOAN_NUMBER
+              field: loan_number
 
   - name: src_securities
     columns:
-    - name: SEC_NUMBER
+    - name: sec_number
       tests:
         - not_null
         - relationships:
             to: ref('src_link_securities_accounts')
-            field: SEC_NUMBER
-    - name: PROPERTY_POST_CODE
+            field: sec_number
+    - name: property_post_code
       description: The post code where the security is located
       tests:
         - not_null
         - relationships:
             to: ref('ref_region_codes')
-            field: PROPERTY_POST_CODE
+            field: property_post_code
 
   - name: eph_current_accounts_preprocessing
     description: Current account pre-processing
