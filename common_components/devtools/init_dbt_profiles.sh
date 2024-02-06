@@ -15,6 +15,18 @@
 # limitations under the License.
 
 
+# Profiles to update
+PROFILES_FILE="${HOME}/.dbt/profiles.yml"
+
+# Create the profile directory
+mkdir -p "$(dirname ${PROFILES_FILE})"
+
+# Stop early if the DBT profile already exists -- do not overwrite
+if [ -f "${PROFILES_FILE}" ]; then
+  echo "DBT profile ${PROFILES_FILE} already exists. Exiting..."
+  exit 0
+fi
+
 # Set the project if necessary
 if [ "${PROJECT_ID}" == "" ]; then
   PROJECT_ID=$(curl -s -H "Metadata-Flavor: Google" http://metadata/computeMetadata/v1/project/project-id)
@@ -26,7 +38,6 @@ if [[ "${PROJECT_ID}" == "" ]]; then
   read -p "Enter PROJECT_ID: " PROJECT_ID
 fi
 
-# Identify the ZONE
 # Set REGION, and BQ_LOCATION if not already set
 if [ "${REGION}" == "" ]; then
   read -p "Enter REGION: " REGION
@@ -40,12 +51,6 @@ USER_DATASET=""
 if [[ "${USER}" != "" ]]; then
   USER_DATASET="${USER//[^a-zA-Z0-9]/_}_"
 fi
-
-# Profiles to update
-PROFILES_FILE="${HOME}/.dbt/profiles.yml"
-
-# Create the profile directory
-mkdir -p "$(dirname ${PROFILES_FILE})"
 
 # Create the profiles file
 cat > "${PROFILES_FILE}" <<EOF

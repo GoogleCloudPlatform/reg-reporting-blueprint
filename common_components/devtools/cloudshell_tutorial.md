@@ -60,6 +60,12 @@ as the environment that you setup with terraform.
 PROJECT_ID="<walkthrough-project-id/>" common_components/devtools/init_dbt_profiles.sh
 ```
 
+Look at the install profile.
+
+```sh
+cat $HOME/.dbt/profiles.yml
+```
+
 ## Explore the project
 
 ### Move to DBT project
@@ -82,7 +88,7 @@ dbt debug
 
 ## Start exploring Cloud Shell IDE
 
-Open up the DBT folder in in Cloud Shell IDE
+### Open up the DBT folder in in Cloud Shell IDE
 
 NOTE: This may prompt you to open up the parent folder. It works either way.
 
@@ -90,3 +96,6 @@ NOTE: This may prompt you to open up the parent folder. It works either way.
 cloudshell workspace .
 ```
 
+### Close the terminal
+
+Click X to close the terminal and use the IDE!

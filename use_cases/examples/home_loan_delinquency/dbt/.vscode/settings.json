@@ -1,0 +1,7 @@
+{
+  // This is for convenience.
+  //
+  // If opening the DBT file directly, do not prompt
+  // to open the parent Git folder.
+  "git.openRepositoryInParentFolders": "never"
+}
