@@ -17,7 +17,6 @@ Add $HOME/.local/bin to your path.
 
 ```sh
 export PATH="$PATH:$HOME/.local/bin"
-(grep -q '$HOME/.local/bin' $HOME/.profile) || (echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.profile)
 ```
 
 Now also add the export PATH command into your $HOME/.local/bin if it's not already there.
