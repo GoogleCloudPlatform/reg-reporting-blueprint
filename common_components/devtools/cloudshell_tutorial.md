@@ -13,20 +13,26 @@ using the [tutorial](https://github.com/GoogleCloudPlatform/reg-reporting-bluepr
 
 ### Configure your PATH
 
-Add $HOME/.local/bin to your path. This needs to be done both now in the shell, but also,
-if not already done, to your $HOME/.profile.
+Add $HOME/.local/bin to your path.
 
 ```sh
 export PATH="$PATH:$HOME/.local/bin"
 (grep -q '$HOME/.local/bin' $HOME/.profile) || (echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.profile)
 ```
 
-### Install Python tools
-
-Open the Terminal and run pip install to install DBT, SQL fmt, and sqlfluff tools.
+Now also add the export PATH command into your $HOME/.local/bin if it's not already there.
+This ensures that in the future the path will always be available.
 
 ```sh
-pip3 install --user --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]' sqlfluff
+(grep -q '$HOME/.local/bin' $HOME/.profile) || (echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.profile)
+```
+
+### Install Python tools
+
+Open the Terminal and run pip install to install DBT, DBT BigQuery adapter, and sqlfluff tools.
+
+```sh
+pip3 install --user --upgrade dbt-core dbt-bigquery sqlfluff
 ```
 
 ### Test it out
@@ -41,10 +47,15 @@ dbt --version
 
 ### Install Extensions
 
-Install the DBT Power User and SQLfluff extensions in Cloud Shell Editor
+Install the DBT Power User extension in Cloud Shell Editor.
 
 ```sh
 /google/devshell/editor/code-oss-for-cloud-shell/bin/codeoss-cloudshell --install-extension innoverio.vscode-dbt-power-user
+```
+
+Install the SQLfluff extension in Cloud Shell Editor.
+
+```sh
 /google/devshell/editor/code-oss-for-cloud-shell/bin/codeoss-cloudshell --install-extension RobertOstermann.vscode-sqlfluff
 ```
 
@@ -93,6 +104,8 @@ cd use_cases/examples/home_loan_delinquency/dbt
 dbt deps
 ```
 
+This installs the DBT dependencies for the home_loan_delinquency example.
+
 ### Test out DBT
 
 Note that this will request authorization (if not already provided) to access
@@ -102,16 +115,23 @@ BigQuery. This is a connectivity test.
 dbt debug
 ```
 
+This will connect to BigQuery, show versions of DBT, DBT BigQuery connector, and various other
+self-tests. It should show success at the end of running.
+
 ## Start exploring Cloud Shell IDE
 
 ### Open up the DBT folder in in Cloud Shell IDE
 
-NOTE: This may prompt you to open up the parent folder. It works either way.
+This opens the Cloud Shell Editor in the current DBT directory.
 
 ```sh
 cloudshell workspace .
 ```
 
+Once open, open a few of the SQL files and explore the project. There are many
+features there -- the DBT Power User extension and SQLfluff linting and formatting
+are configured for this project.
+
 ### Close the terminal
 
-Click X to close the terminal and use the IDE!
+Click X to close the terminal and continue with the IDE.
