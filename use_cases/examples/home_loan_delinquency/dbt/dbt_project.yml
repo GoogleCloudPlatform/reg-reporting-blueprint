@@ -75,11 +75,17 @@ models:
           +tags: rwa
           +enabled: "{{ var('enable_rwa', false) }}"
           materialized: table
+      # Config to store the columns descriptions in datacatalog
+      +persist_docs:
+        relation: true
+        columns: true
 
 # Tracking DBT Performance
 on-run-start:
-  - "{{ dbt_log.create_dbt_log(target) }}"
-  - "{{ dbt_log.insert_dbt_log(target, 'START', dbt_log.graph_to_json(target, graph)) }}"
-
-on-run-end:
-  - "{{ dbt_log.insert_dbt_log(target, 'END', dbt_log.results_to_json(results)) }}"
+  - >
+      /* DBT {
+      "project": "{{ project_name }}",
+      "env": {{ tojson(dbt_metadata_envs|default({})) }},
+      "args":  {{ tojson(invocation_args_dict|default({})) }}
+      } */
+      SELECT 1

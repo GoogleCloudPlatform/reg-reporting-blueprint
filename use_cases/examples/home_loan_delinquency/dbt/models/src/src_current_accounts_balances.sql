@@ -16,11 +16,12 @@
 -- Source data containing current accounts balances
 --
 -- This query selects data from the src_current_accounts_attributes source,
--- which contains current account balances which have been artificially manufactured.
--- To inspect the definition of the fields, generate the DBT documentation
+-- which contains current account balances which have been artificially
+-- manufactured. To inspect the definition of the fields, generate the
+-- DBT documentation
 
 SELECT
-    ACCOUNT_KEY,
-    CURRENT_BALANCE
+    account_key,
+    current_balance
 FROM
-    {{ source('sample_data', 'src_current_accounts_balances')}}
+    {{ source('sample_data', 'src_current_accounts_balances') }}

@@ -20,5 +20,3 @@ bq_datasets=[
 region="REGION"
 bq_location="BQ_LOCATION"
 gcs_location="GCS_LOCATION"
-gcr_hostname="GCR_HOSTNAME"
-enable_composer=true

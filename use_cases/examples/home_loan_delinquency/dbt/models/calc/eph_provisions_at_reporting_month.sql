@@ -16,13 +16,14 @@
 -- Provisions at reporting month
 --
 -- This model selects the provisions for a given reporting month.
--- Note that the reporting month is selected using a parameterised variables, which is defaulted in the
--- project file, and can be overidden when executing the dbt run command.
+-- Note that the reporting month is selected using a parameterised
+-- variables, which is defaulted in the project file, and can be
+-- overidden when executing the dbt run command.
 
-SELECT
-    *
+SELECT *
 FROM
-    {{ref('stg_provisions')}} p
+    {{ ref('stg_provisions') }} AS p
 WHERE
-    CAST(p.period AS STRING) = '{{ get_reporting_month(var('reporting_day') ) }}'
-
+    CAST(p.period AS STRING) = (
+        '{{ get_reporting_month(var("reporting_day")) }}'  -- noqa: LT05
+    )

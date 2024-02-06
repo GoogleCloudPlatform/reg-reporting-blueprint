@@ -21,14 +21,14 @@
 -- To inspect the definition of the fields, generate the DBT documentation
 
 SELECT
-    LOAN_NUMBER,
-    LOAN_STATUS,
-    AMT_CURR_LOAN_BAL,
-    PRODUCT_CODE,
-    PRODUCT_SUBCODE,
-    NUMBER_DAYS_PAST_DUE,
-    COST_CENTER,
-    NON_ACCRUAL_STATUS,
-    DATE(DATE_LOAN_ADDED) AS DATE_LOAN_ADDED
+    loan_number,
+    loan_status,
+    amt_curr_loan_bal,
+    product_code,
+    product_subcode,
+    number_days_past_due,
+    cost_center,
+    non_accrual_status,
+    DATE(date_loan_added) AS date_loan_added
 FROM
-    {{ source('sample_data', 'src_loans')}}
+    {{ source('sample_data', 'src_loans') }}

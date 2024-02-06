@@ -18,26 +18,28 @@
 -- The model is applied to the data. Features are input and labels are output.
 --
 
+-- Disable templating in this case to simplify working with dbt_ml.prefix
+-- sqlfluff:ignore:templating
+
 
 WITH
-  SrcData AS (
+-- Ignore src_data isn't used -- it's used in the template (which is ignored)
+src_data AS (  -- noqa: ST03
     SELECT
-      *,
-
-      0.01 AS probability_of_default,
-      0.10 AS loss_given_default,
-      account.account_balance AS exposure_at_default,
-
+        *,
+        0.01 AS probability_of_default,
+        0.10 AS loss_given_default,
+        account.account_balance AS exposure_at_default
     FROM
-      {{ ref('wh_denormalised_history') }}
-  ),
-  WithRWA AS (
-    SELECT
-      *
+        {{ ref('wh_denormalised_history') }}
+),
+
+with_rwa AS (
+    SELECT *
     FROM
-      {{ dbt_ml.predict(ref('tf_rwa_model'), 'SrcData') }}
-  )
-SELECT
-  *
+        {{ dbt_ml.predict(ref('tf_rwa_model'), 'src_data') }}
+)
+
+SELECT *
 FROM
-  WithRWA
+    with_rwa

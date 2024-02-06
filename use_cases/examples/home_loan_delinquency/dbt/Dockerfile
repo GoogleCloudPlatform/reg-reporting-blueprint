@@ -12,14 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM python:3.11
-
-# Install required system packages and cleanup to reduce image size
-RUN apt-get update -y && \
-    apt-get install --no-install-recommends -y -q \
-    git libpq-dev python3-dev && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+FROM python:3.11-slim
 
 # Create users
 ENV HOME /dbt/
@@ -27,31 +20,42 @@ RUN useradd -rm -d $HOME -s /bin/bash -u 1000 dbt
 WORKDIR $HOME
 USER dbt
 
-# Copy files to the image
-COPY --chown=dbt . $HOME
-
 # Put target install dir on path
 ENV PATH="${PATH}:/dbt/.local/bin"
 
 # Install dependencies
 RUN python3 -m ensurepip --upgrade
+COPY --chown=dbt requirements.txt $HOME
 RUN pip install \
   --require-hashes \
   --no-deps \
   --no-cache-dir \
   -r requirements.txt
 
+# Copy files to the image
+COPY --chown=dbt . $HOME
+
+# Default build and source references. Thsi should be overridden on build,
+# but if someone does local testing / development it will still work.
+ARG BUILD_REF=dev
+ARG BUILD_LOCATION=dev
+ARG SOURCE_URL=dev
+ARG SOURCE_REF=dev
+ARG SOURCE_PATH=dev
+
+# Default build ARGs
+#
+# Note environment variables start with DBT_ENV_CUSTOM_ENV so that
+# it can be exposed conveniently within DBT.
+ENV DBT_ENV_CUSTOM_ENV_BUILD_REF=${BUILD_REF}
+ENV DBT_ENV_CUSTOM_ENV_BUILD_LOCATION=${BUILD_LOCATION}
+ENV DBT_ENV_CUSTOM_ENV_SOURCE_URL=${SOURCE_URL}
+ENV DBT_ENV_CUSTOM_ENV_SOURCE_REF=${SOURCE_REF}
+ENV DBT_ENV_CUSTOM_ENV_SOURCE_PATH=${SOURCE_PATH}
+
 # Run dbt. Profiles defaults locally through DBT_PROFILES_DIR.
 ENV DBT_PROFILES_DIR $HOME/profiles
 RUN dbt clean
 RUN dbt deps
-
-# Default build ARGs
-ARG BUILD_REF=dev
-ENV BUILD_REF=${BUILD_REF}
-ARG SOURCE_REF=dev
-ENV SOURCE_REF=${SOURCE_REF}
-ARG SOURCE_PATH=dev
-ENV SOURCE_PATH=${SOURCE_PATH}
 
 ENTRYPOINT [ "dbt" ]

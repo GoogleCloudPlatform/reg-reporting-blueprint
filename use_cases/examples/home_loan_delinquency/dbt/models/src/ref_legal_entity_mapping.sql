@@ -15,13 +15,14 @@
 
 -- A mapping between cost centre codes and legal entities
 --
--- This query selects the relevant fields from ref_legal_entity_mapping, which contains a
--- source to target mapping between cost centres and legal entity codes.
--- To inspect the definition of the fields, generate the DBT documentation
+-- This query selects the relevant fields from ref_legal_entity_mapping,
+-- which contains a source to target mapping between cost centres and
+-- legal entity codes. To inspect the definition of the fields,
+-- generate the DBT documentation
 
 SELECT
-    COST_CENTRE_CODE,
-    LEGAL_ENTITY_CODE,
-    LEGAL_ENTITY_NAME
+    cost_centre_code,
+    legal_entity_code,
+    legal_entity_name
 FROM
-    {{ source('sample_data', 'ref_legal_entity_mapping')}}
+    {{ source('sample_data', 'ref_legal_entity_mapping') }}

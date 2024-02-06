@@ -20,11 +20,9 @@ export REGION=${REGION:="us-central1"}
 if [[ "$REGION" == europe-* ]]; then
   export BQ_LOCATION="EU"
   export GCS_LOCATION="eu"
-  export GCR_HOSTNAME="eu.gcr.io"
 else
   export BQ_LOCATION="US"
   export GCS_LOCATION="us"
-  export GCR_HOSTNAME="gcr.io"
 fi
 
 # Generic configuration
@@ -34,8 +32,10 @@ export PROJECT_ID=$(gcloud config get-value project)
 export TF_VAR_PROJECT_ID=$PROJECT_ID
 export PROJECT_NUMBER=$(gcloud projects list --filter="project_id=$PROJECT_ID" --format="value(PROJECT_NUMBER)")
 export GCS_TF_STATE=${PROJECT_ID}-tfstate
-export GCS_INGEST_BUCKET=$PROJECT_ID-$GCS_LOCATION-ingest-bucket
-export GCS_DOCS_BUCKET=$PROJECT_ID-$GCS_LOCATION-docs-bucket
+export GCS_INGEST_BUCKET=$PROJECT_ID-ingest-bucket
+export GCS_DOCS_BUCKET=$PROJECT_ID-docs-bucket
+export REGISTRY_URL="${REGION}-docker.pkg.dev/${PROJECT_ID}/reg-reporting-repository"
+export SOURCE_URL="https://github.com/GoogleCloudPlatform/reg-reporting-blueprint/tree/"
 export DBT_PROFILES_DIR=./profiles # DBT specific configuration
 
 
@@ -47,11 +47,12 @@ echo -e "\t\tPROJECT_ID                       :" $PROJECT_ID
 echo -e "\t\tPROJECT_NUMBER                   :" $PROJECT_NUMBER
 echo -e "\t\tREGION                           :" $REGION
 echo -e "\t\tBQ_LOCATION                      :" $BQ_LOCATION
-echo -e "\t\tGCR_HOSTNAME                     :" $GCR_HOSTNAME
 echo -e "\t\tGCS_TF_STATE                     :" $GCS_TF_STATE
 echo -e "\t\tGCS_LOCATION                     :" $GCS_LOCATION
 echo -e "\t\tGCS_INGEST_BUCKET                :" $GCS_INGEST_BUCKET
 echo -e "\t\tGCS_DOCS_BUCKET                  :" $GCS_DOCS_BUCKET
+echo -e "\t\tREGISTRY_URL                     :" $REGISTRY_URL
+echo -e "\t\tSOURCE_URL                       :" $SOURCE_URL
 echo -e "\t\tDBT_PROFILES_DIR                 :" $DBT_PROFILES_DIR
 
 echo -e "\n"

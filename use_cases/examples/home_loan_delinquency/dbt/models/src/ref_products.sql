@@ -15,15 +15,15 @@
 
 -- Reference data containing banking products information
 --
--- This query selects the relevant fields from the ref_products source, which contains
--- reference data about banking products.
--- To inspect the definition of the fields, generate the DBT documentation
+-- This query selects the relevant fields from the ref_products source,
+-- which contains reference data about banking products. To inspect the
+-- definition of the fields, generate the DBT documentation
 
 SELECT
-    PRODUCT_ID,
-    PRODUCT_CODE,
-    PRODUCT_SUBCODE,
-    DESCRIPTION,
-    ACTIVE_FLAG
+    product_id,
+    product_code,
+    product_subcode,
+    description,
+    active_flag
 FROM
-    {{ source('sample_data', 'ref_products')}}
+    {{ source('sample_data', 'ref_products') }}

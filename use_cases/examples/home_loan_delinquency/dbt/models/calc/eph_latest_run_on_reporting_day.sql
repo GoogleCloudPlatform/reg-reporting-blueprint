@@ -16,12 +16,13 @@
 -- Latest run on reporting day
 --
 -- This calculates the latest run on a given reporting day.
--- This is required to select the latest snapshot from the warehouse history table.
+-- This is required to select the latest snapshot from the
+-- warehouse history table.
 
 SELECT
-  control.reporting_day,
-  MAX(control.run_started_at) AS latest_run_started_at
+    control.reporting_day,
+    MAX(control.run_started_at) AS latest_run_started_at
 FROM
-  {{ref('wh_denormalised_history')}}
+    {{ ref('wh_denormalised_history') }}
 GROUP BY
-  1
+    1

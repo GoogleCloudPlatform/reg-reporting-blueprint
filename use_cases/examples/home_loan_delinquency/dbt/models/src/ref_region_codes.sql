@@ -15,12 +15,12 @@
 
 -- Reference data containing a list of property post codes, mapped to a region
 --
--- This query selects the relevant fields from the ref_region_codes source, which contains
--- reference data about post codes and regions information.
+-- This query selects the relevant fields from the ref_region_codes source,
+-- which contains reference data about post codes and regions information.
 -- To inspect the definition of the fields, generate the DBT documentation
 
 SELECT DISTINCT
-    PROPERTY_POST_CODE,
-    REGION
+    property_post_code,
+    region
 FROM
-   {{ source('sample_data', 'ref_region_codes')}}
+    {{ source('sample_data', 'ref_region_codes') }}

@@ -1,4 +1,4 @@
-# Copyright 2022 The Reg Reporting Blueprint Authors
+# Copyright 2023 The Reg Reporting Blueprint Authors
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM python:3.8.5
+FROM python:3.11-slim
 
 # Install required system packages and cleanup to reduce image size
 RUN apt-get update -y && \
     apt-get install --no-install-recommends -y -q \
-    git libpq-dev python-dev && \
+    git libpq-dev python3-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

@@ -1,4 +1,4 @@
-# Copyright 2022 The Reg Reporting Blueprint Authors
+# Copyright 2023 The Reg Reporting Blueprint Authors
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,11 +15,12 @@
 # Composer DAG to excute the Homeloan Delinquency workflow
 
 import datetime
-import json
 
-from airflow import models
 from airflow.models import Variable
-from airflow.models.param import Param
+
+from dag_utils.tools import DBTComposerPodOperator, ComposerPodOperator
+from airflow.models import Param
+from airflow.decorators import dag
 
 
 # Project and region for the repository
@@ -27,182 +28,64 @@ PROJECT_ID = Variable.get("PROJECT_ID")
 REGION = Variable.get("REGION")
 
 # GCS Ingest Bucket
-GCS_INGEST_BUCKET = Variable.get("GCS_INGEST_BUCKET")
-
-# Environment name is used for the namespace and service account
-ENV_NAME = Variable.get("ENV_NAME")
+GCS_INGEST_BUCKET = Variable.get("INGEST_BUCKET")
 
 # BigQuery location
 BQ_LOCATION = Variable.get("BQ_LOCATION")
 
-# GCR hostname
-GCR_HOSTNAME = Variable.get("GCR_HOSTNAME")
-
-# Inferred repository
-REPO = f'{GCR_HOSTNAME}/{PROJECT_ID}'  # if using container registry
-
 # Tag to run (default is latest if not set)
 TAG = Variable.get("tag", default_var="latest")
 
-
-#
-# Simplified version based on the following -
-# https://github.com/GoogleCloudPlatform/professional-services/blob/main/examples/dbt-on-cloud-composer/basic/dag/dbt_with_kubernetes.py
-#
-def containerised_job(name, image_name,
-                      arguments=[], tag=TAG,
-                      env_vars={}, repo=REPO):
-    """
-    Returns a KubernetesPodOperator, which can execute a containerised step
-    :param name: the name of the containerised step
-    :param image_name: the name of the image to use
-    :param arguments: arguments required by the job
-    :param tag: the tag of the image to use
-    :param env_vars: environment variables for the job
-    :param repo: fully qualified path to the repo (optional, and defaulted
-                 to f'{GCR_HOSTNAME}/{PROJECT_ID}'
-    :return: the KubernetesPodOperator which executes the containerised step
-    """
-
-    from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
-        KubernetesPodOperator)
-
-    # Add generic Airflow environment variables
-    env_vars.update({
-        'AIRFLOW_CTX_TASK_ID': "{{ task.task_id }}",
-        'AIRFLOW_CTX_DAG_ID': "{{ dag_run.dag_id }}",
-        'AIRFLOW_CTX_EXECUTION_DATE': "{{ execution_date | ts }}",
-    })
-
-    return KubernetesPodOperator(
-
-        # task_id is the unique identifier in Airflow,
-        # name is the unique identifier in Kubernetes.
-        # Keeping them the same simplifies things.
-        task_id=name,
-        name=name,
-
-        # Always pull -- if image is updated, we need to use the latest
-        image_pull_policy='Always',
-
-        # See the following URL for why the config file needs to be set:
-        # https://cloud.google.com/composer/docs/how-to/using/using-kubernetes-pod-operator#version-5-0-0
-        config_file="/home/airflow/composer_kube_config",
-
-        # As per
-        # https://cloud.google.com/composer/docs/composer-2/use-kubernetes-pod-operator,
-        # use the composer-user-workloads namespace unless workload
-        # identity is setup.
-        namespace='composer-user-workloads',
-
-        # Capture all of the logs
-        get_logs=True,                # Capture logs from the pod
-        log_events_on_failure=True,   # Capture and log events on failure
-        is_delete_operator_pod=True,  # To clean up the pod after runs
-
-        # Image for this particular job
-        image=f'{repo}/{image_name}:{tag}',
-        arguments=arguments,
-        env_vars=env_vars
-    )
+# Repository
+REPO = Variable.get("REPO")
 
 
 # Define the DAG
-with models.DAG(
-    dag_id='home_loan_delinquency',
-    schedule_interval="0 0 * * *",
+@dag(
+    schedule_interval="@daily",
     catchup=False,
+    start_date=datetime.datetime(2022, 1, 1),
     default_args={
-        'depends_on_past': False,
-        'start_date': datetime.datetime(2022, 1, 1),
-        'end_date': datetime.datetime(2100, 1, 2),
-        'catchup': False,
-        'catchup_by_default': False,
-        'retries': 0
+        "retries": 2
     },
     params={
         'tag': Param(
             default=TAG,
             type='string',
         ),
+        'repo': Param(
+            default=REPO,
+            type='string',
+        ),
     },
+)
+def home_loan_delinquency():
 
-) as dag:
-
-    load_job = containerised_job(
+    load_job = ComposerPodOperator(
+        task_id='bq-data-load',
         name='bq-data-load',
-        image_name='homeloan-bq-data-load',
+        image='{{ params.repo }}/homeloan-bq-data-load:{{ params.tag }}',
         env_vars={
             'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
             'PROJECT_ID': PROJECT_ID,
         }
     )
 
-    run_hld_report = containerised_job(
+    run_hld_report = DBTComposerPodOperator(
+        task_id='hld-run',
         name='hld-run',
-        image_name='homeloan-dbt',
-        arguments=[
-            "--no-use-colors",
-            "run",
-            "--vars",
-            json.dumps({
-                # { ds } is a template that it interpolated in the
-                # KubernetesPodOperator from Airflow as the execution
-                # date
-                "reporting_day": "{{ ds }}",
-            })
+        image='{{ params.repo }}/homeloan-dbt:{{ params.tag }}',
+        cmds=[
+            '/bin/bash',
+            '-xc',
+            '&&'.join([
+                'dbt run',
+                'dbt docs generate --static',
+            ]),
         ],
-        tag="{{ params.tag }}",
-        env_vars={
-            'PROJECT_ID': PROJECT_ID,
-            'BQ_LOCATION': BQ_LOCATION,
-            'REGION': REGION,
-            'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
-        }
-    )
-
-    test_hld_dq = containerised_job(
-        name='hld-dq-test',
-        image_name='homeloan-dbt',
-        arguments=[
-            "--no-use-colors",
-            "test",
-            "-s",
-            "test_type:generic",
-            "--vars",
-            json.dumps({
-                # { ds } is a template that it interpolated in the
-                # KubernetesPodOperator from Airflow as the execution
-                # date
-                "reporting_day": "{{ ds }}",
-            })
-        ],
-        tag="{{ params.tag }}",
-        env_vars={
-            'PROJECT_ID': PROJECT_ID,
-            'BQ_LOCATION': BQ_LOCATION,
-            'REGION': REGION,
-            'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
-        }
-    )
-
-    test_hld_regression = containerised_job(
-        name='hld-regression-test',
-        image_name='homeloan-dbt',
-        arguments=[
-            "--no-use-colors",
-            "test",
-            "-s",
-            "test_type:singular",
-            "--vars",
-            json.dumps({
-                # { ds } is a template that it interpolated in the
-                # KubernetesPodOperator from Airflow as the execution
-                # date
-                "reporting_day": "{{ ds }}",
-            })
-        ],
-        tag="{{ params.tag }}",
+        dbt_vars={
+            'reporting_day': '{{ ds }}',
+        },
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
@@ -211,6 +94,55 @@ with models.DAG(
         },
     )
 
+    test_hld_dq = DBTComposerPodOperator(
+        task_id='hld-dq-test',
+        name='hld-dq-test',
+        image='{{ params.repo }}/homeloan-dbt:{{ params.tag }}',
+        cmds=[
+            '/bin/bash',
+            '-xc',
+            '&&'.join([
+                'dbt --no-use-colors test -s test_type:generic',
+                'dbt docs generate --static',
+            ]),
+        ],
+        dbt_vars={
+            'reporting_day': '{{ ds }}',
+        },
+        env_vars={
+            'PROJECT_ID': PROJECT_ID,
+            'BQ_LOCATION': BQ_LOCATION,
+            'REGION': REGION,
+            'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
+        }
+    )
+
+    test_hld_regression = DBTComposerPodOperator(
+        task_id='hld-regression-test',
+        name='hld-regression-test',
+        image='{{ params.repo }}/homeloan-dbt:{{ params.tag }}',
+        cmds=[
+            '/bin/bash',
+            '-xc',
+            '&&'.join([
+                'dbt --no-use-colors test -s test_type:singular',
+                'dbt docs generate --static',
+            ]),
+        ],
+        dbt_vars={
+            'reporting_day': '{{ ds }}',
+        },
+        env_vars={
+            'PROJECT_ID': PROJECT_ID,
+            'BQ_LOCATION': BQ_LOCATION,
+            'REGION': REGION,
+            'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
+        }
+    )
+
     load_job >> run_hld_report
     run_hld_report >> test_hld_regression
     run_hld_report >> test_hld_dq
+
+
+home_loan_delinquency()

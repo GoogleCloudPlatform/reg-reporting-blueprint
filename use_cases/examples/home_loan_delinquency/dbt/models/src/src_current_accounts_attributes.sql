@@ -15,22 +15,23 @@
 
 -- Source data containing current accounts information
 --
--- This query selects the relevant fields from the src_current_accounts_attributes source,
--- which contains current account information which has been artificially manufactured.
--- The scripts performs some minimum transformations and types conversions
--- To inspect the definition of the fields, generate the DBT documentation
+-- This query selects the relevant fields from the
+-- src_current_accounts_attributes source, which contains current account
+-- information which has been artificially manufactured. The scripts performs
+-- some minimum transformations and types conversions To inspect the
+-- definition of the fields, generate the DBT documentation
 
 SELECT
-    ACCOUNT_KEY,
-    ACT_STATUS,
-    PRODUCT_CODE,
-    PRODUCT_SUBCODE,
-    COST_CENTER,
+    account_key,
+    act_status,
+    product_code,
+    product_subcode,
+    cost_center,
+    current_od_limit,
     CASE
-        WHEN DATE_EXCESS_BEGAN = '0000-00-00' THEN null
-        ELSE DATE(DATE_EXCESS_BEGAN)
-    END AS DATE_EXCESS_BEGAN,
-    CURRENT_OD_LIMIT,
-    DATE(DATE_OPENED) AS DATE_OPENED
+        WHEN date_excess_began = '0000-00-00' THEN null
+        ELSE DATE(date_excess_began)
+    END AS date_excess_began,
+    DATE(date_opened) AS date_opened
 FROM
-    {{ source('sample_data', 'src_current_accounts_attributes')}}
+    {{ source('sample_data', 'src_current_accounts_attributes') }}
