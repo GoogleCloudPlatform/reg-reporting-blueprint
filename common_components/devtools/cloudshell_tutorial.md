@@ -11,14 +11,6 @@ using the [tutorial](https://github.com/GoogleCloudPlatform/reg-reporting-bluepr
 
 ## Install development tools
 
-### Install Python tools
-
-Open the Terminal and run pip install.
-
-```sh
-pip3 install --user --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]'
-```
-
 ### Configure your PATH
 
 Add $HOME/.local/bin to your path. This needs to be done both now in the shell, but also,
@@ -27,6 +19,14 @@ if not already done, to your $HOME/.profile.
 ```sh
 export PATH="$PATH:$HOME/.local/bin"
 (grep -q '$HOME/.local/bin' $HOME/.profile) || (echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.profile)
+```
+
+### Install Python tools
+
+Open the Terminal and run pip install to install DBT, SQL fmt, and sqlfluff tools.
+
+```sh
+pip3 install --user --upgrade dbt-core dbt-bigquery 'shandy-sqlfmt[jinjafmt]' sqlfluff
 ```
 
 ### Test it out
@@ -39,25 +39,36 @@ dbt --version
 
 ### DBT Power Tool
 
-Install the DBT Power User extension in Cloud Shell Editor
+Install the DBT Power User and SQLfluff extensions in Cloud Shell Editor
 
 ```sh
 /google/devshell/editor/code-oss-for-cloud-shell/bin/codeoss-cloudshell --install-extension innoverio.vscode-dbt-power-user
+/google/devshell/editor/code-oss-for-cloud-shell/bin/codeoss-cloudshell --install-extension RobertOstermann.vscode-sqlfluff
+```
+
+### Cloud Shell Editor example configuration
+
+Install the example configuration into the home_loan_delinquency DBT example.
+
+```sh
+init_codeoss_settings.sh use_cases/examples/home_loan_delinquency/dbt/.vscode/settings.json
+```
+
+Examine the sample configuration. SQLfluff should be configured.
+
+```sh
+cat use_cases/examples/home_loan_delinquency/dbt/.vscode/settings.json
 ```
 
 ## Configure DBT profile
 
-### Choose a project that we want to open the editor with.
-
-<walkthrough-project-setup></walkthrough-project-setup>
-
 ### Initialize the DBT profile
 
-This will prompt you for the region and BigQuery location. This should be the same
+This will prompt you for the project, region, and BigQuery location. This should be the same
 as the environment that you setup with terraform.
 
 ```sh
-PROJECT_ID="<walkthrough-project-id/>" common_components/devtools/init_dbt_profiles.sh
+common_components/devtools/init_dbt_profiles.sh
 ```
 
 Look at the install profile.
