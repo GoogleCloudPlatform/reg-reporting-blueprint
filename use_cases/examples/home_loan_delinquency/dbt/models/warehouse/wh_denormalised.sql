@@ -22,8 +22,9 @@
 {{ config(materialized='view') }}
 
 SELECT wh.*
-FROM
-    {{ ref('wh_denormalised_history') }} AS wh INNER JOIN
-    {{ ref('eph_latest_run_on_reporting_day') }} AS lr ON
-    wh.control.reporting_day = lr.reporting_day
-    AND wh.control.run_started_at = lr.latest_run_started_at
+FROM {{ ref('wh_denormalised_history') }} AS wh
+INNER JOIN {{ ref('eph_latest_run_on_reporting_day') }} AS lr
+    ON (
+        wh.control.reporting_day = lr.reporting_day
+        AND wh.control.run_started_at = lr.latest_run_started_at
+    )

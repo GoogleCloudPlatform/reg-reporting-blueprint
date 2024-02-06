@@ -52,13 +52,10 @@ SELECT
         WHEN a.days_delinquent >= 720 THEN '720+'
     END AS days_delinquent_bucket,
     CASE
-        WHEN p.account_number IS NOT NULL
-            THEN TRUE
+        WHEN p.account_number IS NOT NULL THEN TRUE
         ELSE a.npl_flag
     END AS npl_flag
 
-FROM
-    unioned_data AS a
-LEFT OUTER JOIN {{ ref('eph_provisions_at_reporting_month') }} AS p ON (
-    a.account_number = p.account_number
-)
+FROM unioned_data AS a
+LEFT OUTER JOIN {{ ref('eph_provisions_at_reporting_month') }} AS p
+    ON a.account_number = p.account_number

@@ -56,8 +56,6 @@ SELECT
     loan.date_loan_added AS date_opened
 
 
-FROM
-    {{ ref('src_loans') }} AS loan
-INNER JOIN
-    {{ ref('ref_legal_entity_mapping') }} AS em ON
-    loan.cost_center = em.cost_centre_code
+FROM {{ ref('src_loans') }} AS loan
+INNER JOIN {{ ref('ref_legal_entity_mapping') }} AS em
+    ON loan.cost_center = em.cost_centre_code

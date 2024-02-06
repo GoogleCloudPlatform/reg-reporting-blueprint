@@ -100,20 +100,18 @@ SELECT
         NULL AS impaired_assets,
         NULL AS rwa
     ) AS regulatory_calcs
-FROM
-    {{ ref('stg_accounts') }} AS a
-LEFT OUTER JOIN
-    {{ ref('stg_products') }} AS p
+FROM {{ ref('stg_accounts') }} AS a
+LEFT OUTER JOIN {{ ref('stg_products') }} AS p
     ON (
         a.product_code = p.product_code
         AND a.product_subcode = p.product_subcode
     )
-LEFT OUTER JOIN
-    {{ ref('stg_securities') }} AS ps
+LEFT OUTER JOIN {{ ref('stg_securities') }} AS ps
     ON (
         ps.account_number = a.account_number
         AND ps.is_primary = TRUE
     )
-LEFT OUTER JOIN
-    {{ ref('eph_provisions_at_reporting_month') }} AS pr
-    ON pr.account_number = a.account_number
+LEFT OUTER JOIN {{ ref('eph_provisions_at_reporting_month') }} AS pr
+    ON (
+        pr.account_number = a.account_number
+    )

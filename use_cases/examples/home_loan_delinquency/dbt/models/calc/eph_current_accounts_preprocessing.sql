@@ -44,11 +44,8 @@ SELECT -- noqa: ST06
     COALESCE(ca_a.product_subcode IN ("01"), FALSE) AS npl_flag,
     ca_a.date_opened AS date_opened
 
-FROM
-    {{ ref('src_current_accounts_balances') }} AS ca_b INNER JOIN
-    {{ ref('src_current_accounts_attributes') }} AS ca_a
-    ON
-        ca_b.account_key = ca_a.account_key
-INNER JOIN
-    {{ ref('ref_legal_entity_mapping') }} AS em ON
-    ca_a.cost_center = em.cost_centre_code
+FROM {{ ref('src_current_accounts_balances') }} AS ca_b
+INNER JOIN {{ ref('src_current_accounts_attributes') }} AS ca_a
+    ON ca_b.account_key = ca_a.account_key
+INNER JOIN {{ ref('ref_legal_entity_mapping') }} AS em
+    ON ca_a.cost_center = em.cost_centre_code
