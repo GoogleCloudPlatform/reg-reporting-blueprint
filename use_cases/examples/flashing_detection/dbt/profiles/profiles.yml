@@ -18,7 +18,6 @@ config:
   printer_width: 100
   send_anonymous_usage_stats: false
 
-
 #
 # For development, it is suggested to copy this profile to $HOME/.dbt
 #

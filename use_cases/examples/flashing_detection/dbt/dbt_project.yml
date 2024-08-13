@@ -20,7 +20,7 @@ config-version: 2
 profile: 'regrep_profile'
 
 # These configurations specify where dbt should look for different types of files.
-# The `model-paths` config, for example, states that models in this project can be
+# The `source-paths` config, for example, states that models in this project can be
 # found in the "models/" directory. You probably won't need to change these!
 model-paths: ["models"]
 test-paths: ["tests"]
@@ -28,10 +28,10 @@ macro-paths: ["macros"]
 
 target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
-  - "target"
-  - "dbt_packages"
-  - "dbt_modules"
-  - "logs"
+    - "target"
+    - "dbt_packages"
+    - "dbt_modules"
+    - "logs"
 
 
 # Configuring models
@@ -45,15 +45,16 @@ models:
     # Add solutions label - PLEASE DO NOT REMOVE
     +labels:
       goog-packaged-solution: gcp-reg-reporting
-    # Create new flashing-specific dataset
-    +dataset: flashing
-    +materialized: table
     # Storing the failures for all the tests
     +store_failures: true  # all tests
+    # Create new flashing-specific dataset
+    +dataset: flashing
     # Config to store the columns descriptions in datacatalog
     +persist_docs:
       relation: true
       columns: true
+    # Folder specific specs
+    +materialized: table
 
 # Tracking DBT Performance
 on-run-start:

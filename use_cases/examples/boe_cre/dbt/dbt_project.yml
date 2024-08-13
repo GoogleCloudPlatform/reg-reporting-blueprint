@@ -30,8 +30,8 @@ target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
     - "target"
     - "dbt_packages"
-    - "logs"
     - "dbt_modules"
+    - "logs"
 
 
 # Configuring models
@@ -48,6 +48,7 @@ models:
     +persist_docs:
       relation: true
       columns: true
+    # Folder specific specs
     preprocess:
       materialized: ephemeral
     reports:

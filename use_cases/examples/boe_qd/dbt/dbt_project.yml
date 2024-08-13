@@ -25,11 +25,13 @@ profile: 'regrep_profile'
 model-paths: ["models"]
 test-paths: ["tests"]
 macro-paths: ["macros"]
+
 target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
     - "target"
-    - "dbt_modules"
     - "dbt_packages"
+    - "dbt_modules"
+    - "logs"
 
 # Configuring models
 models:
@@ -37,8 +39,15 @@ models:
     # Add solutions label - PLEASE DO NOT REMOVE
     +labels:
       goog-packaged-solution: gcp-reg-reporting
+    # Storing the failures for all the tests
+    +store_failures: true  # all tests
     # Create new qd-specific dataset
     +dataset: boe_qd
+    # Config to store the columns descriptions in datacatalog
+    +persist_docs:
+      relation: true
+      columns: true
+    # Folder specific specs
     preprocess:
       materialized: ephemeral
     reports:
