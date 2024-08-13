@@ -15,4 +15,8 @@
 
 terraform {
   required_version = "~> 1.2"
+
+  provider_meta "google" {
+    module_name = "cloud-solutions/reg-reporting-blueprint-deploy-v1"
+  }
 }
