@@ -96,3 +96,20 @@ module "bigquery" {
   # List of datasets to create
   for_each = toset(var.bq_datasets)
 }
+
+# Create Cloud Build service account
+# See https://github.com/terraform-google-modules/terraform-google-service-accounts
+module "composer_service_account" {
+  source  = "terraform-google-modules/service-accounts/google"
+  version = "4.3.0"
+
+  project_id = module.project_services.project_id
+  names = [
+    "builder"
+  ]
+  project_roles = [
+    "${module.project_services.project_id}=>roles/logging.logWriter",
+    "${module.project_services.project_id}=>roles/storage.objectUser",
+    "${module.project_services.project_id}=>roles/artifactregistry.writer",
+  ]
+}

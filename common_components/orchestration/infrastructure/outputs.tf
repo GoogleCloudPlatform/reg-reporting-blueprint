@@ -30,6 +30,10 @@ output "gcs_cloudbuild_source_staging_bucket" {
   value = module.gcs_buckets.names_list[1]
 }
 
+output "cloudbuild_service_account" {
+  value = module.composer_service_account.email
+}
+
 output "gcs_docs_bucket" {
   value = module.dbt_composer.docs_gcs_bucket
 }
