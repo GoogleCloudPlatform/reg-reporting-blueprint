@@ -38,7 +38,6 @@ SELECT
     a.product_subcode,
     a.cost_center,
     a.days_delinquent,
-    a.date_opened,
     CASE
         WHEN a.days_delinquent = 0 THEN '0'
         WHEN a.days_delinquent BETWEEN 1 AND 29 THEN '1-29'
@@ -54,7 +53,8 @@ SELECT
     CASE
         WHEN p.account_number IS NOT NULL THEN TRUE
         ELSE a.npl_flag
-    END AS npl_flag
+    END AS npl_flag,
+    a.date_opened
 
 FROM unioned_data AS a
 LEFT OUTER JOIN {{ ref('eph_provisions_at_reporting_month') }} AS p
