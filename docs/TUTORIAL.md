@@ -132,7 +132,16 @@ In the Google Cloud console, activate Cloud Shell.
     cd common_components && ./setup_script.sh
     ```
 
+1.  Enable the Service Usage API and Resource Manager API:
+
+    ```
+    gcloud services enable serviceusage.googleapis.com cloudresourcemanager.googleapis.com
+    ```
+
 1.  Run terraform to create the required infrastructure:
+
+    NOTE: The APIs in the previous step sometimes take a while to enable, so it may not
+    work the first few times.
 
     ```
     cd orchestration/infrastructure/

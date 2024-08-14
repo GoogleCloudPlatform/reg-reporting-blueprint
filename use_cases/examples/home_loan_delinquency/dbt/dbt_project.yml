@@ -19,6 +19,13 @@ config-version: 2
 # This setting configures which "profile" dbt uses for this project.
 profile: 'regrep_profile'
 
+# Runtime flags
+flags:
+  partial_parse: false
+  use_colors: true
+  printer_width: 100
+  send_anonymous_usage_stats: false
+
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
 # found in the "models/" directory. You probably won't need to change these!
