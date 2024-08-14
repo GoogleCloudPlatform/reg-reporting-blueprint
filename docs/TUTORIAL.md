@@ -359,6 +359,16 @@ In this section, you explore the contents of the repository's `data` and
     echo $AIRFLOW_UI
     ```
 
+## Optional: Setup the Operations Dashboard
+
+1.   From the root of the repository find out the Looker Studio template dashboard URL:
+
+     ```
+     echo "Operations Dashboard: $(cd common_components/orchestration/infrastructure; terraform output --raw lookerstudio_operations_dashboard_url)"
+     ```
+
+     Click on the URL in the terminal and investigate the dashboard. Edit and share if you want to keep and evolve the dashboard.
+
 ## Optional: Repeat for all the use cases
 
 1.   Use a shell that has the environment variables set. Ensure that
