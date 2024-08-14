@@ -30,14 +30,14 @@ sources:
           - &col_booking_entity
             name: booking_entity
             description: 'Booking entity'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - &col_legal_entity
             name: legal_entity
             description: 'Legal entity'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
@@ -47,7 +47,7 @@ sources:
           - &col_within_policy_or_exception
             name: within_policy_or_exception
             description: 'Within policy or exception'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
@@ -56,7 +56,7 @@ sources:
           - &col_transaction_type
             name: transaction_type
             description: 'Transaction Type'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
@@ -65,7 +65,7 @@ sources:
           - &col_if_cre_development_type_of_development
             name: if_cre_development_type_of_development
             description: 'If CRE development, type of development'
-            tests:
+            data_tests:
               - not_null:
                   where: "transaction_type = 'CRE Development'"
                   config:
@@ -75,7 +75,7 @@ sources:
           - &col_deal_type
             name: deal_type
             description: 'Deal Type'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['New client', 'Existing client, new transaction', 'Existing client, refinance of existing transaction']
           - &col_limit_value
@@ -85,7 +85,7 @@ sources:
               The original/total amount of committed lending (i.e. drawn and undrawn commitments) against a 
               specific property or portfolios of properties. 
               In the case of club deals or syndications, please provide only your share of the wider loan.
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
@@ -96,34 +96,34 @@ sources:
               The amount kept on balance sheet after any parts of it were distributed. 
               Please insert the original amount kept on balance sheet (£ limit), not what is currently 
               outstanding.
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - &col_main_receiver_of_distributed_loan
             name: main_receiver_of_distributed_loan
             description: 'Main receiver of distributed loan'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['UK bank', 'Non-UK bank', 'UK insurer', 'Non-UK insurer', 'UK pension fund', 'Non-UK pension fund', 'Credit fund']
           - &col_drawdown_date
             name: drawdown_date
             description: 'Drawdown Date'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - &col_maturity_date
             name: maturity_date
             description: 'Maturity Date'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - &col_sub_property_sector
             name: sub_property_sector
             description: 'Sub-Property Sector'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
@@ -132,7 +132,7 @@ sources:
           - &col_region
             name: region
             description: 'Region'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
@@ -141,7 +141,7 @@ sources:
           - &col_property_quality
             name: property_quality
             description: 'Property quality'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: warn
@@ -153,7 +153,7 @@ sources:
               LTV at origination (%). 
               The LTV reported for all individual loans should refer to the total amount of the loan(s) against the value of the property. 
               For loans with multiple tranches where some tranches distributed and others kept on balance sheet, please provide the LTV for the whole loan, including all distributed tranches.
-            tests:
+            data_tests:
               - not_null:
                   where: "transaction_type = 'CRE Investment'"
                   config:
@@ -161,7 +161,7 @@ sources:
           - &col_indexed_ltv
             name: indexed_ltv
             description: 'Indexed LTV (%)'
-            tests:
+            data_tests:
               - not_null:
                   where: "transaction_type = 'CRE Investment'"
                   config:
@@ -171,7 +171,7 @@ sources:
             description: >
               LTeV (%). 
               Loan to End Value (loan to value of the completed property) for whole loan, including all distributed tranches.
-            tests:
+            data_tests:
               - not_null:
                   where: "transaction_type = 'CRE Development'"
                   config:
@@ -181,7 +181,7 @@ sources:
             description: >
               LTC (%). 
               Loan to Cost (loan to cost of developing the property) for whole loan, including all distributed tranches.
-            tests:
+            data_tests:
               - not_null:
                   where: "transaction_type = 'CRE Development'"
                   config:
@@ -197,7 +197,7 @@ sources:
               For special cases provide the following: 
                 guarantees: use passing rent to calculate ratio, 
                 vacant properties: set to 0.
-            tests:
+            data_tests:
               - not_null:
                   where: "transaction_type = 'CRE Investment'"
                   config:
@@ -210,7 +210,7 @@ sources:
                 Similarly for special cases provide the following: 
                   -guarantees: use passing rent to calculate ratio, 
                   -vacant properties: set to 0.
-            tests:
+            data_tests:
               - not_null:
                   where: "transaction_type = 'CRE Investment'"
                   config:
@@ -218,21 +218,21 @@ sources:
           - &col_margin
             name: margin
             description: 'Margin (%)'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - &col_fees
             name: fees
             description: 'Fees (%)'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: warn
           - &col_interest_basis
             name: interest_basis
             description: 'Interest Basis'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: warn
@@ -241,7 +241,7 @@ sources:
           - &col_pct_of_limit_hedge
             name: pct_of_limit_hedge
             description: '% of Limit Hedge'
-            tests:
+            data_tests:
               - not_null:
                   where: "interest_basis = 'Partially fixed rate or with interest rate protection'"
                   config:
@@ -252,7 +252,7 @@ sources:
           - &col_security
             name: security
             description: 'Security'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['First charge', 'Second charge', 'Unsecured']
           - &col_total_limit_on_transaction_including_other_lenders_debt_if_known
@@ -260,7 +260,7 @@ sources:
             description: >
               Total limit on transaction including other lenders debt if known (£m). 
               The total amount of committed lending against a specific property or portfolio of properties: all parts of a loan (for syndications and club deals), and including mezzanine and junior loans where there are any.
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
@@ -274,14 +274,14 @@ sources:
                 residential assured shorthold tenancies: 12 months, 
                 student accommodation: 6 months, 
                 vacant properties or guarantees: 0 months.
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - &col_average_tenant_credit_quality
             name: average_tenant_credit_quality
             description: 'Average tenant credit quality'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['Sovereign', 'Investment grade', 'Sub-investment grade', 'Individuals/Sole traders']
           - &col_projected_value_of_loan_at_maturity
@@ -290,7 +290,7 @@ sources:
               Projected value of loan at maturity (£m).
               The projected value of the loan when it matures as per the agreed amortisation schedule. 
               For club deals and syndications, please fill in with relation to your share of the wider loan, i.e. this should relate to "limit" variable, not the "total limit" provided by the club or syndicate.
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: warn
@@ -303,7 +303,7 @@ sources:
           - &col_ongoing_covenants
             name: ongoing_covenants
             description: 'Ongoing covenants'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['Running LTV and ICR/DSR covenants', 'Running LTV covenant', 'Running ICR/DSR covenant', 'Running LTC/LTeV covenant', 'No running covenants', 'Other (please state in "any other brief comments" variable)']
           - &col_name_of_borrower
@@ -319,13 +319,13 @@ sources:
           - &col_sponsor_quality
             name: sponsor_quality
             description: 'Sponsor quality'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['Strong. Project is highly strategic for the sponsor (core business - long-term strategy)', 'Good. Project is strategic for the sponsor (core business - long-term strategy)', 'Acceptable. Project is considered important for the sponsor (core business)', 'Limited. Project is not key to sponsors long-term strategy or core business']
           - &col_policy_exceptions
             name: policy_exceptions
             description: 'Policy Exceptions'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['Higher LTV (inv and land bank only)', 'Equity in pari-passu or last (dev only)', 'Higher LTC and/or LTeV (dev only)', 'Higher Residual Value percentage (inv only)', 'Lower ICR (inv only)', 'Lower risk reward return (all)', 'Weaker repayment structure (all)', 'Weaker planning requirement (land bank only)', 'Weaker interest payment basis (land bank only)', 'Weaker lending basis, i.e. LTV instead of LTC (land bank only)', 'Weaker pre-let requirement (dev only)', 'No hedging when hedging is mandatory (all)']
           - &col_brief_reason_for_policy_exception
@@ -334,13 +334,13 @@ sources:
           - &col_basel_approach
             name: basel_approach
             description: 'Basel approach'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['F-IRB', 'A-IRB', 'IRB Slotting', 'Standardised']
           - &col_credit_rating_scale_name
             name: credit_rating_scale_name
             description: 'Credit rating scale name'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
@@ -349,7 +349,7 @@ sources:
           - &col_internal_credit_rating
             name: internal_credit_rating
             description: 'Internal credit rating'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
@@ -358,7 +358,7 @@ sources:
           - &col_internal_credit_rating_at_origination
             name: internal_credit_rating_at_origination
             description: 'Internal credit rating at origination'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: warn
@@ -377,7 +377,7 @@ sources:
           - &col_provisions
             name: provisions
             description: 'Provisions (£m)'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error

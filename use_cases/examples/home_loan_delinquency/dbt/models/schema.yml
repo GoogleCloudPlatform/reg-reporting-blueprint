@@ -63,7 +63,7 @@ sources:
         columns:
         - name: account_key
           description: The unique key of the account
-          tests:
+          data_tests:
             - unique
             - not_null
             - relationships:
@@ -73,14 +73,14 @@ sources:
           description: The status of the account, either Open or Closed
         - name: product_code
           description: The product code, external reference to the products reference data
-          tests:
+          data_tests:
             - not_null
             - relationships:
                 to: ref('ref_products')
                 field: product_code
         - name: product_subcode
           description: The product sub-code, external reference to the products reference data
-          tests:
+          data_tests:
             - not_null
             - relationships:
                 to: ref('ref_products')
@@ -198,20 +198,20 @@ models:
     name: src_current_accounts_attributes
     columns:
       - name: account_key
-        tests:
+        data_tests:
           - unique
           - not_null
           - relationships:
               to: ref('src_current_accounts_balances')
               field: account_key
       - name: product_code
-        tests:
+        data_tests:
           - not_null
           - relationships:
               to: ref('ref_products')
               field: product_code
       - name: product_subcode
-        tests:
+        data_tests:
           - not_null
           - relationships:
               to: ref('ref_products')
@@ -220,7 +220,7 @@ models:
   - name: src_current_accounts_balances
     columns:
       - name: account_key
-        tests:
+        data_tests:
           - unique
           - not_null
           - relationships:
@@ -230,19 +230,19 @@ models:
   - name: src_loans
     columns:
       - name: cost_center
-        tests:
+        data_tests:
           - not_null
           - relationships:
               to: ref('ref_legal_entity_mapping')
               field: cost_centre_code
       - name: product_code
-        tests:
+        data_tests:
           - not_null
           - relationships:
               to: ref('ref_products')
               field: product_code
       - name: product_subcode
-        tests:
+        data_tests:
           - not_null
           - relationships:
               to: ref('ref_products')
@@ -250,20 +250,20 @@ models:
 
   - name: src_link_securities_accounts
     description: Links accounts to the security for the loan
-    tests:
+    data_tests:
       - unique:
           column_name: "(account_number) || '-' || (sec_number)"
     columns:
       - name: account_number
         description: The key of the account
-        tests:
+        data_tests:
           - not_null
           - relationships:
               to: ref('src_loans')
               field: loan_number
       - name: sec_number
         description: The key of the security
-        tests:
+        data_tests:
           - not_null
           - relationships:
               to: ref('src_securities')
@@ -273,7 +273,7 @@ models:
     description: Source data containing the provisions information
     columns:
       - name: account_key
-        tests:
+        data_tests:
           - not_null
           - relationships:
               to: ref('src_loans')
@@ -282,14 +282,14 @@ models:
   - name: src_securities
     columns:
     - name: sec_number
-      tests:
+      data_tests:
         - not_null
         - relationships:
             to: ref('src_link_securities_accounts')
             field: sec_number
     - name: property_post_code
       description: The post code where the security is located
-      tests:
+      data_tests:
         - not_null
         - relationships:
             to: ref('ref_region_codes')
@@ -312,7 +312,7 @@ models:
 
   - name: stg_accounts
     description: A table containing all the accounts across the portfolio. Includes Current Accounts and Loans
-    tests:
+    data_tests:
       - unique:
           column_name: "account_number"
       - not_null:
@@ -366,7 +366,7 @@ models:
 
   - name: stg_products
     description: Product reference data
-    tests:
+    data_tests:
       - unique:
           column_name: "product_id"
       - not_null:
@@ -390,7 +390,7 @@ models:
 
   - name: stg_provisions
     description: Provisions against accounts
-    tests:
+    data_tests:
       - unique:
           column_name: "(account_number || '-' || period)"
       - relationships:
@@ -414,7 +414,7 @@ models:
 
   - name: stg_securities
     description: Security (collateral) details (broadly split between property security and other)
-    tests:
+    data_tests:
       - unique:
           column_name: "(sec_number || '-' || account_number || '-' || security_rank)"
       - not_null:
