@@ -69,7 +69,6 @@ cat terraform.tfvars.template | sed \
   -e s/ENV_ID/$ENV_ID/g \
   -e s/REGION/$REGION/g \
   -e s/GCS_LOCATION/$GCS_LOCATION/g \
-  -e s/GCR_HOSTNAME/$GCR_HOSTNAME/g \
   -e s/PROJECT_NUMBER/$PROJECT_NUMBER/g \
   -e s/BQ_LOCATION/$BQ_LOCATION/g \
   > terraform.tfvars

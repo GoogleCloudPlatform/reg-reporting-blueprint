@@ -1,0 +1,5 @@
+
+# Ignore SQL files in the generated folders
+target/
+dbt_packages/
+macros/

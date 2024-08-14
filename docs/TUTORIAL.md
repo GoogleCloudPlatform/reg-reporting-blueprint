@@ -1,4 +1,4 @@
-# Standing Up a Cloud-Native Regulatory Reporting Architecture  with BigQuery
+# Standing Up a Cloud-Native Regulatory Reporting Architecture with BigQuery
 
 ## Table of contents
 - [Introduction](#introduction)
@@ -132,7 +132,16 @@ In the Google Cloud console, activate Cloud Shell.
     cd common_components && ./setup_script.sh
     ```
 
+1.  Enable the Service Usage API and Resource Manager API:
+
+    ```
+    gcloud services enable serviceusage.googleapis.com cloudresourcemanager.googleapis.com
+    ```
+
 1.  Run terraform to create the required infrastructure:
+
+    NOTE: The APIs in the previous step sometimes take a while to enable, so it may not
+    work the first few times.
 
     ```
     cd orchestration/infrastructure/
@@ -313,14 +322,16 @@ In this section, you explore the contents of the repository's `data` and
 
 ## Optional: Containerize the transformations
 
-1.  In Cloud Shell, create containers for data load and DBT and push the container to Google
-    Container Repository:
+1.  In Cloud Shell, create containers for data load and DBT and push the container to 
+    Artifact Repository:
 
     ```
     cd ../../../../  # the gcloud command should be executed from the root 
     gcloud builds submit \
       --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml \
-      --substitutions=_GCS_DOCS_BUCKET=${GCS_DOCS_BUCKET},_GCR_HOSTNAME=${GCR_HOSTNAME}
+      --substitutions "_SOURCE_URL=${SOURCE_URL},_REGISTRY_URL=${REGISTRY_URL},COMMIT_SHA=main" \
+      --service-account projects/${PROJECT_ID}/serviceAccounts/builder@${PROJECT_ID}.iam.gserviceaccount.com \
+      --gcs-source-staging-dir gs://${PROJECT_ID}-cloudbuild-source-staging-bucket/source
     ```
     The Dockerfile in the `dbt` and `data_load` directories enables containerization, which
     simplifies orchestration of the workflow.
@@ -348,6 +359,16 @@ In this section, you explore the contents of the repository's `data` and
     echo $AIRFLOW_UI
     ```
 
+## Optional: Setup the Operations Dashboard
+
+1.   From the root of the repository find out the Looker Studio template dashboard URL:
+
+     ```
+     echo "Operations Dashboard: $(cd common_components/orchestration/infrastructure; terraform output --raw lookerstudio_operations_dashboard_url)"
+     ```
+
+     Click on the URL in the terminal and investigate the dashboard. Edit and share if you want to keep and evolve the dashboard.
+
 ## Optional: Repeat for all the use cases
 
 1.   Use a shell that has the environment variables set. Ensure that
@@ -361,7 +382,9 @@ In this section, you explore the contents of the repository's `data` and
      for build in use_cases/examples/*/cloudbuild.yaml ; do
         gcloud builds submit \
           --config $build \
-          --substitutions=_GCS_DOCS_BUCKET=${GCS_DOCS_BUCKET},_GCR_HOSTNAME=${GCR_HOSTNAME}
+          --substitutions "_SOURCE_URL=${SOURCE_URL},_REGISTRY_URL=${REGISTRY_URL},COMMIT_SHA=main" \
+          --service-account projects/${PROJECT_ID}/serviceAccounts/builder@${PROJECT_ID}.iam.gserviceaccount.com \
+          --gcs-source-staging-dir gs://${PROJECT_ID}-cloudbuild-source-staging-bucket/source
      done
      ```
 

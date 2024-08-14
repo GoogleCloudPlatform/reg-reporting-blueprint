@@ -18,14 +18,14 @@
 -- This model performs the securities preprocessing.
 
 SELECT
-    SEC_NUMBER               AS sec_number,
-    PROPERTY_STATE           AS property_state,
-    PROPERTY_TYPE            AS property_type,
-    VALUATION_DATE           AS valuation_date,
-    SECURITY_VALUE           AS security_value,
-    CONTRACT_OF_SALE_DATE    AS contract_of_sale_date,
-    SEC_TYPE                 AS security_type,
-    STATUS                   AS security_status,
-    PROPERTY_POST_CODE       AS property_post_code
+    sec_number,
+    property_state,
+    property_type,
+    valuation_date,
+    security_value,
+    contract_of_sale_date,
+    sec_type AS security_type,
+    status AS security_status,
+    property_post_code
 FROM
-    {{ref('src_securities')}}
+    {{ ref('src_securities') }}

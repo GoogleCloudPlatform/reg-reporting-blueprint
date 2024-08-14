@@ -27,10 +27,6 @@ variable "bq_location" {
   description = "The BQ location where the datasets will be created"
 }
 
-variable "gcr_hostname" {
-  description = "The GCR hostname that determines the location where the image is stored"
-}
-
 variable "bq_datasets" {
   description = "The BQ datasets to create"
 }
@@ -39,10 +35,4 @@ variable "src_url" {
   description = "Source URL for dbt_dashboard (embedded into dashboards)"
   default     = "https://github.com/GoogleCloudPlatform/reg-reporting-blueprint/tree"
 }
-
-variable "enable_composer" {
-  description = "Whether to build composer environment or not"
-  default     = true
-}
-
 

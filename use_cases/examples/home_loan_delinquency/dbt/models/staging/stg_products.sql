@@ -19,12 +19,12 @@
 -- To inspect the definition of the fields, generate the DBT documentation
 
 SELECT DISTINCT
-    PRODUCT_ID      as product_id,
-    PRODUCT_CODE    as product_code,
-    PRODUCT_SUBCODE as product_subcode,
-    DESCRIPTION     as description,
-    ACTIVE_FLAG     as active_flag
+    product_id,
+    product_code,
+    product_subcode,
+    description,
+    active_flag
 FROM
-    {{ ref('ref_products')}}
+    {{ ref('ref_products') }}
 WHERE
-    Active_Flag is true
+    active_flag IS true

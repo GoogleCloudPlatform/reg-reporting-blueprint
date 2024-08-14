@@ -16,11 +16,12 @@
 -- Source data containing the linkage between securities and accounts
 --
 -- This query selects data from the src_link_securities_accounts source,
--- which contains linkages between securities and accounts which have been artificially manufactured.
--- To inspect the definition of the fields, generate the DBT documentation
+-- which contains linkages between securities and accounts which have
+-- been artificially manufactured. To inspect the definition of the fields,
+-- generate the DBT documentation
 
 SELECT
-    SEC_NUMBER,
-    ACCOUNT_NUMBER
+    sec_number,
+    account_number
 FROM
-    {{ source('sample_data', 'src_link_securities_accounts')}}
+    {{ source('sample_data', 'src_link_securities_accounts') }}

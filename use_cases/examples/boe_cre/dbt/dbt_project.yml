@@ -19,6 +19,13 @@ config-version: 2
 # This setting configures which "profile" dbt uses for this project.
 profile: 'regrep_profile'
 
+# Runtime flags
+flags:
+  partial_parse: false
+  use_colors: true
+  printer_width: 100
+  send_anonymous_usage_stats: false
+
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
 # found in the "models/" directory. You probably won't need to change these!
@@ -30,8 +37,8 @@ target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
     - "target"
     - "dbt_packages"
-    - "logs"
     - "dbt_modules"
+    - "logs"
 
 
 # Configuring models
@@ -48,15 +55,22 @@ models:
     +persist_docs:
       relation: true
       columns: true
+    # Folder specific specs
     preprocess:
       materialized: ephemeral
     reports:
       materialized: table
+    # Config to store the columns descriptions in datacatalog
+    +persist_docs:
+      relation: true
+      columns: true
 
 # Tracking DBT Performance
 on-run-start:
-  - "{{ dbt_log.create_dbt_log(target) }}"
-  - "{{ dbt_log.insert_dbt_log(target, 'START', dbt_log.graph_to_json(target, graph)) }}"
-
-on-run-end:
-  - "{{ dbt_log.insert_dbt_log(target, 'END', dbt_log.results_to_json(results)) }}"
+  - >
+      /* DBT {
+      "project": "{{ project_name }}",
+      "env": {{ tojson(dbt_metadata_envs|default({})) }},
+      "args":  {{ tojson(invocation_args_dict|default({})) }}
+      } */
+      SELECT 1
