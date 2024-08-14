@@ -35,5 +35,5 @@ variable "src_url" {
 
 variable "monitoring_dataset" {
   description = "The dataset name for monitoring dbt_log"
-  default = "monitoring"
+  default     = "monitoring"
 }
