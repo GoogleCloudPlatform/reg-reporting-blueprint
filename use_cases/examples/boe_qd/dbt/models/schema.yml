@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: input_data
-    database: "{{ var('source_project_id', env_var('SOURCE_PROJECT_ID', env_var('PROJECT_ID'))) }}"
+    database: "{{ var('source_project_id', env_var('SOURCE_PROJECT_ID', target.database)) }}"
     schema: "{{ var('source_dataset_id', env_var('SOURCE_DATASET_ID', 'regrep_source')) }}"
     tables:
       - &cds_deal_level_granular
@@ -12,19 +12,19 @@ sources:
         columns:
           - name: trade_date
             description: 'Trade Date'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - name: sched_term_date
             description: 'Contract Scheduled Termination Date'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - name: buyer_party_reference
             description: 'Reference to Buyer Party'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['party_1_id', 'party_2_id']
               - not_null:
@@ -32,7 +32,7 @@ sources:
                     severity: error
           - name: seller_party_reference
             description: 'Reference to Seller Party'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['party_1_id', 'party_2_id']
               - not_null:
@@ -44,7 +44,7 @@ sources:
             description: 'Trade Id of Party 2'
           - name: index_name
             description: 'Name of Reference Index'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['CDX-EMS36V1', 'CDX-NAHYS37V1', 'CDX-NAIGS37V1', 'CDX-NAHYS37V1', 'CDX-NAIGS37V1', 'ITRAXX-ASIAXJIGRESS34V1', 'ITRAXX-ASIAXJIGS36V1', 'ITRAXX-AUSTRALIAS36V1', 'ITRAXX-EUROPES36V1', 'ITRAXX-EUROPES36V1', 'ITRAXX-EUROPES36V1', 'ITRAXX-FINSENS36V1','ITRAXX-FINSUBS36V1', 'ITRAXX-XOVERS36V1']
               - not_null:
@@ -52,7 +52,7 @@ sources:
                     severity: error
           - name: index_series
             description: 'Series of Reference Index'
-            tests:
+            data_tests:
               - accepted_values:
                     values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
                     quote: false
@@ -61,7 +61,7 @@ sources:
                     severity: error
           - name: index_annex_version
             description: 'Series of Reference Index'
-            tests:
+            data_tests:
               - accepted_values:
                     values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
                     quote: false
@@ -70,7 +70,7 @@ sources:
                     severity: error
           - name: payer_party_reference
             description: 'Reference to the party paying the upfront fee'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['party_1_id', 'party_2_id']
               - not_null:
@@ -78,7 +78,7 @@ sources:
                     severity: error
           - name: receiver_party_reference
             description: 'Reference to the party receiving the upfront fee'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['party_1_id', 'party_2_id']
               - not_null:
@@ -86,7 +86,7 @@ sources:
                     severity: error
           - name: fee_currency
             description: 'Currency of the CDS new trade upfront fee'
-            tests:
+            data_tests:
               - accepted_values:
                     values: ['USD','EUR']
               - not_null:
@@ -94,13 +94,13 @@ sources:
                     severity: error
           - name: fee_amount
             description: 'Amount of the CDS new trade upfront fee'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - name: notional_currency
             description: 'Currency of the CDS contract notional protection amount'
-            tests:
+            data_tests:
               - accepted_values:
                   values: ['USD', 'EUR']
               - not_null:
@@ -108,13 +108,13 @@ sources:
                     severity: error
           - name: notional_amount
             description: 'CDS contracts notional protection amount'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - name: master_confirmation_type
             description: "Transaction type of ISDA docs specifying this contract's terms"
-            tests:
+            data_tests:
               - accepted_values:
                   values: ['CDX.EmergingMarkets', 'CDX.NorthAmericanHighYield', 'CDX.NorthAmericanEmergingMarkets', 'iTraxxAsiaExJapan', 'iTraxxAsiaExJapan', 'iTraxxAustralia', 'iTraxxEurope', 'iTraxxFinancials', 'iTraxxCrossover']
               - not_null:
@@ -122,30 +122,30 @@ sources:
                     severity: error
           - name: master_confirmation_date
             description: 'For this pair of parties, signing date of ISDA docs governing contracts of this type'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - name: party_1_id
             description: 'ID of first party'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - name: party_1_name
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - name: party_2_id
             description: 'ID of second party'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error
           - name: party_2_name
             description: 'Name of second party'
-            tests:
+            data_tests:
               - not_null:
                   config:
                     severity: error

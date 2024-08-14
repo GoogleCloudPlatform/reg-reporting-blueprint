@@ -19,12 +19,11 @@
 -- To inspect the definition of the fields, generate the DBT documentation
 
 SELECT DISTINCT
-    PERIOD                   AS period,
-    ACCOUNT_KEY              AS account_number,
-    CASE_REFERENCE           AS case_reference,
-    REASON                   AS reason,
-    PROVISION_AMOUNT         AS provision_amount
+    period,
+    account_key AS account_number,
+    case_reference,
+    reason,
+    provision_amount
 
 FROM
-    {{ref('src_provisions')}} provisions
-
+    {{ ref('src_provisions') }}

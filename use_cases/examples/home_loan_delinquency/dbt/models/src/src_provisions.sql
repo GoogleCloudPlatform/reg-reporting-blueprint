@@ -16,14 +16,15 @@
 -- Source data containing the provisions information
 --
 -- This query selects the relevant fields from the src_provisions source,
--- which contains provision information which has been artificially manufactured.
--- To inspect the definition of the fields, generate the DBT documentation
+-- which contains provision information which has been artificially
+-- manufactured. To inspect the definition of the fields, generate the
+-- DBT documentation
 
 SELECT
-    PERIOD,
-    ACCOUNT_KEY,
-    CASE_REFERENCE,
-    REASON,
-    PROVISION_AMOUNT
+    period,
+    account_key,
+    case_reference,
+    reason,
+    provision_amount
 FROM
-    {{ source('sample_data', 'src_provisions')}}
+    {{ source('sample_data', 'src_provisions') }}

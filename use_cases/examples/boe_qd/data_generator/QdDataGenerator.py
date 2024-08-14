@@ -530,9 +530,9 @@ class QdDataGenerator:
               {"faker": us_fake, "func": us_fake.state},
               {"faker": de_fake, "func": de_fake.state},
               {"faker": es_fake, "func": es_fake.administrative_unit},
-              {"faker": ch_fake, "func": ch_fake.canton},
+              {"faker": ch_fake, "func": lambda: ch_fake.canton()[1]},
               {"faker": ca_fake, "func": ca_fake.province},
-              {"faker": fr_fake, "func": fr_fake.department},
+              {"faker": fr_fake, "func": lambda: fr_fake.department()[1]},
               {"faker": nl_fake, "func": nl_fake.administrative_unit}]
     ctry_prob = [.35, .35, .05,
                  .05, .05, .05, .05, .05]
@@ -582,17 +582,16 @@ class QdDataGenerator:
                      "Entity_LegalAddress_Country"]
       dstn_rec_a["Entity_LegalForm_"
                  "EntityLegalFormCode"] = fake.bothify("#??#")
+      initial_renewal_date = fake.date_between(
+          start_date="-2d", end_date="today")
       dstn_rec_a["Registration_"
-                 "InitialRegistrationDate"] = fake.date_between(
-                     start_date="-2y", end_date="today")
+                 "InitialRegistrationDate"] = str(initial_renewal_date)
+      next_renewal_date = fake.date_between(start_date="+7d", end_date="+2y")
       dstn_rec_a["Registration_"
-                 "NextRenewalDate"] = fake.date_between(
-                     start_date="+7d", end_date="+2y")
-      dstn_rec_a["Registration_"
-                 "LastUpdateDate"] = fake.date_between(start_date=dstn_rec_a[
-                     "Registration_"
-                     "InitialRegistrationDate"], end_date=dstn_rec_a[
-                         "Registration_NextRenewalDate"])
+                 "NextRenewalDate"] = str(next_renewal_date)
+      dstn_rec_a["Registration_LastUpdateDate"] = str(fake.date_between(
+          start_date=initial_renewal_date,
+          end_date=next_renewal_date))
 
       dstn_rec_b = dstn_data[i+1]
       dstn_rec_b = dstn_rec_a.copy()
@@ -815,17 +814,7 @@ class QdDataGenerator:
     Returns:
       None
     """
-    
-    # Construct a load job
-    job_config = bigquery.LoadJobConfig(
-        source_format=bigquery.SourceFormat.CSV,
-        skip_leading_rows=1,
-        autodetect=True
-    )
 
-    # In-memory buffer for data to be uploaded
-    memory_buffer = StringIO()
-    
     # Create data
     data_rows = []
     for xml_tree in tqdm.tqdm(xml_trees, "Flattening data"):
@@ -837,28 +826,16 @@ class QdDataGenerator:
         d[field_name] = val.strip(" \t\n")
       data_rows.append(d.copy())
     # TODO(matait@): Add dupe/reporting counterparty
-    
-    # Initialize CSV writer
-    field_names = list(data_rows[0].keys())
-    dict_writer = csv.DictWriter(memory_buffer, field_names)
-    dict_writer.writeheader()
-    dict_writer.writerows(data_rows)
-    
+
     # Load into BigQuery
     print(f"{table_id}: Loading data into BigQuery")
-    job = client.load_table_from_file(memory_buffer, table_id,
-                                      job_config=job_config, rewind=True)
+    job = client.load_table_from_json(data_rows, table_id)
 
     job.result()  # Waits for the job to complete.
 
     # Gather statistics of target table
     table = client.get_table(table_id)
     print(f"{table_id}: There are {table.num_rows} rows and " + f"{len(table.schema)} columns")
-    
-    #with open(output_file_path, "w") as fw:
-    #  dict_writer = csv.DictWriter(fw, fieldnames=data_rows[0].keys())
-    #  dict_writer.writeheader()
-    #  dict_writer.writerows(data_rows)
 
   def write_lei_recs_to_bq(self, lei_recs, client, table_id):
     """
@@ -872,37 +849,15 @@ class QdDataGenerator:
       None
     """
 
-    # Construct a load job
-    job_config = bigquery.LoadJobConfig(
-        source_format=bigquery.SourceFormat.CSV,
-        skip_leading_rows=1,
-        autodetect=True
-    )
-
-    # In-memory buffer for data to be uploaded
-    memory_buffer = StringIO()
-
-    # Initialize CSV writer
-    field_names = lei_recs[0].keys()
-    dict_writer = csv.DictWriter(memory_buffer, field_names)
-    dict_writer.writeheader()
-    dict_writer.writerows(lei_recs)
-    
     # Load into BigQuery
     print(f"{table_id}: Loading data into BigQuery")
-    job = client.load_table_from_file(memory_buffer, table_id,
-                                      job_config=job_config, rewind=True)
+    job = client.load_table_from_json(lei_recs, table_id)
 
     job.result()  # Waits for the job to complete.
 
     # Gather statistics of target table
     table = client.get_table(table_id)
     print(f"{table_id}: There are {table.num_rows} rows and " + f"{len(table.schema)} columns")
-
-    # with open(output_file_path, "w") as fw:
-    #   dict_writer = csv.DictWriter(fw, fieldnames=lei_recs[0].keys())
-    #   dict_writer.writeheader()
-    #   dict_writer.writerows(lei_recs)
 
   def write_fpml(self, xml_docs, output_file_path="qd_fpml_output/"):
     """Saves each randomized FpML tree into a separate XML file.

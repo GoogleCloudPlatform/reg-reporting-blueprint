@@ -1,0 +1,33 @@
+# Copyright 2024 The Reg Reporting Blueprint Authors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# 
+#     https://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# Enable the Jinja templater for SQLFluff
+#
+# See https://docs.sqlfluff.com/en/stable/configuration.html#jinja-templater
+[sqlfluff:templater:jinja]
+apply_dbt_builtins = True
+
+# Add a few macros used within the project
+#
+# These are simplified to support linting
+[sqlfluff:templater:jinja:macros]
+env_var = {% macro env_var(var, dftl) %}{{ dftl }}{% endmacro %}
+get_reporting_month  = {% macro get_reporting_month(value) %}202101{% endmacro %}
+
+# Add a few variables
+#
+# These are simplified to support linting
+[sqlfluff:templater:jinja:context]
+run_started_at = '2017-04-21 01:23:45.678'
+database = 'google-cloud-project'

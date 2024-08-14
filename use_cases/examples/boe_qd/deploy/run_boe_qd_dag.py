@@ -1,4 +1,4 @@
-# Copyright 2022 The Reg Reporting Blueprint Authors
+# Copyright 2023 The Reg Reporting Blueprint Authors
 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,11 +15,12 @@
 # Composer DAG to excute the BoE Quarterly Derivatives workflow
 
 import datetime
-import json
 
-from airflow import models
 from airflow.models import Variable
-from airflow.models.param import Param
+
+from dag_utils.tools import DBTComposerPodOperator, ComposerPodOperator
+from airflow.models import Param
+from airflow.decorators import dag
 
 
 # Project and region for the repository
@@ -27,111 +28,43 @@ PROJECT_ID = Variable.get("PROJECT_ID")
 REGION = Variable.get("REGION")
 
 # GCS Ingest Bucket
-GCS_INGEST_BUCKET = Variable.get("GCS_INGEST_BUCKET")
-
-# Environment name is used for the namespace and service account
-ENV_NAME = Variable.get("ENV_NAME")
+GCS_INGEST_BUCKET = Variable.get("INGEST_BUCKET")
 
 # BigQuery location
 BQ_LOCATION = Variable.get("BQ_LOCATION")
 
-# GCR hostname
-GCR_HOSTNAME = Variable.get("GCR_HOSTNAME")
-
-# Inferred repository
-REPO = f'{GCR_HOSTNAME}/{PROJECT_ID}'  # if using container registry
-
 # Tag to run (default is latest if not set)
 TAG = Variable.get("tag", default_var="latest")
 
-
-#
-# Simplified version based on the following -
-# https://github.com/GoogleCloudPlatform/professional-services/blob/main/examples/dbt-on-cloud-composer/basic/dag/dbt_with_kubernetes.py
-#
-def containerised_job(name, image_name,
-                      arguments=[], tag=TAG,
-                      env_vars={}, repo=REPO):
-    """
-    Returns a KubernetesPodOperator, which can execute a containerised step
-    :param name: the name of the containerised step
-    :param image_name: the name of the image to use
-    :param arguments: arguments required by the job
-    :param tag: the tag of the image to use
-    :param env_vars: environment variables for the job
-    :param repo: fully qualified path to the repo (optional, and defaulted
-                 to f'{GCR_HOSTNAME}/{PROJECT_ID}'
-    :return: the KubernetesPodOperator which executes the containerised step
-    """
-
-    from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import (
-        KubernetesPodOperator)
-
-    # Add generic Airflow environment variables
-    env_vars.update({
-        'AIRFLOW_CTX_TASK_ID': "{{ task.task_id }}",
-        'AIRFLOW_CTX_DAG_ID': "{{ dag_run.dag_id }}",
-        'AIRFLOW_CTX_EXECUTION_DATE': "{{ execution_date | ts }}",
-    })
-
-    return KubernetesPodOperator(
-
-        # task_id is the unique identifier in Airflow,
-        # name is the unique identifier in Kubernetes.
-        # Keeping them the same simplifies things.
-        task_id=name,
-        name=name,
-
-        # Always pull -- if image is updated, we need to use the latest
-        image_pull_policy='Always',
-
-        # See the following URL for why the config file needs to be set:
-        # https://cloud.google.com/composer/docs/how-to/using/using-kubernetes-pod-operator#version-5-0-0
-        config_file="/home/airflow/composer_kube_config",
-
-        # As per
-        # https://cloud.google.com/composer/docs/composer-2/use-kubernetes-pod-operator,
-        # use the composer-user-workloads namespace unless workload
-        # identity is setup.
-        namespace='composer-user-workloads',
-
-        # Capture all of the logs
-        get_logs=True,                # Capture logs from the pod
-        log_events_on_failure=True,   # Capture and log events on failure
-        is_delete_operator_pod=True,  # To clean up the pod after runs
-
-        # Image for this particular job
-        image=f'{repo}/{image_name}:{tag}',
-        arguments=arguments,
-        env_vars=env_vars
-    )
+# Repository
+REPO = Variable.get("REPO")
 
 
 # Define the DAG
-with models.DAG(
-    dag_id='boe_quarterly_derivatives',
-    schedule_interval= "0 2 * * *",
+@dag(
+    schedule_interval=" 0 2 * * *",
     catchup=False,
+    start_date=datetime.datetime(2022, 1, 1),
     default_args={
-        'depends_on_past': False,
-        'start_date': datetime.datetime(2022, 1, 1),
-        'end_date': datetime.datetime(2100, 1, 2),
-        'catchup': False,
-        'catchup_by_default': False,
-        'retries': 0
+        "retries": 2
     },
     params={
         'tag': Param(
             default=TAG,
             type='string',
         ),
+        'repo': Param(
+            default=REPO,
+            type='string',
+        ),
     },
+)
+def boe_qd():
 
-) as dag:
-
-    generate_data_job = containerised_job(
+    generate_data_job = ComposerPodOperator(
+        task_id='generate-data',
         name='generate-data',
-        image_name='boe-qd-data-generator',
+        image='{{ params.repo }}/boe-qd-data-generator:{{ params.tag }}',
         arguments=[
             # The project where the data will be ingested
             '--project_id', PROJECT_ID,
@@ -142,36 +75,43 @@ with models.DAG(
             # The number of records to generate
             '--num_records', '1000'
         ],
-        tag="{{ params.tag }}",
         env_vars={
             'PROJECT_ID': PROJECT_ID,
         },
     )
 
-    run_boe_qd_report = containerised_job(
+    run_boe_qd_report = DBTComposerPodOperator(
+        task_id='transform-data',
         name='transform-data',
-        image_name='boe-qd-dbt',
-        arguments=[
-            "--no-use-colors",
-            "run",
+        image='{{ params.repo }}/boe-qd-dbt:{{ params.tag }}',
+        cmds=[
+            '/bin/bash',
+            '-xc',
+            '&&'.join([
+                'dbt run',
+                'dbt docs generate --static',
+            ]),
         ],
-        tag="{{ params.tag }}",
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
             'REGION': REGION,
             'GCS_INGEST_BUCKET': GCS_INGEST_BUCKET,
-        }
+        },
     )
 
-    test_boe_qd_report = containerised_job(
+    test_boe_qd_report = DBTComposerPodOperator(
+        task_id='data-quality-test',
         name='data-quality-test',
-        image_name='boe-qd-dbt',
-        arguments=[
-            "--no-use-colors",
-            "test",
+        image='{{ params.repo }}/boe-qd-dbt:{{ params.tag }}',
+        cmds=[
+            '/bin/bash',
+            '-xc',
+            '&&'.join([
+                'dbt --no-use-colors test',
+                'dbt docs generate --static',
+            ]),
         ],
-        tag="{{ params.tag }}",
         env_vars={
             'PROJECT_ID': PROJECT_ID,
             'BQ_LOCATION': BQ_LOCATION,
@@ -182,3 +122,5 @@ with models.DAG(
 
     generate_data_job >> run_boe_qd_report >> test_boe_qd_report
 
+
+boe_qd()

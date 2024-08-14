@@ -14,12 +14,12 @@
 
 output "airflow_uri" {
   description = "Airflow URI"
-  value       = module.composer_reg_reporting.airflow_uri
+  value       = module.dbt_composer.airflow_uri
 }
 
 output "airflow_dag_gcs_prefix" {
   description = "Airflow GCS DAG prefix"
-  value       = module.composer_reg_reporting.airflow_dag_gcs_prefix
+  value       = module.dbt_composer.airflow_dag_gcs_prefix
 }
 
 output "gcs_ingest_bucket" {
@@ -30,7 +30,15 @@ output "gcs_cloudbuild_source_staging_bucket" {
   value = module.gcs_buckets.names_list[1]
 }
 
+output "cloudbuild_service_account" {
+  value = module.composer_service_account.email
+}
+
 output "gcs_docs_bucket" {
-  value = module.gcs_buckets.names_list[2]
+  value = module.dbt_composer.docs_gcs_bucket
+}
+
+output "lookerstudio_operations_dashboard_url" {
+  value = module.dbt_composer.lookerstudio_create_dashboard_url
 }
 

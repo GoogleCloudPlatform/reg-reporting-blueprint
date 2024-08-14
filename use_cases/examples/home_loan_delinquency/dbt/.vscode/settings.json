@@ -1,0 +1,4 @@
+{
+  "sqlfluff.dialect": "bigquery",
+  "sqlfluff.executablePath": "/usr/local/google/home/scannell/.local/bin/sqlfluff",
+}
