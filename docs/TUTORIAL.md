@@ -329,7 +329,9 @@ In this section, you explore the contents of the repository's `data` and
     cd ../../../../  # the gcloud command should be executed from the root 
     gcloud builds submit \
       --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml \
-      --substitutions "_SOURCE_URL=${SOURCE_URL},_REGISTRY_URL=${REGISTRY_URL},COMMIT_SHA=main"
+      --substitutions "_SOURCE_URL=${SOURCE_URL},_REGISTRY_URL=${REGISTRY_URL},COMMIT_SHA=main" \
+      --service-account projects/${PROJECT_ID}/serviceAccounts/builder@${PROJECT_ID}.iam.gserviceaccount.com \
+      --gcs-source-staging-dir gs://${PROJECT_ID}-cloudbuild-source-staging-bucket/source
     ```
     The Dockerfile in the `dbt` and `data_load` directories enables containerization, which
     simplifies orchestration of the workflow.
@@ -370,7 +372,9 @@ In this section, you explore the contents of the repository's `data` and
      for build in use_cases/examples/*/cloudbuild.yaml ; do
         gcloud builds submit \
           --config $build \
-          --substitutions "_SOURCE_URL=${SOURCE_URL},_REGISTRY_URL=${REGISTRY_URL},COMMIT_SHA=main"
+          --substitutions "_SOURCE_URL=${SOURCE_URL},_REGISTRY_URL=${REGISTRY_URL},COMMIT_SHA=main" \
+          --service-account projects/${PROJECT_ID}/serviceAccounts/builder@${PROJECT_ID}.iam.gserviceaccount.com \
+          --gcs-source-staging-dir gs://${PROJECT_ID}-cloudbuild-source-staging-bucket/source
      done
      ```
 
