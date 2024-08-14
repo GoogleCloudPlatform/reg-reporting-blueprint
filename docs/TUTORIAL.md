@@ -1,4 +1,4 @@
-# Standing Up a Cloud-Native Regulatory Reporting Architecture  with BigQuery
+# Standing Up a Cloud-Native Regulatory Reporting Architecture with BigQuery
 
 ## Table of contents
 - [Introduction](#introduction)
