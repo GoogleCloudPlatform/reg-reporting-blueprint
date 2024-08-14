@@ -34,7 +34,6 @@ WITH data AS (
         s.security_type,
         s.security_status,
         a.account_number,
-        mc.region AS region,
         DENSE_RANK() OVER (
             PARTITION BY
                 a.account_number
@@ -52,7 +51,8 @@ WITH data AS (
                 s.valuation_date DESC,
                 s.security_value DESC,
                 s.sec_number DESC
-        ) AS security_rank
+        ) AS security_rank,
+        mc.region AS region
     FROM {{ ref('eph_securities_preprocessing') }} AS s
     INNER JOIN {{ ref('src_link_securities_accounts') }} AS x
         ON s.sec_number = x.sec_number
