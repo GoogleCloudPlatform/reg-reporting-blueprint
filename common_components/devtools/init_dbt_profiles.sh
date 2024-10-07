@@ -68,12 +68,6 @@ cat > "${PROFILES_FILE}" <<EOF
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-config:
-  partial_parse: false
-  use_colors: true
-  printer_width: 100
-  send_anonymous_usage_stats: false
-
 #
 # For development, it is suggested to copy this profile to $HOME/.dbt
 #
