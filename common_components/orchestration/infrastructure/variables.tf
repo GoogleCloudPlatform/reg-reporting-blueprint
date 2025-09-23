@@ -31,6 +31,11 @@ variable "bq_datasets" {
   description = "The BQ datasets to create"
 }
 
+variable "composer_version" {
+  description = "The version of Cloud Composer to use"
+  default     = "composer-2.14.2-airflow-2.10.5"
+}
+
 variable "src_url" {
   description = "Source URL for dbt_dashboard (embedded into dashboards)"
   default     = "https://github.com/GoogleCloudPlatform/reg-reporting-blueprint/tree"
