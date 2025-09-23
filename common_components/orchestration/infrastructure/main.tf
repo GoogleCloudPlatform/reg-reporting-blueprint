@@ -58,7 +58,7 @@ module "dbt_composer" {
   region                 = var.region
   gcs_location           = var.region
   bq_location            = var.bq_location
-  composer_version      = var.composer_version
+  composer_version       = var.composer_version
   goog_packaged_solution = "gcp-reg-reporting"
   env_variables = {
     AIRFLOW_VAR_REPO : local.registry_url,
