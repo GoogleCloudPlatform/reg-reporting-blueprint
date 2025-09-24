@@ -61,7 +61,7 @@ In the Google Cloud console, on the project selector page, select or
 
 Note: If you don't plan to keep the resources that you create in this procedure, create a project instead of selecting an existing project. After you finish these steps, you can delete the project, removing all resources associated with the project.
 
- * [Go to project selector](https://pantheon.corp.google.com/projectselector2/home/dashboard)
+ * [Go to project selector](https://console.cloud.google.com/projectselector2/home/dashboard)
 
 Make sure that billing is enabled for your Cloud project. L
 earn how to [check if billing is enabled on a project](https://cloud.google.com/billing/docs/how-to/verify-billing-enabled).
