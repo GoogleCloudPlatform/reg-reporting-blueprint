@@ -326,7 +326,8 @@ In this section, you explore the contents of the repository's `data` and
     Artifact Repository:
 
     ```
-    cd ../../../../  # the gcloud command should be executed from the root 
+    cd ../../../../  # the gcloud command should be executed from the root
+    source environment-variables.sh # ensure the environment variables are set for build to run
     gcloud builds submit \
       --config use_cases/examples/home_loan_delinquency/cloudbuild.yaml \
       --substitutions "_SOURCE_URL=${SOURCE_URL},_REGISTRY_URL=${REGISTRY_URL},COMMIT_SHA=main" \
