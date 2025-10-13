@@ -1,4 +1,4 @@
-# ```Google Cloud Platform Regulatory Reporting solution```
+# ```Google Cloud Platform Financial Reporting and Risk Modeling solution```
 
 ## _Automate Regulatory reporting workflows on Google Cloud Platform_
 
