@@ -20,7 +20,7 @@ locals {
 # See https://github.com/terraform-google-modules/terraform-google-project-factory
 # The modules/project_services
 module "project_services" {
-  source = "github.com/terraform-google-modules/terraform-google-project-factory//modules/project_services?ref=v14.3.0"
+  source = "github.com/terraform-google-modules/terraform-google-project-factory//modules/project_services?ref=v18.1.0"
 
   project_id                  = var.project
   disable_services_on_destroy = false
@@ -38,6 +38,7 @@ module "project_services" {
     "roles" : [
       "roles/bigquery.dataEditor",
       "roles/bigquery.jobUser",
+      "roles/composer.ServiceAgentV2Ext",
     ]
   }]
 }
@@ -53,7 +54,7 @@ resource "google_artifact_registry_repository" "reg-reporting-repo" {
 
 # Create DBT Composer setup
 module "dbt_composer" {
-  source                 = "github.com/GoogleCloudPlatform/terraform-google-dbt-composer-blueprint?ref=v1.1.0"
+  source                 = "github.com/GoogleCloudPlatform/terraform-google-dbt-composer-blueprint?ref=ce25400af77092eca6bf1e2e1bd1f659f8ccb6ab"
   project_id             = module.project_services.project_id
   region                 = var.region
   gcs_location           = var.region
@@ -69,7 +70,7 @@ module "dbt_composer" {
 # Create ingest & cloudbuild source staging GCS Buckets
 # See https://github.com/terraform-google-modules/terraform-google-cloud-storage
 module "gcs_buckets" {
-  source = "github.com/terraform-google-modules/terraform-google-cloud-storage?ref=v4.0.1"
+  source = "github.com/terraform-google-modules/terraform-google-cloud-storage?ref=v11.1.2"
 
   project_id = module.project_services.project_id
   prefix     = module.project_services.project_id
@@ -85,7 +86,7 @@ module "gcs_buckets" {
 # Create BigQuery Datasets
 # See https://github.com/terraform-google-modules/terraform-google-bigquery
 module "bigquery" {
-  source = "github.com/terraform-google-modules/terraform-google-bigquery?ref=v7.0.0"
+  source = "github.com/terraform-google-modules/terraform-google-bigquery?ref=v10.2.1"
 
   project_id                 = module.project_services.project_id
   dataset_id                 = each.value
@@ -102,7 +103,7 @@ module "bigquery" {
 # See https://github.com/terraform-google-modules/terraform-google-service-accounts
 module "composer_service_account" {
   source  = "terraform-google-modules/service-accounts/google"
-  version = "4.3.0"
+  version = "4.6.0"
 
   project_id = module.project_services.project_id
   names = [
