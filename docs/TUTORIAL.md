@@ -262,7 +262,7 @@ In this section, you explore the contents of the repository's `data` and
     this value.
 
 1.  In the Google Cloud console, go to the **BigQuery** page
-    and inspect the `homeloan_dev` dataset. Notice how the data has been
+    and inspect the `regrep_homeloan` dataset. Notice how the data has been
     populated, and how the `reporting_day` variable that you passed is used in
     the **`control.reporting_day`** field of the `wh_denormalised` view.
 
