@@ -29,6 +29,5 @@ fi
 subdir=${path_to_data##*/}
 
 echo -e "Copying the files from $path_to_data"
-gsutil cp -r $path_to_data/* gs://$GCS_INGEST_BUCKET/homeloan/$subdir/
-
+gcloud storage cp --recursive $path_to_data/* gs://$GCS_INGEST_BUCKET/homeloan/$subdir/
 

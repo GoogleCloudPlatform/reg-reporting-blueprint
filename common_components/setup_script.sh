@@ -54,12 +54,12 @@ echo -e "$__text_config_tf"
 pushd "${SCRIPT_DIR}/orchestration/infrastructure" > /dev/null
 echo -e "Creating the storage bucket"
 BUCKET="gs://${GCS_TF_STATE}"
-if $(gsutil ls "${BUCKET}" > /dev/null 2>&1); then
+if $(gcloud storage ls "${BUCKET}" > /dev/null 2>&1); then
   echo "Bucket already exists. Skipping bucket creation."
 else
-  gsutil mb -l ${GCS_LOCATION} "${BUCKET}"
+  gcloud storage buckets create --location ${GCS_LOCATION} "${BUCKET}"
   echo -e "Enabling Object Versioning to keep the history of your deployments"
-  gsutil versioning set on "${BUCKET}"
+  gcloud storage buckets update --versioning "${BUCKET}"
 fi
 
 echo -e "Creating the terraform.tfvars file..."

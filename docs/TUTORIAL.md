@@ -350,7 +350,7 @@ In this section, you explore the contents of the repository's `data` and
 
     ```
     cd ../../../use_cases/examples/home_loan_delinquency/deploy/
-    gsutil cp run_homeloan_dag.py $AIRFLOW_DAG_GCS
+    gcloud storage cp run_homeloan_dag.py $AIRFLOW_DAG_GCS
     ```
    
 1.  Go to the Airflow page by executing the following 
@@ -393,7 +393,7 @@ In this section, you explore the contents of the repository's `data` and
      ```
      AIRFLOW_DAG_GCS=$(cd common_components/orchestration/infrastructure && terraform output --raw airflow_dag_gcs_prefix)
      for dag in use_cases/examples/*/deploy/*.py ; do
-       gsutil cp $dag $AIRFLOW_DAG_GCS
+       gcloud storage cp $dag $AIRFLOW_DAG_GCS
      done
      ```
 

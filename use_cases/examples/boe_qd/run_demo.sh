@@ -44,7 +44,7 @@ popd
 # Submit ther DAG to Composer
 echo -e "\n\nSubmit the DAG to Composer"
 pushd ${BOE_QD_DIR}/deploy
-gsutil cp run_boe_qd_dag.py $AIRFLOW_DAG_GCS
+gcloud storage cp run_boe_qd_dag.py $AIRFLOW_DAG_GCS
 
 echo -e "\tClick on the link to see progress: "${AIRFLOW_UI}
 popd
